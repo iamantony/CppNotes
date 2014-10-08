@@ -10,8 +10,12 @@
 #include <stdlib.h>
 #include <iostream>
 
+#include "classes/multy_inheritance.h"
+
 int main(void) {
-	std::cout << "CppNotes";
+	std::cout << "CppNotes" << std::endl;
+
+	Start();
 
 	return (0);
 }
