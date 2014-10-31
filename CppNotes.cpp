@@ -10,7 +10,8 @@
 #include <stdlib.h>
 #include <iostream>
 
-#include "classes/multy_inheritance.h"
+//#include "classes/multy_inheritance.h"
+#include "types/basics.h"
 
 int main(void) {
 	std::cout << "CppNotes" << std::endl;
