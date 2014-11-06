@@ -1,4 +1,4 @@
-CXXFLAGS =	-O2 -g -Wall -Werror -fmessage-length=0 -std=c++0x
+CXXFLAGS =	-O2 -g -Wall -fmessage-length=0 -std=c++0x
 
 OBJS =		CppNotes.o
 

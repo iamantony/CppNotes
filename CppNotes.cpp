@@ -11,10 +11,13 @@
 #include <iostream>
 
 //#include "classes/multy_inheritance.h"
-#include "types/basics.h"
+//#include "types/basics.h"
+//#include "types/boolean.h"
+//#include "types/chartype.h"
+#include "types/inttype.h"
 
 int main(void) {
-	std::cout << "CppNotes" << std::endl;
+	std::cout << "CppNotes" << std::endl << std::endl;
 
 	Start();
 

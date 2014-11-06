@@ -12,9 +12,9 @@
 #include <limits>
 #include <typeinfo>
 
-void introduction()
+void Introduction()
 {
-	std::cout << "introduction()" << std::endl;
+	std::cout << "Introduction()" << std::endl;
 
 	// Every name and every expression has a type that determines the
 	// operations that may be performed on it.
@@ -27,7 +27,7 @@ void introduction()
 	// - A variable is a named object.
 
 	// Fundamental types:
-	// 1. bool. True (0) or False (!0)
+	// 1. bool. True (!0) or False (0)
 	std::cout << "Boolean type: bool. Size: " << sizeof(bool) << std::endl;
 	std::cout << std::endl;
 
@@ -97,9 +97,9 @@ void introduction()
 	std::cout << std::endl;
 }
 
-void initialization()
+void Initialization()
 {
-	std::cout << "initialization()" << std::endl;
+	std::cout << "Initialization()" << std::endl;
 
 	// C++ offers a variety of notations for expressing initialization,
 	// such as the = used above, and a universal form based on
@@ -126,10 +126,28 @@ void initialization()
 	std::cout << std::endl;
 }
 
+void Declaration()
+{
+	// Every name (identifier) in a C++ program has a type associated with it.
+	// This type determines what operations can be applied to the name
+	// (that is, to the entity referred to by the name) and how such
+	// operations are interpreted.
+
+	// y is integer value
+	int y;
+	// c is char values
+	char c;
+
+	// func is a function that get as argument integer value and return
+	// floating-point value
+	float func(int t);
+}
+
 void Start()
 {
-	introduction();
-	initialization();
+	Introduction();
+	Initialization();
+	Declaration();
 }
 
 #endif /* TYPES_BASICS_H_ */
