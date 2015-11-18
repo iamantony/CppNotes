@@ -3,11 +3,11 @@ cmake_minimum_required (VERSION 2.8)
 message ("Starting cmake")
 
 # Set project name
-set(PROJECT CppNotes)
+set(PROJECT CppNotesPrj)
 project(${PROJECT})
 
 # Set paths
-set("${PROJECT}_BINARY_DIR"  bin)
+set("${PROJECT}_BINARY_DIR" bin)
 set("${PROJECT}_SOURCE_DIR" src)
 #set("${PROJECT}_LIB_DIR" lib)
 

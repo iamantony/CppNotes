@@ -17,4 +17,4 @@ foreach (folder ${SUBFOLDERS})
 endforeach ()
 
 
-add_executable (${PROJECT} ${MAIN_SOURCES} ${SOURCES} ${HEADERS})
+add_executable (cppnotes ${MAIN_SOURCES} ${SOURCES} ${HEADERS})
