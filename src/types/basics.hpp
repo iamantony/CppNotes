@@ -1,16 +1,14 @@
-/*
- * basics.h
- *
- *  Created on: Oct 31, 2014
- *      Author: Antony Cherepanov
- */
-
 #ifndef TYPES_BASICS_H_
 #define TYPES_BASICS_H_
 
 #include <iostream>
 #include <limits>
 #include <typeinfo>
+
+void Introduction();
+void Initialization();
+void Declaration();
+void Start();
 
 void Introduction()
 {
@@ -34,9 +32,11 @@ void Introduction()
 	// 2. char. Type for integer values
 	std::cout << "Integers type: char. Size: " << sizeof(char) << std::endl;
 	std::cout << "min char = " <<
-			(int)std::numeric_limits<char>::min() << std::endl;
+			static_cast<int>(std::numeric_limits<char>::min()) <<
+			std::endl;
 	std::cout << "max char = " <<
-			(int)std::numeric_limits<char>::max() << std::endl;
+			static_cast<int>(std::numeric_limits<char>::max()) <<
+			std::endl;
 	std::cout << std::endl;
 
 	// 3. int. Type for integer values
@@ -113,7 +113,7 @@ void Initialization()
 
 	// If we initialize "short" value by "long" value (for example,
 	// int = double), then value will be converted with lose of information
-	int convertion_int = 7.5;
+	int convertion_int = static_cast<int>(7.5);
 	std::cout << "Lost of information: int value = double value 7.5: " <<
 			convertion_int << std::endl;
 
@@ -134,9 +134,9 @@ void Declaration()
 	// operations are interpreted.
 
 	// y is integer value
-	int y;
+	// int y;
 	// c is char values
-	char c;
+	// char c;
 
 	// func is a function that get as argument integer value and return
 	// floating-point value

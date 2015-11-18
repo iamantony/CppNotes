@@ -32,3 +32,8 @@ CppNotes
 .cproject
 .project
 .settings
+
+# Project
+bin/
+build/
+*.user
