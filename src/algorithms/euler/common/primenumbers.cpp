@@ -5,9 +5,10 @@
  *      Author: Antony Cherepanov
  */
 
+#include "primenumbers.hpp"
+
 #include <limits>
 
-#include "primenumbers.h"
 
 // Based on algorithm Seive of Eratosthenes
 std::vector<long int> PrimeNumbers::GetPrimeNumbers(const long int &t_limit)

@@ -5,9 +5,10 @@
  *      Author: Antony Cherepanov
  */
 
+#include "matrix.hpp"
+
 #include <iostream>
 #include <sstream>
-#include "matrix.h"
 
 template <class T>
 void Matrix<T>::Clear()
