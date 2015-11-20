@@ -1,6 +1,7 @@
 set(MAIN_SOURCES main.cpp)
 
 set (SUBFOLDERS
+        algorithms
         classes
         types
     )
@@ -15,6 +16,5 @@ foreach (folder ${SUBFOLDERS})
 #    LIST (APPEND SOURCES ${class}.cpp)
 #    LIST (APPEND HEADERS ${class}.hpp)
 endforeach ()
-
 
 add_executable (cppnotes ${MAIN_SOURCES} ${SOURCES} ${HEADERS})
