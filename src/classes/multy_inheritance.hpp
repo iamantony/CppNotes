@@ -1,10 +1,3 @@
-/*
- * multy_inheritance.h
- *
- *  Created on: Oct 8, 2014
- *      Author: Antony Cherepanov
- */
-
 #ifndef MULTY_INHERITANCE_H_
 #define MULTY_INHERITANCE_H_
 

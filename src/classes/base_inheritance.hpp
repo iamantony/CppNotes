@@ -1,10 +1,3 @@
-/*
- * base_inheritance.h
- *
- *  Created on: Oct 8, 2014
- *      Author: Antony Cherepanov
- */
-
 #ifndef BASE_H_
 #define BASE_H_
 
