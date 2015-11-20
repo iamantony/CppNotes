@@ -5,11 +5,6 @@
 #include <limits>
 #include <typeinfo>
 
-void Introduction();
-void Initialization();
-void Declaration();
-void Start();
-
 void Introduction()
 {
 	std::cout << "Introduction()" << std::endl;
