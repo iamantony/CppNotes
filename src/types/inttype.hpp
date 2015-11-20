@@ -1,10 +1,3 @@
-/*
- * inttype.h
- *
- *  Created on: Nov 6, 2014
- *      Author: Antony Cherepanov
- */
-
 #include <iostream>
 #include <limits>
 #include <ios>
