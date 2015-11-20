@@ -8,5 +8,5 @@ int main()
 {
     std::cout << "CppNotes" << std::endl << std::endl;
     Start();
-    return 0;
+    return (0);
 }
