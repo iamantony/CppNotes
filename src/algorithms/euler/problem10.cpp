@@ -1,31 +1,24 @@
-/*
- * problem10.cpp
- *
- *  Created on: Jan 5, 2014
- *      Author: Antony Cherepanov
- */
+#include "problem10.hpp"
 
 #include <iostream>
 #include <vector>
 
-#include "problem10.h"
-#include "algorithms/primenumbers.h"
+#include "common/primenumbers.hpp"
 
 void Problem10::DoSolve()
 {
-	std::cout << "Problem 10" << std::endl;
+    std::cout << "Problem 10" << std::endl;
 
-	const long int maxPrime = 2000000;
+    const long int maxPrime = 2000000;
 
-	PrimeNumbers primeNums;
-	std::vector<long int> primes = primeNums.GetPrimeNumbers(maxPrime);
+    PrimeNumbers primeNums;
+    std::vector<long int> primes = primeNums.GetPrimeNumbers(maxPrime);
 
-	long int sum = 0;
-	for ( size_t i = 0; i < primes.size(); ++i )
-	{
-		sum += primes[i];
-	}
+    long int sum = 0;
+    for ( size_t i = 0; i < primes.size(); ++i )
+    {
+        sum += primes[i];
+    }
 
-	std::cout << "Answer = " << sum << std::endl;
+    std::cout << "Answer = " << sum << std::endl;
 }
-

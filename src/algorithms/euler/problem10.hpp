@@ -1,14 +1,7 @@
-/*
- * problem10.h
- *
- *  Created on: Jan 5, 2014
- *      Author: Antony Cherepanov
- */
-
 #ifndef PROBLEM10_H_
 #define PROBLEM10_H_
 
-#include "problem.h"
+#include "problem.hpp"
 
 // Problem 10:
 // The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
@@ -16,11 +9,9 @@
 
 class Problem10 : public Problem
 {
-	// == DATA ==
-
-	// == METHODS ==
+    // == METHODS ==
 private:
-	virtual void DoSolve();
+    virtual void DoSolve();
 };
 
 #endif /* PROBLEM10_H_ */

@@ -1,14 +1,7 @@
-/*
- * problem6.h
- *
- *  Created on: Dec 26, 2013
- *      Author: Antony Cherepanov
- */
-
 #ifndef PROBLEM6_H_
 #define PROBLEM6_H_
 
-#include "problem.h"
+#include "problem.hpp"
 
 // Problem 6:
 // The sum of the squares of the first ten natural numbers is,
@@ -24,11 +17,9 @@
 
 class Problem6 : public Problem
 {
-	// == DATA ==
-
-	// == METHODS ==
+    // == METHODS ==
 private:
-	virtual void DoSolve();
+    virtual void DoSolve();
 };
 
 #endif /* PROBLEM6_H_ */

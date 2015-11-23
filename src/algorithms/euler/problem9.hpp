@@ -1,14 +1,7 @@
-/*
- * problem9.h
- *
- *  Created on: Jan 4, 2014
- *      Author: Antony Cherepanov
- */
-
 #ifndef PROBLEM9_H_
 #define PROBLEM9_H_
 
-#include "problem.h"
+#include "problem.hpp"
 
 // Problem 9:
 // A Pythagorean triplet is a set of three natural numbers, a < b < c,
@@ -20,11 +13,9 @@
 
 class Problem9 : public Problem
 {
-	// == DATA ==
-
-	// == METHODS ==
+    // == METHODS ==
 private:
-	virtual void DoSolve();
+    virtual void DoSolve();
 };
 
 #endif /* PROBLEM9_H_ */

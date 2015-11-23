@@ -1,14 +1,7 @@
-/*
- * problem5.h
- *
- *  Created on: Dec 26, 2013
- *      Author: Antony Cherepanov
- */
-
 #ifndef PROBLEM5_H_
 #define PROBLEM5_H_
 
-#include "problem.h"
+#include "problem.hpp"
 
 // Problem 5:
 // 2520 is the smallest number that can be divided by each of the numbers
@@ -18,11 +11,9 @@
 
 class Problem5 : public Problem
 {
-	// == DATA ==
-
-	// == METHODS ==
+    // == METHODS ==
 private:
-	virtual void DoSolve();
+    virtual void DoSolve();
 };
 
 #endif /* PROBLEM5_H_ */

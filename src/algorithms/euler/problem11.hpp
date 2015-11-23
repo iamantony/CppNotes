@@ -1,16 +1,9 @@
-/*
- * problem11.h
- *
- *  Created on: Jan 5, 2014
- *      Author: Antony Cherepanov
- */
-
 #ifndef PROBLEM11_H_
 #define PROBLEM11_H_
 
 #include <utility>
-#include "problem.h"
-#include "./structures/matrix.h"
+#include "problem.hpp"
+#include "common/matrix.hpp"
 
 // Problem 11:
 // In the 20x20 grid below, four numbers along a diagonal line have been marked.
@@ -42,28 +35,26 @@
 
 class Problem11 : public Problem
 {
-	// == DATA ==
-
-	// == METHODS ==
+    // == METHODS ==
 private:
-	virtual void DoSolve();
-	std::vector< std::pair<int, int> > FindMaxElements(const Matrix<int> &t_matrix,
-														const int &t_maxValue);
+    virtual void DoSolve();
+    std::vector< std::pair<int, int> > FindMaxElements(
+                    const Matrix<int> &t_matrix, const int &t_maxValue);
 
-	int FindMaxProduct(const Matrix<int> &t_matrix,
-						const std::vector< std::pair<int, int> > &t_elements);
+    int FindMaxProduct(const Matrix<int> &t_matrix,
+                       const std::vector< std::pair<int, int> > &t_elements);
 
-	int FindMaxHorizontalProduct(const Matrix<int> &t_matrix,
-										const std::pair<int, int> &t_element);
+    int FindMaxHorizontalProduct(const Matrix<int> &t_matrix,
+                                 const std::pair<int, int> &t_element);
 
-	int FindMaxVerticalProduct(const Matrix<int> &t_matrix,
-										const std::pair<int, int> &t_element);
+    int FindMaxVerticalProduct(const Matrix<int> &t_matrix,
+                               const std::pair<int, int> &t_element);
 
-	int FindMaxUpLeftDiagonalProduct(const Matrix<int> &t_matrix,
-										const std::pair<int, int> &t_element);
+    int FindMaxUpLeftDiagonalProduct(const Matrix<int> &t_matrix,
+                                     const std::pair<int, int> &t_element);
 
-	int FindMaxDownLeftDiagonalProduct(const Matrix<int> &t_matrix,
-										const std::pair<int, int> &t_element);
+    int FindMaxDownLeftDiagonalProduct(const Matrix<int> &t_matrix,
+                                       const std::pair<int, int> &t_element);
 };
 
 #endif /* PROBLEM11_H_ */

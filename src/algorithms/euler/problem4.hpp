@@ -1,14 +1,7 @@
-/*
- * problem4.h
- *
- *  Created on: Dec 25, 2013
- *      Author: Antony Cherepanov
- */
-
 #ifndef PROBLEM4_H_
 #define PROBLEM4_H_
 
-#include "problem.h"
+#include "problem.hpp"
 
 // Problem 4:
 // A palindromic number reads the same both ways. The largest palindrome
@@ -17,12 +10,10 @@
 
 class Problem4 : public Problem
 {
-	// == DATA ==
-
-	// == METHODS ==
+    // == METHODS ==
 private:
-	virtual void DoSolve();
-	bool IsPalindrom(const int &t_number);
+    virtual void DoSolve();
+    bool IsPalindrom(const int &t_number);
 };
 
 #endif /* PROBLEM4_H_ */

@@ -1,16 +1,10 @@
-/*
- * problem8.h
- *
- *  Created on: Dec 30, 2013
- *      Author: Antony Cherepanov
- */
-
 #ifndef PROBLEM8_H_
 #define PROBLEM8_H_
 
-#include "problem.h"
 #include <string>
 #include <vector>
+
+#include "problem.hpp"
 
 // Problem 8:
 // Find the greatest product of five consecutive digits in the 1000-digit number.
@@ -38,12 +32,10 @@
 
 class Problem8 : public Problem
 {
-	// == DATA ==
-
-	// == METHODS ==
+    // == METHODS ==
 private:
-	virtual void DoSolve();
-	std::vector<int> ConvertToNumbers(const std::string &t_str);
+    virtual void DoSolve();
+    std::vector<int> ConvertToNumbers(const std::string &t_str);
 };
 
 #endif /* PROBLEM8_H_ */

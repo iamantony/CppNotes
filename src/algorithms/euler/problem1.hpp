@@ -1,14 +1,7 @@
-/*
- * problem1.h
- *
- *  Created on: Dec 23, 2013
- *      Author: Antony Cherepanov
- */
-
 #ifndef PROBLEM1_H_
 #define PROBLEM1_H_
 
-#include "problem.h"
+#include "problem.hpp"
 
 // Problem 1:
 //If we list all the natural numbers below 10 that are multiples of 3 or 5,
@@ -17,11 +10,9 @@
 
 class Problem1 : public Problem
 {
-	// == DATA ==
-
-	// == METHODS ==
+    // == METHODS ==
 private:
-	virtual void DoSolve();
+    virtual void DoSolve();
 };
 
 #endif /* PROBLEM1_H_ */
