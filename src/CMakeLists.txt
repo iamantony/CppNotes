@@ -1,19 +1,12 @@
 set(MAIN_SOURCES main.cpp)
+set(HEADERS)
+set(SOURCES)
 
-set (SUBFOLDERS
-        algorithms/euler/common
-        algorithms/euler
-        algorithms
-        classes
-        types
-    )
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/types")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/classes")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/algorithms/euler")
 
-set (HEADERS)
-set (SOURCES)
-
-foreach (folder ${SUBFOLDERS})
-    file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/${folder}/*.cpp)
-    file(GLOB_RECURSE HEADERS ${PROJECT_SOURCE_DIR}/${folder}/*.hpp)
-endforeach ()
+#message("Headers: " ${HEADERS})
+#message("Sources: " ${SOURCES})
 
 add_executable (cppnotes ${MAIN_SOURCES} ${SOURCES} ${HEADERS})

@@ -1,0 +1,8 @@
+set(HEADERS
+   ${HEADERS}
+   ${CMAKE_CURRENT_SOURCE_DIR}/basics.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/boolean.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/chartype.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/inttype.hpp
+   PARENT_SCOPE
+)

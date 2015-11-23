@@ -1,6 +1,6 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required(VERSION 2.8)
 
-message ("Starting cmake")
+message("Starting cmake")
 
 # Set project name
 set(PROJECT CppNotesPrj)
@@ -46,4 +46,4 @@ set(CMAKE_CXX_FLAGS ${CFLAGS})
 message("Build: " ${CMAKE_BUILD_TYPE})
 message("Compiler flags: " ${CMAKE_CXX_FLAGS})
 
-add_subdirectory (src)
+add_subdirectory(src)
