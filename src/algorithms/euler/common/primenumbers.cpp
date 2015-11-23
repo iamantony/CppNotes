@@ -1,10 +1,3 @@
-/*
- * primalnumbers.cpp
- *
- *  Created on: Dec 30, 2013
- *      Author: Antony Cherepanov
- */
-
 #include "primenumbers.hpp"
 
 #include <limits>
@@ -43,5 +36,5 @@ std::vector<long int> PrimeNumbers::GetPrimeNumbers(const long int &t_limit)
 		}
 	}
 
-	return primals;
+	return (primals);
 }
