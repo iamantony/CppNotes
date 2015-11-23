@@ -25,7 +25,8 @@ bool Matrix<T>::SetData(const int &t_width,
     }
 
     std::vector<std::string> parsedStr = Split(t_str, t_delimiter);
-    if ( t_width * t_height != parsedStr.size() )
+    unsigned int matrixSize = static_cast<unsigned int>(t_width * t_height);
+    if ( matrixSize != parsedStr.size() )
     {
         std::cout << "SetData(): Error - invalid arguments" << std::endl;
         return (false);
@@ -56,10 +57,10 @@ std::vector<std::string> Matrix<T>::Split(const std::string &t_str,
 template <>
 void Matrix<int>::FillMatrix(const std::vector<std::string> &t_elements)
 {
-    const int numOfElemetns = t_elements.size();
+    const size_t numOfElemetns = t_elements.size();
     m_matrix.clear();
     m_matrix.reserve(numOfElemetns);
-    for ( int elem = 0; elem < numOfElemetns; ++elem  )
+    for ( size_t elem = 0; elem < numOfElemetns; ++elem )
     {
         int num = std::stoi(t_elements[elem]);
         m_matrix.push_back(num);
@@ -74,7 +75,8 @@ T Matrix<T>::At(const int &t_width, const int &t_height) const
         return (-1);
     }
 
-    int index = t_height * m_width + t_width;
+    unsigned int index = static_cast<unsigned int>(
+                    t_height * m_width + t_width);
     return (m_matrix[index]);
 }
 

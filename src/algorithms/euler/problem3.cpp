@@ -1,57 +1,31 @@
 #include "problem3.hpp"
 
 #include <iostream>
-#include <limits>
 #include <math.h>
+
+#include "common/primenumbers.hpp"
 
 void Problem3::DoSolve()
 {
     std::cout << "Problem 3" << std::endl;
 
-    long int number = 600851475143;
-    long int numSqrt = (long int)floor( sqrt((double)number) + 0.5);
-    std::vector<long int> primalNumbers = GetPrimalNumbers(numSqrt);
+    long unsigned int number = 600851475143;
+    double numberAsDouble = static_cast<double>(number);
+    long unsigned int numSqrt = static_cast<long unsigned int>(
+                    floor(sqrt(numberAsDouble) + 0.5));
 
-    long int lastPrimal = 0;
-    const long int numOfPrimes = primalNumbers.size();
-    for ( long int i = 0; i < numOfPrimes; ++i )
+    std::vector<long unsigned int> primalNumbers =
+                    PrimeNumbers::GetPrimeNumbers(numSqrt);
+
+    long unsigned int lastPrimal = 0;
+    for ( long unsigned int i = primalNumbers.size() - 1; i > 0; --i )
     {
         if ( 0 == number % primalNumbers[i] )
         {
             lastPrimal = primalNumbers[i];
+            break;
         }
     }
 
     std::cout << "Answer = " << lastPrimal << std::endl;
-}
-
-std::vector<long int> Problem3::GetPrimalNumbers(const long int &t_limit)
-{
-    long int limit = t_limit;
-    if ( limit <= 0 )
-    {
-        limit = std::numeric_limits<long int>::max();
-    }
-
-    std::vector<char> flags(limit, 1);
-    flags[0] = flags[1] = 0;
-
-    std::vector<long int> primals;
-
-    for ( long int i = 0; i < limit; ++i )
-    {
-        if ( 0 == flags[i] )
-        {
-            continue;
-        }
-
-        primals.push_back(i);
-
-        for ( long int j = i + i; j < limit; j += i )
-        {
-            flags[j] = 0;
-        }
-    }
-
-    return (primals);
 }

@@ -37,7 +37,7 @@ class Problem11 : public Problem
 {
     // == METHODS ==
 private:
-    virtual void DoSolve();
+    virtual void DoSolve() override;
     std::vector< std::pair<int, int> > FindMaxElements(
                     const Matrix<int> &t_matrix, const int &t_maxValue);
 

@@ -5,9 +5,10 @@
 
 class PrimeNumbers
 {
-	// == METHODS ==
+    // == METHODS ==
 public:
-	std::vector<long int> GetPrimeNumbers(const long int &t_limit);
+    static std::vector<long unsigned int> GetPrimeNumbers(
+                    const long unsigned int &t_limit);
 };
 
 #endif /* PRIMALNUMBERS_H_ */

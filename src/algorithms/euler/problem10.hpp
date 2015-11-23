@@ -11,7 +11,7 @@ class Problem10 : public Problem
 {
     // == METHODS ==
 private:
-    virtual void DoSolve();
+    virtual void DoSolve() override;
 };
 
 #endif /* PROBLEM10_H_ */

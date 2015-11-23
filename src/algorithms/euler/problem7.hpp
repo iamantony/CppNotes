@@ -12,8 +12,8 @@ class Problem7 : public Problem
 {
     // == METHODS ==
 private:
-    virtual void DoSolve();
-    int FindLimitNumber(const int &t_primeNum);
+    virtual void DoSolve() override;
+    long unsigned int FindLimitNumber(const long unsigned int& t_primeNum);
 };
 
 #endif /* PROBLEM7_H_ */

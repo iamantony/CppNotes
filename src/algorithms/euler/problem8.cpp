@@ -29,41 +29,40 @@ void Problem8::DoSolve()
     numbersStr.append("71636269561882670428252483600823257530420752963450");
 
 
-    std::vector<int> nums = ConvertToNumbers(numbersStr);
+    std::vector<long long int> nums = ConvertToNumbers(numbersStr);
     if ( 0 == nums.size() )
     {
         std::cout << "Error - conversion to numbers failed" << std::endl;
         return;
     }
 
-    int largestSum = 0;
-    int indx = 0;
-    for ( size_t i = 0; i < nums.size() - 4; ++i )
+    long long int largestProduct = 0;
+    for (size_t i = 0; i < nums.size() - 13; ++i)
     {
-        int sum = nums[i] + nums[i+1] + nums[i+2] + nums[i+3] + nums[i+4];
-        if ( largestSum < sum )
+        long long int prod = 1;
+        for(size_t j = i; j < i + 13; ++j)
         {
-            largestSum = sum;
-            indx = i;
+            prod *= nums[j];
+        }
+
+        if (largestProduct < prod)
+        {
+            largestProduct = prod;
         }
     }
 
-    int product = nums[indx] * nums[indx+1] * nums[indx+2] *
-            nums[indx+3] * nums[indx+4];
-
-    std::cout << "Answer = " << product << std::endl;
+    std::cout << "Answer = " << largestProduct << std::endl;
 }
 
-std::vector<int> Problem8::ConvertToNumbers(const std::string &t_str)
+std::vector<long long int> Problem8::ConvertToNumbers(const std::string &t_str)
 {
     if ( 0 == t_str.size() )
     {
         std::cout << "Error - string is empty" << std::endl;
-        return (std::vector<int>());
+        return (std::vector<long long int>());
     }
 
-    std::vector<int> nums;
-
+    std::vector<long long int> nums;
     for ( size_t i = 0; i < t_str.size(); ++i )
     {
         if ( (t_str[i] < '0') || ('9' < t_str[i]) )

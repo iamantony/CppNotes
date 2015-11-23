@@ -2,11 +2,15 @@
 #include <stdlib.h>
 #include <iostream>
 
-#include "types/basics.hpp"
+#include "algorithms/euler/problem12.hpp"
 
 int main()
 {
     std::cout << "CppNotes" << std::endl << std::endl;
-    Start();
+
+    Problem *problem = new Problem12();
+    problem->Solve();
+    delete problem;
+
     return (0);
 }

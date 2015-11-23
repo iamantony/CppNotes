@@ -34,8 +34,8 @@ class Problem8 : public Problem
 {
     // == METHODS ==
 private:
-    virtual void DoSolve();
-    std::vector<int> ConvertToNumbers(const std::string &t_str);
+    virtual void DoSolve() override;
+    std::vector<long long int> ConvertToNumbers(const std::string &t_str);
 };
 
 #endif /* PROBLEM8_H_ */

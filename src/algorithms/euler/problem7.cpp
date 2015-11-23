@@ -9,11 +9,10 @@ void Problem7::DoSolve()
 {
     std::cout << "Problem 7" << std::endl;
 
-    const int primeNumberNum = 10001;
-    int limit = FindLimitNumber(primeNumberNum);
-
-    PrimeNumbers alg;
-    std::vector<long int> primals = alg.GetPrimeNumbers( (long int)limit);
+    const long unsigned int primeNumberNum = 10001;
+    long unsigned int limit = FindLimitNumber(primeNumberNum);
+    std::vector<long unsigned int> primals =
+                    PrimeNumbers::GetPrimeNumbers(limit);
 
     if ( primals.size() < primeNumberNum )
     {
@@ -24,15 +23,15 @@ void Problem7::DoSolve()
     std::cout << "Answer = " << primals[primeNumberNum - 1] << std::endl;
 }
 
-int Problem7::FindLimitNumber(const int &t_primeNum)
+long unsigned int Problem7::FindLimitNumber(const long unsigned int& t_primeNum)
 {
     if ( t_primeNum <= 0 )
     {
-        std::cout << "Error - invalid prime number number" << std::endl;
+        std::cout << "Error - invalid prime number" << std::endl;
         return (0);
     }
 
-    const double numOfPrimes = (double)t_primeNum;
+    const double numOfPrimes = static_cast<double>(t_primeNum);
     double foundLimit = 0.0;
     double iterator = 1.0;
     do
@@ -42,7 +41,8 @@ int Problem7::FindLimitNumber(const int &t_primeNum)
     }
     while ( foundLimit < numOfPrimes );
 
-    int limit = (int)floor( iterator + 0.5 );
+    long unsigned int limit = static_cast<long unsigned int>(
+                    floor(iterator + 0.5));
 
     return (limit);
 }

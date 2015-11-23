@@ -9,12 +9,11 @@ void Problem10::DoSolve()
 {
     std::cout << "Problem 10" << std::endl;
 
-    const long int maxPrime = 2000000;
+    const long unsigned int maxPrime = 2000000;
+    std::vector<long unsigned int> primes =
+                    PrimeNumbers::GetPrimeNumbers(maxPrime);
 
-    PrimeNumbers primeNums;
-    std::vector<long int> primes = primeNums.GetPrimeNumbers(maxPrime);
-
-    long int sum = 0;
+    long unsigned int sum = 0;
     for ( size_t i = 0; i < primes.size(); ++i )
     {
         sum += primes[i];

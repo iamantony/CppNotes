@@ -9,7 +9,7 @@ class Matrix
 {
     // == METHODS ==
 public:
-    Matrix() : m_width(0), m_height(0) {}
+    Matrix() : m_width(0), m_height(0), m_matrix() {}
     virtual ~Matrix() {}
 
     // Setup matrix by values in string

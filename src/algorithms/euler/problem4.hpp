@@ -12,7 +12,7 @@ class Problem4 : public Problem
 {
     // == METHODS ==
 private:
-    virtual void DoSolve();
+    virtual void DoSolve() override;
     bool IsPalindrom(const int &t_number);
 };
 

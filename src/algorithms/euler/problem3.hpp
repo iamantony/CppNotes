@@ -13,7 +13,7 @@ class Problem3 : public Problem
 {
     // == METHODS ==
 private:
-    virtual void DoSolve();
+    virtual void DoSolve() override;
     std::vector<long int> GetPrimalNumbers(const long int &t_limit = 0);
 };
 
