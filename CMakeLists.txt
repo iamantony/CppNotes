@@ -7,6 +7,7 @@ set(PROJECT CppNotesPrj)
 project(${PROJECT})
 
 # Set paths
+set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set("${PROJECT}_BINARY_DIR" bin)
 set("${PROJECT}_SOURCE_DIR" src)
 #set("${PROJECT}_LIB_DIR" lib)
@@ -47,3 +48,7 @@ message("Build: " ${CMAKE_BUILD_TYPE})
 message("Compiler flags: " ${CMAKE_CXX_FLAGS})
 
 add_subdirectory(src)
+add_subdirectory(test)
+
+enable_testing()
+add_test(NAME cntest COMMAND cppnotestest)
