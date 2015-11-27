@@ -10,11 +10,13 @@ class LinkedList
 private:
     class Node
     {
-        // == METHODS ==
     public:
         Node(T value, Node* previous, Node* next) : m_value(value),
             m_prev(previous), m_next(next)
         {        }
+
+        Node(const LinkedList<T>::Node& other) = delete;
+        Node& operator=(const Node& other) = delete;
 
         ~Node()
         {
@@ -36,11 +38,6 @@ private:
         T getValue();
 
     private:
-        Node(const LinkedList<T>::Node& other);
-        Node& operator=(const Node& other);
-
-        // == DATA ==
-    private:
         T m_value;
         Node* m_prev;
         Node* m_next;
@@ -61,10 +58,8 @@ public:
         }
     }
 
-    LinkedList(const LinkedList<T>& other)
-    {
-        // TODO
-    }
+    LinkedList(const LinkedList<T>& other) = delete;
+    LinkedList<T>& operator=(const LinkedList<T>& other) = delete;
 
     ~LinkedList()
     {
@@ -86,12 +81,6 @@ public:
     void clear();
     int size();
     bool isEmpty();
-
-    LinkedList<T>& operator=(const LinkedList<T>& other)
-    {
-        // TODO
-        return (*this);
-    }
 
 private:
     void clearLast();
@@ -171,7 +160,7 @@ T LinkedList<T>::at(int index)
     Node* node = searchNode(index);
     if (nullptr == node)
     {
-        throw std::bad_exception("Failed to find node");
+        throw std::runtime_error("Failed to find node");
     }
 
     return (node->getValue());
@@ -245,7 +234,7 @@ void LinkedList<T>::insert(int index, T value)
     Node* node = searchNode(index);
     if (nullptr == node)
     {
-        throw std::bad_exception("Failed to find node");
+        throw std::runtime_error("Failed to find node");
     }
 
     Node* prevNode = node->getPrevious();
@@ -258,23 +247,42 @@ void LinkedList<T>::insert(int index, T value)
 template<typename T>
 void LinkedList<T>::remove(int index)
 {
-    if (isEmpty() || index <= 0 || size() <= index)
+    if (isEmpty() || index < 0 || size() <= index)
     {
         return;
     }
 
-    Node* node = searchNode(index);
-    if (nullptr == node)
+    if (0 == index)
     {
-        throw std::bad_exception("Failed to find node");
+        removeFirst();
     }
+    else if (index == size() - 1)
+    {
+        removeLast();
+    }
+    else
+    {
+        Node* node = searchNode(index);
+        if (nullptr == node)
+        {
+            throw std::runtime_error("Failed to find node");
+        }
 
-    Node* prevNode = node->getPrevious();
-    Node* nextNode = node->getNext();
-    prevNode->setNext(nextNode);
-    nextNode->setPrevious(prevNode);
-    -- m_size;
-    delete node;
+        Node* prevNode = node->getPrevious();
+        Node* nextNode = node->getNext();
+        if (nullptr != prevNode)
+        {
+            prevNode->setNext(nextNode);
+        }
+
+        if (nullptr != nextNode)
+        {
+            nextNode->setPrevious(prevNode);
+        }
+
+        -- m_size;
+        delete node;
+    }
 }
 
 template<typename T>
@@ -295,10 +303,11 @@ void LinkedList<T>::removeFirst()
     Node* nextNode = m_first->getNext();
     if (nullptr == nextNode)
     {
-        throw std::bad_exception("Invalid next node");
+        throw std::runtime_error("Invalid next node");
     }
 
     nextNode->setPrevious(nullptr);
+    m_first = nextNode;
     --m_size;
     delete firstNode;
 }
@@ -325,6 +334,7 @@ void LinkedList<T>::removeLast()
     }
 
     prevNode->setNext(nullptr);
+    m_last = prevNode;
     --m_size;
     delete lastNode;
 }
