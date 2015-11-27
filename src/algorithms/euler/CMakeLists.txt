@@ -1,7 +1,7 @@
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/common")
 
-set(HEADERS
-   ${HEADERS}
+set(HEADERS_ALGORITHMS
+   ${HEADERS_ALGORITHMS}
    ${CMAKE_CURRENT_SOURCE_DIR}/problem.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/problem1.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/problem2.hpp
@@ -18,8 +18,8 @@ set(HEADERS
    PARENT_SCOPE
 )
 
-set(SOURCES
-   ${SOURCES}
+set(SOURCES_ALGORITHMS
+   ${SOURCES_ALGORITHMS}
    ${CMAKE_CURRENT_SOURCE_DIR}/problem.cpp
    ${CMAKE_CURRENT_SOURCE_DIR}/problem1.cpp
    ${CMAKE_CURRENT_SOURCE_DIR}/problem2.cpp
