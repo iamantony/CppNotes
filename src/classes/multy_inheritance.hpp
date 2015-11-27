@@ -1,6 +1,8 @@
 #ifndef MULTY_INHERITANCE_H_
 #define MULTY_INHERITANCE_H_
 
+#include <iostream>
+
 class First
 {
 public:
@@ -43,15 +45,6 @@ public:
     };
 };
 
-void Start()
-{
-    std::cout << "multi_inheritance" << std::endl << std::endl;
-
-    std::cout << "Create Derived class object:" << std::endl;
-    Derived *derivedObject = new Derived();
-
-    std::cout << "Delete Derived class object:" << std::endl;
-    delete derivedObject;
-}
+void StartMI();
 
 #endif /* MULTY_INHERITANCE_H_ */

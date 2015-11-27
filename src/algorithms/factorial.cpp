@@ -19,5 +19,3 @@ unsigned long long int Factorial::Calc ( const int& num )
 
     return (factorial);
 }
-
-
