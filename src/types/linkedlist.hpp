@@ -10,6 +10,7 @@ class LinkedList
 private:
     class Node
     {
+        // == METHODS ==
     public:
         Node(T value, Node* previous, Node* next) : m_value(value),
             m_prev(previous), m_next(next)
@@ -27,36 +28,18 @@ private:
             }
         }
 
-        void setPrevious(Node* previous)
-        {
-            m_prev = previous;
-        }
+        void setPrevious(Node* previous);
+        Node* getPrevious();
+        void setNext(Node* next);
+        Node* getNext();
+        void setValue(T value);
+        T getValue();
 
-        Node* getPrevious()
-        {
-            return (m_prev);
-        }
+    private:
+        Node(const LinkedList<T>::Node& other);
+        Node& operator=(const Node& other);
 
-        void setNext(Node* next)
-        {
-            m_next = next;
-        }
-
-        Node* getNext()
-        {
-            return (m_next);
-        }
-
-        void setValue(T value)
-        {
-            m_value = value;
-        }
-
-        T getValue()
-        {
-            return (m_value);
-        }
-
+        // == DATA ==
     private:
         T m_value;
         Node* m_prev;
@@ -114,6 +97,42 @@ private:
     void clearLast();
     Node* searchNode(int index);
 };
+
+template<typename T>
+void LinkedList<T>::Node::setPrevious(Node* previous)
+{
+    m_prev = previous;
+}
+
+template<typename T>
+typename LinkedList<T>::Node* LinkedList<T>::Node::getPrevious()
+{
+    return (m_prev);
+}
+
+template<typename T>
+void LinkedList<T>::Node::setNext(Node* next)
+{
+    m_next = next;
+}
+
+template<typename T>
+typename LinkedList<T>::Node* LinkedList<T>::Node::getNext()
+{
+    return (m_next);
+}
+
+template<typename T>
+void LinkedList<T>::Node::setValue(T value)
+{
+    m_value = value;
+}
+
+template<typename T>
+T LinkedList<T>::Node::getValue()
+{
+    return (m_value);
+}
 
 template<typename T>
 T LinkedList<T>::first()
@@ -302,7 +321,7 @@ void LinkedList<T>::removeLast()
     Node* prevNode = m_last->getPrevious();
     if (nullptr == prevNode)
     {
-        throw std::bad_exception("Invalid previous node");
+        throw std::runtime_error("Invalid previous node");
     }
 
     prevNode->setNext(nullptr);
