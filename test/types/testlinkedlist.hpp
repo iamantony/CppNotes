@@ -159,12 +159,56 @@ BOOST_AUTO_TEST_CASE(test_remove)
 
 BOOST_AUTO_TEST_CASE(test_remove_first)
 {
-    BOOST_TEST(false);
+    LinkedList<unsigned int> list;
+    list.addLast(1);
+    list.addLast(2);
+    list.addLast(3);
+    list.addLast(4);
+
+    list.removeFirst();
+    BOOST_TEST(3 == list.size());
+    BOOST_TEST(2 == list.at(0));
+    BOOST_TEST(3 == list.at(1));
+    BOOST_TEST(4 == list.at(2));
+
+    list.removeFirst();
+    BOOST_TEST(2 == list.size());
+    BOOST_TEST(3 == list.at(0));
+    BOOST_TEST(4 == list.at(1));
+
+    list.removeFirst();
+    BOOST_TEST(1 == list.size());
+    BOOST_TEST(4 == list.at(0));
+
+    list.removeFirst();
+    BOOST_TEST(0 == list.size());
 }
 
 BOOST_AUTO_TEST_CASE(test_remove_last)
 {
-    BOOST_TEST(false);
+    LinkedList<unsigned int> list;
+    list.addLast(1);
+    list.addLast(2);
+    list.addLast(3);
+    list.addLast(4);
+
+    list.removeLast();
+    BOOST_TEST(3 == list.size());
+    BOOST_TEST(1 == list.at(0));
+    BOOST_TEST(2 == list.at(1));
+    BOOST_TEST(3 == list.at(2));
+
+    list.removeLast();
+    BOOST_TEST(2 == list.size());
+    BOOST_TEST(1 == list.at(0));
+    BOOST_TEST(2 == list.at(1));
+
+    list.removeLast();
+    BOOST_TEST(1 == list.size());
+    BOOST_TEST(1 == list.at(0));
+
+    list.removeLast();
+    BOOST_TEST(0 == list.size());
 }
 
 #endif /* TEST_LINKED_LIST_H_ */
