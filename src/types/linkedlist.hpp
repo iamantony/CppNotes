@@ -50,24 +50,12 @@ private:
     // == METHODS ==
 public:
     LinkedList() {}
-    LinkedList(int size, T value = 0)
-    {
-        for (int i = 0; i < size; ++i)
-        {
-            addLast(value);
-        }
-    }
+    LinkedList(int size, T value = 0);
 
     LinkedList(const LinkedList<T>& other) = delete;
     LinkedList<T>& operator=(const LinkedList<T>& other) = delete;
 
-    ~LinkedList()
-    {
-        while(false == isEmpty())
-        {
-            removeLast();
-        }
-    }
+    ~LinkedList();
 
     T first();
     T last();
@@ -121,6 +109,21 @@ template<typename T>
 T LinkedList<T>::Node::getValue()
 {
     return (m_value);
+}
+
+template<typename T>
+LinkedList<T>::LinkedList(int size, T value)
+{
+    for (int i = 0; i < size; ++i)
+    {
+        addLast(value);
+    }
+}
+
+template<typename T>
+LinkedList<T>::~LinkedList()
+{
+    clear();
 }
 
 template<typename T>
