@@ -12,23 +12,12 @@ private:
     {
     public:
         Node(T value, Node* previous, Node* next) : m_value(value),
-            m_prev(previous), m_next(next)
-        {        }
+            m_prev(previous), m_next(next) {}
 
         Node(const LinkedList<T>::Node& other) = delete;
         Node& operator=(const Node& other) = delete;
 
-        ~Node()
-        {
-            if (nullptr != m_prev)
-            {
-                m_prev->setNext(m_next);
-                if (nullptr != m_next)
-                {
-                    m_next->setPrevious(m_prev);
-                }
-            }
-        }
+        ~Node();
 
         void setPrevious(Node* previous);
         Node* getPrevious();
@@ -74,6 +63,19 @@ private:
     void clearLast();
     Node* searchNode(int index);
 };
+
+template<typename T>
+LinkedList<T>::Node::~Node()
+{
+    if (nullptr != m_prev)
+    {
+        m_prev->setNext(m_next);
+        if (nullptr != m_next)
+        {
+            m_next->setPrevious(m_prev);
+        }
+    }
+}
 
 template<typename T>
 void LinkedList<T>::Node::setPrevious(Node* previous)
