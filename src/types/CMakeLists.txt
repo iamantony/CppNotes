@@ -9,6 +9,7 @@ set(HEADERS_TYPES
    ${CMAKE_CURRENT_SOURCE_DIR}/chartype.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/inttype.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/linkedlist.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/stack.hpp
 )
 
 set(SOURCES_TYPES
