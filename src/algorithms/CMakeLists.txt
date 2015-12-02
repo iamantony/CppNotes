@@ -5,6 +5,7 @@ project(${PROJECT_ALGORITHMS})
 
 set(HEADERS_ALGORITHMS
    ${CMAKE_CURRENT_SOURCE_DIR}/factorial.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/bitsmanipulation.hpp
 )
 
 set(SOURCES_ALGORITHMS
