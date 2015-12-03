@@ -27,26 +27,19 @@ void OperationAND()
     std::cout << "Example of AND operation" << std::endl;
     unsigned char first = 0b00111000;
     unsigned char second = 0b10101010;
-    unsigned char result = first & second;
 
-    std::cout << "First value: 0b" << std::bitset<8>(first).to_string() <<
+    std::cout << std::bitset<8>(first).to_string() << " & " <<
+                    std::bitset<8>(second).to_string() << " = " <<
+                    std::bitset<8>(first & second).to_string() <<
                     std::endl;
-    std::cout << "Second value: 0b" << std::bitset<8>(second).to_string() <<
-                    std::endl;
-    std::cout << "Result of AND operation: 0b" <<
-                    std::bitset<8>(result).to_string() << std::endl;
 
     first = 0b11111000;
     second = 0b10101011;
-    result = first & second;
 
-    std::cout << std::endl << "With other values" << std::endl;
-    std::cout << "First value: 0b" << std::bitset<8>(first).to_string() <<
-                    std::endl;
-    std::cout << "Second value: 0b" << std::bitset<8>(second).to_string() <<
-                    std::endl;
-    std::cout << "Result of AND operation: 0b" <<
-                    std::bitset<8>(result).to_string() << std::endl;
+    std::cout << std::bitset<8>(first).to_string() << " & " <<
+                        std::bitset<8>(second).to_string() << " = " <<
+                        std::bitset<8>(first & second).to_string() <<
+                        std::endl;
 
     std::cout << std::endl;
 }
@@ -56,31 +49,45 @@ void OperationOR()
     std::cout << "Example of OR operation" << std::endl;
     unsigned char first = 0b00111000;
     unsigned char second = 0b10101010;
-    unsigned char result = first | second;
 
-    std::cout << "First value: 0b" << std::bitset<8>(first).to_string() <<
-                    std::endl;
-    std::cout << "Second value: 0b" << std::bitset<8>(second).to_string() <<
-                    std::endl;
-    std::cout << "Result of OR operation: 0b" <<
-                    std::bitset<8>(result).to_string() << std::endl;
+    std::cout << std::bitset<8>(first).to_string() << " & " <<
+                        std::bitset<8>(second).to_string() << " = " <<
+                        std::bitset<8>(first | second).to_string() <<
+                        std::endl;
 
     first = 0b11111000;
     second = 0b10101011;
-    result = first | second;
 
-    std::cout << std::endl << "With other values" << std::endl;
-    std::cout << "First value: 0b" << std::bitset<8>(first).to_string() <<
-                    std::endl;
-    std::cout << "Second value: 0b" << std::bitset<8>(second).to_string() <<
-                    std::endl;
-    std::cout << "Result of OR operation: 0b" <<
-                    std::bitset<8>(result).to_string() << std::endl;
+    std::cout << std::bitset<8>(first).to_string() << " & " <<
+                        std::bitset<8>(second).to_string() << " = " <<
+                        std::bitset<8>(first | second).to_string() <<
+                        std::endl;
 
     std::cout << std::endl;
 }
 
-// TODO: XOR operation
+void OperationXOR()
+{
+    std::cout << "Example of XOR operation" << std::endl;
+    unsigned char first = 0b00111000;
+    unsigned char second = 0b10101010;
+
+    std::cout << std::bitset<8>(first).to_string() << " & " <<
+                        std::bitset<8>(second).to_string() << " = " <<
+                        std::bitset<8>(first ^ second).to_string() <<
+                        std::endl;
+
+    first = 0b11111000;
+    second = 0b10101011;
+
+    std::cout << std::bitset<8>(first).to_string() << " & " <<
+                        std::bitset<8>(second).to_string() << " = " <<
+                        std::bitset<8>(first ^ second).to_string() <<
+                        std::endl;
+
+    std::cout << std::endl;
+}
+
 // TODO: bit reversing
 // TODO: bit rotation
 // TODO: number multiplication to 2
@@ -91,6 +98,7 @@ void StartBM()
     Representation();
     OperationAND();
     OperationOR();
+    OperationXOR();
 }
 
 #endif /* BITSMANIPULATION_HPP_ */
