@@ -85,10 +85,17 @@ void OperationXOR()
                         std::bitset<8>(first ^ second).to_string() <<
                         std::endl;
 
+    std::cout << "Byte complementation using XOR operation" << std::endl;
+    first = 0b11111111;
+    std::cout << std::bitset<8>(first).to_string() << " & " <<
+                            std::bitset<8>(second).to_string() << " = " <<
+                            std::bitset<8>(first ^ second).to_string() <<
+                            std::endl;
+
     std::cout << std::endl;
 }
 
-// TODO: bit reversing
+// TODO: reverse byte
 // TODO: bit rotation
 // TODO: number multiplication to 2
 // TODO: number division by 2
