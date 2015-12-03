@@ -51,7 +51,35 @@ void OperationAND()
     std::cout << std::endl;
 }
 
-// TODO: OR operation
+void OperationOR()
+{
+    std::cout << "Example of OR operation" << std::endl;
+    unsigned char first = 0b00111000;
+    unsigned char second = 0b10101010;
+    unsigned char result = first | second;
+
+    std::cout << "First value: 0b" << std::bitset<8>(first).to_string() <<
+                    std::endl;
+    std::cout << "Second value: 0b" << std::bitset<8>(second).to_string() <<
+                    std::endl;
+    std::cout << "Result of OR operation: 0b" <<
+                    std::bitset<8>(result).to_string() << std::endl;
+
+    first = 0b11111000;
+    second = 0b10101011;
+    result = first | second;
+
+    std::cout << std::endl << "With other values" << std::endl;
+    std::cout << "First value: 0b" << std::bitset<8>(first).to_string() <<
+                    std::endl;
+    std::cout << "Second value: 0b" << std::bitset<8>(second).to_string() <<
+                    std::endl;
+    std::cout << "Result of OR operation: 0b" <<
+                    std::bitset<8>(result).to_string() << std::endl;
+
+    std::cout << std::endl;
+}
+
 // TODO: XOR operation
 // TODO: bit reversing
 // TODO: bit rotation
@@ -62,6 +90,7 @@ void StartBM()
 {
     Representation();
     OperationAND();
+    OperationOR();
 }
 
 #endif /* BITSMANIPULATION_HPP_ */
