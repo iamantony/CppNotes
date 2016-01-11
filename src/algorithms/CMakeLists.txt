@@ -13,5 +13,6 @@ set(SOURCES_ALGORITHMS
 )
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/euler")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/ctci")
 
 add_library(cppnotesalgorithms SHARED ${SOURCES_ALGORITHMS} ${HEADERS_ALGORITHMS})
