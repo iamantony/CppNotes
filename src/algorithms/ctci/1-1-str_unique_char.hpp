@@ -10,13 +10,14 @@
 
 bool IsStrHasAllUniqueChars(const std::string& inputStr)
 {
+    std::cout << "In IsStrHasAllUniqueChars()" << std::endl;
     if (inputStr.empty())
     {
         return (false);
     }
 
     std::set<char> characters;
-    for (int i = 0; i < inputStr.size(); ++i)
+    for (size_t i = 0; i < inputStr.size(); ++i)
     {
         if (0 == characters.count(inputStr.at(i)))
         {
