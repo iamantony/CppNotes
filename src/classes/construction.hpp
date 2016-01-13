@@ -46,4 +46,61 @@ void ExplicitCtorExamples()
     // WorkWithWEC(4);
 }
 
+
+// Copy constructor and copy assignment operator
+// From "Effective C++" by Scott Meyers:
+// The copy constructor is used to initialize an object with a different
+// object of the same type, and the copy assignment operator is used
+// to copy the value from one object to another of the same type.
+
+// Fortunately, copy construction is easy to distinguish from copy assignment.
+// If a new object is being defined, a constructor has to be called; it can’t
+// be an assignment. If no new object is being defined, no constructor can be
+// involved, so it’s an assignment.
+class Copyable
+{
+public:
+    Copyable() : m_value(0) {}
+    Copyable(const int& value) : m_value(value) {}
+
+    // Copy constructor
+    Copyable(const Copyable& other)
+    {
+        std::cout << "In copy constructor" << std::endl;
+        this->m_value = other.m_value;
+    }
+
+    // Copy assignment operator. Don't forget to return reference to "this"
+    // object
+    Copyable& operator=(const Copyable& other)
+    {
+        std::cout << "In copy assignment operator" << std::endl;
+        this->m_value = other.m_value;
+        return (*this);
+    }
+
+    int m_value;
+};
+
+void CopyableClassExamples()
+{
+    Copyable c1;
+    std::cout << "Value of c1: " << c1.m_value << std::endl;
+
+    Copyable c2(5);
+    std::cout << "Value of c2: " << c2.m_value << std::endl;
+
+    // will call copy constructor
+    Copyable c3(c1);
+    std::cout << "Value of c3: " << c3.m_value << std::endl;
+
+    // will call copy assignment operator
+    c3 = c2;
+    std::cout << "Updated value of c3: " << c3.m_value << std::endl;
+
+    // will call copy constructor
+    Copyable c4 = c1;
+    std::cout << "Value of c4: " << c4.m_value << std::endl;
+}
+
 #endif /* CONSTRUCTION_HPP_ */
