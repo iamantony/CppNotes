@@ -2,15 +2,14 @@
 #include <stdlib.h>
 #include <iostream>
 
-#include "algorithms/euler/problem12.hpp"
+#include "types/const.hpp"
 
 int main()
 {
     std::cout << "CppNotes" << std::endl << std::endl;
 
-    Problem *problem = new Problem12();
-    problem->Solve();
-    delete problem;
+    ConstExamples();
 
+    std::cout << std::endl << "Goodbye";
     return (0);
 }

@@ -10,10 +10,12 @@ set(HEADERS_TYPES
    ${CMAKE_CURRENT_SOURCE_DIR}/inttype.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/linkedlist.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/stack.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/const.hpp
 )
 
 set(SOURCES_TYPES
    ${CMAKE_CURRENT_SOURCE_DIR}/linkedlist.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/const.cpp
 )
 
 add_library(cppnotestypes SHARED ${SOURCES_TYPES} ${HEADERS_TYPES})
