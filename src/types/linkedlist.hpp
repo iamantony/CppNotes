@@ -39,7 +39,7 @@ private:
     // == METHODS ==
 public:
     LinkedList() {}
-    LinkedList(int size, T value = 0);
+    LinkedList(int listSize, T value = 0);
 
     LinkedList(const LinkedList<T>& other) = delete;
     LinkedList<T>& operator=(const LinkedList<T>& other) = delete;
@@ -114,9 +114,9 @@ T LinkedList<T>::Node::getValue()
 }
 
 template<typename T>
-LinkedList<T>::LinkedList(int size, T value)
+LinkedList<T>::LinkedList(int listSize, T value)
 {
-    for (int i = 0; i < size; ++i)
+    for (int i = 0; i < listSize; ++i)
     {
         addLast(value);
     }
