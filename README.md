@@ -4,7 +4,7 @@ CppNotes
 My notes about C++.
 
 ## Requirements
-g++ 5.2+, cmake 2.8+, Boost 1.59+
+g++ 4.9+, cmake 2.8+, Boost 1.55+
 
 ## Build
 
