@@ -1,21 +1,17 @@
-cmake_minimum_required(VERSION 2.8)
-
-set(PROJECT_TYPES CppNotesTypes)
-project(${PROJECT_TYPES})
-
-set(HEADERS_TYPES
+set(HEADERS
+   ${HEADERS}
    ${CMAKE_CURRENT_SOURCE_DIR}/basics.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/boolean.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/chartype.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/const.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/inttype.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/linkedlist.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/stack.hpp
-   ${CMAKE_CURRENT_SOURCE_DIR}/const.hpp
+   PARENT_SCOPE
 )
 
-set(SOURCES_TYPES
-   ${CMAKE_CURRENT_SOURCE_DIR}/linkedlist.cpp
+set(SOURCES
+   ${SOURCES}
    ${CMAKE_CURRENT_SOURCE_DIR}/const.cpp
+   PARENT_SCOPE
 )
-
-add_library(cppnotestypes SHARED ${SOURCES_TYPES} ${HEADERS_TYPES})

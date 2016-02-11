@@ -1,17 +1,14 @@
-cmake_minimum_required(VERSION 2.8)
-
-set(PROJECT_CLASSES CppNotesClasses)
-project(${PROJECT_CLASSES})
-
-set(HEADERS_CLASSES
+set(HEADERS
+   ${HEADERS}
    ${CMAKE_CURRENT_SOURCE_DIR}/base_inheritance.hpp
-   ${CMAKE_CURRENT_SOURCE_DIR}/multy_inheritance.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/construction.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/multy_inheritance.hpp
+   PARENT_SCOPE
 )
 
-set(SOURCES_CLASSES
+set(SOURCES
+   ${SOURCES}
    ${CMAKE_CURRENT_SOURCE_DIR}/base_inheritance.cpp
    ${CMAKE_CURRENT_SOURCE_DIR}/multy_inheritance.cpp
+   PARENT_SCOPE
 )
-
-add_library(cppnotesclasses SHARED ${SOURCES_CLASSES} ${HEADERS_CLASSES})
