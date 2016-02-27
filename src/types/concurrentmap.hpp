@@ -1,5 +1,7 @@
-#ifndef MAP_TS_HPP_
-#define MAP_TS_HPP_
+#ifndef CONCURRENTMAP_HPP_
+#define CONCURRENTMAP_HPP_
+
+// Author: Antony Cherepanov
 
 /*
 Спроектировать и реализовать потокобезопасный мап со следующими свойствами:
@@ -20,33 +22,13 @@
 #include <map>
 #include <vector>
 #include <mutex>
-#include <utility>
 #include <memory>
 #include <iostream>
 
 using namespace std;
 
-class Map_TS
+class ConcurrentMap
 {
-	// == METHODS ==
-public:
-    explicit Map_TS() {}
-    ~Map_TS();
-
-    Map_TS(const Map_TS& other) = delete;
-    Map_TS(Map_TS&& other) = delete;
-    Map_TS& operator=(const Map_TS& other) = delete;
-    Map_TS& operator=(Map_TS&& other) = delete;
-
-    string at(const string& key);
-    void clear();
-    void erase(const string& key);
-    bool insert(const string& key, const string& value);
-    bool isEmpty() const;
-    vector<string> keys() const;
-    void replace(const string& key, const string& value);
-    size_t size() const;
-
     // == DATA ==
 private:
     class Node
@@ -54,81 +36,105 @@ private:
     public:
         Node(const string& str) : mtx(new mutex()), value(str) {}
 
-        Node(const Node& other)
-        {
-            mtx = std::move(other.mtx);
-            value = other.value;
-        }
-
-        //Node(const Node& other) = delete;
-        Node(Node&& other) = delete;
-        Node& operator=(const Node& other) = delete;
-        Node& operator=(Node&& other) = delete;
-
         unique_ptr<mutex> mtx;
         string value;
     };
 
     map<string, Node> m_map;
+    mutex m_mutex;
+
+	// == METHODS ==
+public:
+    explicit ConcurrentMap() {}
+    ~ConcurrentMap();
+
+    ConcurrentMap(const ConcurrentMap& other) = delete;
+    ConcurrentMap(ConcurrentMap&& other) = delete;
+    ConcurrentMap& operator=(const ConcurrentMap& other) = delete;
+    ConcurrentMap& operator=(ConcurrentMap&& other) = delete;
+
+    string at(const string& key) const;
+    void clear();
+    void erase(const string& key);
+    bool insert(const string& key, const string& value);
+    bool isEmpty() const;
+    vector<string> keys() const;
+    void set(const string& key, const string& value);
+    size_t size() const;
+
+private:
+    void erase(map<string, Node>::iterator iter);
 };
 
-Map_TS::~Map_TS()
+ConcurrentMap::~ConcurrentMap()
 {
     clear();
 }
 
-string Map_TS::at(const string& key)
+string ConcurrentMap::at(const string& key) const
 {
-    map<string, Node>::iterator iter = m_map.find(key);
-    if (iter != m_map.end())
+    map<string, Node>::const_iterator iter = m_map.find(key);
+    if (iter != m_map.cend())
     {
-        unique_lock<mutex> lck(*(iter->second.mtx));
         return iter->second.value;
     }
 
-    insert(key, string());
     return string();
-
 }
 
-void Map_TS::clear()
+void ConcurrentMap::clear()
 {
-    vector<string> mapKeys = this->keys();
-    for (const string& str : mapKeys)
+    lock_guard<mutex> mapLock(m_mutex);
+    for (map<string, Node>::iterator iter = m_map.begin();
+            iter != m_map.end();
+            ++iter)
     {
-        erase(str);
+        erase(iter);
     }
 }
 
-void Map_TS::erase(const string& key)
+void ConcurrentMap::erase(const string& key)
 {
     map<string, Node>::iterator iter = m_map.find(key);
-    if (iter != m_map.end())
-    {
-        unique_lock<mutex> lck(*(iter->second.mtx));
-        iter->second.value = string();
-    }
-
-    m_map.erase(key);
+    erase(iter);
 }
 
-bool Map_TS::insert(const string& key, const string& value)
+void ConcurrentMap::erase(map<string, Node>::iterator iter)
+{
+    if (iter == m_map.end())
+    {
+        return;
+    }
+
+    {
+        unique_lock<mutex> lck(*(iter->second.mtx));
+    }
+
+    m_map.erase(iter);
+}
+
+bool ConcurrentMap::insert(const string& key, const string& value)
 {
     if (m_map.find(key) != m_map.end())
     {
         return false;
     }
 
-    pair<string, Node> element(key, Node(value));
-    return m_map.insert(element).second;
+    bool result = false;
+    {
+        lock_guard<mutex> lock(m_mutex);
+        result = m_map.emplace(key, Node(value)).second;
+    }
+
+    return result;
 }
 
-bool Map_TS::isEmpty() const
+bool ConcurrentMap::isEmpty() const
 {
     return m_map.empty();
 }
 
-vector<string> Map_TS::keys() const
+vector<string> ConcurrentMap::keys() const
 {
     vector<string> mapKeys;
     for (map<string, Node>::const_iterator iter = m_map.cbegin();
@@ -140,19 +146,19 @@ vector<string> Map_TS::keys() const
     return mapKeys;
 }
 
-void Map_TS::replace(const string& key, const string& value)
+void ConcurrentMap::set(const string& key, const string& value)
 {
     map<string, Node>::iterator iter = m_map.find(key);
     if (iter != m_map.end())
     {
-        unique_lock<mutex> lck(*(iter->second.mtx));
+        lock_guard<mutex> lck(*(iter->second.mtx));
         iter->second.value = value;
     }
 }
 
-size_t Map_TS::size() const
+size_t ConcurrentMap::size() const
 {
     return m_map.size();
 }
 
-#endif /* MAP_TS_HPP_ */
+#endif /* CONCURRENTMAP_HPP_ */
