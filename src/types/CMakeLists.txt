@@ -7,7 +7,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/inttype.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/linkedlist.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/stack.hpp
-   ${CMAKE_CURRENT_SOURCE_DIR}/map_ts.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/concurrentmap.hpp
    PARENT_SCOPE
 )
 
