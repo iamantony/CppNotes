@@ -2,6 +2,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "types/testlinkedlist.hpp"
+#include "types/testconcurrentmap.hpp"
 #include "algorithms/ctci/test-1-1-str_unique_char.hpp"
 
 BOOST_AUTO_TEST_CASE(test_func)
