@@ -120,7 +120,20 @@ void Reverse()
     std::cout << std::endl;
 }
 
-// TODO: bit rotation
+void Rotation()
+{
+    std::cout << "Byte rotation operation" << std::endl;
+    unsigned char original = 0b00110010;
+    unsigned char moves = 5;
+    int digits = std::numeric_limits<unsigned char>::digits;
+    unsigned char result = static_cast<unsigned char>(
+            (original >> moves) | (original << (digits - moves)));
+
+    std::cout << std::bitset<8>(original).to_string() << " -> " <<
+                        std::bitset<8>(result).to_string() << std::endl;
+
+    std::cout << std::endl;
+}
 
 void MultiplicationBy2()
 {
@@ -161,6 +174,7 @@ void StartBM()
     OperationOR();
     OperationXOR();
     Reverse();
+    Rotation();
     MultiplicationBy2();
     DivisionBy2();
 }
