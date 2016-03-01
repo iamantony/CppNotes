@@ -121,8 +121,38 @@ void Reverse()
 }
 
 // TODO: bit rotation
-// TODO: number multiplication to 2
-// TODO: number division by 2
+
+void MultiplicationBy2()
+{
+    std::cout << "Multiplication by 2" << std::endl;
+    unsigned char value = 0b00111000;
+    unsigned char result = static_cast<unsigned char>(value << 1);
+
+    std::cout << std::bitset<8>(value).to_string() << " << 1 = " <<
+                    std::bitset<8>(result).to_string() << std::endl;
+
+    unsigned int valueInt = static_cast<unsigned int>(value);
+    unsigned int resultInt = static_cast<unsigned int>(result);
+    std::cout << std::dec << valueInt << " -> " << resultInt << std::endl;
+
+    std::cout << std::endl;
+}
+
+void DivisionBy2()
+{
+    std::cout << "Division by 2" << std::endl;
+    unsigned char value = 0b00111000;
+    unsigned char result = static_cast<unsigned char>(value >> 1);
+
+    std::cout << std::bitset<8>(value).to_string() << " >> 1 = " <<
+                    std::bitset<8>(result).to_string() << std::endl;
+
+    unsigned int valueInt = static_cast<unsigned int>(value);
+    unsigned int resultInt = static_cast<unsigned int>(result);
+    std::cout << std::dec << valueInt << " -> " << resultInt << std::endl;
+
+    std::cout << std::endl;
+}
 
 void StartBM()
 {
@@ -131,6 +161,8 @@ void StartBM()
     OperationOR();
     OperationXOR();
     Reverse();
+    MultiplicationBy2();
+    DivisionBy2();
 }
 
 #endif /* BITSMANIPULATION_HPP_ */
