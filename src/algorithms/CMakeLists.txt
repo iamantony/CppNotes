@@ -5,6 +5,7 @@ set(HEADERS
    ${HEADERS}
    ${CMAKE_CURRENT_SOURCE_DIR}/factorial.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/bitsmanipulation.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/bubblesort.hpp
    PARENT_SCOPE
 )
 
