@@ -1,27 +1,27 @@
-#ifndef TEST_BUBBLESORT_H_
-#define TEST_BUBBLESORT_H_
+#ifndef TEST_GNOMESORT_H_
+#define TEST_GNOMESORT_H_
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include <vector>
 #include <limits>
 
-#include "algorithms/bubblesort.hpp"
+#include "algorithms/gnomesort.hpp"
 
-BOOST_AUTO_TEST_CASE(test_bs_empty_container)
+BOOST_AUTO_TEST_CASE(test_gs_empty_container)
 {
-    BOOST_CHECK(vector<int>() == BubbleSort<vector<int>>(vector<int>()));
+    BOOST_CHECK(vector<int>() == GnomeSort<vector<int>>(vector<int>()));
 }
 
-BOOST_AUTO_TEST_CASE(test_bs_one_value)
+BOOST_AUTO_TEST_CASE(test_gs_one_value)
 {
     vector<int> container;
     container.push_back(42);
 
-    BOOST_CHECK(container == BubbleSort<vector<int>>(container));
+    BOOST_CHECK(container == GnomeSort<vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_bs_sorted_container)
+BOOST_AUTO_TEST_CASE(test_gs_sorted_container)
 {
     vector<int> container;
     container.push_back(0);
@@ -29,10 +29,10 @@ BOOST_AUTO_TEST_CASE(test_bs_sorted_container)
     container.push_back(43);
     container.push_back(100);
 
-    BOOST_CHECK(container == BubbleSort<vector<int>>(container));
+    BOOST_CHECK(container == GnomeSort<vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_bs_min_max_int_values)
+BOOST_AUTO_TEST_CASE(test_gs_min_max_int_values)
 {
     vector<int> container;
     container.push_back(42);
@@ -44,10 +44,10 @@ BOOST_AUTO_TEST_CASE(test_bs_min_max_int_values)
     vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == BubbleSort<vector<int>>(container));
+    BOOST_CHECK(result == GnomeSort<vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_bs_positive_negative_values)
+BOOST_AUTO_TEST_CASE(test_gs_positive_negative_values)
 {
     vector<int> container;
     container.push_back(42);
@@ -59,10 +59,10 @@ BOOST_AUTO_TEST_CASE(test_bs_positive_negative_values)
     vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == BubbleSort<vector<int>>(container));
+    BOOST_CHECK(result == GnomeSort<vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_bs_duplicate_values)
+BOOST_AUTO_TEST_CASE(test_gs_duplicate_values)
 {
     vector<int> container;
     container.push_back(42);
@@ -75,10 +75,10 @@ BOOST_AUTO_TEST_CASE(test_bs_duplicate_values)
     vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == BubbleSort<vector<int>>(container));
+    BOOST_CHECK(result == GnomeSort<vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_bs_many_values)
+BOOST_AUTO_TEST_CASE(test_gs_many_values)
 {
     vector<int> container = {
         3717, 1783, 2358, 4043, -2286, 1076, -3712, 1159, 2310, 4732, 4030, 4750,
@@ -304,7 +304,7 @@ BOOST_AUTO_TEST_CASE(test_bs_many_values)
     vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == BubbleSort<vector<int>>(container));
+    BOOST_CHECK(result == GnomeSort<vector<int>>(container));
 }
 
-#endif /* TEST_BUBBLESORT_H_ */
+#endif /* TEST_GNOMESORT_H_ */
