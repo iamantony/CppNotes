@@ -8,6 +8,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/bubblesort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/gnomesort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/selectionsort.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/insertionsort.hpp
    PARENT_SCOPE
 )
 

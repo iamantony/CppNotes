@@ -6,6 +6,7 @@
 #include "algorithms/testbubblesort.hpp"
 #include "algorithms/testgnomesort.hpp"
 #include "algorithms/testselectionsort.hpp"
+#include "algorithms/testinsertionsort.hpp"
 #include "algorithms/ctci/test-1-1-str_unique_char.hpp"
 
 BOOST_AUTO_TEST_CASE(test_func)
