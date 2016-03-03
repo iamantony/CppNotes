@@ -6,5 +6,6 @@ set(HEADERS_TEST
    ${CMAKE_CURRENT_SOURCE_DIR}/testgnomesort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testselectionsort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testinsertionsort.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/testmergesort.hpp
    PARENT_SCOPE
 )
