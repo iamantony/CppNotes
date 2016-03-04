@@ -5,6 +5,7 @@ set(SOURCES)
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/types")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/classes")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/algorithms")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/templates")
 
 #message("Headers: " ${HEADERS})
 #message("Sources: " ${SOURCES})
