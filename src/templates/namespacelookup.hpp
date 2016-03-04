@@ -1,3 +1,6 @@
+#ifndef NAMESPACELOOKUP_H_
+#define NAMESPACELOOKUP_H_
+
 #include <iostream>
 
 struct c1
@@ -24,3 +27,5 @@ void StartNL()
     c.foo(11.2);
     c.foo(11);
 }
+
+#endif /* NAMESPACELOOKUP_H_ */
