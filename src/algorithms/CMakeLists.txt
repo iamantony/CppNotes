@@ -10,6 +10,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/selectionsort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/insertionsort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/mergesort.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/searchelementindex.hpp
    PARENT_SCOPE
 )
 
