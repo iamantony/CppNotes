@@ -2,6 +2,7 @@
 #define CONSTRUCTION_HPP_
 
 #include <iostream>
+#include <string>
 
 // Explicit constructor
 // If you declare constructor of the class as "explicit", you will not be
@@ -101,6 +102,39 @@ void CopyableClassExamples()
     // will call copy constructor
     Copyable c4 = c1;
     std::cout << "Value of c4: " << c4.m_value << std::endl;
+}
+
+class NestedCtors
+{
+private:
+    int one;
+    double two;
+    std::string three;
+
+public:
+    NestedCtors() : NestedCtors (12, 3.14, "meow")
+    {
+        std::cout << "NestedCtors()" << std::endl;
+    }
+
+    explicit NestedCtors(int o) : NestedCtors(o, 3.14, "meow")
+    {
+        std::cout << "NestedCtors(int o)" << std::endl;
+    }
+
+    NestedCtors (int o, double t, const std::string& str) :
+        one ( o ), two ( t ), three ( str )
+    {
+        std::cout << "NestedCtors(int o, double t, const string& str)" <<
+                std::endl;
+    }
+};
+
+void NestedCtorsExamples()
+{
+    NestedCtors nc1;
+    NestedCtors nc2(4);
+    NestedCtors nc3(5, 4.3, "rrr");
 }
 
 #endif /* CONSTRUCTION_HPP_ */
