@@ -5,5 +5,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/overloadresolution.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/specializations.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/makeunique.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/functemplate.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/templatemetaprogramming.hpp
    PARENT_SCOPE
 )
