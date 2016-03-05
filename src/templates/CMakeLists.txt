@@ -4,5 +4,6 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/argumentsdeduction.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/overloadresolution.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/specializations.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/makeunique.hpp
    PARENT_SCOPE
 )
