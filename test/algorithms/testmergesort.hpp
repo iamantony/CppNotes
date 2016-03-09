@@ -10,7 +10,7 @@
 
 BOOST_AUTO_TEST_CASE(test_ms_empty_container)
 {
-    BOOST_CHECK(vector<int>() == MergeSort<vector<int>>(vector<int>()));
+    BOOST_CHECK(vector<int>() == MergeSort(vector<int>()));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_one_value)
@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(test_ms_one_value)
     vector<int> container;
     container.push_back(42);
 
-    BOOST_CHECK(container == MergeSort<vector<int>>(container));
+    BOOST_CHECK(container == MergeSort(container));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_sorted_container)
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(test_ms_sorted_container)
     container.push_back(43);
     container.push_back(100);
 
-    BOOST_CHECK(container == MergeSort<vector<int>>(container));
+    BOOST_CHECK(container == MergeSort(container));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_min_max_int_values)
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE(test_ms_min_max_int_values)
     vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == MergeSort<vector<int>>(container));
+    BOOST_CHECK(result == MergeSort(container));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_positive_negative_values)
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(test_ms_positive_negative_values)
     vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == MergeSort<vector<int>>(container));
+    BOOST_CHECK(result == MergeSort(container));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_duplicate_values)
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(test_ms_duplicate_values)
     vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == MergeSort<vector<int>>(container));
+    BOOST_CHECK(result == MergeSort(container));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_many_values)
@@ -304,7 +304,7 @@ BOOST_AUTO_TEST_CASE(test_ms_many_values)
     vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == MergeSort<vector<int>>(container));
+    BOOST_CHECK(result == MergeSort(container));
 }
 
 #endif /* TEST_MERGESORT_H_ */

@@ -1,53 +1,69 @@
 #ifndef MERGESORT_HPP_
 #define MERGESORT_HPP_
 
+#include <vector>
+#include <iterator>
+
 template<typename T>
 class MergeSortAlg
 {
 public:
     // start is inclusive; end is exclusive
-    static void SplitMerge(const T& input,
-            const size_t& start,
-            const size_t& end,
-            T& output)
+    static T Sort(const T& input)
     {
-        if(end - start < 2)
+        if(input.size() < 2)
         {
-            return;
+            return input;
         }
 
-        // recursively split runs into two halves until run size == 1,
-        // then merge them and return back up the call chain
-        size_t middle = (end + start) / 2;
-        SplitMerge(input, start, middle, output);  // split / merge left  half
-        SplitMerge(input, middle, end, output);  // split / merge right half
-        Merge(input, start, middle, end, output);  // merge the two half runs
+        size_t middle = input.size()/2;
+        typename T::const_iterator middleIter(input.cbegin());
+        std::advance(middleIter, middle);
+
+        T first(input.begin(), middleIter);
+        T second(middleIter, input.end());
+
+        first = Sort(first);
+        second = Sort(second);
+        return Merge(first, second);
     }
 
 private:
-    //  Left half is A[iBegin :iMiddle-1].
-    // Right half is A[iMiddle:iEnd-1   ].
-    static void Merge(const T& input,
-            const size_t& start,
-            const size_t& middle,
-            const size_t& end,
-            T& output)
+    static T Merge(const T& first,
+            const T& second)
     {
-        // While there are elements in the left or right runs...
-        for (size_t k = start, i = start, j = middle; k < end; ++k)
+        if (first.empty() && second.empty())
         {
-            // If left run head exists and is <= existing right run head.
-            if (i < middle && (j >= end || input[i] <= input[j]))
+            return T();
+        }
+        else if (first.empty() && false == second.empty())
+        {
+            return second;
+        }
+        else if (false == first.empty() && second.empty())
+        {
+            return first;
+        }
+
+        T result;
+        std::copy(first.begin(), first.end(), back_inserter(result));
+        std::copy(second.begin(), second.end(), back_inserter(result));
+        for (size_t k = 0, i = 0, j = 0; k < result.size(); ++k)
+        {
+            if (i < first.size() && (second.size() <= j ||
+                                     first[i] <= second[j]))
             {
-                output[k] = input[i];
+                result[k] = first[i];
                 ++i;
             }
             else
             {
-                output[k] = input[j];
+                result[k] = second[j];
                 ++j;
             }
         }
+
+        return result;
     }
 };
 
@@ -69,10 +85,7 @@ T MergeSort(const T& container)
         return container;
     }
 
-    T array = container;
-
-    MergeSortAlg<T>::SplitMerge(container, 0, container.size(), array);
-    return array;
+    return MergeSortAlg<T>::Sort(container);
 }
 
 #endif /* INSERTIONSORT_HPP_ */
