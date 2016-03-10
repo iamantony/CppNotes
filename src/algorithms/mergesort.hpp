@@ -1,14 +1,12 @@
 #ifndef MERGESORT_HPP_
 #define MERGESORT_HPP_
 
-#include <vector>
 #include <iterator>
 
 template<typename T>
 class MergeSortAlg
 {
 public:
-    // start is inclusive; end is exclusive
     static T Sort(const T& input)
     {
         if(input.size() < 2)
@@ -80,11 +78,6 @@ private:
 template<typename T>
 T MergeSort(const T& container)
 {
-    if (container.size() <= 1)
-    {
-        return container;
-    }
-
     return MergeSortAlg<T>::Sort(container);
 }
 
