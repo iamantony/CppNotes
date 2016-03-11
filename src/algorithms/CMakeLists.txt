@@ -12,6 +12,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/mergesort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/searchelementindex.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/quicksort.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/binarysearch.hpp
    PARENT_SCOPE
 )
 

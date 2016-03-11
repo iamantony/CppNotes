@@ -8,5 +8,6 @@ set(HEADERS_TEST
    ${CMAKE_CURRENT_SOURCE_DIR}/testinsertionsort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testmergesort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testquicksort.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/testbinarysearch.hpp
    PARENT_SCOPE
 )
