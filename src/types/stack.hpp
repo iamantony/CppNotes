@@ -58,6 +58,7 @@ void Introduction()
     stack.pop();
     stack.pop();
     std::cout << "Size of the stack: " << stack.size() << std::endl;
+
     // Underflow of the stack. Undefined effect, probably bad.
     // stack.pop();
 }
