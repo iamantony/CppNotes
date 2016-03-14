@@ -8,6 +8,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/linkedlist.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/stack.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/concurrentmap.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/queue.hpp
    PARENT_SCOPE
 )
 
