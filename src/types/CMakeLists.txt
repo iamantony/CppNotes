@@ -9,6 +9,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/stack.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/concurrentmap.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/queue.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/binarysearchtree.hpp
    PARENT_SCOPE
 )
 
