@@ -2,6 +2,8 @@
 #define BINARYSEARCHTREE_HPP_
 
 #include <iostream>
+#include <algorithm>
+#include <stdexcept>
 
 template <typename T>
 class BSTree
@@ -41,15 +43,23 @@ public:
     BSTree<T>& operator=(const BSTree<T>& other) = delete;
 
     void clear();
-    int size();
-    bool isEmpty();
+    int size() const;
+    bool isEmpty() const;
     void insert(const T& value);
-    bool contains(const T& value);
+    bool contains(const T& value) const;
+    int maxDepth() const;
+    T minValue() const;
+    T maxValue() const;
+    void printTree() const;
+    void printTreePostorder() const;
 
 private:
-    int calcSize(const Node* node);
+    int calcSize(const Node* node) const;
     void insertValue(Node* node, const T& value);
-    bool containsValue(Node* node, const T& value);
+    bool containsValue(Node* node, const T& value) const;
+    int calcMaxDepth(const Node* node) const;
+    void printNode(const Node* node) const;
+    void printNodePostorder(const Node* node) const;
 };
 
 template<typename T>
@@ -75,9 +85,9 @@ void BSTree<T>::Node::setLeftNode(Node* left)
 }
 
 template<typename T>
-typename BSTree<T>::Node* BSTree<T>::Node::getLeftNode()
+typename BSTree<T>::Node* BSTree<T>::Node::getLeftNode() const
 {
-    return (m_left);
+    return m_left;
 }
 
 template<typename T>
@@ -87,9 +97,9 @@ void BSTree<T>::Node::setRightNode(Node* right)
 }
 
 template<typename T>
-typename BSTree<T>::Node* BSTree<T>::Node::getRightNode()
+typename BSTree<T>::Node* BSTree<T>::Node::getRightNode() const
 {
-    return (m_right);
+    return m_right;
 }
 
 template<typename T>
@@ -99,9 +109,9 @@ void BSTree<T>::Node::setValue(const T& value)
 }
 
 template<typename T>
-T BSTree<T>::Node::getValue()
+T BSTree<T>::Node::getValue() const
 {
-    return (m_value);
+    return m_value;
 }
 
 template<typename T>
@@ -121,13 +131,13 @@ void BSTree<T>::clear()
 }
 
 template<typename T>
-int BSTree<T>::size()
+int BSTree<T>::size() const
 {
     return calcSize(root);
 }
 
 template<typename T>
-int BSTree<T>::calcSize(const Node* node)
+int BSTree<T>::calcSize(const Node* node) const
 {
     if (nullptr == node)
     {
@@ -138,7 +148,7 @@ int BSTree<T>::calcSize(const Node* node)
 }
 
 template<typename T>
-bool BSTree<T>::isEmpty()
+bool BSTree<T>::isEmpty() const
 {
     return (nullptr == root);
 }
@@ -161,7 +171,7 @@ void BSTree<T>::insertValue(Node* node, const T& value)
 {
     if (nullptr == node)
     {
-        std::cout << "Error - can't insert value with null node" << std::endl;
+        throw std::runtime_error("Can't insert to null node");
         return;
     }
 
@@ -182,7 +192,7 @@ void BSTree<T>::insertValue(Node* node, const T& value)
         if (nullptr == node->getRightNode())
         {
             Node* rightNode = new Node(value);
-            node->setRightNode(leftNode);
+            node->setRightNode(rightNode);
         }
         else
         {
@@ -192,13 +202,13 @@ void BSTree<T>::insertValue(Node* node, const T& value)
 }
 
 template<typename T>
-bool BSTree<T>::contains(const T& value)
+bool BSTree<T>::contains(const T& value) const
 {
     return containsValue(root, value);
 }
 
 template<typename T>
-bool BSTree<T>::containsValue(Node* node, const T& value)
+bool BSTree<T>::containsValue(Node* node, const T& value) const
 {
     if (nullptr == node)
     {
@@ -215,6 +225,115 @@ bool BSTree<T>::containsValue(Node* node, const T& value)
     }
 
     return containsValue(node->getRightNode(), value);
+}
+
+template<typename T>
+int BSTree<T>::maxDepth() const
+{
+    return calcMaxDepth(root);
+}
+
+template<typename T>
+int BSTree<T>::calcMaxDepth(const Node* node) const
+{
+    if (nullptr == node)
+    {
+        return 0;
+    }
+
+    int leftDepth = calcMaxDepth(node->getLeftNode());
+    int rightDepth = calcMaxDepth(node->getRightNode());
+    return 1 + std::max(leftDepth, rightDepth);
+}
+
+template<typename T>
+T BSTree<T>::minValue() const
+{
+    if (nullptr == root)
+    {
+        return T();
+    }
+
+    Node* node = root;
+    while(node->getLeftNode() != nullptr)
+    {
+        node = node->getLeftNode();
+    }
+
+    return node->getValue();
+}
+
+template<typename T>
+T BSTree<T>::maxValue() const
+{
+    if (nullptr == root)
+    {
+        return T();
+    }
+
+    Node* node = root;
+    while(node->getRightNode() != nullptr)
+    {
+        node = node->getRightNode();
+    }
+
+    return node->getValue();
+}
+
+template<typename T>
+void BSTree<T>::printTree() const
+{
+    printNode(root);
+    std::cout << std::endl;
+}
+
+template<typename T>
+void BSTree<T>::printNode(const Node* node) const
+{
+    if (nullptr == node)
+    {
+        return;
+    }
+
+    if (nullptr != node->getLeftNode())
+    {
+        printNode(node->getLeftNode());
+    }
+
+    std::cout << node->getValue() << " ";
+
+    if (nullptr != node->getRightNode())
+    {
+        printNode(node->getRightNode());
+    }
+}
+
+template<typename T>
+void BSTree<T>::printTreePostorder() const
+{
+    printNodePostorder(root);
+    std::cout << std::endl;
+}
+
+template<typename T>
+void BSTree<T>::printNodePostorder(const Node* node) const
+{
+    if (nullptr == node)
+    {
+        return;
+    }
+
+    if (nullptr != node->getLeftNode())
+    {
+        printNodePostorder(node->getLeftNode());
+    }
+
+    if (nullptr != node->getRightNode())
+    {
+        printNodePostorder(node->getRightNode());
+    }
+
+    std::cout << node->getValue() << " ";
 }
 
 #endif /* BINARYSEARCHTREE_HPP_ */
