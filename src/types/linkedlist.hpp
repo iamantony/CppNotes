@@ -13,18 +13,17 @@ private:
     public:
         Node(T value, Node* previous, Node* next) : m_value(value),
             m_prev(previous), m_next(next) {}
+        ~Node();
 
         Node(const LinkedList<T>::Node& other) = delete;
         Node& operator=(const Node& other) = delete;
 
-        ~Node();
-
         void setPrevious(Node* previous);
-        Node* getPrevious();
+        Node* getPrevious() const;
         void setNext(Node* next);
-        Node* getNext();
-        void setValue(T value);
-        T getValue();
+        Node* getNext() const;
+        void setValue(const T& value);
+        T getValue() const;
 
     private:
         T m_value;
@@ -39,29 +38,28 @@ private:
     // == METHODS ==
 public:
     LinkedList() {}
-    LinkedList(int listSize, T value = 0);
+    LinkedList(const int& listSize, const T& value = 0);
+    ~LinkedList();
 
     LinkedList(const LinkedList<T>& other) = delete;
     LinkedList<T>& operator=(const LinkedList<T>& other) = delete;
 
-    ~LinkedList();
-
-    T first();
-    T last();
-    T at(int index);
-    void addFirst(T value);
-    void addLast(T value);
-    void insert(int index, T value);
-    void remove(int index);
+    T first() const;
+    T last() const;
+    T at(const int& index) const;
+    void addFirst(const T& value);
+    void addLast(const T& value);
+    void insert(const int& index, const T& value);
+    void remove(const int& index);
     void removeFirst();
     void removeLast();
     void clear();
-    int size();
-    bool isEmpty();
+    int size() const;
+    bool isEmpty() const;
 
 private:
     void clearLast();
-    Node* searchNode(int index);
+    Node* searchNode(const int& index) const;
 };
 
 template<typename T>
@@ -84,7 +82,7 @@ void LinkedList<T>::Node::setPrevious(Node* previous)
 }
 
 template<typename T>
-typename LinkedList<T>::Node* LinkedList<T>::Node::getPrevious()
+typename LinkedList<T>::Node* LinkedList<T>::Node::getPrevious() const
 {
     return (m_prev);
 }
@@ -96,25 +94,25 @@ void LinkedList<T>::Node::setNext(Node* next)
 }
 
 template<typename T>
-typename LinkedList<T>::Node* LinkedList<T>::Node::getNext()
+typename LinkedList<T>::Node* LinkedList<T>::Node::getNext() const
 {
     return (m_next);
 }
 
 template<typename T>
-void LinkedList<T>::Node::setValue(T value)
+void LinkedList<T>::Node::setValue(const T& value)
 {
     m_value = value;
 }
 
 template<typename T>
-T LinkedList<T>::Node::getValue()
+T LinkedList<T>::Node::getValue() const
 {
     return (m_value);
 }
 
 template<typename T>
-LinkedList<T>::LinkedList(int listSize, T value)
+LinkedList<T>::LinkedList(const int& listSize, const T& value)
 {
     for (int i = 0; i < listSize; ++i)
     {
@@ -129,7 +127,7 @@ LinkedList<T>::~LinkedList()
 }
 
 template<typename T>
-T LinkedList<T>::first()
+T LinkedList<T>::first() const
 {
     if (isEmpty())
     {
@@ -140,7 +138,7 @@ T LinkedList<T>::first()
 }
 
 template<typename T>
-T LinkedList<T>::last()
+T LinkedList<T>::last() const
 {
     if (isEmpty())
     {
@@ -151,7 +149,7 @@ T LinkedList<T>::last()
 }
 
 template<typename T>
-T LinkedList<T>::at(int index)
+T LinkedList<T>::at(const int& index) const
 {
     if (isEmpty())
     {
@@ -172,7 +170,7 @@ T LinkedList<T>::at(int index)
 }
 
 template<typename T>
-typename LinkedList<T>::Node* LinkedList<T>::searchNode(int index)
+typename LinkedList<T>::Node* LinkedList<T>::searchNode(const int& index) const
 {
     Node* node = m_first;
     int i = 0;
@@ -186,7 +184,7 @@ typename LinkedList<T>::Node* LinkedList<T>::searchNode(int index)
 }
 
 template<typename T>
-void LinkedList<T>::addFirst(T value)
+void LinkedList<T>::addFirst(const T& value)
 {
     Node* newNode = new Node(value, nullptr, nullptr);
     if (isEmpty())
@@ -204,7 +202,7 @@ void LinkedList<T>::addFirst(T value)
 }
 
 template<typename T>
-void LinkedList<T>::addLast(T value)
+void LinkedList<T>::addLast(const T& value)
 {
     Node* newNode = new Node(value, nullptr, nullptr);
     if (isEmpty())
@@ -222,7 +220,7 @@ void LinkedList<T>::addLast(T value)
 }
 
 template<typename T>
-void LinkedList<T>::insert(int index, T value)
+void LinkedList<T>::insert(const int& index, const T& value)
 {
     if (isEmpty() || index <= 0)
     {
@@ -250,7 +248,7 @@ void LinkedList<T>::insert(int index, T value)
 }
 
 template<typename T>
-void LinkedList<T>::remove(int index)
+void LinkedList<T>::remove(const int& index)
 {
     if (isEmpty() || index < 0 || size() <= index)
     {
@@ -363,13 +361,13 @@ void LinkedList<T>::clear()
 }
 
 template<typename T>
-int LinkedList<T>::size()
+int LinkedList<T>::size() const
 {
     return (m_size);
 }
 
 template<typename T>
-bool LinkedList<T>::isEmpty()
+bool LinkedList<T>::isEmpty() const
 {
     return (0 == m_size);
 }
