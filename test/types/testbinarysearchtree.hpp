@@ -134,6 +134,24 @@ BOOST_AUTO_TEST_CASE(test_bstree_print_tree_postorder)
     tree.printTreePostorder();
 }
 
+BOOST_AUTO_TEST_CASE(test_bstree_get_paths_empty)
+{
+    BSTree<int> tree;
+    std::vector<std::vector<int>> paths =  tree.getPaths();
+    BOOST_CHECK(0 == paths.size());
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_get_paths_one_elem)
+{
+    BSTree<int> tree;
+    tree.insert(10);
+    std::vector<std::vector<int>> paths =  tree.getPaths();
+    BOOST_CHECK(1 == paths.size());
+
+    std::vector<int> expected = {10};
+    BOOST_CHECK(expected == paths[0]);
+}
+
 BOOST_AUTO_TEST_CASE(test_bstree_get_paths)
 {
     BSTree<int> tree;
