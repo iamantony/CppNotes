@@ -134,4 +134,26 @@ BOOST_AUTO_TEST_CASE(test_bstree_print_tree_postorder)
     tree.printTreePostorder();
 }
 
+BOOST_AUTO_TEST_CASE(test_bstree_get_paths)
+{
+    BSTree<int> tree;
+    tree.insert(10);
+    tree.insert(5);
+    tree.insert(2);
+    tree.insert(7);
+    tree.insert(42);
+    tree.insert(40);
+
+    std::vector<std::vector<int>> paths =  tree.getPaths();
+    BOOST_CHECK(3 == paths.size());
+
+    std::vector<int> expectedFirst = {10, 5, 2};
+    std::vector<int> expectedSecond = {10, 5, 7};
+    std::vector<int> expectedThird = {10, 42, 40};
+
+    BOOST_CHECK(expectedFirst == paths[0]);
+    BOOST_CHECK(expectedSecond == paths[1]);
+    BOOST_CHECK(expectedThird == paths[2]);
+}
+
 #endif /* TEST_BINARYSEARCHTREE_H_ */

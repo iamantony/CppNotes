@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
+#include <vector>
 
 template <typename T>
 class BSTree
@@ -52,6 +53,7 @@ public:
     T maxValue() const;
     void printTree() const;
     void printTreePostorder() const;
+    std::vector<std::vector<T>> getPaths() const;
 
 private:
     int calcSize(const Node* node) const;
@@ -60,6 +62,7 @@ private:
     int calcMaxDepth(const Node* node) const;
     void printNode(const Node* node) const;
     void printNodePostorder(const Node* node) const;
+    std::vector<std::vector<T>> getNodePaths(const Node* node) const;
 };
 
 template<typename T>
@@ -334,6 +337,50 @@ void BSTree<T>::printNodePostorder(const Node* node) const
     }
 
     std::cout << node->getValue() << " ";
+}
+
+template<typename T>
+std::vector<std::vector<T>> BSTree<T>::getPaths() const
+{
+    std::vector<std::vector<T>> paths = getNodePaths(root);
+    auto func = [](std::vector<T>& vec){std::reverse(vec.begin(), vec.end());};
+    std::for_each(paths.begin(), paths.end(), func);
+
+    return paths;
+}
+
+template<typename T>
+std::vector<std::vector<T>> BSTree<T>::getNodePaths(const Node* node) const
+{
+    if (nullptr == node)
+    {
+        return std::vector<std::vector<T>>();
+    }
+
+    std::vector<std::vector<T>> leftPaths, rightPaths;
+    if (nullptr != node->getLeftNode())
+    {
+        leftPaths = getNodePaths(node->getLeftNode());
+    }
+
+    if (nullptr != node->getRightNode())
+    {
+        rightPaths = getNodePaths(node->getRightNode());
+    }
+
+    std::vector<std::vector<T>> result;
+    std::copy(leftPaths.begin(), leftPaths.end(), std::back_inserter(result));
+    std::copy(rightPaths.begin(), rightPaths.end(), std::back_inserter(result));
+    if (result.empty())
+    {
+        result.push_back(std::vector<T>());
+    }
+
+    const T nodeValue = node->getValue();
+    auto func = [&nodeValue](std::vector<T>& vec){vec.push_back(nodeValue);};
+    std::for_each(result.begin(), result.end(), func);
+
+    return result;
 }
 
 #endif /* BINARYSEARCHTREE_HPP_ */
