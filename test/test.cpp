@@ -11,7 +11,7 @@
 #include "algorithms/testmergesort.hpp"
 #include "algorithms/testquicksort.hpp"
 #include "algorithms/testbinarysearch.hpp"
-#include "algorithms/ctci/test-1-1-str_unique_char.hpp"
+#include "ctci5/data_structs/test_str_unique_char.hpp"
 
 BOOST_AUTO_TEST_CASE(test_func)
 {

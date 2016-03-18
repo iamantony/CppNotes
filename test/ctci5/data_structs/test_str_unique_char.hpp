@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 
-#include "algorithms/ctci/1-1-str_unique_char.hpp"
+#include "ctci5/data_structs/str_unique_char.hpp"
 
 BOOST_AUTO_TEST_CASE(test_ishauc_empty_str)
 {

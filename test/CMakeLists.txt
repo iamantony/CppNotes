@@ -10,7 +10,8 @@ set(HEADERS_TEST)
 set(SOURCES_TEST)
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/types")
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/algorithms/ctci")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/algorithms")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/ctci5")
 
 #message("Headers in test: " ${HEADERS_TEST})
 #message("Sources in test: " ${SOURCES_TEST})

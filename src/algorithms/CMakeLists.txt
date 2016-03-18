@@ -1,4 +1,3 @@
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/ctci")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/euler")
 
 set(HEADERS
