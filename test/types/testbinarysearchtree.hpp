@@ -203,4 +203,57 @@ BOOST_AUTO_TEST_CASE(test_bstree_mirror)
     tree.printTreePostorder();
 }
 
+BOOST_AUTO_TEST_CASE(test_bstree_is_equal_empty)
+{
+    BSTree<int> first, second;
+    BOOST_CHECK(first == second);
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_is_equal_one_elem)
+{
+    BSTree<int> first, second;
+    first.insert(10);
+    second.insert(10);
+    BOOST_CHECK(first == second);
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_is_equal)
+{
+    BSTree<int> first, second;
+    first.insert(10);
+    first.insert(5);
+    first.insert(2);
+    first.insert(7);
+    first.insert(42);
+    first.insert(40);
+
+    second.insert(10);
+    second.insert(5);
+    second.insert(2);
+    second.insert(7);
+    second.insert(42);
+    second.insert(40);
+
+    BOOST_CHECK(first == second);
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_is_equal_different)
+{
+    BSTree<int> first, second;
+    first.insert(10);
+    first.insert(5);
+    first.insert(2);
+    first.insert(7);
+    first.insert(42);
+    first.insert(40);
+
+    second.insert(10);
+    second.insert(5);
+    second.insert(2);
+    second.insert(42);
+    second.insert(40);
+
+    BOOST_CHECK(first != second);
+}
+
 #endif /* TEST_BINARYSEARCHTREE_H_ */

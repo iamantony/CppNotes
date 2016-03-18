@@ -43,6 +43,12 @@ public:
     BSTree(const BSTree<T>& other) = delete;
     BSTree<T>& operator=(const BSTree<T>& other) = delete;
 
+    template <typename U>
+    friend bool operator==(BSTree<U>& left, BSTree<U>& right);
+
+    template <typename U>
+    friend bool operator!=(BSTree<U>& left, BSTree<U>& right);
+
     void clear();
     int size() const;
     bool isEmpty() const;
@@ -65,6 +71,7 @@ private:
     void printNodePostorder(const Node* node) const;
     std::vector<std::vector<T>> getNodePaths(const Node* node) const;
     void mirrorNode(Node* node);
+    bool isSameNodes(Node* lh, Node* rh);
 };
 
 template<typename T>
@@ -406,6 +413,40 @@ void BSTree<T>::mirrorNode(Node* node)
 
     node->setLeftNode(right);
     node->setRightNode(left);
+}
+
+template<typename U>
+bool operator==(BSTree<U>& left, BSTree<U>& right)
+{
+    return left.isSameNodes(left.root, right.root);
+}
+
+template<typename U>
+bool operator!=(BSTree<U>& left, BSTree<U>& right)
+{
+    return !(left == right);
+}
+
+template<typename T>
+bool BSTree<T>::isSameNodes(Node* lh, Node* rh)
+{
+    if (nullptr == lh)
+    {
+        return nullptr == rh ? true : false;
+    }
+    else if (nullptr == rh)
+    {
+        return false;
+    }
+
+    if (lh->getValue() == rh->getValue() &&
+            isSameNodes(lh->getLeftNode(), rh->getLeftNode()) &&
+            isSameNodes(lh->getRightNode(), rh->getRightNode()))
+    {
+        return true;
+    }
+
+    return false;
 }
 
 #endif /* BINARYSEARCHTREE_HPP_ */
