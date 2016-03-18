@@ -54,6 +54,7 @@ public:
     void printTree() const;
     void printTreePostorder() const;
     std::vector<std::vector<T>> getPaths() const;
+    void mirror();
 
 private:
     int calcSize(const Node* node) const;
@@ -63,6 +64,7 @@ private:
     void printNode(const Node* node) const;
     void printNodePostorder(const Node* node) const;
     std::vector<std::vector<T>> getNodePaths(const Node* node) const;
+    void mirrorNode(Node* node);
 };
 
 template<typename T>
@@ -381,6 +383,29 @@ std::vector<std::vector<T>> BSTree<T>::getNodePaths(const Node* node) const
     std::for_each(result.begin(), result.end(), func);
 
     return result;
+}
+
+template<typename T>
+void BSTree<T>::mirror()
+{
+    mirrorNode(root);
+}
+
+template<typename T>
+void BSTree<T>::mirrorNode(Node* node)
+{
+    if (nullptr == node)
+    {
+        return;
+    }
+
+    Node* left = node->getLeftNode();
+    Node* right = node->getRightNode();
+    mirrorNode(left);
+    mirrorNode(right);
+
+    node->setLeftNode(right);
+    node->setRightNode(left);
 }
 
 #endif /* BINARYSEARCHTREE_HPP_ */

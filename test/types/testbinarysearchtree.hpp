@@ -174,4 +174,33 @@ BOOST_AUTO_TEST_CASE(test_bstree_get_paths)
     BOOST_CHECK(expectedThird == paths[2]);
 }
 
+BOOST_AUTO_TEST_CASE(test_bstree_mirror_empty)
+{
+    BSTree<int> tree;
+    tree.mirror();
+    tree.printTreePostorder();
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_mirror_one_elem)
+{
+    BSTree<int> tree;
+    tree.insert(10);
+    tree.mirror();
+    tree.printTreePostorder();
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_mirror)
+{
+    BSTree<int> tree;
+    tree.insert(10);
+    tree.insert(5);
+    tree.insert(2);
+    tree.insert(7);
+    tree.insert(42);
+    tree.insert(40);
+
+    tree.mirror();
+    tree.printTreePostorder();
+}
+
 #endif /* TEST_BINARYSEARCHTREE_H_ */
