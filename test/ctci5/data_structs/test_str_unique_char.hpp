@@ -1,5 +1,5 @@
-#ifndef TEST1_1_STR_UNIQUE_CHAR_HPP_
-#define TEST1_1_STR_UNIQUE_CHAR_HPP_
+#ifndef TEST_STR_UNIQUE_CHAR_HPP_
+#define TEST_STR_UNIQUE_CHAR_HPP_
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
@@ -15,4 +15,4 @@ BOOST_AUTO_TEST_CASE(test_ishauc_empty_str)
     BOOST_CHECK(false == IsStrHasAllUniqueChars(empty_str));
 }
 
-#endif /* TEST1_1_STR_UNIQUE_CHAR_HPP_ */
+#endif /* TEST_STR_UNIQUE_CHAR_HPP_ */
