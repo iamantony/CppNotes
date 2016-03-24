@@ -15,6 +15,7 @@
 #include "ctci5/additional/test_calc_angle_btw_clock_hands.hpp"
 #include "ctci5/math/test_primes.hpp"
 #include "ctci5/math/test_parallel_lines.hpp"
+#include "ctci5/math/test_int_operators.hpp"
 
 BOOST_AUTO_TEST_CASE(test_func)
 {
