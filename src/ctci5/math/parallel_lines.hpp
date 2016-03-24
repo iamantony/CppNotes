@@ -10,6 +10,9 @@
 // Given two lines on a Cartesian plane, determine whether the two lines
 // would intersect
 
+// http://www.wikihow.com/Find-the-Slope-of-a-Line
+// http://matematikalegko.ru/koordinatnaya-ploskost/uglovoj-koefficient-pryamoj-i-ne-tolko.html
+
 class Point
 {
 public:
