@@ -110,7 +110,7 @@ void WorkWithContainer()
 
 void OrderOfElements()
 {
-    std::cout << std::endl << "OrderOfElements" << std::endl;
+    std::cout << std::endl << "OrderOfElements in std::map" << std::endl;
     std::map<int, int> mapAsc;
     std::map<int, int, std::greater<int>> mapDesc;
 
