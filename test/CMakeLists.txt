@@ -1,4 +1,4 @@
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS unit_test_framework system filesystem REQUIRED)
 
 include_directories (${ROOT_DIR}/src
                      ${Boost_INCLUDE_DIRS})
@@ -19,4 +19,6 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/ctci5")
 add_executable(cppnotestest ${MAIN_SOURCES_TEST} ${SOURCES_TEST} ${HEADERS_TEST})
 
 target_link_libraries(cppnotestest
-                      ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+                      ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+                      ${Boost_SYSTEM_LIBRARY}
+                      ${Boost_FILESYSTEM_LIBRARY})
