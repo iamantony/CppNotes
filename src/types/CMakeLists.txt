@@ -11,6 +11,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/queue.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/binarysearchtree.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/map_type.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/unordered_map_type.hpp
    PARENT_SCOPE
 )
 
