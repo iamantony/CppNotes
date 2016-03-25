@@ -16,6 +16,7 @@
 #include "ctci5/math/test_primes.hpp"
 #include "ctci5/math/test_parallel_lines.hpp"
 #include "ctci5/math/test_int_operators.hpp"
+#include "ctci5/cpp/test_read_last_lines.hpp"
 
 BOOST_AUTO_TEST_CASE(test_func)
 {
