@@ -95,6 +95,38 @@
 //   simplest memory allocation model and is value-independent.
 //   Aliased as member type unordered_map::allocator_type.
 
+//How is a hash table implemented?
+// A hash table is traditionally implemented with an array of linked lists.
+// When we want to insert a key/value pair, we map the key to an index in the
+// array using a hash function.
+//
+// The value is then inserted into the linked list at that position.
+// Note that the elements in a linked list at a particular index of the array
+// do not have the same key. Rather, hashFunction (key) is the same for
+// thesevalues.Therefore, in order to retrieve the value for a specific key, we
+// need to store in each node both the exact key and the value.
+//
+// To summarize,the hash table will be implemented with an array of linked
+// lists, where each node in the linked list holds two pieces of data:
+// the value and the original key. In addition, we will want to note the
+// following design criteria:
+//
+// 1. We want to use a good hash function to ensure that the keys are well
+// distributed. If they are not well distributed, then we would get a lot of
+// collisions and the speed to find an element would decline.
+//
+// 2. No matter how good our hash function is,we will still have collisions,
+// so we need a method for handling them. This often means chaining via a
+// linked list, but it's not the only way.
+//
+// 3. We may also wish to implement methods to dynamically increase or
+// decrease the hash table size depending on capacity. For example, when the
+// ratio of the number of elements to the table size exceeds a certain
+// threshold, we may wish to increase the hash table size. This would mean
+// creating a new hash table and transferring the entries from the old table
+// to the new table. Because this is an expensive operation, we want to be
+// careful to not do it too often.
+
 void Creation()
 {
     std::unordered_map<int, char> map1;
