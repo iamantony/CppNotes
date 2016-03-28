@@ -4,16 +4,50 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include <algorithm>
 
 // Implement an algorithm to determine if a string has all unique characters.
 // What if you cannot use additional data structures?
 
-bool IsStrHasAllUniqueChars(const std::string& inputStr)
+bool IsStrHasAllUniqueCharsBool(const std::string& inputStr)
 {
-    std::cout << "In IsStrHasAllUniqueChars()" << std::endl;
-    if (inputStr.empty())
+    if (inputStr.size() < 2)
     {
-        return (false);
+        return true;
+    }
+
+    // max number of ASCII symbols == max(char) = 256
+    const size_t MAX = 256;
+    if (MAX < inputStr.size())
+    {
+        return false;
+    }
+
+    bool symbols[MAX];
+    for (size_t i = 0; i < MAX; ++i)
+    {
+        symbols[i] = false;
+    }
+
+    for (size_t i = 0; i < inputStr.size(); ++i)
+    {
+        const int code = static_cast<int>(inputStr.at(i));
+        if (symbols[code])
+        {
+            return false;
+        }
+
+        symbols[code] = true;
+    }
+
+    return true;
+}
+
+bool IsStrHasAllUniqueCharsSet(const std::string& inputStr)
+{
+    if (inputStr.size() < 2)
+    {
+        return true;
     }
 
     std::set<char> characters;
@@ -25,11 +59,28 @@ bool IsStrHasAllUniqueChars(const std::string& inputStr)
         }
         else
         {
-            return (false);
+            return false;
         }
     }
 
-    return (true);
+    return true;
+}
+
+bool IsStrHasAllUniqueCharsSort(const std::string& inputStr)
+{
+    if (inputStr.size() < 2)
+    {
+        return true;
+    }
+
+    std::string str = inputStr;
+    std::sort(str.begin(), str.end());
+    if (std::adjacent_find(str.begin(), str.end()) != str.end())
+    {
+        return false;
+    }
+
+    return true;
 }
 
 #endif /* STR_UNIQUE_CHAR_HPP_ */
