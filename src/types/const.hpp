@@ -45,5 +45,7 @@ public:
 };
 
 void ConstExamples();
+void ConstReferences();
+void ConstPointers();
 
 #endif /* CONST_HPP_ */
