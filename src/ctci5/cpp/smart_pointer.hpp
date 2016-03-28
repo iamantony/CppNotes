@@ -11,53 +11,43 @@ template<typename T>
 class SmartPointer
 {
 public:
-    SmartPointer() : obj(nullptr), counter(nullptr) {}
+    SmartPointer() : rc(nullptr) {}
     explicit SmartPointer(const T* ptr)
     {
         if (nullptr != ptr)
         {
-            obj = ptr;
-            counter = new unsigned int;
-            *counter = 1;
+            rc = new RefCounter(ptr);
         }
     }
 
     SmartPointer(const SmartPointer<T>& other)
     {
-        this->obj = other.obj;
-        this->counter = other.counter;
-        if (nullptr != counter)
-        {
-            ++(*counter);
-        }
+        this->rc = other.rc;
+        ++(*this->rc->counter);
     }
 
     SmartPointer<T>& operator=(const SmartPointer<T>& other)
     {
-        if (this == &other)
+        if (this->rc == other.rc)
         {
             return *this;
         }
 
         check_remove();
-        this->obj = other.obj;
-        this->counter = other.counter;
-        if (nullptr != counter)
-        {
-            ++(*counter);
-        }
+        this->rc = other.rc;
+        ++(*this->rc->counter);
 
         return *this;
     }
 
     T& operator*()
     {
-        return *obj;
+        return (*this->rc->obj);
     }
 
     T* operator->()
     {
-        return obj;
+        return this->rc->obj;
     }
 
     ~SmartPointer()
@@ -67,56 +57,58 @@ public:
 
     void set(const T* ptr)
     {
-        if (nullptr == counter)
-        {
-            obj = ptr;
-            counter = new unsigned int;
-            *counter = 1;
-        }
-        else
+        if (nullptr != rc)
         {
             check_remove();
-
-            counter = new unsigned int;
-            obj = ptr;
-            *counter = 1;
         }
+
+        rc = new RefCounter(ptr);
     }
 
     T* get()
     {
-        return obj;
+        return this->rc->obj;
     }
 
 private:
     void check_remove()
     {
-        if (nullptr == counter)
+        if (nullptr == rc)
         {
             return;
         }
 
-        if (0 < *counter)
+        if (0 == --(*rc->counter))
         {
-            --(*counter);
-        }
-
-        if (0 == *counter)
-        {
-            if (nullptr != obj)
-            {
-                delete obj;
-                obj = nullptr;
-            }
-
-            delete counter;
-            counter = nullptr;
+            delete rc;
+            rc = nullptr;
         }
     }
 
 private:
-    T* obj;
-    unsigned int* counter;
+    struct RefCounter
+    {
+        T* obj;
+        unsigned int* counter;
+
+        RefCounter(T* ptr)
+        {
+            obj = ptr;
+            counter = new unsigned int;
+            *counter = 1;
+        }
+
+        ~RefCounter()
+        {
+            delete obj;
+            obj = nullptr;
+
+            delete counter;
+            counter = nullptr;
+        }
+    };
+
+    RefCounter* rc;
 };
 
 #endif /* SMART_POINTER_HPP_ */
