@@ -12,6 +12,7 @@
 #include "algorithms/testquicksort.hpp"
 #include "algorithms/testbinarysearch.hpp"
 #include "ctci5/data_structs/test_str_unique_char.hpp"
+#include "ctci5/data_structs/test_str_reverse.hpp"
 #include "ctci5/additional/test_calc_angle_btw_clock_hands.hpp"
 #include "ctci5/math/test_primes.hpp"
 #include "ctci5/math/test_parallel_lines.hpp"
