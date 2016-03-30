@@ -13,6 +13,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/quicksort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/binarysearch.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/strpermutations.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/find_two_elements.hpp
    PARENT_SCOPE
 )
 
