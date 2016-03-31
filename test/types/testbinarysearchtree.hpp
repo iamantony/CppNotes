@@ -70,6 +70,66 @@ BOOST_AUTO_TEST_CASE(test_bstree_contains)
     BOOST_CHECK(false == tree.contains(3));
 }
 
+BOOST_AUTO_TEST_CASE(test_bstree_delete_empty_tree)
+{
+    BSTree<int> tree;
+    tree.deleteValue(10);
+
+    std::vector<int> result = tree.printTree();
+    std::vector<int> expected;
+    BOOST_CHECK(result == expected);
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_delete_one_elem_tree)
+{
+    BSTree<int> tree;
+    tree.insert(10);
+    tree.deleteValue(1);
+
+    std::vector<int> result = tree.printTree();
+    std::vector<int> expected = {10};
+    BOOST_CHECK(result == expected);
+
+    tree.deleteValue(10);
+
+    result = tree.printTree();
+    expected.clear();
+    BOOST_CHECK(result == expected);
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_delete_tree)
+{
+    BSTree<int> tree;
+    tree.insert(10);
+    tree.insert(5);
+    tree.insert(2);
+    tree.insert(7);
+    tree.insert(42);
+
+    tree.deleteValue(5);
+
+    std::vector<int> result = tree.printTree();
+    std::vector<int> expected = {2, 7, 10, 42};
+    BOOST_CHECK(result == expected);
+}
+
+BOOST_AUTO_TEST_CASE(test_bstree_delete_tree_two_same_values)
+{
+    BSTree<int> tree;
+    tree.insert(10);
+    tree.insert(5);
+    tree.insert(2);
+    tree.insert(7);
+    tree.insert(5);
+    tree.insert(42);
+
+    tree.deleteValue(5);
+
+    std::vector<int> result = tree.printTree();
+    std::vector<int> expected = {2, 5, 7, 10, 42};
+    BOOST_CHECK(result == expected);
+}
+
 BOOST_AUTO_TEST_CASE(test_bstree_max_depth)
 {
     BSTree<int> tree;

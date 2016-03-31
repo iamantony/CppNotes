@@ -53,6 +53,7 @@ public:
     bool isEmpty() const;
     void insert(const T& value);
     bool contains(const T& value) const;
+    void deleteValue(const T& value);
     int maxDepth() const;
     T minValue() const;
     T maxValue() const;
@@ -65,7 +66,10 @@ private:
     int calcSize(const Node* node) const;
     void insertValue(Node* node, const T& value);
     bool containsValue(Node* node, const T& value) const;
+    Node* deleteValueNode(Node* node, const T& value);
     int calcMaxDepth(const Node* node) const;
+    Node* minValueNode(Node* node) const;
+    Node* maxValueNode(Node* node) const;
     void printNode(const Node* node, std::vector<T>& values) const;
     void printNodePostorder(const Node* node, std::vector<T>& values) const;
     std::vector<std::vector<T>> getNodePaths(const Node* node) const;
@@ -239,6 +243,62 @@ bool BSTree<T>::containsValue(Node* node, const T& value) const
 }
 
 template<typename T>
+void BSTree<T>::deleteValue(const T& value)
+{
+    root = deleteValueNode(root, value);
+}
+
+template<typename T>
+typename BSTree<T>::Node* BSTree<T>::deleteValueNode(
+        Node* node, const T& value)
+{
+    if (nullptr == node)
+    {
+        return node;
+    }
+
+    if (value < node->getValue())
+    {
+        Node* resultLeft = deleteValueNode(node->getLeftNode(), value);
+        node->setLeftNode(resultLeft);
+    }
+    else if (node->getValue() < value)
+    {
+        Node* resultRight = deleteValueNode(node->getRightNode(), value);
+        node->setRightNode(resultRight);
+    }
+    else
+    {
+        if (nullptr == node->getLeftNode())
+        {
+            Node* temp = node->getRightNode();
+            node->setRightNode(nullptr);
+            delete node;
+            return temp;
+        }
+        else if (nullptr == node->getRightNode())
+        {
+            Node* temp = node->getLeftNode();
+            node->setLeftNode(nullptr);
+            delete node;
+            return temp;
+        }
+
+        // node with two children: get the inorder successor (smallest
+        // in the right subtree)
+        Node* temp = minValueNode(node->getRightNode());
+        node->setValue(temp->getValue());
+
+        // Delete the inorder successor
+        Node* newRight =
+                deleteValueNode(node->getRightNode(), node->getValue());
+        node->setRightNode(newRight);
+    }
+
+    return node;
+}
+
+template<typename T>
 int BSTree<T>::maxDepth() const
 {
     return calcMaxDepth(root);
@@ -265,13 +325,30 @@ T BSTree<T>::minValue() const
         return T();
     }
 
-    Node* node = root;
-    while(node->getLeftNode() != nullptr)
+    Node* node = minValueNode(root);
+    if (nullptr == node)
     {
-        node = node->getLeftNode();
+        return T();
     }
 
     return node->getValue();
+}
+
+template<typename T>
+typename BSTree<T>::Node* BSTree<T>::minValueNode(Node* node) const
+{
+    if (nullptr == node)
+    {
+        return nullptr;
+    }
+
+    Node* iNode = node;
+    while(iNode->getLeftNode() != nullptr)
+    {
+        iNode = iNode->getLeftNode();
+    }
+
+    return iNode;
 }
 
 template<typename T>
@@ -282,13 +359,30 @@ T BSTree<T>::maxValue() const
         return T();
     }
 
-    Node* node = root;
-    while(node->getRightNode() != nullptr)
+    Node* node = maxValueNode(root);
+    if (nullptr == node)
     {
-        node = node->getRightNode();
+        return T();
     }
 
     return node->getValue();
+}
+
+template<typename T>
+typename BSTree<T>::Node* BSTree<T>::maxValueNode(Node* node) const
+{
+    if (nullptr == node)
+    {
+        return nullptr;
+    }
+
+    Node* iNode = node;
+    while(iNode->getRightNode() != nullptr)
+    {
+        iNode = iNode->getRightNode();
+    }
+
+    return iNode;
 }
 
 template<typename T>
