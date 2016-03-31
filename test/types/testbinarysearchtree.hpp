@@ -119,7 +119,9 @@ BOOST_AUTO_TEST_CASE(test_bstree_print_tree)
     tree.insert(7);
     tree.insert(42);
 
-    tree.printTree();
+    std::vector<int> result = tree.printTree();
+    std::vector<int> expected = {2, 5, 7, 10, 42};
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree_print_tree_postorder)

@@ -57,7 +57,7 @@ public:
     int maxDepth() const;
     T minValue() const;
     T maxValue() const;
-    void printTree() const;
+    std::vector<T> printTree() const;
     void printTreePostorder() const;
     std::vector<std::vector<T>> getPaths() const;
     void mirror();
@@ -67,7 +67,7 @@ private:
     void insertValue(Node* node, const T& value);
     bool containsValue(Node* node, const T& value) const;
     int calcMaxDepth(const Node* node) const;
-    void printNode(const Node* node) const;
+    void printNode(const Node* node, std::vector<T>& values) const;
     void printNodePostorder(const Node* node) const;
     std::vector<std::vector<T>> getNodePaths(const Node* node) const;
     void mirrorNode(Node* node);
@@ -293,14 +293,16 @@ T BSTree<T>::maxValue() const
 }
 
 template<typename T>
-void BSTree<T>::printTree() const
+std::vector<T> BSTree<T>::printTree() const
 {
-    printNode(root);
-    std::cout << std::endl;
+    std::vector<T> values;
+    printNode(root, values);
+
+    return values;
 }
 
 template<typename T>
-void BSTree<T>::printNode(const Node* node) const
+void BSTree<T>::printNode(const Node* node, std::vector<T>& values) const
 {
     if (nullptr == node)
     {
@@ -309,14 +311,14 @@ void BSTree<T>::printNode(const Node* node) const
 
     if (nullptr != node->getLeftNode())
     {
-        printNode(node->getLeftNode());
+        printNode(node->getLeftNode(), values);
     }
 
-    std::cout << node->getValue() << " ";
+    values.push_back(node->getValue());
 
     if (nullptr != node->getRightNode())
     {
-        printNode(node->getRightNode());
+        printNode(node->getRightNode(), values);
     }
 }
 
