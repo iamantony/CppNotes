@@ -1,7 +1,6 @@
 #ifndef BINARYSEARCHTREE_HPP_
 #define BINARYSEARCHTREE_HPP_
 
-#include <iostream>
 #include <algorithm>
 #include <stdexcept>
 #include <vector>
