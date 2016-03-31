@@ -58,7 +58,7 @@ public:
     T minValue() const;
     T maxValue() const;
     std::vector<T> printTree() const;
-    void printTreePostorder() const;
+    std::vector<T> printTreePostorder() const;
     std::vector<std::vector<T>> getPaths() const;
     void mirror();
 
@@ -68,7 +68,7 @@ private:
     bool containsValue(Node* node, const T& value) const;
     int calcMaxDepth(const Node* node) const;
     void printNode(const Node* node, std::vector<T>& values) const;
-    void printNodePostorder(const Node* node) const;
+    void printNodePostorder(const Node* node, std::vector<T>& values) const;
     std::vector<std::vector<T>> getNodePaths(const Node* node) const;
     void mirrorNode(Node* node);
     bool isSameNodes(Node* lh, Node* rh);
@@ -323,14 +323,17 @@ void BSTree<T>::printNode(const Node* node, std::vector<T>& values) const
 }
 
 template<typename T>
-void BSTree<T>::printTreePostorder() const
+std::vector<T> BSTree<T>::printTreePostorder() const
 {
-    printNodePostorder(root);
-    std::cout << std::endl;
+    std::vector<T> values;
+    printNodePostorder(root, values);
+
+    return values;
 }
 
 template<typename T>
-void BSTree<T>::printNodePostorder(const Node* node) const
+void BSTree<T>::printNodePostorder(const Node* node,
+        std::vector<T>& values) const
 {
     if (nullptr == node)
     {
@@ -339,15 +342,15 @@ void BSTree<T>::printNodePostorder(const Node* node) const
 
     if (nullptr != node->getLeftNode())
     {
-        printNodePostorder(node->getLeftNode());
+        printNodePostorder(node->getLeftNode(), values);
     }
 
     if (nullptr != node->getRightNode())
     {
-        printNodePostorder(node->getRightNode());
+        printNodePostorder(node->getRightNode(), values);
     }
 
-    std::cout << node->getValue() << " ";
+    values.push_back(node->getValue());
 }
 
 template<typename T>

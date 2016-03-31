@@ -133,7 +133,9 @@ BOOST_AUTO_TEST_CASE(test_bstree_print_tree_postorder)
     tree.insert(7);
     tree.insert(42);
 
-    tree.printTreePostorder();
+    std::vector<int> result = tree.printTreePostorder();
+    std::vector<int> expected = {2, 7, 5, 42, 10};
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree_get_paths_empty)
@@ -180,7 +182,10 @@ BOOST_AUTO_TEST_CASE(test_bstree_mirror_empty)
 {
     BSTree<int> tree;
     tree.mirror();
-    tree.printTreePostorder();
+
+    std::vector<int> result = tree.printTreePostorder();
+    std::vector<int> expected;
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree_mirror_one_elem)
@@ -188,7 +193,10 @@ BOOST_AUTO_TEST_CASE(test_bstree_mirror_one_elem)
     BSTree<int> tree;
     tree.insert(10);
     tree.mirror();
-    tree.printTreePostorder();
+
+    std::vector<int> result = tree.printTreePostorder();
+    std::vector<int> expected = {10};
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree_mirror)
@@ -202,7 +210,10 @@ BOOST_AUTO_TEST_CASE(test_bstree_mirror)
     tree.insert(40);
 
     tree.mirror();
-    tree.printTreePostorder();
+
+    std::vector<int> result = tree.printTreePostorder();
+    std::vector<int> expected = {40, 42, 7, 2, 5, 10};
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree_is_equal_empty)
