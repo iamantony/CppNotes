@@ -4,6 +4,7 @@
 #include "types/testlinkedlist.hpp"
 #include "types/testconcurrentmap.hpp"
 #include "types/testbinarysearchtree.hpp"
+#include "types/testbinarysearchtree2.hpp"
 #include "algorithms/testbubblesort.hpp"
 #include "algorithms/testgnomesort.hpp"
 #include "algorithms/testselectionsort.hpp"
