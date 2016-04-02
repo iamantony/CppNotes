@@ -14,6 +14,7 @@
 #include "algorithms/testbinarysearch.hpp"
 #include "algorithms/teststrpermutations.hpp"
 #include "algorithms/test_find_two_elements.hpp"
+#include "algorithms/test_ransome_note.hpp"
 #include "ctci5/data_structs/test_str_unique_char.hpp"
 #include "ctci5/data_structs/test_str_reverse.hpp"
 #include "ctci5/data_structs/test_is_str_permutation.hpp"
