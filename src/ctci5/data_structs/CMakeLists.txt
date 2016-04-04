@@ -6,5 +6,6 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/str_replace_spaces.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/str_compression.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/rotate_matrix.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/matrix_zero_out.hpp
    PARENT_SCOPE
 )

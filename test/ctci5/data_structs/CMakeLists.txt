@@ -6,5 +6,6 @@ set(HEADERS_TEST
    ${CMAKE_CURRENT_SOURCE_DIR}/test_str_replace_spaces.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/test_str_compression.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/test_rotate_matrix.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/test_matrix_zero_out.hpp
    PARENT_SCOPE
 )
