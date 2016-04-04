@@ -5,5 +5,6 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/is_str_permutation.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/str_replace_spaces.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/str_compression.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/rotate_matrix.hpp
    PARENT_SCOPE
 )
