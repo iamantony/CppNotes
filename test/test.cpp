@@ -24,6 +24,7 @@
 #include "ctci5/data_structs/test_str_compression.hpp"
 #include "ctci5/data_structs/test_rotate_matrix.hpp"
 #include "ctci5/data_structs/test_matrix_zero_out.hpp"
+#include "ctci5/data_structs/test_str_is_substring.hpp"
 
 #include "ctci5/additional/test_calc_angle_btw_clock_hands.hpp"
 
