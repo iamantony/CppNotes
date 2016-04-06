@@ -1,6 +1,9 @@
 #ifndef REMOVE_DUPLICATES_LINKED_LIST_HPP_
 #define REMOVE_DUPLICATES_LINKED_LIST_HPP_
 
+// Write code to remove duplicates from an unsorted linked list.
+// How would you solve this problem if a temporary buffer is not allowed?
+
 #include <unordered_set>
 
 #include "ctci5/data_structs/singly_linked_list_nodes.hpp"
