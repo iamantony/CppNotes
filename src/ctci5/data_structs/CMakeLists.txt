@@ -10,5 +10,6 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/str_is_substring.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/singly_linked_list_nodes.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/doubly_linked_list_nodes.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/remove_duplicates_linked_list.hpp
    PARENT_SCOPE
 )
