@@ -12,5 +12,6 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/doubly_linked_list_nodes.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/remove_duplicates_linked_list.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/find_k_to_last_elem_in_sll.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/delete_node_from_sll.hpp
    PARENT_SCOPE
 )
