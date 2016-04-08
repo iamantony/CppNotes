@@ -11,5 +11,6 @@ set(HEADERS_TEST
    ${CMAKE_CURRENT_SOURCE_DIR}/test_remove_dup_linked_list.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/test_find_k_to_last_elem_in_sll.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/test_delete_node_from_sll.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/test_partition_linked_list.hpp
    PARENT_SCOPE
 )

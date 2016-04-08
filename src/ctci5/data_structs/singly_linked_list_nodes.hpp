@@ -16,7 +16,7 @@ public:
     }
 
     T data;
-    NodeSLL* next;
+    NodeSLL<T>* next;
 };
 
 template<typename T>

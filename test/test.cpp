@@ -28,6 +28,7 @@
 #include "ctci5/data_structs/test_remove_dup_linked_list.hpp"
 #include "ctci5/data_structs/test_find_k_to_last_elem_in_sll.hpp"
 #include "ctci5/data_structs/test_delete_node_from_sll.hpp"
+#include "ctci5/data_structs/test_partition_linked_list.hpp"
 
 #include "ctci5/additional/test_calc_angle_btw_clock_hands.hpp"
 
