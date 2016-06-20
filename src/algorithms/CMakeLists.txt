@@ -15,6 +15,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/strpermutations.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/find_two_elements.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/ransome_note.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/inversions_counter.hpp
    PARENT_SCOPE
 )
 

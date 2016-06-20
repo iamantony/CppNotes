@@ -10,5 +10,6 @@ set(HEADERS_TEST
    ${CMAKE_CURRENT_SOURCE_DIR}/teststrpermutations.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/test_find_two_elements.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/test_ransome_note.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/test_inversions_counter.hpp
    PARENT_SCOPE
 )
