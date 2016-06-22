@@ -36,38 +36,38 @@ private:
     static std::pair<T, size_t> Merge(const std::pair<T, size_t>& firstPart,
             const std::pair<T, size_t>& secondPart)
     {
-    	T firstArr = firstPart.first;
-    	T secondArr = secondPart.first;
+    T firstArr = firstPart.first;
+    T secondArr = secondPart.first;
 
         if (firstArr.empty() && secondArr.empty())
         {
             return std::pair<T, size_t>(T(), 0);
         }
         else if (firstArr.empty() &&
-        		false == secondArr.empty())
+        false == secondArr.empty())
         {
             return secondPart;
         }
         else if (false == firstArr.empty() &&
-        		secondArr.empty())
+        secondArr.empty())
         {
             return firstPart;
         }
 
         std::pair<T, size_t> result;
         std::copy(firstArr.begin(), firstArr.end(),
-        		back_inserter(result.first));
+        back_inserter(result.first));
 
         std::copy(secondArr.begin(), secondArr.end(),
-        		back_inserter(result.first));
+        back_inserter(result.first));
 
         result.second = firstPart.second + secondPart.second;
 
         for (size_t k = 0, i = 0, j = 0; k < result.first.size(); ++k)
         {
             if (i < firstArr.size() &&
-            		(secondArr.size() <= j ||
-            				firstArr[i] <= secondArr[j]))
+            (secondArr.size() <= j ||
+            firstArr[i] <= secondArr[j]))
             {
                 result.first[k] = firstArr[i];
                 ++i;
