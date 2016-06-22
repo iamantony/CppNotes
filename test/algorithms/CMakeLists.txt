@@ -6,6 +6,7 @@ set(HEADERS_TEST
    ${CMAKE_CURRENT_SOURCE_DIR}/testinsertionsort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testmergesort.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testquicksort.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/test_quicksort_research.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testbinarysearch.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/teststrpermutations.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/test_find_two_elements.hpp

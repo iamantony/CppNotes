@@ -12,6 +12,7 @@
 #include "algorithms/testinsertionsort.hpp"
 #include "algorithms/testmergesort.hpp"
 #include "algorithms/testquicksort.hpp"
+#include "algorithms/test_quicksort_research.hpp"
 #include "algorithms/testbinarysearch.hpp"
 #include "algorithms/teststrpermutations.hpp"
 #include "algorithms/test_find_two_elements.hpp"
