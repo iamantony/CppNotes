@@ -4,6 +4,8 @@
 #include <vector>
 #include <stdexcept>
 
+// TODO: add addition and substraction operations
+
 template <typename T>
 class Matrix
 {

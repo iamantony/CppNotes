@@ -15,5 +15,6 @@ set(HEADERS_TEST
    ${CMAKE_CURRENT_SOURCE_DIR}/test_basic_numbers_multiplication.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testkaratsubamultiplication.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/test_basic_matrix_multiplication.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/test_strassen_matrix_multiplication.hpp
    PARENT_SCOPE
 )

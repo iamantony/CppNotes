@@ -20,6 +20,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/basic_numbers_multiplication.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/karatsuba_multiplication.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/basic_matrix_multiplication.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/strassen_matrix_multiplication.hpp
    PARENT_SCOPE
 )
 

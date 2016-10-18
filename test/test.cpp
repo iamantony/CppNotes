@@ -21,6 +21,7 @@
 #include "algorithms/test_basic_numbers_multiplication.hpp"
 #include "algorithms/testkaratsubamultiplication.hpp"
 #include "algorithms/test_basic_matrix_multiplication.hpp"
+#include "algorithms/test_strassen_matrix_multiplication.hpp"
 
 #include "ctci5/data_structs/test_str_unique_char.hpp"
 #include "ctci5/data_structs/test_str_reverse.hpp"

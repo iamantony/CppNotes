@@ -6,7 +6,7 @@
 // Basic algorithm for matrix multiplication
 // https://en.wikipedia.org/wiki/Matrix_multiplication
 // @input: two matrices. Number of columns of first (left) matrix must be
-// equal to number of rows of second (right) meatrix.
+// equal to number of rows of second (right) matrix.
 // @output: result matrix
 template<typename T>
 Matrix<T> BasicMatrixMultiplication(const Matrix<T>& left,
