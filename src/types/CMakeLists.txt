@@ -13,6 +13,7 @@ set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/binarysearchtree2.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/map_type.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/unordered_map_type.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/matrix.hpp
    PARENT_SCOPE
 )
 
