@@ -4,8 +4,6 @@
 #include <vector>
 #include <stdexcept>
 
-// TODO: add addition and substraction operations
-
 template <typename T>
 class Matrix
 {
@@ -14,6 +12,8 @@ public:
     Matrix(const size_t& rows, const size_t& cols, const T& value);
     Matrix(const Matrix<T>& other);
     Matrix<T>& operator=(const Matrix<T>& other);
+    Matrix<T>& operator+=(const Matrix<T>& other);
+    Matrix<T>& operator-=(const Matrix<T>& other);
 
     template<typename K>
     friend bool operator==(const Matrix<K>& left, const Matrix<K>& right);
@@ -29,6 +29,26 @@ public:
 private:
     std::vector<std::vector<T>> m_values;
 };
+
+template<typename T>
+Matrix<T> operator+(const Matrix<T>& left, const Matrix<T>& right)
+{
+    Matrix<T> result(left);
+    return result += right;
+}
+
+template<typename T>
+Matrix<T> operator-(const Matrix<T>& left, const Matrix<T>& right)
+{
+    Matrix<T> result(left);
+    return result -= right;
+}
+
+template<typename K>
+bool operator==(const Matrix<K>& left, const Matrix<K>& right)
+{
+    return left.m_values == right.m_values;
+}
 
 template<typename T>
 Matrix<T>::Matrix(const size_t& rows, const size_t& cols, const T& value)
@@ -50,10 +70,46 @@ Matrix<T>& Matrix<T>::operator=(const Matrix<T>& other)
     return *this;
 }
 
-template<typename K>
-bool operator==(const Matrix<K>& left, const Matrix<K>& right)
+template<typename T>
+Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& other)
 {
-    return left.m_values == right.m_values;
+    if (getRowsNum() != other.getRowsNum() ||
+            getColsNum() != other.getColsNum())
+    {
+        throw std::invalid_argument("Can not perform addition with matrix of "
+                "different dimension");
+    }
+
+    for (size_t i = 0; i < m_values.size(); ++i)
+    {
+        for (size_t j = 0; j < m_values.at(i).size(); ++j)
+        {
+            m_values[i][j] += other.m_values[i][j];
+        }
+    }
+
+    return *this;
+}
+
+template<typename T>
+Matrix<T>& Matrix<T>::operator-=(const Matrix<T>& other)
+{
+    if (getRowsNum() != other.getRowsNum() ||
+            getColsNum() != other.getColsNum())
+    {
+        throw std::invalid_argument("Can not perform subtraction with "
+                "matrix of different dimension");
+    }
+
+    for (size_t i = 0; i < m_values.size(); ++i)
+    {
+        for (size_t j = 0; j < m_values.at(i).size(); ++j)
+        {
+            m_values[i][j] -= other.m_values[i][j];
+        }
+    }
+
+    return *this;
 }
 
 template<typename T>

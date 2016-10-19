@@ -4,5 +4,6 @@ set(HEADERS_TEST
    ${CMAKE_CURRENT_SOURCE_DIR}/testconcurrentmap.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testbinarysearchtree.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/testbinarysearchtree2.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/test_matrix.hpp
    PARENT_SCOPE
 )

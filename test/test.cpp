@@ -5,6 +5,7 @@
 #include "types/testconcurrentmap.hpp"
 #include "types/testbinarysearchtree.hpp"
 #include "types/testbinarysearchtree2.hpp"
+#include "types/test_matrix.hpp"
 
 #include "algorithms/testbubblesort.hpp"
 #include "algorithms/testgnomesort.hpp"

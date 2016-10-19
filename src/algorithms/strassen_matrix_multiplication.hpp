@@ -12,7 +12,7 @@ Matrix<T> StrassenMatrixMultiplication(const Matrix<T>& left,
         const Matrix<T> right)
 {
 
-
+    return left + right;
 }
 
 #endif /* STRASSEN_MATRIX_MULTIPLICATION_HPP_ */
