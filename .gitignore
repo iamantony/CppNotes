@@ -34,10 +34,10 @@ CppNotes
 .settings
 
 # QtCreator
-.config
-.creator
-.files
-.includes
+*.config
+*.creator
+*.files
+*.includes
 
 # Project
 bin/
