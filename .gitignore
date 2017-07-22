@@ -33,6 +33,12 @@ CppNotes
 .project
 .settings
 
+# QtCreator
+.config
+.creator
+.files
+.includes
+
 # Project
 bin/
 build/
