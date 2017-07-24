@@ -4,7 +4,7 @@ CppNotes
 My notes about C++.
 
 ## Requirements
-g++ 4.9+, cmake 2.8+, Boost 1.55+
+g++ 4.9+, cmake 3.2+, Boost 1.55+
 
 ## Build
 
@@ -12,7 +12,7 @@ g++ 4.9+, cmake 2.8+, Boost 1.55+
 mkdir CppNotes-build
 cd CppNotes-build
 # Build type - Release or Debug
-cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
 make
 ```
 
