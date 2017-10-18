@@ -6,13 +6,23 @@ My notes about C++.
 ## Requirements
 g++ 4.9+, cmake 3.2+, Boost 1.55+
 
+## Download
+
+``` bash
+git clone https://github.com/iamantony/CppNotes.git
+cd CppNotes
+git submodule update --init --recursive
+```
+
 ## Build
 
 ``` bash
-mkdir CppNotes-build
-cd CppNotes-build
-# Build type - Release or Debug
-cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+cd CppNotes
+mkdir build
+cd build
+
+# Build type - Release or Debug; if you want to enable sanitizers, use -DSANITIZE_UNDEFINED=ON
+cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
 make
 ```
 
