@@ -1,27 +1,20 @@
 project(cppnotes)
 
-#file(GLOB FILES_SRC *.cpp)
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/externals/sanitizers-cmake/cmake" ${CMAKE_MODULE_PATH})
+find_package(Sanitizers REQUIRED)
 
-aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SUB_SOURCES)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
-set(FILES_SRC
-  ${FILES_SRC}
-  ${SUB_SOURCES}
-  PARENT_SCOPE
-)
+file(GLOB_RECURSE SOURCE_FILES *.cpp *.h *.hpp)
 
-add_executable (${PROJECT_NAME} ${FILES_SRC})
-
-target_include_directories(${PROJECT_NAME}
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR}/types
-)
+add_executable (${PROJECT_NAME} ${SOURCE_FILES})
+add_sanitizers(${PROJECT_NAME})
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     target_compile_options(${PROJECT_NAME}
         PRIVATE
-            -std=c++14 -lpthread -Wall -Wextra -Werror -Wpedantic
+            -Wall -Wextra -Werror -Wpedantic
             -pedantic-errors -Wold-style-cast -Woverloaded-virtual -Wsign-promo
             -Wdouble-promotion -Wformat=2 -Wmissing-include-dirs -Wswitch-default
             -Wswitch-enum -Wunknown-pragmas -Wswitch-enum -Wunknown-pragmas
@@ -30,13 +23,14 @@ if (CMAKE_COMPILER_IS_GNUCXX)
             -Wzero-as-null-pointer-constant -Wuseless-cast -Wlogical-op
             -Wno-aggressive-loop-optimizations -Wredundant-decls -Winline
             -Winvalid-pch -Wdisabled-optimization -fno-inline
-            -fsanitize=undefined -fstack-protector-all -Wstack-protector
+            -fstack-protector-all -Wstack-protector
             -Wno-overloaded-virtual
     )
 endif()
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
+        Threads::Threads
         ubsan
 )
 
