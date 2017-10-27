@@ -8,16 +8,68 @@
 
 #include "algorithms/add_two_numbers_as_linked_lists.hpp"
 
+using namespace AddTwoNumbers;
+
 BOOST_AUTO_TEST_CASE(test_atn_empty_lists)
 {
     Solution solution;
     BOOST_CHECK(solution.addTwoNumbers(nullptr, nullptr) == nullptr);
 
-    std::shared_ptr<ListNode> result(solution.addTwoNumbers(nullptr, &ListNode(0)));
+    ListNode shortList(0);
+    std::shared_ptr<ListNode> result(solution.addTwoNumbers(nullptr, &shortList));
     BOOST_CHECK(result->val == 0);
 
-    result.reset(solution.addTwoNumbers(&ListNode(5), nullptr));
+    shortList.val = 5;
+    result.reset(solution.addTwoNumbers(&shortList, nullptr));
     BOOST_CHECK(result->val == 5);
+}
+
+BOOST_AUTO_TEST_CASE(test_atn_equal_size_lists)
+{
+    std::vector<int> valuesForFirstList = {0, 1, 2, 3, 4};
+    std::vector<int> valuesForSecondList = {8, 7, 9, 9, 4};
+    std::vector<int> valuesForExpectedList = {8, 8, 1, 3, 9};
+
+    std::shared_ptr<ListNode> firstList(CreateLinkedList(valuesForFirstList));
+    std::shared_ptr<ListNode> secondList(CreateLinkedList(valuesForSecondList));
+
+    Solution solution;
+    std::shared_ptr<ListNode> result(
+                solution.addTwoNumbers(firstList.get(), secondList.get()));
+
+    BOOST_CHECK(valuesForExpectedList == LinkedListToVector(result.get()));
+}
+
+BOOST_AUTO_TEST_CASE(test_atn_equal_size_lists_with_carry)
+{
+    std::vector<int> valuesForFirstList = {0, 1, 2, 3, 4};
+    std::vector<int> valuesForSecondList = {8, 7, 9, 9, 9};
+    std::vector<int> valuesForExpectedList = {8, 8, 1, 3, 4, 1};
+
+    std::shared_ptr<ListNode> firstList(CreateLinkedList(valuesForFirstList));
+    std::shared_ptr<ListNode> secondList(CreateLinkedList(valuesForSecondList));
+
+    Solution solution;
+    std::shared_ptr<ListNode> result(
+                solution.addTwoNumbers(firstList.get(), secondList.get()));
+
+    BOOST_CHECK(valuesForExpectedList == LinkedListToVector(result.get()));
+}
+
+BOOST_AUTO_TEST_CASE(test_atn_diff_size_lists)
+{
+    std::vector<int> valuesForFirstList = {0, 1, 2};
+    std::vector<int> valuesForSecondList = {8, 7, 9, 9, 4};
+    std::vector<int> valuesForExpectedList = {8, 8, 1, 0, 5};
+
+    std::shared_ptr<ListNode> firstList(CreateLinkedList(valuesForFirstList));
+    std::shared_ptr<ListNode> secondList(CreateLinkedList(valuesForSecondList));
+
+    Solution solution;
+    std::shared_ptr<ListNode> result(
+                solution.addTwoNumbers(firstList.get(), secondList.get()));
+
+    BOOST_CHECK(valuesForExpectedList == LinkedListToVector(result.get()));
 }
 
 #endif // TEST_ADD_TWO_NUMBERS_AS_LINKED_LIST_HPP

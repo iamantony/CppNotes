@@ -12,6 +12,12 @@
 // Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 // Output: 7 -> 0 -> 8
 
+#include <vector>
+#include <algorithm>
+
+namespace AddTwoNumbers
+{
+
 struct ListNode
 {
     int val;
@@ -25,6 +31,9 @@ struct ListNode
         }
     }
 };
+
+ListNode* CreateLinkedList(const std::vector<int>& values);
+std::vector<int> LinkedListToVector(ListNode* node);
 
 class Solution
 {
@@ -45,10 +54,10 @@ public:
             else
             {
                 ListNode* nextNode = new ListNode(0);
-                if (node == nullptr)
+                if (start == nullptr)
                 {
-                    node = nextNode;
-                    start = node;
+                    start = nextNode;
+                    node = start;
                 }
                 else
                 {
@@ -57,9 +66,9 @@ public:
                 }
             }
 
-            int sum = (l1->next == nullptr ? 0 : l1->val) +
-                    (l2->next == nullptr ? 0 : l2->val) +
-                    carry;
+            int sum = (l1 == nullptr ? 0 : l1->val) +
+                        (l2 == nullptr ? 0 : l2->val) +
+                        carry;
 
             node->val = sum % 10;
             carry = sum / 10;
@@ -71,5 +80,41 @@ public:
         return start;
     }
 };
+
+ListNode* CreateLinkedList(const std::vector<int>& values)
+{
+    ListNode* start = nullptr;
+    ListNode* node = nullptr;
+
+    std::for_each(values.begin(), values.end(),
+                  [&start, &node](const int& value){
+        if (nullptr == start)
+        {
+            start = new ListNode(value);
+            node = start;
+        }
+        else
+        {
+            node->next = new ListNode(value);
+            node = node->next;
+        }
+    });
+
+    return start;
+}
+
+std::vector<int> LinkedListToVector(ListNode* node)
+{
+    std::vector<int> result;
+    while(node != nullptr)
+    {
+        result.push_back(node->val);
+        node = node->next;
+    }
+
+    return result;
+}
+
+}
 
 #endif // ADD_TWO_NUMBERS_AS_LINKED_LISTS_HPP
