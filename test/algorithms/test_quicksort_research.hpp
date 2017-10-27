@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_10)
 //    boost::filesystem::path full_path( boost::filesystem::current_path() );
 //    std::cout << full_path << std::endl;
 
-    std::ifstream file("../CppNotes/test/data/10.txt");
+    std::ifstream file("./test/data/10.txt");
     if (false == file.is_open())
     {
         std::cout << "Failed to open file that contains input data. "
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_10)
 
 BOOST_AUTO_TEST_CASE(test_qsr_example_100)
 {
-    std::ifstream file("../CppNotes/test/data/100.txt");
+    std::ifstream file("./test/data/100.txt");
     if (false == file.is_open())
     {
         std::cout << "Failed to open file that contains input data. "
@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_100)
 
 BOOST_AUTO_TEST_CASE(test_qsr_example_1000)
 {
-    std::ifstream file("../CppNotes/test/data/1000.txt");
+    std::ifstream file("./test/data/1000.txt");
     if (false == file.is_open())
     {
         std::cout << "Failed to open file that contains input data. "
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_1000)
 
 BOOST_AUTO_TEST_CASE(test_qsr_example_10000)
 {
-    std::ifstream file("../CppNotes/test/data/10000.txt");
+    std::ifstream file("./test/data/10000.txt");
     if (false == file.is_open())
     {
         std::cout << "Failed to open file that contains input data. "

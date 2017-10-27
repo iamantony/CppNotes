@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(test_rll)
 
     // WARNING: check that path to txt-file is valid!
     BOOST_CHECK(expected ==
-            ReadLastLines("../CppNotes/test/ctci5/cpp/text_file.txt", 3));
+            ReadLastLines("./test/data/text_file.txt", 3));
 }
 
 #endif /* TEST_READ_LAST_LINES_HPP_ */
