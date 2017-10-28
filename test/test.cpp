@@ -24,6 +24,7 @@
 #include "algorithms/test_basic_matrix_multiplication.hpp"
 #include "algorithms/test_strassen_matrix_multiplication.hpp"
 #include "algorithms/test_add_two_numbers_as_linked_list.hpp"
+#include "algorithms/test_longest_substring.hpp"
 
 #include "ctci5/data_structs/test_str_unique_char.hpp"
 #include "ctci5/data_structs/test_str_reverse.hpp"
