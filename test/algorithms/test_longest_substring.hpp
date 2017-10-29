@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(test_lngsubstr_str_same_chars)
 BOOST_AUTO_TEST_CASE(test_lngsubstr_str_with_several_substr)
 {
     LongestSubstring::Solution solution;
-    BOOST_CHECK(solution.lengthOfLongestSubstring("abcakdfcty") == 5);
+    BOOST_CHECK(solution.lengthOfLongestSubstring("abcakdfcty") == 7);
 }
 
 #endif // TEST_LONGEST_SUBSTRING_HPP
