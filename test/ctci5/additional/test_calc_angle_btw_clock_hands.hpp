@@ -3,15 +3,9 @@
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
-#include <limits>
+#include "../../common/utils.hpp"
 
 #include "ctci5/additional/calc_angle_btw_clock_hands.hpp"
-
-auto areEqual = [](const double& left, const double& right)
-{
-    return std::fabs(left - right) <=
-            std::numeric_limits<double>::epsilon();
-};
 
 BOOST_AUTO_TEST_CASE(test_hands_angle_calculation_invalid)
 {
