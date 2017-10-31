@@ -17,12 +17,25 @@ class Solution {
 public:
     std::string longestPalindrome(std::string s)
     {
-        size_t start = 0, end = 0;
-        for (size_t i = 0; i < s.size(); ++i)
+        const int strSize = static_cast<int>(s.size());
+
+        // Start and end indexes of the longest palindrom
+        int start = 0, end = 0;
+
+        // Iterate over string. On each iteration we choose new (next) letter
+        // as possible center of palindrom
+        for (int i = 0; i < strSize; ++i)
         {
-            size_t len1 = expandAroundCenter(s, i, i);
-            size_t len2 = expandAroundCenter(s, i, i + 1);
-            size_t len = std::max(len1, len2);
+            // Check if current letter is central letter of palindrom
+            // (length of palindrom is odd - 'aba')
+            int len1 = expandAroundCenter(s, i, i);
+
+            // Check if center of palindrom is between current and next
+            // letters (length of palindrim is even - 'abba')
+            int len2 = expandAroundCenter(s, i, i + 1);
+
+            // Update start and end indexes of the longest palindrom
+            int len = std::max(len1, len2);
             if (len > end - start)
             {
                 start = i - (len - 1) / 2;
@@ -30,15 +43,26 @@ public:
             }
         }
 
-        return s.substr(start, end + 1 - start);
+        return s.substr(static_cast<size_t>(start),
+                        static_cast<size_t>(end + 1 - start));
     }
 
 private:
-    size_t expandAroundCenter(const std::string& s, const size_t& left,
-                              const size_t& right)
+    int expandAroundCenter(const std::string& s, const int& left,
+                           const int& right)
     {
-        size_t L = left, R = right;
-        while (L >= 0 && R < s.length() && s.at(L) == s.at(R)) {
+        // 'left' and 'right' are possible indexes of the center of the
+        // palindrom. Because palindrom is symmetric about its center,
+        // we will try to move from the center to the palindrom borders
+        // (variables L and R) at the same time. We will stop when letters
+        // on the borders of palindrom will not be the same.
+        // Do not forget to check at each step that our borders are within
+        // the string!!!
+
+        int L = left, R = right;
+        const int strSize = static_cast<int>(s.size());
+        while (L >= 0 && R < strSize &&
+               s.at(static_cast<size_t>(L)) == s.at(static_cast<size_t>(R))) {
             L--;
             R++;
         }
