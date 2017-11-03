@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "algorithms/longest_substring.hpp"
+#include "algorithms/strings/longest_substring.hpp"
 
 BOOST_AUTO_TEST_CASE(test_lngsubstr_empty_str)
 {

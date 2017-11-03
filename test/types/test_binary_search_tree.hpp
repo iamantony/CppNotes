@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "types/binarysearchtree.hpp"
+#include "types/binary_search_tree.hpp"
 
 BOOST_AUTO_TEST_CASE(test_bstree_create)
 {

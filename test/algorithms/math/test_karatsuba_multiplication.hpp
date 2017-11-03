@@ -6,7 +6,7 @@
 
 #include <string>
 
-#include "algorithms/karatsuba_multiplication.hpp"
+#include "algorithms/math/karatsuba_multiplication.hpp"
 
 BOOST_AUTO_TEST_CASE(test_karatsuba_null_numbers)
 {

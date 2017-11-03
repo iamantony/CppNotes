@@ -7,7 +7,7 @@
 #include <string>
 #include <algorithm>
 
-#include "algorithms/strpermutations.hpp"
+#include "algorithms/strings/str_permutations.hpp"
 
 BOOST_AUTO_TEST_CASE(test_strperm_empty_str)
 {

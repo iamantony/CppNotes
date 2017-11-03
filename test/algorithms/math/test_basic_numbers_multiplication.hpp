@@ -6,7 +6,7 @@
 
 #include <string>
 
-#include "algorithms/basic_numbers_multiplication.hpp"
+#include "algorithms/math/basic_numbers_multiplication.hpp"
 
 BOOST_AUTO_TEST_CASE(test_basic_null_numbers)
 {

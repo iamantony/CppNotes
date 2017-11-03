@@ -1,70 +1,71 @@
-#ifndef TEST_MERGESORT_H_
-#define TEST_MERGESORT_H_
+#ifndef TEST_SELECTIONSORT_H_
+#define TEST_SELECTIONSORT_H_
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include <vector>
 #include <limits>
 
-#include "algorithms/mergesort.hpp"
+#include "algorithms/sorting/selection_sort.hpp"
 
-BOOST_AUTO_TEST_CASE(test_ms_empty_container)
+BOOST_AUTO_TEST_CASE(test_ss_empty_container)
 {
-    BOOST_CHECK(vector<int>() == MergeSort(vector<int>()));
+    BOOST_CHECK(std::vector<int>() ==
+                SelectionSort<std::vector<int>>(std::vector<int>()));
 }
 
-BOOST_AUTO_TEST_CASE(test_ms_one_value)
+BOOST_AUTO_TEST_CASE(test_ss_one_value)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
 
-    BOOST_CHECK(container == MergeSort(container));
+    BOOST_CHECK(container == SelectionSort<std::vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_ms_sorted_container)
+BOOST_AUTO_TEST_CASE(test_ss_sorted_container)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(0);
     container.push_back(42);
     container.push_back(43);
     container.push_back(100);
 
-    BOOST_CHECK(container == MergeSort(container));
+    BOOST_CHECK(container == SelectionSort<std::vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_ms_min_max_int_values)
+BOOST_AUTO_TEST_CASE(test_ss_min_max_int_values)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
     container.push_back(10);
     container.push_back(1);
     container.push_back(std::numeric_limits<int>::min());
     container.push_back(std::numeric_limits<int>::max());
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == MergeSort(container));
+    BOOST_CHECK(result == SelectionSort<std::vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_ms_positive_negative_values)
+BOOST_AUTO_TEST_CASE(test_ss_positive_negative_values)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
     container.push_back(-10);
     container.push_back(1);
     container.push_back(0);
     container.push_back(-1000);
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == MergeSort(container));
+    BOOST_CHECK(result == SelectionSort<std::vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_ms_duplicate_values)
+BOOST_AUTO_TEST_CASE(test_ss_duplicate_values)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
     container.push_back(1);
     container.push_back(1);
@@ -72,15 +73,15 @@ BOOST_AUTO_TEST_CASE(test_ms_duplicate_values)
     container.push_back(43);
     container.push_back(10);
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == MergeSort(container));
+    BOOST_CHECK(result == SelectionSort<std::vector<int>>(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_ms_many_values)
+BOOST_AUTO_TEST_CASE(test_ss_many_values)
 {
-    vector<int> container = {
+    std::vector<int> container = {
         3717, 1783, 2358, 4043, -2286, 1076, -3712, 1159, 2310, 4732, 4030, 4750,
         1109, 4625, 4799, -3957, -3388, 2224, -3638, 4158, 4948, -4783, -2344, -3815,
         4103, -4789, 1189, -2271, 1493, 4231, -2770, -2574, 1954, 1314, 3222, -479,
@@ -301,10 +302,10 @@ BOOST_AUTO_TEST_CASE(test_ms_many_values)
          -3308, -3141, 1740, 1273, 2646, 3213, -4398, 3062, -2312, -4049, 3538
     };
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == MergeSort(container));
+    BOOST_CHECK(result == SelectionSort<std::vector<int>>(container));
 }
 
-#endif /* TEST_MERGESORT_H_ */
+#endif /* TEST_SELECTIONSORT_H_ */

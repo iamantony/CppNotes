@@ -1,70 +1,70 @@
-#ifndef TEST_GNOMESORT_H_
-#define TEST_GNOMESORT_H_
+#ifndef TEST_QUICKSORT_H_
+#define TEST_QUICKSORT_H_
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include <vector>
 #include <limits>
 
-#include "algorithms/gnomesort.hpp"
+#include "algorithms/sorting/quicksort.hpp"
 
-BOOST_AUTO_TEST_CASE(test_gs_empty_container)
+BOOST_AUTO_TEST_CASE(test_qs_empty_container)
 {
-    BOOST_CHECK(vector<int>() == GnomeSort<vector<int>>(vector<int>()));
+    BOOST_CHECK(std::vector<int>() == QuickSort(std::vector<int>()));
 }
 
-BOOST_AUTO_TEST_CASE(test_gs_one_value)
+BOOST_AUTO_TEST_CASE(test_qs_one_value)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
 
-    BOOST_CHECK(container == GnomeSort<vector<int>>(container));
+    BOOST_CHECK(container == QuickSort(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_gs_sorted_container)
+BOOST_AUTO_TEST_CASE(test_qs_sorted_container)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(0);
     container.push_back(42);
     container.push_back(43);
     container.push_back(100);
 
-    BOOST_CHECK(container == GnomeSort<vector<int>>(container));
+    BOOST_CHECK(container == QuickSort(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_gs_min_max_int_values)
+BOOST_AUTO_TEST_CASE(test_qs_min_max_int_values)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
     container.push_back(10);
     container.push_back(1);
     container.push_back(std::numeric_limits<int>::min());
     container.push_back(std::numeric_limits<int>::max());
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == GnomeSort<vector<int>>(container));
+    BOOST_CHECK(result == QuickSort(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_gs_positive_negative_values)
+BOOST_AUTO_TEST_CASE(test_qs_positive_negative_values)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
     container.push_back(-10);
     container.push_back(1);
     container.push_back(0);
     container.push_back(-1000);
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == GnomeSort<vector<int>>(container));
+    BOOST_CHECK(result == QuickSort(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_gs_duplicate_values)
+BOOST_AUTO_TEST_CASE(test_qs_duplicate_values)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
     container.push_back(1);
     container.push_back(1);
@@ -72,15 +72,15 @@ BOOST_AUTO_TEST_CASE(test_gs_duplicate_values)
     container.push_back(43);
     container.push_back(10);
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == GnomeSort<vector<int>>(container));
+    BOOST_CHECK(result == QuickSort(container));
 }
 
-BOOST_AUTO_TEST_CASE(test_gs_many_values)
+BOOST_AUTO_TEST_CASE(test_qs_many_values)
 {
-    vector<int> container = {
+    std::vector<int> container = {
         3717, 1783, 2358, 4043, -2286, 1076, -3712, 1159, 2310, 4732, 4030, 4750,
         1109, 4625, 4799, -3957, -3388, 2224, -3638, 4158, 4948, -4783, -2344, -3815,
         4103, -4789, 1189, -2271, 1493, 4231, -2770, -2574, 1954, 1314, 3222, -479,
@@ -301,10 +301,10 @@ BOOST_AUTO_TEST_CASE(test_gs_many_values)
          -3308, -3141, 1740, 1273, 2646, 3213, -4398, 3062, -2312, -4049, 3538
     };
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == GnomeSort<vector<int>>(container));
+    BOOST_CHECK(result == QuickSort(container));
 }
 
-#endif /* TEST_GNOMESORT_H_ */
+#endif /* TEST_QUICKSORT_H_ */

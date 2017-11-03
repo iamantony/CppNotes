@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <unordered_map>
 
-#include "algorithms/binarysearch.hpp"
+#include "algorithms/search/binary_search.hpp"
 
 std::vector<std::pair<int, int>> RemoveDuplicates(
         const std::vector<std::pair<int, int>>& data);

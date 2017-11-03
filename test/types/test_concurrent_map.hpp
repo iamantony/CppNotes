@@ -8,7 +8,7 @@
 #include <iostream>
 #include <chrono>
 
-#include "types/concurrentmap.hpp"
+#include "types/concurrent_map.hpp"
 
 BOOST_AUTO_TEST_CASE(test_create_cm)
 {

@@ -3,9 +3,9 @@
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
-#include "../common/utils.hpp"
+#include "../../common/utils.hpp"
 
-#include "algorithms/median_of_two_sorted_arrays.hpp"
+#include "algorithms/math/median_of_two_sorted_arrays.hpp"
 
 BOOST_AUTO_TEST_CASE(test_motsa_empty_arrays)
 {

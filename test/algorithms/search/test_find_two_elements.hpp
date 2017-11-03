@@ -7,7 +7,7 @@
 #include <vector>
 #include <utility>
 
-#include "algorithms/find_two_elements.hpp"
+#include "algorithms/search/find_two_elements.hpp"
 
 auto areAllPairsEqual = [](const std::vector<std::pair<int, int>>& first,
         const std::vector<std::pair<int, int>>& second)

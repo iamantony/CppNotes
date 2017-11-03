@@ -5,23 +5,23 @@
 #include <boost/test/unit_test.hpp>
 #include <vector>
 
-#include "algorithms/binarysearch.hpp"
+#include "algorithms/search/binary_search.hpp"
 
 BOOST_AUTO_TEST_CASE(test_binsearch_container_one_elem)
 {
-    vector<int> container(1, 5);
+    std::vector<int> container(1, 5);
     size_t result = 0;
-    bool isFound = BinarySearch<vector<int>, int>(container, 0, 0, 0, result);
+    bool isFound = BinarySearch<std::vector<int>, int>(container, 0, 0, 0, result);
     BOOST_CHECK(false == isFound);
 }
 
 BOOST_AUTO_TEST_CASE(test_binsearch_val_in_middle)
 {
-    vector<int> container = {0, 42, 43, 100, 59};
+    std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     size_t result = 0;
-    bool isFound = BinarySearch<vector<int>, int>(
+    bool isFound = BinarySearch<std::vector<int>, int>(
             container, 0, container.size() - 1, 43, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == 2);
@@ -29,12 +29,12 @@ BOOST_AUTO_TEST_CASE(test_binsearch_val_in_middle)
 
 BOOST_AUTO_TEST_CASE(test_binsearch_val_in_start)
 {
-    vector<int> container = {0, 42, 43, 100, 59};
+    std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     int min = *std::min_element(container.begin(), container.end());
     size_t result = 0;
-    bool isFound = BinarySearch<vector<int>, int>(
+    bool isFound = BinarySearch<std::vector<int>, int>(
             container, 0, container.size() - 1, min, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == 0);
@@ -42,12 +42,12 @@ BOOST_AUTO_TEST_CASE(test_binsearch_val_in_start)
 
 BOOST_AUTO_TEST_CASE(test_binsearch_val_in_end)
 {
-    vector<int> container = {0, 42, 43, 100, 59};
+    std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     int max = *std::max_element(container.begin(), container.end());
     size_t result = 0;
-    bool isFound = BinarySearch<vector<int>, int>(
+    bool isFound = BinarySearch<std::vector<int>, int>(
             container, 0, container.size() - 1, max, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == 4);
@@ -55,11 +55,11 @@ BOOST_AUTO_TEST_CASE(test_binsearch_val_in_end)
 
 BOOST_AUTO_TEST_CASE(test_binsearch_val)
 {
-    vector<int> container = {0, 42, 43, 100, 59};
+    std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     size_t result = 0;
-    bool isFound = BinarySearch<vector<int>, int>(
+    bool isFound = BinarySearch<std::vector<int>, int>(
             container, 0, container.size() - 1, 42, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == 1);
@@ -67,22 +67,22 @@ BOOST_AUTO_TEST_CASE(test_binsearch_val)
 
 BOOST_AUTO_TEST_CASE(test_binsearch_no_val)
 {
-    vector<int> container = {0, 42, 43, 100, 59};
+    std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     size_t result = 0;
-    bool isFound = BinarySearch<vector<int>, int>(
+    bool isFound = BinarySearch<std::vector<int>, int>(
             container, 0, container.size() - 1, 15, result);
     BOOST_CHECK(false == isFound);
 }
 
 BOOST_AUTO_TEST_CASE(test_binsearch_several_same_val)
 {
-    vector<int> container = {0, 42, 43, 100, 59, 14, 43};
+    std::vector<int> container = {0, 42, 43, 100, 59, 14, 43};
     std::sort(container.begin(), container.end());
 
     size_t result = 0;
-    bool isFound = BinarySearch<vector<int>, int>(
+    bool isFound = BinarySearch<std::vector<int>, int>(
             container, 0, container.size() - 1, 43, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK((result == 3) || (result == 4));
@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE(test_binsearch_several_same_val)
 
 BOOST_AUTO_TEST_CASE(test_binsearch_many_values)
 {
-    vector<int> container = {
+    std::vector<int> container = {
         3717, 1783, 2358, 4043, -2286, 1076, -3712, 1159, 2310, 4732, 4030, 4750,
         1109, 4625, 4799, -3957, -3388, 2224, -3638, 4158, 4948, -4783, -2344, -3815,
         4103, -4789, 1189, -2271, 1493, 4231, -2770, -2574, 1954, 1314, 3222, -479,
@@ -313,12 +313,12 @@ BOOST_AUTO_TEST_CASE(test_binsearch_many_values)
 
     std::sort(container.begin(), container.end());
     int value = 531;
-    vector<int>::iterator valueIter =
+    std::vector<int>::iterator valueIter =
             std::find(container.begin(), container.end(), value);
     size_t valuePos = static_cast<size_t>(valueIter - container.begin());
 
     size_t result = 0;
-    bool isFound = BinarySearch<vector<int>, int>(
+    bool isFound = BinarySearch<std::vector<int>, int>(
                 container, 0, container.size() - 1, value, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == valuePos);

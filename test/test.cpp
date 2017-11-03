@@ -1,33 +1,30 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "types/testlinkedlist.hpp"
-#include "types/testconcurrentmap.hpp"
-#include "types/testbinarysearchtree.hpp"
-#include "types/testbinarysearchtree2.hpp"
-#include "types/test_matrix.hpp"
+#include "algorithms/math/test_add_two_numbers_as_linked_list.hpp"
+#include "algorithms/math/test_basic_matrix_multiplication.hpp"
+#include "algorithms/math/test_basic_numbers_multiplication.hpp"
+#include "algorithms/math/test_is_number_power_of_two.hpp"
+#include "algorithms/math/test_karatsuba_multiplication.hpp"
+#include "algorithms/math/test_median_of_two_sorted_arrays.hpp"
+#include "algorithms/math/test_strassen_matrix_multiplication.hpp"
 
-#include "algorithms/testbubblesort.hpp"
-#include "algorithms/testgnomesort.hpp"
-#include "algorithms/testselectionsort.hpp"
-#include "algorithms/testinsertionsort.hpp"
-#include "algorithms/testmergesort.hpp"
-#include "algorithms/testquicksort.hpp"
-#include "algorithms/test_quicksort_research.hpp"
-#include "algorithms/testbinarysearch.hpp"
-#include "algorithms/teststrpermutations.hpp"
-#include "algorithms/test_find_two_elements.hpp"
-#include "algorithms/test_ransome_note.hpp"
-#include "algorithms/test_inversions_counter.hpp"
-#include "algorithms/test_basic_numbers_multiplication.hpp"
-#include "algorithms/testkaratsubamultiplication.hpp"
-#include "algorithms/test_basic_matrix_multiplication.hpp"
-#include "algorithms/test_strassen_matrix_multiplication.hpp"
-#include "algorithms/test_add_two_numbers_as_linked_list.hpp"
-#include "algorithms/test_longest_substring.hpp"
-#include "algorithms/test_median_of_two_sorted_arrays.hpp"
-#include "algorithms/test_longest_palindrome.hpp"
-#include "algorithms/test_is_number_power_of_two.hpp"
+#include "algorithms/search/test_binary_search.hpp"
+#include "algorithms/search/test_find_two_elements.hpp"
+
+#include "algorithms/sorting/test_bubble_sort.hpp"
+#include "algorithms/sorting/test_gnome_sort.hpp"
+#include "algorithms/sorting/test_selection_sort.hpp"
+#include "algorithms/sorting/test_insertion_sort.hpp"
+#include "algorithms/sorting/test_inversions_counter.hpp"
+#include "algorithms/sorting/test_merge_sort.hpp"
+#include "algorithms/sorting/test_quicksort.hpp"
+#include "algorithms/sorting/test_quicksort_research.hpp"
+
+#include "algorithms/strings/test_longest_palindrome.hpp"
+#include "algorithms/strings/test_longest_substring.hpp"
+#include "algorithms/strings/test_ransome_note.hpp"
+#include "algorithms/strings/test_str_permutations.hpp"
 
 #include "ctci5/data_structs/test_str_unique_char.hpp"
 #include "ctci5/data_structs/test_str_reverse.hpp"
@@ -49,6 +46,12 @@
 #include "ctci5/math/test_int_operators.hpp"
 
 #include "ctci5/cpp/test_read_last_lines.hpp"
+
+#include "types/test_binary_search_tree.hpp"
+#include "types/test_binary_search_tree2.hpp"
+#include "types/test_concurrent_map.hpp"
+#include "types/test_linked_list.hpp"
+#include "types/test_matrix.hpp"
 
 BOOST_AUTO_TEST_CASE(test_func)
 {

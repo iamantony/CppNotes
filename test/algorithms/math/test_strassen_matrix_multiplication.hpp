@@ -1,32 +1,32 @@
-#ifndef TEST_BASIC_MATRIX_MULTIPLICATION_HPP_
-#define TEST_BASIC_MATRIX_MULTIPLICATION_HPP_
+#ifndef TEST_STRASSEN_MATRIX_MULTIPLICATION_HPP_
+#define TEST_STRASSEN_MATRIX_MULTIPLICATION_HPP_
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "types/matrix.hpp"
-#include "algorithms/basic_matrix_multiplication.hpp"
+#include "algorithms/math/strassen_matrix_multiplication.hpp"
 
-BOOST_AUTO_TEST_CASE(test_bmm_empty_matrices)
+BOOST_AUTO_TEST_CASE(test_smm_empty_matrices)
 {
     BOOST_CHECK(Matrix<int>() ==
-            BasicMatrixMultiplication(Matrix<int>(), Matrix<int>()));
+            StrassenMatrixMultiplication(Matrix<int>(), Matrix<int>()));
 
     Matrix<int> matrix(1, 1, 1);
     BOOST_CHECK(Matrix<int>() ==
-            BasicMatrixMultiplication(matrix, Matrix<int>()));
+            StrassenMatrixMultiplication(matrix, Matrix<int>()));
 
     BOOST_CHECK(Matrix<int>() ==
-            BasicMatrixMultiplication(Matrix<int>(), matrix));
+            StrassenMatrixMultiplication(Matrix<int>(), matrix));
 }
 
-BOOST_AUTO_TEST_CASE(test_bmm_matrices_with_wrong_dimensions)
+BOOST_AUTO_TEST_CASE(test_smm_matrices_with_wrong_dimensions)
 {
-    BOOST_CHECK(Matrix<int>() ==
-        BasicMatrixMultiplication(Matrix<int>(1, 1, 1), Matrix<int>(2, 3, 1)));
+    BOOST_CHECK(Matrix<int>() == StrassenMatrixMultiplication(
+            Matrix<int>(1, 1, 1), Matrix<int>(2, 3, 1)));
 }
 
-BOOST_AUTO_TEST_CASE(test_bmm_square_matrices)
+BOOST_AUTO_TEST_CASE(test_smm_small_matrices)
 {
     Matrix<int> left(2, 2, 0);
     left.setRowValues(0, {1, 2});
@@ -40,10 +40,10 @@ BOOST_AUTO_TEST_CASE(test_bmm_square_matrices)
     expected.setRowValues(0, {19, 22});
     expected.setRowValues(1, {43, 50});
 
-    BOOST_CHECK(expected == BasicMatrixMultiplication(left, right));
+    BOOST_CHECK(expected == StrassenMatrixMultiplication(left, right));
 }
 
-BOOST_AUTO_TEST_CASE(test_bmm_matrices)
+BOOST_AUTO_TEST_CASE(test_smm_big_matrices)
 {
     Matrix<int> left(2, 3, 0);
     left.setRowValues(0, {3, 8, 1});
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(test_bmm_matrices)
     expected.setRowValues(0, {51, 33, 33, 127});
     expected.setRowValues(1, {-10, -12, 19, 82});
 
-    BOOST_CHECK(expected == BasicMatrixMultiplication(left, right));
+    BOOST_CHECK(expected == StrassenMatrixMultiplication(left, right));
 }
 
-#endif /* TEST_BASIC_MATRIX_MULTIPLICATION_HPP_ */
+#endif /* TEST_STRASSEN_MATRIX_MULTIPLICATION_HPP_ */

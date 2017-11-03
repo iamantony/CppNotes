@@ -6,7 +6,7 @@
 
 #include <memory>
 
-#include "algorithms/add_two_numbers_as_linked_lists.hpp"
+#include "algorithms/math/add_two_numbers_as_linked_lists.hpp"
 
 BOOST_AUTO_TEST_CASE(test_atn_empty_lists)
 {

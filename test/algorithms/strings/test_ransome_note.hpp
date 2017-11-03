@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "algorithms/ransome_note.hpp"
+#include "algorithms/strings/ransome_note.hpp"
 
 BOOST_AUTO_TEST_CASE(test_rn_empty_data)
 {

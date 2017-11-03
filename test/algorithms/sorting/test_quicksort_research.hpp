@@ -10,17 +10,17 @@
 #include <iostream>
 #include <fstream>
 
-#include "algorithms/quicksort_research.hpp"
+#include "algorithms/sorting/quicksort_research.hpp"
 
 BOOST_AUTO_TEST_CASE(test_qsr_empty_container)
 {
-    BOOST_CHECK(vector<int>() == QuickSort(vector<int>(),
+    BOOST_CHECK(std::vector<int>() == QuickSort(std::vector<int>(),
             QuickSortResearch::PivotPosition::FIRST).first);
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_one_value)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
 
     BOOST_CHECK(container == QuickSort(container,
@@ -29,21 +29,21 @@ BOOST_AUTO_TEST_CASE(test_qsr_one_value)
 
 BOOST_AUTO_TEST_CASE(test_qsr_sorted_container)
 {
-    vector<int> container = {0, 42, 43, 100};
+    std::vector<int> container = {0, 42, 43, 100};
     BOOST_CHECK(container == QuickSort(container,
             QuickSortResearch::PivotPosition::FIRST).first);
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_min_max_int_values)
 {
-    vector<int> container;
+    std::vector<int> container;
     container.push_back(42);
     container.push_back(10);
     container.push_back(1);
     container.push_back(std::numeric_limits<int>::min());
     container.push_back(std::numeric_limits<int>::max());
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
     BOOST_CHECK(result == QuickSort(container,
@@ -52,8 +52,8 @@ BOOST_AUTO_TEST_CASE(test_qsr_min_max_int_values)
 
 BOOST_AUTO_TEST_CASE(test_qsr_unsorted_example)
 {
-    vector<int> container = {3, 8, 2, 5, 1, 4, 7, 6};
-    vector<int> result = container;
+    std::vector<int> container = {3, 8, 2, 5, 1, 4, 7, 6};
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
     BOOST_CHECK(result == QuickSort(container,
@@ -74,14 +74,14 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_10)
         BOOST_CHECK(true);
     }
 
-    vector<int> container;
+    std::vector<int> container;
     std::string str;
     while (std::getline(file, str))
     {
         container.push_back(std::stoi(str));
     }
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
     std::pair<std::vector<int>, long long int> qsResultPivotFirst =
@@ -113,14 +113,14 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_100)
         BOOST_CHECK(true);
     }
 
-    vector<int> container;
+    std::vector<int> container;
     std::string str;
     while (std::getline(file, str))
     {
         container.push_back(std::stoi(str));
     }
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
     std::pair<std::vector<int>, long long int> qsResultPivotFirst =
@@ -152,14 +152,14 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_1000)
         BOOST_CHECK(true);
     }
 
-    vector<int> container;
+    std::vector<int> container;
     std::string str;
     while (std::getline(file, str))
     {
         container.push_back(std::stoi(str));
     }
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
     std::pair<std::vector<int>, long long int> qsResultPivotFirst =
@@ -191,14 +191,14 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_10000)
         BOOST_CHECK(true);
     }
 
-    vector<int> container;
+    std::vector<int> container;
     std::string str;
     while (std::getline(file, str))
     {
         container.push_back(std::stoi(str));
     }
 
-    vector<int> result = container;
+    std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
     std::pair<std::vector<int>, long long int> qsResultPivotFirst =

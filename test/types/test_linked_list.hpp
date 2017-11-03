@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "types/linkedlist.hpp"
+#include "types/linked_list.hpp"
 
 BOOST_AUTO_TEST_CASE(test_create_linkedlist)
 {
