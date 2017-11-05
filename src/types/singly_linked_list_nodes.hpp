@@ -20,6 +20,26 @@ struct NodeSLL
 };
 
 template<typename T>
+void AppendToSLL(NodeSLL<T>* node, const T& value)
+{
+    if (nullptr == node)
+    {
+        return;
+    }
+
+    NodeSLL<T>* newNode = new NodeSLL<T>(value);
+    NodeSLL<T>* current = node;
+
+    // Move to the last node
+    while(current->next != nullptr)
+    {
+        current = current->next;
+    }
+
+    current->next = newNode;
+}
+
+template<typename T>
 NodeSLL<T>* CreateSLL(const std::vector<T>& values)
 {
     NodeSLL<T>* start = nullptr;
