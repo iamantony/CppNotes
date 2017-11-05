@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <iostream>
 
-#include "types/const.hpp"
+#include "functions/lambda.hpp"
 
 int main()
 {
     std::cout << "CppNotes" << std::endl << std::endl;
 
-    ConstExamples();
+    RecursiveLambda();
 
-    std::cout << std::endl << "Goodbye";
+    std::cout << std::endl << "Goodbye" << std::endl;
     return (0);
 }
