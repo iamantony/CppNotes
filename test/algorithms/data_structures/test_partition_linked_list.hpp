@@ -6,8 +6,8 @@
 
 #include <algorithm>
 
-#include "ctci5/data_structs/singly_linked_list_nodes.hpp"
-#include "ctci5/data_structs/partition_linked_list.hpp"
+#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "algorithms/data_structures/partition_linked_list.hpp"
 
 BOOST_AUTO_TEST_CASE(test_partll_1p_invalid_list)
 {

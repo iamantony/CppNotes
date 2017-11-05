@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 
-#include "ctci5/math/primes.hpp"
+#include "algorithms/math/primes.hpp"
 
 BOOST_AUTO_TEST_CASE(test_primes_naive_invalid)
 {

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 
-#include "ctci5/math/parallel_lines.hpp"
+#include "algorithms/math/parallel_lines.hpp"
 
 BOOST_AUTO_TEST_CASE(test_parallel_lines_dots)
 {

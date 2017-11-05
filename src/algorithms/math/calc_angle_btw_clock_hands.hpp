@@ -3,6 +3,8 @@
 
 #include <limits>
 
+#include "common/equality.hpp"
+
 // Given a time, calculate the angle between the hour and minute hands
 
 double CalcAngleBtwClockHands(const double& t_hour, const double& t_minute)
@@ -17,20 +19,14 @@ double CalcAngleBtwClockHands(const double& t_hour, const double& t_minute)
         return 0.0;
     }
 
-    auto areEqual = [](const double& left, const double& right)
-    {
-        return std::fabs(left - right) <=
-                std::numeric_limits<double>::epsilon();
-    };
-
     double hour = t_hour;
     double minute = t_minute;
-    if (areEqual(hour, MAX_HOURS))
+    if (equal(hour, MAX_HOURS))
     {
         hour = 0.0;
     }
 
-    if (areEqual(minute, MAX_MINUTES))
+    if (equal(minute, MAX_MINUTES))
     {
         minute = 0.0;
     }

@@ -6,7 +6,7 @@
 
 #include <string>
 
-#include "ctci5/data_structs/is_str_permutation.hpp"
+#include "algorithms/strings/is_str_permutation.hpp"
 
 BOOST_AUTO_TEST_CASE(test_is_str_perm_empty_str)
 {

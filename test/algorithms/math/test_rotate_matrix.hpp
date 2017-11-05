@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "ctci5/data_structs/rotate_matrix.hpp"
+#include "algorithms/math/rotate_matrix.hpp"
 
 auto areMatricesEqual = [](int** first, int** second, const int& size)
 {

@@ -7,7 +7,7 @@
 #include <string>
 #include <algorithm>
 
-#include "ctci5/data_structs/str_reverse.hpp"
+#include "algorithms/strings/str_reverse.hpp"
 
 BOOST_AUTO_TEST_CASE(test_str_rev_empty_str)
 {

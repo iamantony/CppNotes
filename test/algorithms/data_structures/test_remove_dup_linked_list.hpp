@@ -4,8 +4,8 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "ctci5/data_structs/singly_linked_list_nodes.hpp"
-#include "ctci5/data_structs/remove_duplicates_linked_list.hpp"
+#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "algorithms/data_structures/remove_duplicates_linked_list.hpp"
 
 BOOST_AUTO_TEST_CASE(test_rdll_set_one_elem)
 {

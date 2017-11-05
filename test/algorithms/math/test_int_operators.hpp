@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "ctci5/math/int_operators.hpp"
+#include "algorithms/math/int_operators.hpp"
 
 BOOST_AUTO_TEST_CASE(test_int_oper_negate)
 {

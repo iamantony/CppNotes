@@ -4,7 +4,7 @@
 // Implement an algorithm to delete a node in the middle of a singly
 // linked list, given only access to that node.
 
-#include "ctci5/data_structs/singly_linked_list_nodes.hpp"
+#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
 
 template<typename T>
 void DeleteNodeFromSLL(NodeSLL<T>* node)

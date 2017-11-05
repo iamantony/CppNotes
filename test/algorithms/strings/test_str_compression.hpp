@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "ctci5/data_structs/str_compression.hpp"
+#include "algorithms/strings/str_compression.hpp"
 
 BOOST_AUTO_TEST_CASE(test_strcomp_empty_str)
 {

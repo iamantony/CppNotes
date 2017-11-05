@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "ctci5/data_structs/str_is_substring.hpp"
+#include "algorithms/strings/str_is_substring.hpp"
 
 BOOST_AUTO_TEST_CASE(test_sis_empty_str)
 {

@@ -4,8 +4,8 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "ctci5/data_structs/singly_linked_list_nodes.hpp"
-#include "ctci5/data_structs/delete_node_from_sll.hpp"
+#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "algorithms/data_structures/delete_node_from_sll.hpp"
 
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head_one_elem)
 {

@@ -10,77 +10,119 @@
 
 BOOST_AUTO_TEST_CASE(test_bs_empty_container)
 {
-    BOOST_CHECK(std::vector<int>() == BubbleSort<std::vector<int>>(std::vector<int>()));
+    const std::vector<int> container;
+
+    std::vector<int> containerToSort = container;
+    BS::Solution::BubbleSort(containerToSort);
+    BOOST_CHECK(container == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortOptimised(containerToSort);
+    BOOST_CHECK(container == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortRecursive(containerToSort);
+    BOOST_CHECK(container == containerToSort);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_one_value)
 {
-    std::vector<int> container;
-    container.push_back(42);
+    const std::vector<int> container = {42};
 
-    BOOST_CHECK(container == BubbleSort<std::vector<int>>(container));
+    std::vector<int> containerToSort = container;
+    BS::Solution::BubbleSort(containerToSort);
+    BOOST_CHECK(container == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortOptimised(containerToSort);
+    BOOST_CHECK(container == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortRecursive(containerToSort);
+    BOOST_CHECK(container == containerToSort);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_sorted_container)
 {
-    std::vector<int> container;
-    container.push_back(0);
-    container.push_back(42);
-    container.push_back(43);
-    container.push_back(100);
+    const std::vector<int> container = {0, 42, 43, 100};
 
-    BOOST_CHECK(container == BubbleSort<std::vector<int>>(container));
+    std::vector<int> containerToSort = container;
+    BS::Solution::BubbleSort(containerToSort);
+    BOOST_CHECK(container == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortOptimised(containerToSort);
+    BOOST_CHECK(container == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortRecursive(containerToSort);
+    BOOST_CHECK(container == containerToSort);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_min_max_int_values)
 {
-    std::vector<int> container;
-    container.push_back(42);
-    container.push_back(10);
-    container.push_back(1);
-    container.push_back(std::numeric_limits<int>::min());
-    container.push_back(std::numeric_limits<int>::max());
+    const std::vector<int> container = {42, 10, 1,
+            std::numeric_limits<int>::min(), std::numeric_limits<int>::max()};
 
     std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == BubbleSort<std::vector<int>>(container));
+    std::vector<int> containerToSort = container;
+    BS::Solution::BubbleSort(containerToSort);
+    BOOST_CHECK(result == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortOptimised(containerToSort);
+    BOOST_CHECK(result == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortRecursive(containerToSort);
+    BOOST_CHECK(result == containerToSort);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_positive_negative_values)
 {
-    std::vector<int> container;
-    container.push_back(42);
-    container.push_back(-10);
-    container.push_back(1);
-    container.push_back(0);
-    container.push_back(-1000);
+    const std::vector<int> container = {42, -10, 1, 0, -1000};
 
     std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == BubbleSort<std::vector<int>>(container));
+    std::vector<int> containerToSort = container;
+    BS::Solution::BubbleSort(containerToSort);
+    BOOST_CHECK(result == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortOptimised(containerToSort);
+    BOOST_CHECK(result == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortRecursive(containerToSort);
+    BOOST_CHECK(result == containerToSort);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_duplicate_values)
 {
-    std::vector<int> container;
-    container.push_back(42);
-    container.push_back(1);
-    container.push_back(1);
-    container.push_back(10);
-    container.push_back(43);
-    container.push_back(10);
+    const std::vector<int> container = {42, 1, 1, 10, 43, 10};
 
     std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == BubbleSort<std::vector<int>>(container));
+    std::vector<int> containerToSort = container;
+    BS::Solution::BubbleSort(containerToSort);
+    BOOST_CHECK(result == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortOptimised(containerToSort);
+    BOOST_CHECK(result == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortRecursive(containerToSort);
+    BOOST_CHECK(result == containerToSort);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_many_values)
 {
-    std::vector<int> container = {
+    const std::vector<int> container = {
         3717, 1783, 2358, 4043, -2286, 1076, -3712, 1159, 2310, 4732, 4030, 4750,
         1109, 4625, 4799, -3957, -3388, 2224, -3638, 4158, 4948, -4783, -2344, -3815,
         4103, -4789, 1189, -2271, 1493, 4231, -2770, -2574, 1954, 1314, 3222, -479,
@@ -304,7 +346,17 @@ BOOST_AUTO_TEST_CASE(test_bs_many_values)
     std::vector<int> result = container;
     std::sort(result.begin(), result.end());
 
-    BOOST_CHECK(result == BubbleSort<std::vector<int>>(container));
+    std::vector<int> containerToSort = container;
+    BS::Solution::BubbleSort(containerToSort);
+    BOOST_CHECK(result == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortOptimised(containerToSort);
+    BOOST_CHECK(result == containerToSort);
+
+    containerToSort = container;
+    BS::Solution::BubbleSortRecursive(containerToSort);
+    BOOST_CHECK(result == containerToSort);
 }
 
 #endif /* TEST_BUBBLESORT_H_ */

@@ -8,7 +8,7 @@
 #include <iostream>
 #include <queue>
 
-#include "ctci5/cpp/read_last_lines.hpp"
+#include "files/read_last_lines.hpp"
 
 BOOST_AUTO_TEST_CASE(test_rll_invalid_args)
 {

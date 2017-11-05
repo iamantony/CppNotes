@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "ctci5/data_structs/matrix_zero_out.hpp"
+#include "algorithms/math/matrix_zero_out.hpp"
 
 BOOST_AUTO_TEST_CASE(test_matzo_empty_array)
 {

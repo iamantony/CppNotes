@@ -6,7 +6,7 @@
 
 #include <unordered_set>
 
-#include "ctci5/data_structs/singly_linked_list_nodes.hpp"
+#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
 
 template<typename T>
 void RemoveDuplicatesSLLSet(NodeSLL<T>* head)

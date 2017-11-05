@@ -3,7 +3,7 @@
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
-#include "../../common/utils.hpp"
+#include "common/equality.hpp"
 
 #include "algorithms/math/median_of_two_sorted_arrays.hpp"
 
@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_CASE(test_motsa_empty_arrays)
     MedianOfTwoSortedArrays::Solution solution;
     double result = solution.findMedianSortedArrays(first, second);
 
-    BOOST_CHECK(areEqual(result, 0.0));
+    BOOST_CHECK(equal(result, 0.0));
 }
 
 BOOST_AUTO_TEST_CASE(test_motsa_empty_and_size_1_arrays)
@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(test_motsa_empty_and_size_1_arrays)
     MedianOfTwoSortedArrays::Solution solution;
     double result = solution.findMedianSortedArrays(first, second);
 
-    BOOST_CHECK(areEqual(result, 1.0));
+    BOOST_CHECK(equal(result, 1.0));
 }
 
 BOOST_AUTO_TEST_CASE(test_motsa_empty_and_small_arrays)
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(test_motsa_empty_and_small_arrays)
     MedianOfTwoSortedArrays::Solution solution;
     double result = solution.findMedianSortedArrays(first, second);
 
-    BOOST_CHECK(areEqual(result, 2.5));
+    BOOST_CHECK(equal(result, 2.5));
 }
 
 BOOST_AUTO_TEST_CASE(test_motsa_two_arrays)
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(test_motsa_two_arrays)
     MedianOfTwoSortedArrays::Solution solution;
     double result = solution.findMedianSortedArrays(first, second);
 
-    BOOST_CHECK(areEqual(result, 2.5));
+    BOOST_CHECK(equal(result, 2.5));
 }
 
 BOOST_AUTO_TEST_CASE(test_motsa_two_small_arrays)
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(test_motsa_two_small_arrays)
     MedianOfTwoSortedArrays::Solution solution;
     double result = solution.findMedianSortedArrays(first, second);
 
-    BOOST_CHECK(areEqual(result, 1.0));
+    BOOST_CHECK(equal(result, 1.0));
 }
 
 BOOST_AUTO_TEST_CASE(test_motsa_two_arrays_diff_size)
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(test_motsa_two_arrays_diff_size)
     MedianOfTwoSortedArrays::Solution solution;
     double result = solution.findMedianSortedArrays(first, second);
 
-    BOOST_CHECK(areEqual(result, 9.0));
+    BOOST_CHECK(equal(result, 9.0));
 }
 
 #endif // TEST_MEDIAN_OF_TWO_SORTED_ARRAYS_HPP
