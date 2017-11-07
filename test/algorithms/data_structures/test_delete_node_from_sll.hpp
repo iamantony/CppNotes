@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "types/singly_linked_list_nodes.hpp"
 #include "algorithms/data_structures/delete_node_from_sll.hpp"
 
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head_one_elem)
@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head_one_elem)
 
     std::vector<int> expectedValues = {0};
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head)
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head)
 
     std::vector<int> expectedValues = {9, 8, 7};
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_middle)
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_middle)
     AppendToSLL(sll, 7);
 
     NodeSLL<int>* toDelete = sll;
-    while(toDelete != nullptr && toDelete->data != 9)
+    while(toDelete != nullptr && toDelete->value != 9)
     {
         toDelete = toDelete->next;
     }
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_middle)
 
     std::vector<int> expectedValues = {10, 8, 7};
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_last)
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_last)
     AppendToSLL(sll, 7);
 
     NodeSLL<int>* toDelete = sll;
-    while(toDelete != nullptr && toDelete->data != 7)
+    while(toDelete != nullptr && toDelete->value != 7)
     {
         toDelete = toDelete->next;
     }
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_last)
 
     std::vector<int> expectedValues = {10, 9, 8, 0};
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 #endif /* TEST_DELETE_NODE_FROM_SLL_HPP_ */

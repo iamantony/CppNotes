@@ -6,7 +6,7 @@
 
 #include <unordered_set>
 
-#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "types/singly_linked_list_nodes.hpp"
 
 template<typename T>
 void RemoveDuplicatesSLLSet(NodeSLL<T>* head)
@@ -21,17 +21,18 @@ void RemoveDuplicatesSLLSet(NodeSLL<T>* head)
     NodeSLL<T>* previous = nullptr;
     while(current != nullptr)
     {
-        if (0 < set.count(current->data))
+        if (0 < set.count(current->value))
         {
             NodeSLL<T>* toDelete = current;
             previous->next = current->next;
             current = current->next;
 
+            toDelete->next = nullptr;
             delete toDelete;
         }
         else
         {
-            set.insert(current->data);
+            set.insert(current->value);
             previous = current;
             current = current->next;
         }
@@ -53,7 +54,7 @@ void RemoveDuplicatesSLLRunner(NodeSLL<T>* head)
         NodeSLL<T>* previous = current;
         while(runner != nullptr)
         {
-            if (runner->data == current->data)
+            if (runner->value == current->value)
             {
                 NodeSLL<T>* toDelete = runner;
                 previous->next = runner->next;

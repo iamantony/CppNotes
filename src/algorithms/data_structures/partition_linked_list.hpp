@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "types/singly_linked_list_nodes.hpp"
 
 template<typename T>
 void PartitionSLLOnePass(NodeSLL<T>*& head, const T& value)
@@ -22,7 +22,7 @@ void PartitionSLLOnePass(NodeSLL<T>*& head, const T& value)
     {
         NodeSLL<T>* next = current->next;
         current->next = nullptr;
-        if (current->data < value)
+        if (current->value < value)
         {
             if (nullptr == beforeStart)
             {
@@ -73,7 +73,7 @@ void PartitionSLLTwoPass(NodeSLL<T>*& head, const T& value)
     while(nullptr != current)
     {
         NodeSLL<T>* next = current->next;
-        if (current->data < value)
+        if (current->value < value)
         {
             current->next = beforeStart;
             beforeStart = current;

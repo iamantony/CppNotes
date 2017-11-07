@@ -4,7 +4,7 @@
 // Implement an algorithm to delete a node in the middle of a singly
 // linked list, given only access to that node.
 
-#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "types/singly_linked_list_nodes.hpp"
 
 template<typename T>
 void DeleteNodeFromSLL(NodeSLL<T>* node)
@@ -25,7 +25,7 @@ void DeleteNodeFromSLL(NodeSLL<T>* node)
             // this node. All we can is to reset data in it.
             if (current == previous)
             {
-                current->data = T();
+                current->value = T();
                 break;
             }
             else
@@ -38,7 +38,7 @@ void DeleteNodeFromSLL(NodeSLL<T>* node)
         }
         else
         {
-            current->data = current->next->data;
+            current->value = current->next->value;
             if (current != previous)
             {
                 previous = current;

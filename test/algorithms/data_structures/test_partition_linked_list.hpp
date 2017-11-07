@@ -6,7 +6,7 @@
 
 #include <algorithm>
 
-#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "types/singly_linked_list_nodes.hpp"
 #include "algorithms/data_structures/partition_linked_list.hpp"
 
 BOOST_AUTO_TEST_CASE(test_partll_1p_invalid_list)
@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(test_partll_1p_one_elem)
 
     std::vector<int> expectedValues = {10};
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_partll_2p_one_elem)
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(test_partll_2p_one_elem)
 
     std::vector<int> expectedValues = {10};
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_partll_1p_all_less)
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(test_partll_1p_all_less)
     std::vector<int> expectedValues = {10, 9, 8, 7};
     std::vector<int> result = ValuesInSLL(sll);
     BOOST_CHECK(expectedValues == result);
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_partll_2p_all_less)
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_partll_2p_all_less)
     std::vector<int> expectedValues = {7, 8, 9, 10};
     std::vector<int> result = ValuesInSLL(sll);
     BOOST_CHECK(expectedValues == result);
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_partll_1p_all_bigger)
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(test_partll_1p_all_bigger)
     std::vector<int> expectedValues = {10, 9, 8, 7};
     std::vector<int> result = ValuesInSLL(sll);
     BOOST_CHECK(expectedValues == result);
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_partll_2p_all_bigger)
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE(test_partll_2p_all_bigger)
     std::vector<int> expectedValues = {7, 8, 9, 10};
     std::vector<int> result = ValuesInSLL(sll);
     BOOST_CHECK(expectedValues == result);
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_partll_1p_middle)
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE(test_partll_1p_middle)
     std::vector<int> expected = {8, 7, 10, 9};
     std::vector<int> result = ValuesInSLL(sll);
     BOOST_CHECK(expected == result);
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_partll_2p_middle)
@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE(test_partll_2p_middle)
     std::vector<int> expected = {7, 8, 9, 10};
     std::vector<int> result = ValuesInSLL(sll);
     BOOST_CHECK(expected == result);
-    DeleteSLL(sll);
+    delete sll;
 }
 
 #endif /* TEST_PARTITION_LINKED_LIST_HPP_ */

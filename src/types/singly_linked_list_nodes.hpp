@@ -49,12 +49,12 @@ NodeSLL<T>* CreateSLL(const std::vector<T>& values)
                   [&start, &node](const int& value){
         if (nullptr == start)
         {
-            start = new NodeSLL(value);
+            start = new NodeSLL<T>(value);
             node = start;
         }
         else
         {
-            node->next = new NodeSLL(value);
+            node->next = new NodeSLL<T>(value);
             node = node->next;
         }
     });

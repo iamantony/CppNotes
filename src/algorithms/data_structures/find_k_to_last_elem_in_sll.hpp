@@ -8,7 +8,7 @@
 
 #include <functional>
 
-#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "types/singly_linked_list_nodes.hpp"
 
 template<typename T>
 NodeSLL<T>* FindKToLastElemRecursion(NodeSLL<T>* head, const int& k)

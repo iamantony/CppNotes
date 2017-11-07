@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "types/singly_linked_list_nodes.hpp"
 #include "algorithms/data_structures/remove_duplicates_linked_list.hpp"
 
 BOOST_AUTO_TEST_CASE(test_rdll_set_one_elem)
@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_CASE(test_rdll_set_one_elem)
     RemoveDuplicatesSLLSet(sll);
 
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_rdll_set_no_duplicates)
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(test_rdll_set_no_duplicates)
     RemoveDuplicatesSLLSet(sll);
 
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_rdll_set_with_duplicates)
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE(test_rdll_set_with_duplicates)
     RemoveDuplicatesSLLSet(sll);
 
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_rdll_runner_one_elem)
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(test_rdll_runner_one_elem)
     RemoveDuplicatesSLLRunner(sll);
 
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_rdll_runner_no_duplicates)
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(test_rdll_runner_no_duplicates)
     RemoveDuplicatesSLLRunner(sll);
 
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_rdll_runner_with_duplicates)
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(test_rdll_runner_with_duplicates)
     RemoveDuplicatesSLLRunner(sll);
 
     BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 #endif /* TEST_REMOVE_DUP_LINKED_LIST_HPP_ */

@@ -4,7 +4,7 @@
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
-#include "algorithms/data_structures/singly_linked_list_nodes.hpp"
+#include "types/singly_linked_list_nodes.hpp"
 #include "algorithms/data_structures/find_k_to_last_elem_in_sll.hpp"
 
 BOOST_AUTO_TEST_CASE(test_fkesll_short_sll)
@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_CASE(test_fkesll_short_sll)
 
     BOOST_CHECK(nullptr == FindKToLastElemRecursion(sll, 5));
     BOOST_CHECK(nullptr == FindKToLastElemIteration(sll, 5));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_fkesll_sll_k_size)
@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE(test_fkesll_sll_k_size)
 
     BOOST_CHECK(sll == FindKToLastElemRecursion(sll, 4));
     BOOST_CHECK(sll == FindKToLastElemIteration(sll, 4));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 BOOST_AUTO_TEST_CASE(test_fkesll_long_sll)
@@ -39,14 +39,14 @@ BOOST_AUTO_TEST_CASE(test_fkesll_long_sll)
     AppendToSLL(sll, 5);
 
     NodeSLL<int>* expected = sll;
-    while(expected != nullptr && expected->data != 4)
+    while(expected != nullptr && expected->value != 4)
     {
         expected = expected->next;
     }
 
     BOOST_CHECK(expected == FindKToLastElemRecursion(sll, 2));
     BOOST_CHECK(expected == FindKToLastElemIteration(sll, 2));
-    DeleteSLL(sll);
+    delete sll;
 }
 
 #endif /* TEST_FIND_K_TO_LAST_ELEM_IN_SLL_HPP_ */
