@@ -9,7 +9,7 @@
 #include "types/singly_linked_list_nodes.hpp"
 
 template<typename T>
-void PartitionSLLOnePass(NodeSLL<T>*& head, const T& value)
+void PartitionSLLOnePass(NodeSLL<T>* head, const T& value)
 {
     NodeSLL<T>* beforeStart = nullptr;
     NodeSLL<T>* beforeEnd = nullptr;
@@ -52,6 +52,7 @@ void PartitionSLLOnePass(NodeSLL<T>*& head, const T& value)
         current = next;
     }
 
+    // Set up head node
     if (nullptr == beforeStart)
     {
         head = afterStart;
@@ -60,6 +61,12 @@ void PartitionSLLOnePass(NodeSLL<T>*& head, const T& value)
     {
         beforeEnd->next = afterStart;
         head = beforeStart;
+    }
+
+    // Set up next to the last node to nullptr
+    if (nullptr != afterEnd)
+    {
+        afterEnd->next = nullptr;
     }
 }
 

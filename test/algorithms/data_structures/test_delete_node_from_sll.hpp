@@ -13,30 +13,24 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head_one_elem)
     DeleteNodeFromSLL(sll);
 
     std::vector<int> expectedValues = {0};
-    BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    delete sll;
+    BOOST_CHECK(expectedValues == ValuesInSLL(&sll));
+    DeleteSLL(&sll);
 }
 
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head)
 {
-    NodeSLL<int>* sll = new NodeSLL<int>(10);
-    AppendToSLL(sll, 9);
-    AppendToSLL(sll, 8);
-    AppendToSLL(sll, 7);
+    NodeSLL<int>* sll = CreateSLL<int>({10, 9, 8, 7});
 
     DeleteNodeFromSLL(sll);
 
     std::vector<int> expectedValues = {9, 8, 7};
-    BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    delete sll;
+    BOOST_CHECK(expectedValues == ValuesInSLL(&sll));
+    DeleteSLL(&sll);
 }
 
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_middle)
 {
-    NodeSLL<int>* sll = new NodeSLL<int>(10);
-    AppendToSLL(sll, 9);
-    AppendToSLL(sll, 8);
-    AppendToSLL(sll, 7);
+    NodeSLL<int>* sll = CreateSLL<int>({10, 9, 8, 7});
 
     NodeSLL<int>* toDelete = sll;
     while(toDelete != nullptr && toDelete->value != 9)
@@ -47,16 +41,13 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_middle)
     DeleteNodeFromSLL(toDelete);
 
     std::vector<int> expectedValues = {10, 8, 7};
-    BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    delete sll;
+    BOOST_CHECK(expectedValues == ValuesInSLL(&sll));
+    DeleteSLL(&sll);
 }
 
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_last)
 {
-    NodeSLL<int>* sll = new NodeSLL<int>(10);
-    AppendToSLL(sll, 9);
-    AppendToSLL(sll, 8);
-    AppendToSLL(sll, 7);
+    NodeSLL<int>* sll = CreateSLL<int>({10, 9, 8, 7});
 
     NodeSLL<int>* toDelete = sll;
     while(toDelete != nullptr && toDelete->value != 7)
@@ -67,8 +58,8 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_last)
     DeleteNodeFromSLL(toDelete);
 
     std::vector<int> expectedValues = {10, 9, 8, 0};
-    BOOST_CHECK(expectedValues == ValuesInSLL(sll));
-    delete sll;
+    BOOST_CHECK(expectedValues == ValuesInSLL(&sll));
+    DeleteSLL(&sll);
 }
 
 #endif /* TEST_DELETE_NODE_FROM_SLL_HPP_ */

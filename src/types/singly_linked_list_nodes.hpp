@@ -4,35 +4,25 @@
 #include <vector>
 
 template<typename T>
-struct NodeSLL
-{
-    T value;
-    NodeSLL *next;
-
+class NodeSLL {
+public:
     NodeSLL(T x) : value(x), next(nullptr) {}
-    ~NodeSLL()
-    {
-        if (next != nullptr)
-        {
-            delete next;
-        }
-    }
+
+    T value;
+    NodeSLL* next;
 };
 
 template<typename T>
-void AppendToSLL(NodeSLL<T>* node, const T& value)
-{
-    if (nullptr == node)
-    {
+void AppendToSLL(NodeSLL<T>** head, const T& value) {
+    if (nullptr == head) {
         return;
     }
 
     NodeSLL<T>* newNode = new NodeSLL<T>(value);
-    NodeSLL<T>* current = node;
+    NodeSLL<T>* current = *head;
 
     // Move to the last node
-    while(current->next != nullptr)
-    {
+    while(current->next != nullptr) {
         current = current->next;
     }
 
@@ -40,20 +30,17 @@ void AppendToSLL(NodeSLL<T>* node, const T& value)
 }
 
 template<typename T>
-NodeSLL<T>* CreateSLL(const std::vector<T>& values)
-{
+NodeSLL<T>* CreateSLL(const std::vector<T>& values) {
     NodeSLL<T>* start = nullptr;
     NodeSLL<T>* node = nullptr;
 
     std::for_each(values.begin(), values.end(),
                   [&start, &node](const int& value){
-        if (nullptr == start)
-        {
+        if (nullptr == start) {
             start = new NodeSLL<T>(value);
             node = start;
         }
-        else
-        {
+        else {
             node->next = new NodeSLL<T>(value);
             node = node->next;
         }
@@ -63,16 +50,35 @@ NodeSLL<T>* CreateSLL(const std::vector<T>& values)
 }
 
 template<typename T>
-std::vector<T> ValuesInSLL(NodeSLL<T>* node)
-{
+std::vector<T> ValuesInSLL(NodeSLL<T>** head) {
+    if (nullptr == head) {
+        return std::vector<T>();
+    }
+
     std::vector<T> result;
-    while(node != nullptr)
-    {
-        result.push_back(node->value);
-        node = node->next;
+    NodeSLL<T>* current = *head;
+    while(current != nullptr) {
+        result.push_back(current->value);
+        current = current->next;
     }
 
     return result;
+}
+
+template<typename T>
+void DeleteSLL(NodeSLL<T>** head) {
+    if (nullptr == head) {
+        return;
+    }
+
+    NodeSLL<T>* current = *head;
+    while(nullptr != current) {
+        NodeSLL<T>* next = current->next;
+        delete current;
+        current = next;
+    }
+
+    *head = nullptr;
 }
 
 #endif // SINGLY_LINKED_LIST_NODES_HPP
