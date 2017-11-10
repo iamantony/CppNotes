@@ -9,41 +9,38 @@
 #include "types/singly_linked_list_nodes.hpp"
 
 template<typename T>
-void PartitionSLLOnePass(NodeSLL<T>* head, const T& value)
+void PartitionSLLOnePass(NodeSLL<T>** head, const T& value)
 {
+    if (nullptr == head) {
+        return;
+    }
+
     NodeSLL<T>* beforeStart = nullptr;
     NodeSLL<T>* beforeEnd = nullptr;
 
     NodeSLL<T>* afterStart = nullptr;
     NodeSLL<T>* afterEnd = nullptr;
 
-    NodeSLL<T>* current = head;
-    while(nullptr != current)
-    {
+    NodeSLL<T>* current = *head;
+    while(nullptr != current) {
         NodeSLL<T>* next = current->next;
         current->next = nullptr;
-        if (current->value < value)
-        {
-            if (nullptr == beforeStart)
-            {
+        if (current->value < value) {
+            if (nullptr == beforeStart) {
                 beforeStart = current;
                 beforeEnd = beforeStart;
             }
-            else
-            {
+            else {
                 beforeEnd->next = current;
                 beforeEnd = current;
             }
         }
-        else
-        {
-            if (nullptr == afterStart)
-            {
+        else {
+            if (nullptr == afterStart) {
                 afterStart = current;
                 afterEnd = afterStart;
             }
-            else
-            {
+            else {
                 afterEnd->next = current;
                 afterEnd = current;
             }
@@ -53,40 +50,33 @@ void PartitionSLLOnePass(NodeSLL<T>* head, const T& value)
     }
 
     // Set up head node
-    if (nullptr == beforeStart)
-    {
-        head = afterStart;
+    if (nullptr == beforeStart) {
+        *head = afterStart;
     }
-    else
-    {
+    else {
         beforeEnd->next = afterStart;
-        head = beforeStart;
+        *head = beforeStart;
     }
 
     // Set up next to the last node to nullptr
-    if (nullptr != afterEnd)
-    {
+    if (nullptr != afterEnd) {
         afterEnd->next = nullptr;
     }
 }
 
 template<typename T>
-void PartitionSLLTwoPass(NodeSLL<T>*& head, const T& value)
-{
+void PartitionSLLTwoPass(NodeSLL<T>*& head, const T& value) {
     NodeSLL<T>* beforeStart = nullptr;
     NodeSLL<T>* afterStart = nullptr;
 
     NodeSLL<T>* current = head;
-    while(nullptr != current)
-    {
+    while(nullptr != current) {
         NodeSLL<T>* next = current->next;
-        if (current->value < value)
-        {
+        if (current->value < value) {
             current->next = beforeStart;
             beforeStart = current;
         }
-        else
-        {
+        else {
             current->next = afterStart;
             afterStart = current;
         }
@@ -94,15 +84,12 @@ void PartitionSLLTwoPass(NodeSLL<T>*& head, const T& value)
         current = next;
     }
 
-    if (nullptr == beforeStart)
-    {
+    if (nullptr == beforeStart) {
         head = afterStart;
     }
-    else
-    {
+    else {
         NodeSLL<T>* beforeEnd = beforeStart;
-        while(nullptr != beforeEnd->next)
-        {
+        while(nullptr != beforeEnd->next) {
             beforeEnd = beforeEnd->next;
         }
 

@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_CASE(test_partll_1p_invalid_list)
 {
     NodeSLL<int>* sll = nullptr;
 
-    PartitionSLLOnePass(sll, 10);
+    PartitionSLLOnePass(&sll, 10);
     BOOST_CHECK(nullptr == sll);
     DeleteSLL(&sll);
 }
@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(test_partll_2p_invalid_list)
 BOOST_AUTO_TEST_CASE(test_partll_1p_one_elem)
 {
     NodeSLL<int>* sll = new NodeSLL<int>(10);
-    PartitionSLLOnePass(sll, 20);
+    PartitionSLLOnePass(&sll, 20);
 
     std::vector<int> expectedValues = {10};
     BOOST_CHECK(expectedValues == ValuesInSLL(&sll));
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(test_partll_1p_all_less)
 {
     NodeSLL<int>* sll = CreateSLL<int>({10, 9, 8, 7});
 
-    PartitionSLLOnePass(sll, 20);
+    PartitionSLLOnePass(&sll, 20);
 
     std::vector<int> expectedValues = {10, 9, 8, 7};
     std::vector<int> result = ValuesInSLL(&sll);
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(test_partll_1p_all_bigger)
 {
     NodeSLL<int>* sll = CreateSLL<int>({10, 9, 8, 7});
 
-    PartitionSLLOnePass(sll, 2);
+    PartitionSLLOnePass(&sll, 2);
 
     std::vector<int> expectedValues = {10, 9, 8, 7};
     std::vector<int> result = ValuesInSLL(&sll);
@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE(test_partll_1p_middle)
 {
     NodeSLL<int>* sll = CreateSLL<int>({10, 9, 8, 7});
 
-    PartitionSLLOnePass(sll, 9);
+    PartitionSLLOnePass(&sll, 9);
 
     std::vector<int> expected = {8, 7, 10, 9};
     std::vector<int> result = ValuesInSLL(&sll);
