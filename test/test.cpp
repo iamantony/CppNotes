@@ -5,6 +5,7 @@
 #include "algorithms/data_structures/test_find_k_to_last_elem_in_sll.hpp"
 #include "algorithms/data_structures/test_delete_node_from_sll.hpp"
 #include "algorithms/data_structures/test_partition_linked_list.hpp"
+#include "algorithms/data_structures/test_reverse_sll.hpp"
 
 #include "algorithms/math/test_add_two_numbers_as_linked_list.hpp"
 #include "algorithms/math/test_basic_matrix_multiplication.hpp"
