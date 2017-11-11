@@ -17,7 +17,7 @@ if (CMAKE_COMPILER_IS_GNUCXX)
             -Wall -Wextra -Werror -Wpedantic
             -pedantic-errors -Wold-style-cast -Woverloaded-virtual -Wsign-promo
             -Wdouble-promotion -Wformat=2 -Wmissing-include-dirs -Wswitch-default
-            -Wswitch-enum -Wunknown-pragmas -Wswitch-enum -Wunknown-pragmas
+            -Wswitch-enum -Wunknown-pragmas -Wswitch-enum
             -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-qual
             -Wcast-align -Wconversion -Wsign-conversion
             -Wzero-as-null-pointer-constant -Wuseless-cast -Wlogical-op
