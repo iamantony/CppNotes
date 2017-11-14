@@ -1,7 +1,6 @@
 #ifndef TEST_REVERSE_SLL_HPP
 #define TEST_REVERSE_SLL_HPP
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "algorithms/data_structures/reverse_sll.hpp"

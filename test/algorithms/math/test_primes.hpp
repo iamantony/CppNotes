@@ -1,7 +1,6 @@
 #ifndef TEST_PRIMES_HPP_
 #define TEST_PRIMES_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include <iostream>

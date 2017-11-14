@@ -1,7 +1,6 @@
 #ifndef TEST_ADD_TWO_NUMBERS_AS_LINKED_LIST_HPP
 #define TEST_ADD_TWO_NUMBERS_AS_LINKED_LIST_HPP
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include <memory>

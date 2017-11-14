@@ -1,7 +1,6 @@
 #ifndef TEST_BASIC_NUMBERS_MULTIPLICATION_HPP_
 #define TEST_BASIC_NUMBERS_MULTIPLICATION_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include <string>

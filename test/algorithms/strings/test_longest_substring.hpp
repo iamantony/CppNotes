@@ -1,7 +1,6 @@
 #ifndef TEST_LONGEST_SUBSTRING_HPP
 #define TEST_LONGEST_SUBSTRING_HPP
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "algorithms/strings/longest_substring.hpp"

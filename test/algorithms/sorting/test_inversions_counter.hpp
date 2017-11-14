@@ -1,7 +1,6 @@
 #ifndef TEST_INVERSIONS_COUNTER_HPP_
 #define TEST_INVERSIONS_COUNTER_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include <vector>
 #include <limits>

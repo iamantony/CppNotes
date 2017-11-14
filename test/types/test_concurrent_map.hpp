@@ -1,7 +1,6 @@
 #ifndef TEST_CONCURRENT_MAP_H_
 #define TEST_CONCURRENT_MAP_H_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include <algorithm>
 #include <thread>

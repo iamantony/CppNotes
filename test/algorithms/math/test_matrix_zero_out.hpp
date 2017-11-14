@@ -1,7 +1,6 @@
 #ifndef TEST_MATRIX_ZERO_OUT_HPP_
 #define TEST_MATRIX_ZERO_OUT_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "algorithms/math/matrix_zero_out.hpp"

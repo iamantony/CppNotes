@@ -1,7 +1,6 @@
 #ifndef TESTKARATSUBAMULTIPLICATION_HPP_
 #define TESTKARATSUBAMULTIPLICATION_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include <string>

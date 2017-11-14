@@ -1,7 +1,6 @@
 #ifndef TEST_SUM_OF_MULTIPLES_HPP
 #define TEST_SUM_OF_MULTIPLES_HPP
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include <memory>

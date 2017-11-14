@@ -1,7 +1,6 @@
 #ifndef TEST_BINARYSEARCHTREE_H_
 #define TEST_BINARYSEARCHTREE_H_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "types/binary_search_tree.hpp"

@@ -1,7 +1,6 @@
 #ifndef TEST_MEDIAN_OF_TWO_SORTED_ARRAYS_HPP
 #define TEST_MEDIAN_OF_TWO_SORTED_ARRAYS_HPP
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include "common/equality.hpp"
 

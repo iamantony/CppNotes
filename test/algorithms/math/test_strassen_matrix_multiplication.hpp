@@ -1,7 +1,6 @@
 #ifndef TEST_STRASSEN_MATRIX_MULTIPLICATION_HPP_
 #define TEST_STRASSEN_MATRIX_MULTIPLICATION_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "types/matrix.hpp"

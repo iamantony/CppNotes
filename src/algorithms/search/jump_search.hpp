@@ -19,15 +19,15 @@
 
 #include <algorithm>
 
-namespace JS {
+namespace JumpSearch {
 
 class Solution {
 public:
     template<typename C, typename V>
-    bool JumpSearch(const C& container,
-                    const size_t& size,
-                    const V& value,
-                    size_t& resultIndex) {
+    bool Search(const C& container,
+                const size_t& size,
+                const V& value,
+                size_t& resultIndex) {
         if (size <= 0) {
             return false;
         }
@@ -54,7 +54,6 @@ public:
 };
 
 }
-
 
 #endif // JUMP_SEARCH_HPP
 

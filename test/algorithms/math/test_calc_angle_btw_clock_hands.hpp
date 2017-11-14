@@ -1,7 +1,6 @@
 #ifndef TEST_CALC_ANGLE_BTW_CLOCK_HANDS_HPP_
 #define TEST_CALC_ANGLE_BTW_CLOCK_HANDS_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include "common/equality.hpp"
 

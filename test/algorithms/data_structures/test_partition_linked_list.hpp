@@ -1,7 +1,6 @@
 #ifndef TEST_PARTITION_LINKED_LIST_HPP_
 #define TEST_PARTITION_LINKED_LIST_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include <algorithm>

@@ -1,7 +1,6 @@
 #ifndef TEST_INT_OPERATORS_HPP_
 #define TEST_INT_OPERATORS_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "algorithms/math/int_operators.hpp"

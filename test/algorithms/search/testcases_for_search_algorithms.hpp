@@ -1,86 +1,76 @@
-#ifndef TEST_SELECTIONSORT_H_
-#define TEST_SELECTIONSORT_H_
+#ifndef TESTCASES_FOR_SEARCH_ALGORITHMS_HPP
+#define TESTCASES_FOR_SEARCH_ALGORITHMS_HPP
 
-#include <boost/test/unit_test.hpp>
 #include <vector>
-#include <limits>
 
-#include "algorithms/sorting/selection_sort.hpp"
+namespace TCFSA {
 
-BOOST_AUTO_TEST_CASE(test_ss_empty_container)
-{
-    BOOST_CHECK(std::vector<int>() ==
-                SelectionSort<std::vector<int>>(std::vector<int>()));
+void OneElement(std::vector<int>& container, int& value,
+                bool& expectedIsFound) {
+    container = std::vector<int>(1, 5);
+    value = 0;
+    expectedIsFound = false;
 }
 
-BOOST_AUTO_TEST_CASE(test_ss_one_value)
+void ValueInMiddle(std::vector<int>& container, int& value,
+                   bool& expectedIsFound, size_t& expectedResultIndex)
 {
-    std::vector<int> container;
-    container.push_back(42);
+    container = {0, 42, 43, 100, 59};
+    std::sort(container.begin(), container.end());
 
-    BOOST_CHECK(container == SelectionSort<std::vector<int>>(container));
+    value = 43;
+    expectedIsFound = true;
+    expectedResultIndex = 2;
 }
 
-BOOST_AUTO_TEST_CASE(test_ss_sorted_container)
+void ValueAtStart(std::vector<int>& container, int& value,
+                  bool& expectedIsFound, size_t& expectedResultIndex)
 {
-    std::vector<int> container;
-    container.push_back(0);
-    container.push_back(42);
-    container.push_back(43);
-    container.push_back(100);
+    container = {0, 42, 43, 100, 59};
+    std::sort(container.begin(), container.end());
 
-    BOOST_CHECK(container == SelectionSort<std::vector<int>>(container));
+    value = *std::min_element(container.begin(), container.end());
+    expectedIsFound = true;
+    expectedResultIndex = 0;
 }
 
-BOOST_AUTO_TEST_CASE(test_ss_min_max_int_values)
+void ValueAtEnd(std::vector<int>& container, int& value,
+                bool& expectedIsFound, size_t& expectedResultIndex)
 {
-    std::vector<int> container;
-    container.push_back(42);
-    container.push_back(10);
-    container.push_back(1);
-    container.push_back(std::numeric_limits<int>::min());
-    container.push_back(std::numeric_limits<int>::max());
+    container = {0, 42, 43, 100, 59};
+    std::sort(container.begin(), container.end());
 
-    std::vector<int> result = container;
-    std::sort(result.begin(), result.end());
-
-    BOOST_CHECK(result == SelectionSort<std::vector<int>>(container));
+    value = *std::max_element(container.begin(), container.end());
+    expectedIsFound = true;
+    expectedResultIndex = 4;
 }
 
-BOOST_AUTO_TEST_CASE(test_ss_positive_negative_values)
+void NoValueInContainer(std::vector<int>& container, int& value,
+                        bool& expectedIsFound)
 {
-    std::vector<int> container;
-    container.push_back(42);
-    container.push_back(-10);
-    container.push_back(1);
-    container.push_back(0);
-    container.push_back(-1000);
+    container = {0, 42, 43, 100, 59};
+    std::sort(container.begin(), container.end());
 
-    std::vector<int> result = container;
-    std::sort(result.begin(), result.end());
-
-    BOOST_CHECK(result == SelectionSort<std::vector<int>>(container));
+    value = 15;
+    expectedIsFound = false;
 }
 
-BOOST_AUTO_TEST_CASE(test_ss_duplicate_values)
+void SeveralSameValuesInContainer(std::vector<int>& container, int& value,
+                                  bool& expectedIsFound,
+                                  std::vector<size_t>& expectedResultIndexes)
 {
-    std::vector<int> container;
-    container.push_back(42);
-    container.push_back(1);
-    container.push_back(1);
-    container.push_back(10);
-    container.push_back(43);
-    container.push_back(10);
+    container = {0, 42, 43, 100, 59, 14, 43};
+    std::sort(container.begin(), container.end());
 
-    std::vector<int> result = container;
-    std::sort(result.begin(), result.end());
-
-    BOOST_CHECK(result == SelectionSort<std::vector<int>>(container));
+    value = 43;
+    expectedIsFound = true;
+    expectedResultIndexes = {3, 4};
 }
 
-BOOST_AUTO_TEST_CASE(test_ss_many_values)
+void ContainerWithManyValues(std::vector<int>& container, int& value,
+                             bool& expectedIsFound, size_t& expectedResultIndex)
 {
-    std::vector<int> container = {
+    container = {
         3717, 1783, 2358, 4043, -2286, 1076, -3712, 1159, 2310, 4732, 4030, 4750,
         1109, 4625, 4799, -3957, -3388, 2224, -3638, 4158, 4948, -4783, -2344, -3815,
         4103, -4789, 1189, -2271, 1493, 4231, -2770, -2574, 1954, 1314, 3222, -479,
@@ -301,10 +291,17 @@ BOOST_AUTO_TEST_CASE(test_ss_many_values)
          -3308, -3141, 1740, 1273, 2646, 3213, -4398, 3062, -2312, -4049, 3538
     };
 
-    std::vector<int> result = container;
-    std::sort(result.begin(), result.end());
+    std::sort(container.begin(), container.end());
 
-    BOOST_CHECK(result == SelectionSort<std::vector<int>>(container));
+    value = 531;
+    expectedIsFound = true;
+
+    std::vector<int>::iterator valueIter =
+            std::find(container.begin(), container.end(), value);
+    expectedResultIndex = static_cast<size_t>(valueIter - container.begin());
 }
 
-#endif /* TEST_SELECTIONSORT_H_ */
+}
+
+#endif // TESTCASES_FOR_SEARCH_ALGORITHMS_HPP
+

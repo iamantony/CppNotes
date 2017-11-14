@@ -1,10 +1,9 @@
 #ifndef TEST_QUICKSORT_RESEARCH_HPP_
 #define TEST_QUICKSORT_RESEARCH_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
-#include <boost/filesystem/operations.hpp>
-#include <boost/filesystem/path.hpp>
+//#include <boost/filesystem/operations.hpp>
+//#include <boost/filesystem/path.hpp>
 #include <vector>
 #include <limits>
 #include <iostream>

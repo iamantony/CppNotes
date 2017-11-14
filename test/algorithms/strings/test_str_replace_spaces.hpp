@@ -1,7 +1,6 @@
 #ifndef TEST_STR_REPLACE_SPACES_HPP_
 #define TEST_STR_REPLACE_SPACES_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "algorithms/strings/str_replace_spaces.hpp"

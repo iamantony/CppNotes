@@ -53,8 +53,8 @@ std::vector<std::pair<int, int>> FindTwoElementsBS(
     for (size_t i = 0; i < srtData.size(); ++i)
     {
         size_t j = 0;
-        if (BinarySearch(
-                srtData, 0, srtData.size() - 1, value - srtData[i], j) &&
+        BinarySearch::Solution solution;
+        if (solution.Search(srtData, srtData.size(), value - srtData[i], j) &&
             i != j)
         {
             result.push_back(std::pair<int, int>(srtData[i], srtData[j]));

@@ -1,7 +1,6 @@
 #ifndef TEST_IS_NUMBER_POWER_OF_TWO_HPP
 #define TEST_IS_NUMBER_POWER_OF_TWO_HPP
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "algorithms/math/is_number_power_of_two.hpp"

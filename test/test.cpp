@@ -1,5 +1,4 @@
-#define BOOST_TEST_MODULE CppNotes test
-#include <boost/test/unit_test.hpp>
+#define BOOST_TEST_MODULE CppNotes cppnotestest
 
 #include "algorithms/data_structures/test_remove_dup_linked_list.hpp"
 #include "algorithms/data_structures/test_find_k_to_last_elem_in_sll.hpp"
@@ -54,8 +53,3 @@
 #include "types/test_concurrent_map.hpp"
 #include "types/test_linked_list.hpp"
 #include "types/test_matrix.hpp"
-
-BOOST_AUTO_TEST_CASE(test_func)
-{
-    BOOST_CHECK(true);
-}

@@ -1,7 +1,6 @@
 #ifndef TEST_REMOVE_DUP_LINKED_LIST_HPP_
 #define TEST_REMOVE_DUP_LINKED_LIST_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "types/singly_linked_list_nodes.hpp"

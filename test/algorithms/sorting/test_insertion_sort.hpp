@@ -1,7 +1,6 @@
 #ifndef TEST_INSERTIONSORT_H_
 #define TEST_INSERTIONSORT_H_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include <vector>
 #include <limits>

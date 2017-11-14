@@ -33,15 +33,15 @@
 // lo    ==> Starting index in arr[]
 // hi    ==> Ending index in arr[]
 
-namespace IS {
+namespace InterpolationSearch {
 
 class Solution {
 public:
     template<typename C, typename V>
-    bool InterpolationSearch(const C& container,
-                             const size_t& size,
-                             const V& value,
-                             size_t& resultIndex) {
+    bool Search(const C& container,
+                const size_t& size,
+                const V& value,
+                size_t& resultIndex) {
         if (size <= 0) {
             return false;
         }

@@ -1,7 +1,6 @@
 #ifndef TEST_LONGEST_PALINDROME_HPP
 #define TEST_LONGEST_PALINDROME_HPP
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include "algorithms/strings/longest_palindrome.hpp"

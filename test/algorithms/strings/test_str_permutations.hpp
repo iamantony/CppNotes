@@ -1,7 +1,6 @@
 #ifndef TESTSTRPERMUTATIONS_HPP_
 #define TESTSTRPERMUTATIONS_HPP_
 
-#define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 
 #include <string>
