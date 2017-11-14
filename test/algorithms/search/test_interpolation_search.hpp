@@ -1,103 +1,103 @@
-#ifndef TEST_JUMP_SEARCH_HPP
-#define TEST_JUMP_SEARCH_HPP
+#ifndef TEST_INTERPOLATION_SEARCH_HPP
+#define TEST_INTERPOLATION_SEARCH_HPP
 
 #define BOOST_TEST_MODULE CppNotes test
 #include <boost/test/unit_test.hpp>
 #include <vector>
 
-#include "algorithms/search/jump_search.hpp"
+#include "algorithms/search/interpolation_search.hpp"
 
-BOOST_AUTO_TEST_CASE(test_jumpsearch_container_one_elem)
+BOOST_AUTO_TEST_CASE(test_intpolsearch_container_one_elem)
 {
     std::vector<int> container(1, 5);
 
     size_t result = 0;
-    JS::Solution solution;
-    bool isFound = solution.JumpSearch<std::vector<int>, int>(
+    IS::Solution solution;
+    bool isFound = solution.InterpolationSearch<std::vector<int>, int>(
                 container, container.size(), 0, result);
     BOOST_CHECK(false == isFound);
 }
 
-BOOST_AUTO_TEST_CASE(test_jumpsearch_val_in_middle)
+BOOST_AUTO_TEST_CASE(test_intpolsearch_val_in_middle)
 {
     std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     size_t result = 0;
-    JS::Solution solution;
-    bool isFound = solution.JumpSearch<std::vector<int>, int>(
+    IS::Solution solution;
+    bool isFound = solution.InterpolationSearch<std::vector<int>, int>(
             container, container.size(), 43, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == 2);
 }
 
-BOOST_AUTO_TEST_CASE(test_jumpsearch_val_in_start)
+BOOST_AUTO_TEST_CASE(test_intpolsearch_val_in_start)
 {
     std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     int min = *std::min_element(container.begin(), container.end());
     size_t result = 0;
-    JS::Solution solution;
-    bool isFound = solution.JumpSearch<std::vector<int>, int>(
+    IS::Solution solution;
+    bool isFound = solution.InterpolationSearch<std::vector<int>, int>(
             container, container.size(), min, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == 0);
 }
 
-BOOST_AUTO_TEST_CASE(test_jumpsearch_val_in_end)
+BOOST_AUTO_TEST_CASE(test_intpolsearch_val_in_end)
 {
     std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     int max = *std::max_element(container.begin(), container.end());
     size_t result = 0;
-    JS::Solution solution;
-    bool isFound = solution.JumpSearch<std::vector<int>, int>(
+    IS::Solution solution;
+    bool isFound = solution.InterpolationSearch<std::vector<int>, int>(
             container, container.size(), max, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == 4);
 }
 
-BOOST_AUTO_TEST_CASE(test_jumpsearch_val)
+BOOST_AUTO_TEST_CASE(test_intpolsearch_val)
 {
     std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     size_t result = 0;
-    JS::Solution solution;
-    bool isFound = solution.JumpSearch<std::vector<int>, int>(
+    IS::Solution solution;
+    bool isFound = solution.InterpolationSearch<std::vector<int>, int>(
             container, container.size(), 42, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == 1);
 }
 
-BOOST_AUTO_TEST_CASE(test_jumpsearch_no_val)
+BOOST_AUTO_TEST_CASE(test_intpolsearch_no_val)
 {
     std::vector<int> container = {0, 42, 43, 100, 59};
     std::sort(container.begin(), container.end());
 
     size_t result = 0;
-    JS::Solution solution;
-    bool isFound = solution.JumpSearch<std::vector<int>, int>(
+    IS::Solution solution;
+    bool isFound = solution.InterpolationSearch<std::vector<int>, int>(
             container, container.size(), 15, result);
     BOOST_CHECK(false == isFound);
 }
 
-BOOST_AUTO_TEST_CASE(test_jumpsearch_several_same_val)
+BOOST_AUTO_TEST_CASE(test_intpolsearch_several_same_val)
 {
     std::vector<int> container = {0, 42, 43, 100, 59, 14, 43};
     std::sort(container.begin(), container.end());
 
     size_t result = 0;
-    JS::Solution solution;
-    bool isFound = solution.JumpSearch<std::vector<int>, int>(
+    IS::Solution solution;
+    bool isFound = solution.InterpolationSearch<std::vector<int>, int>(
             container, container.size(), 43, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK((result == 3) || (result == 4));
 }
 
-BOOST_AUTO_TEST_CASE(test_jumpsearch_many_values)
+BOOST_AUTO_TEST_CASE(test_intpolsearch_many_values)
 {
     std::vector<int> container = {
         3717, 1783, 2358, 4043, -2286, 1076, -3712, 1159, 2310, 4732, 4030, 4750,
@@ -327,12 +327,12 @@ BOOST_AUTO_TEST_CASE(test_jumpsearch_many_values)
     size_t valuePos = static_cast<size_t>(valueIter - container.begin());
 
     size_t result = 0;
-    JS::Solution solution;
-    bool isFound = solution.JumpSearch<std::vector<int>, int>(
+    IS::Solution solution;
+    bool isFound = solution.InterpolationSearch<std::vector<int>, int>(
                 container, container.size(), value, result);
     BOOST_CHECK(true == isFound);
     BOOST_CHECK(result == valuePos);
 }
 
-#endif // TEST_JUMP_SEARCH_HPP
+#endif // TEST_INTERPOLATION_SEARCH_HPP
 
