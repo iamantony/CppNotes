@@ -37,7 +37,7 @@ namespace NumberPowerOfTwo {
 class Solution {
 public:
     bool isPowerOfTwo(const int& number) {
-        if (n <= 0) {
+        if (number <= 0) {
             return false;
         }
         
