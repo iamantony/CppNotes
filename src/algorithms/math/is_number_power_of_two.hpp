@@ -1,6 +1,7 @@
 #ifndef IS_NUMBER_POWER_OF_TWO_HPP
 #define IS_NUMBER_POWER_OF_TWO_HPP
 
+// https://leetcode.com/problems/power-of-two/description/
 // Check if number if power of two
 
 // How we represent in bits number that is power of two:
@@ -31,14 +32,15 @@
 // 0b110 & 0b101 =
 // 1 & 1 = 1, 1 & 0 = 0, 0 & 1 = 0 -> 0b100 = 4
 
-namespace NumberPowerOfTwo
-{
+namespace NumberPowerOfTwo {
 
-class Solution
-{
+class Solution {
 public:
-    bool isPowerOfTwo(const int& number)
-    {
+    bool isPowerOfTwo(const int& number) {
+        if (n <= 0) {
+            return false;
+        }
+        
         bool result = (number & (number - 1)) == 0;
         return result;
     }
