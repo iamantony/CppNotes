@@ -15,7 +15,6 @@ public:
         return BinarySearchImpl(container, 0, size - 1, value, resultIndex);
     }
 
-private:
     template<typename C, typename V>
     bool BinarySearchImpl(const C& container,
                           const size_t& start,

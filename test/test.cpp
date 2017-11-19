@@ -25,6 +25,7 @@
 #include "algorithms/search/test_find_two_elements.hpp"
 #include "algorithms/search/test_jump_search.hpp"
 #include "algorithms/search/test_interpolation_search.hpp"
+#include "algorithms/search/test_exponential_search.hpp"
 
 #include "algorithms/sorting/test_bubble_sort.hpp"
 #include "algorithms/sorting/test_gnome_sort.hpp"
