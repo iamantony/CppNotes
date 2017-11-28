@@ -22,6 +22,7 @@
 #include "algorithms/math/test_sum_of_multiples.hpp"
 #include "algorithms/math/test_hamming_distance.hpp"
 #include "algorithms/math/test_hamming_weight.hpp"
+#include "algorithms/math/test_bitwise_operators.hpp"
 
 #include "algorithms/search/test_binary_search.hpp"
 #include "algorithms/search/test_find_two_elements.hpp"
