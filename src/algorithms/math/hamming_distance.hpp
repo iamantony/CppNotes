@@ -3,6 +3,7 @@
 
 // https://leetcode.com/problems/hamming-distance/description/
 // https://en.wikipedia.org/wiki/Hamming_distance
+// https://helloacm.com/hamming-distance-between-two-integers/
 
 // The Hamming distance between two integers is the number of positions at
 // which the corresponding bits are different.
@@ -34,11 +35,25 @@ namespace HammingDistance {
         // Hamming distance for integers is the number of not equal bits
         int HammingDistanceForInts(const int& first, const int& second) {
             int result = 0;
+            if (first == second) {
+                return result;
+            }
+
             for (size_t offset = 0; offset < sizeof(int) * 8; ++offset) {
                 result += ((first >> offset) & 1) ^ ((second >> offset) & 1);
             }
 
             return result;
+        }
+
+        int HammingDistanceForIntsFast(const int& first, const int& second) {
+            int i  = first ^ second;
+            i = i - ((i >> 1) & 0x55555555);
+            i = (i & 0x33333333) + ((i >> 2) & 0x33333333);
+            i = (i + (i >> 4)) & 0x0f0f0f0f;
+            i = i + (i >> 8);
+            i = i + (i >> 16);
+            return i & 0x3f;
         }
     };
 }

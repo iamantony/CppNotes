@@ -23,6 +23,7 @@
 #include "algorithms/math/test_hamming_distance.hpp"
 #include "algorithms/math/test_hamming_weight.hpp"
 #include "algorithms/math/test_bitwise_operators.hpp"
+#include "algorithms/math/test_hamming_distance_of_array.hpp"
 
 #include "algorithms/search/test_binary_search.hpp"
 #include "algorithms/search/test_find_two_elements.hpp"

@@ -46,6 +46,7 @@ BOOST_AUTO_TEST_CASE(test_hd_int_nulls)
 {
     HammingDistance::Solution solution;
     BOOST_CHECK(0 == solution.HammingDistanceForInts(0, 0));
+    BOOST_CHECK(0 == solution.HammingDistanceForIntsFast(0, 0));
 }
 
 BOOST_AUTO_TEST_CASE(test_hd_int_diff_values)
@@ -55,6 +56,10 @@ BOOST_AUTO_TEST_CASE(test_hd_int_diff_values)
     BOOST_CHECK(1 == solution.HammingDistanceForInts(2, 0));
     BOOST_CHECK(8 == solution.HammingDistanceForInts(143, 5628));
     BOOST_CHECK(25 == solution.HammingDistanceForInts(-143, 5628));
+
+    BOOST_CHECK(1 == solution.HammingDistanceForIntsFast(1, 0));
+    BOOST_CHECK(1 == solution.HammingDistanceForIntsFast(2, 0));
+    BOOST_CHECK(8 == solution.HammingDistanceForIntsFast(143, 5628));
 }
 
 #endif // TEST_HAMMING_DISTANCE_HPP
