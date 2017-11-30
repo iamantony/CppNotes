@@ -50,6 +50,7 @@
 #include "algorithms/strings/test_str_replace_spaces.hpp"
 #include "algorithms/strings/test_str_compression.hpp"
 #include "algorithms/strings/test_str_is_substring.hpp"
+#include "algorithms/strings/test_sum_of_binary_strings.hpp"
 
 #include "files/test_read_last_lines.hpp"
 
