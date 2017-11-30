@@ -23,10 +23,11 @@ BOOST_AUTO_TEST_CASE(test_hdoa_vector_two_elements)
     BOOST_CHECK(2 == solution.totalHammingDistance({1, 2}));
 }
 
-BOOST_AUTO_TEST_CASE(test_hdoa_vector_leetcode_base_case)
+BOOST_AUTO_TEST_CASE(test_hdoa_vector_leetcode_base_cases)
 {
     HammingDistanceOfArray::Solution solution;
     BOOST_CHECK(6 == solution.totalHammingDistance({4, 14, 2}));
+    BOOST_CHECK(4 == solution.totalHammingDistance({4, 14, 4}));
 }
 
 BOOST_AUTO_TEST_CASE(test_hdoa_vector_leetcode_long_vector)
@@ -82,7 +83,7 @@ BOOST_AUTO_TEST_CASE(test_hdoa_vector_leetcode_many_same_elements)
         0, 536870911, 0, 536870911, 0, 536870911, 0, 536870911, 0, 536870911};
 
     HammingDistanceOfArray::Solution solution;
-    BOOST_CHECK(29 == solution.totalHammingDistance(nums));
+    BOOST_CHECK(35525 == solution.totalHammingDistance(nums));
 }
 
 #endif // TEST_HAMMING_DISTANCE_OF_ARRAY_HPP
