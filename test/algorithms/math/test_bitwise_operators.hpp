@@ -23,4 +23,12 @@ BOOST_AUTO_TEST_CASE(test_bitop_add)
     BOOST_CHECK(5 == BitwiseOperators::BitwiseAddRecursive(2, 3));
 }
 
+BOOST_AUTO_TEST_CASE(test_bitop_abs) {
+    BOOST_CHECK(0 == BitwiseOperators::BitwiseAbs(0));
+    BOOST_CHECK(1 == BitwiseOperators::BitwiseAbs(1));
+    BOOST_CHECK(1 == BitwiseOperators::BitwiseAbs(-1));
+    BOOST_CHECK(16894 == BitwiseOperators::BitwiseAbs(16894));
+    BOOST_CHECK(78953 == BitwiseOperators::BitwiseAbs(-78953));
+}
+
 #endif // TEST_BITWISE_OPERATORS_HPP
