@@ -1,6 +1,7 @@
 #ifndef MATRIX_ZERO_OUT_HPP_
 #define MATRIX_ZERO_OUT_HPP_
 
+// https://leetcode.com/problems/set-matrix-zeroes/description/
 // Write an algorithm such that if an element in an MxN matrix is 0, its
 // entire row and column are set to 0
 
