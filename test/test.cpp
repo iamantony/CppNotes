@@ -26,6 +26,7 @@
 #include "algorithms/math/test_bitwise_operators.hpp"
 #include "algorithms/math/test_hamming_distance_of_array.hpp"
 #include "algorithms/math/test_hamming_weight_of_array.hpp"
+#include "algorithms/math/test_square_root.hpp"
 
 #include "algorithms/search/test_binary_search.hpp"
 #include "algorithms/search/test_find_two_elements.hpp"
