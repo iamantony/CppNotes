@@ -1,6 +1,8 @@
 #ifndef SQUARE_ROOT_HPP
 #define SQUARE_ROOT_HPP
 
+#include <cmath>
+
 namespace SquareRoot {
 
 // https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Rough_estimation
@@ -46,6 +48,18 @@ double BabylonialSR(int value, const double& error = 0.0001) {
 
     return root;
 }
+
+// https://leetcode.com/problems/sqrtx/description/
+// Implement int sqrt(int x).
+// Compute and return the square root of x.
+// x is guaranteed to be a non-negative integer.
+class Solution {
+public:
+    int mySqrt(int x) {
+        double root = BabylonialSR(x, 0.1);
+        return static_cast<int>(std::floor(root));
+    }
+};
 
 }
 

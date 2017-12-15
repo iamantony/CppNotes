@@ -33,4 +33,17 @@ BOOST_AUTO_TEST_CASE(test_sqroot_babylonial)
     BOOST_CHECK(equalDoubles(354.0451, SquareRoot::BabylonialSR(125348, epsilon), epsilon));
 }
 
+BOOST_AUTO_TEST_CASE(test_sqroot_with_rounding)
+{
+    SquareRoot::Solution solution;
+    BOOST_CHECK(0 == solution.mySqrt(0));
+    BOOST_CHECK(1 == solution.mySqrt(1));
+    BOOST_CHECK(1 == solution.mySqrt(2));
+    BOOST_CHECK(1 == solution.mySqrt(3));
+    BOOST_CHECK(2 == solution.mySqrt(4));
+    BOOST_CHECK(3 == solution.mySqrt(15));
+    BOOST_CHECK(16 == solution.mySqrt(257));
+    BOOST_CHECK(354 == solution.mySqrt(125348));
+}
+
 #endif // TEST_SQUARE_ROOT_HPP
