@@ -9,6 +9,23 @@
 // From Item 2 of book "Effective C++" by Scott Meyers:
 // Prefer const values to #defines
 
+// We could use #define to create constant value
+#define TEN 10
+// Advantages:
+// - we could create constant value
+// - defines are compatible with C code
+
+// Disadvantages
+// - defines are just symbolic names. Compiler substitute define with its value
+// in code. Compiler could remove name of the define from symbolic table and
+// make your debug session harder. Also because of substitutions your code
+// tend to increase in size - in every place where you have difene you will get
+// new variable.
+// - defines are public. If you put define in header and include that header
+// in some other source file, you will be able to access your define in that
+// source file. You could constrain visibility of define if you put it into
+// .cpp file - it will be visible only in that cpp file.
+
 // Global const value
 const int RATE = 110;
 const char* const AUTHOR_NAME = "Antony Cherepanov";
