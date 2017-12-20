@@ -29,7 +29,7 @@ if (CMAKE_COMPILER_IS_GNUCXX)
             -Wcast-align -Wconversion -Wsign-conversion
             -Wzero-as-null-pointer-constant -Wuseless-cast -Wlogical-op
             -Wno-aggressive-loop-optimizations -Wredundant-decls -Winline
-            -Winvalid-pch -Wdisabled-optimization -fno-inline
+            -Winvalid-pch -Wdisabled-optimization
             -fstack-protector-all -Wstack-protector
             -Wno-overloaded-virtual
     )
