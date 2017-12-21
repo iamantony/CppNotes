@@ -54,6 +54,9 @@ public:
 // A second reason to know about the enum hack is purely pragmatic.
 // Lots of code employs it, so you need to recognize it when you see it. In
 // fact, the enum hack is a fundamental technique of template metaprogramming."
+//
+// Assume that you need the value of a class constant during compilation of
+// the class, such as in the declaration of the array
 class Hacked
 {
 public:
