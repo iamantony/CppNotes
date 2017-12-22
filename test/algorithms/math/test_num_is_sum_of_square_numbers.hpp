@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_CASE(test_nisosn_check)
     BOOST_CHECK(true == solution.judgeSquareSum(5));
     BOOST_CHECK(false == solution.judgeSquareSum(7));
     BOOST_CHECK(true == solution.judgeSquareSum(8));
-    BOOST_CHECK(false == solution.judgeSquareSum(9));
+    BOOST_CHECK(true == solution.judgeSquareSum(9));
     BOOST_CHECK(true == solution.judgeSquareSum(10));
     BOOST_CHECK(true == solution.judgeSquareSum(13));
     BOOST_CHECK(true == solution.judgeSquareSum(25));
