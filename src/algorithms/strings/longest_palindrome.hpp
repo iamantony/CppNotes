@@ -15,27 +15,29 @@ namespace LongestPalindrome
 
 class Solution {
 public:
-    std::string longestPalindrome(std::string s)
+    std::string longestPalindrome(const std::string& s)
     {
-        const int strSize = static_cast<int>(s.size());
+        if (s.size() < 2) {
+            return s;
+        }
 
         // Start and end indexes of the longest palindrom
-        int start = 0, end = 0;
+        size_t start = 0, end = 0;
 
         // Iterate over string. On each iteration we choose new (next) letter
         // as possible center of palindrom
-        for (int i = 0; i < strSize; ++i)
+        for (size_t i = 0; i < s.size(); ++i)
         {
             // Check if current letter is central letter of palindrom
             // (length of palindrom is odd - 'aba')
-            int len1 = expandAroundCenter(s, i, i);
+            size_t lenOddPalindrome = expandAroundCenter(s, i, i);
 
             // Check if center of palindrom is between current and next
             // letters (length of palindrim is even - 'abba')
-            int len2 = expandAroundCenter(s, i, i + 1);
+            size_t lenEvenPalindrome = expandAroundCenter(s, i, i + 1);
 
             // Update start and end indexes of the longest palindrom
-            int len = std::max(len1, len2);
+            size_t len = std::max(lenOddPalindrome, lenEvenPalindrome);
             if (len > end - start)
             {
                 start = i - (len - 1) / 2;
@@ -43,13 +45,11 @@ public:
             }
         }
 
-        return s.substr(static_cast<size_t>(start),
-                        static_cast<size_t>(end + 1 - start));
+        return s.substr(start, (end + 1 - start));
     }
 
 private:
-    int expandAroundCenter(const std::string& s, const int& left,
-                           const int& right)
+    size_t expandAroundCenter(const std::string& s, size_t left, size_t right)
     {
         // 'left' and 'right' are possible indexes of the center of the
         // palindrom. Because palindrom is symmetric about its center,
@@ -59,15 +59,18 @@ private:
         // Do not forget to check at each step that our borders are within
         // the string!!!
 
-        int L = left, R = right;
-        const int strSize = static_cast<int>(s.size());
-        while (L >= 0 && R < strSize &&
-               s.at(static_cast<size_t>(L)) == s.at(static_cast<size_t>(R))) {
-            L--;
-            R++;
+        size_t length = 0;
+        while (right < s.size() && s.at(left) == s.at(right)) {
+            length = right - left + 1;
+            if (left == 0 || right == s.size() - 1) {
+                break;
+            }
+
+            left--;
+            right++;
         }
 
-        return R - L - 1;
+        return length;
     }
 };
 
