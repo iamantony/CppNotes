@@ -328,4 +328,20 @@ BOOST_AUTO_TEST_CASE(test_bstree_is_equal_different)
     BOOST_CHECK(first != second);
 }
 
+BOOST_AUTO_TEST_CASE(test_bstree_get_successor)
+{
+    BSTree<int> tree;
+    tree.insert(20);
+    tree.insert(8);
+    tree.insert(22);
+    tree.insert(4);
+    tree.insert(12);
+    tree.insert(10);
+    tree.insert(14);
+
+    BOOST_CHECK(tree.getSuccessorOfValue(20) == 22);
+    BOOST_CHECK(tree.getSuccessorOfValue(14) == 20);
+    BOOST_CHECK(tree.getSuccessorOfValue(11) == 12);
+}
+
 #endif /* TEST_BINARYSEARCHTREE_H_ */

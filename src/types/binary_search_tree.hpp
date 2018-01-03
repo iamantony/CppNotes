@@ -19,12 +19,12 @@ private:
         Node(const BSTree<T>::Node& other) = delete;
         Node& operator=(const Node& other) = delete;
 
-        void setLeftNode(Node* left);
-        Node* getLeftNode() const;
-        void setRightNode(Node* right);
-        Node* getRightNode() const;
-        void setValue(const T& value);
-        T getValue() const;
+        void setLeftNode(Node* left) { m_left = left; }
+        Node* getLeftNode() const { return m_left; }
+        void setRightNode(Node* right) { m_right = right; }
+        Node* getRightNode() const { return m_right; }
+        void setValue(const T& value) { m_value = value; }
+        T getValue() const { return m_value; }
 
     private:
         T m_value;
@@ -37,7 +37,7 @@ private:
     // == METHODS ==
 public:
     BSTree() : root(nullptr) {}
-    ~BSTree();
+    ~BSTree() { clear(); }
 
     BSTree(const BSTree<T>& other) = delete;
     BSTree<T>& operator=(const BSTree<T>& other) = delete;
@@ -61,11 +61,12 @@ public:
     std::vector<T> printTreePostorder() const;
     std::vector<std::vector<T>> getPaths() const;
     void mirror();
+    T getSuccessorOfValue(const T& value) const;
 
 private:
     int calcSize(const Node* node) const;
     void insertValue(Node* node, const T& value);
-    bool containsValue(Node* node, const T& value) const;
+    Node* findNodeWithValue(Node* node, const T& value) const;
     Node* deleteValueNode(Node* node, const T& value);
     int calcMaxDepth(const Node* node) const;
     Node* minValueNode(Node* node) const;
@@ -91,48 +92,6 @@ BSTree<T>::Node::~Node()
         delete m_right;
         m_right = nullptr;
     }
-}
-
-template<typename T>
-void BSTree<T>::Node::setLeftNode(Node* left)
-{
-    m_left = left;
-}
-
-template<typename T>
-typename BSTree<T>::Node* BSTree<T>::Node::getLeftNode() const
-{
-    return m_left;
-}
-
-template<typename T>
-void BSTree<T>::Node::setRightNode(Node* right)
-{
-    m_right = right;
-}
-
-template<typename T>
-typename BSTree<T>::Node* BSTree<T>::Node::getRightNode() const
-{
-    return m_right;
-}
-
-template<typename T>
-void BSTree<T>::Node::setValue(const T& value)
-{
-    m_value = value;
-}
-
-template<typename T>
-T BSTree<T>::Node::getValue() const
-{
-    return m_value;
-}
-
-template<typename T>
-BSTree<T>::~BSTree()
-{
-    clear();
 }
 
 template<typename T>
@@ -219,27 +178,25 @@ void BSTree<T>::insertValue(Node* node, const T& value)
 template<typename T>
 bool BSTree<T>::contains(const T& value) const
 {
-    return containsValue(root, value);
+    return (findNodeWithValue(root, value) != nullptr);
 }
 
 template<typename T>
-bool BSTree<T>::containsValue(Node* node, const T& value) const
+typename BSTree<T>::Node* BSTree<T>::findNodeWithValue(
+        Node* node, const T& value) const
 {
-    if (nullptr == node)
-    {
-        return false;
+    if (nullptr == node) {
+        return nullptr;
     }
 
-    if (value == node->getValue())
-    {
-        return true;
+    if (value < node->getValue()) {
+        return findNodeWithValue(node->getLeftNode(), value);
     }
-    else if (value < node->getValue())
-    {
-        return containsValue(node->getLeftNode(), value);
+    else if (value > node->getValue()) {
+        return findNodeWithValue(node->getRightNode(), value);
     }
 
-    return containsValue(node->getRightNode(), value);
+    return node;
 }
 
 template<typename T>
@@ -545,6 +502,36 @@ bool BSTree<T>::isSameNodes(Node* lh, Node* rh)
     }
 
     return false;
+}
+
+template<typename T>
+T BSTree<T>::getSuccessorOfValue(const T& value) const {
+    // First of all, let's find out if we have such value in our tree
+    Node* target = findNodeWithValue(root, value);
+    if (target != nullptr) {
+        // Yes, we have. Successor of it is lying in the right subtree and it
+        // has the smallest value
+        Node* nodeWithSuccessorValue = minValueNode(target->getRightNode());
+        if (nodeWithSuccessorValue != nullptr) {
+            return nodeWithSuccessorValue->getValue();
+        }
+    }
+
+    // Second variant - start searching from the root for value that is
+    // minimally bigger than our value
+    Node* successor = nullptr;
+    Node* ancestor = root;
+    while(ancestor != nullptr) {
+        if (value < ancestor->getValue()) {
+            successor = ancestor;
+            ancestor = ancestor->getLeftNode();
+        }
+        else {
+            ancestor = ancestor->getRightNode();
+        }
+    }
+
+    return (successor != nullptr) ? successor->getValue() : T();
 }
 
 #endif /* BINARYSEARCHTREE_HPP_ */
