@@ -78,6 +78,19 @@ BOOST_AUTO_TEST_CASE(test_intpolsearch_no_val)
     BOOST_CHECK(expectedIsFound == isFound);
 }
 
+BOOST_AUTO_TEST_CASE(test_intpolsearch_val_is_less_than_min)
+{
+    std::vector<int> container;
+    int value;
+    bool expectedIsFound;
+    TCFSA::ValueIsLessThanMinValueInContainer(container, value, expectedIsFound);
+
+    size_t result = 0;
+    InterpolationSearch::Solution solution;
+    bool isFound = solution.Search(container, container.size(), value, result);
+    BOOST_CHECK(expectedIsFound == isFound);
+}
+
 BOOST_AUTO_TEST_CASE(test_intpolsearch_several_same_val)
 {
     std::vector<int> container;

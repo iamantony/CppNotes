@@ -55,6 +55,16 @@ void NoValueInContainer(std::vector<int>& container, int& value,
     expectedIsFound = false;
 }
 
+void ValueIsLessThanMinValueInContainer(std::vector<int>& container, int& value,
+                        bool& expectedIsFound)
+{
+    container = {10, 42, 43, 100, 59};
+    std::sort(container.begin(), container.end());
+
+    value = 5;
+    expectedIsFound = false;
+}
+
 void SeveralSameValuesInContainer(std::vector<int>& container, int& value,
                                   bool& expectedIsFound,
                                   std::vector<size_t>& expectedResultIndexes)
