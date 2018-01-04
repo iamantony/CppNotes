@@ -32,20 +32,22 @@ public:
             return false;
         }
 
-        size_t i = 0;
         size_t interval = static_cast<size_t>(std::sqrt(size));
-        for(; i < size; i += interval) {
+        for(size_t i = 0; i < size; i += interval) {
             if (container[i] == value) {
                 resultIndex = i;
                 return true;
             }
             else if (value < container[i]) {
-                for (size_t j = i - interval + 1; j < i; ++j) {
+                size_t j = (i < interval) ? 0 : i - interval + 1;
+                for (; j < i; ++j) {
                     if (container[j] == value) {
                         resultIndex = j;
                         return true;
                     }
                 }
+
+                return false;
             }
         }
 
