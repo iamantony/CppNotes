@@ -9,12 +9,14 @@
 #include <algorithm>
 #include <stdexcept>
 
+// TODO: rewrite methods that work with m_array
+
 namespace DS {
 
 template <typename T>
 class Vector {
 public:
-    Vector() {}
+    Vector();
     Vector(const size_t& size);
     Vector(const size_t& size, const T& defaultValue);
     ~Vector();
@@ -43,42 +45,46 @@ private:
     void recreate(const size_t& newSize, const size_t& newCapacity);
 
 private:
-    T* m_array;
+    T** m_array;
     size_t m_size;
     size_t m_capacity;
     const size_t DEFAULT_CAPACITY = 16;
 };
 
 template <typename T>
-Vector::Vector() : Vector(DEFAULT_CAPACITY) {
+Vector<T>::Vector() : Vector(DEFAULT_CAPACITY) {
     m_size = 0;
 }
 
 template <typename T>
-Vector::Vector(const size_t& size) {
+Vector<T>::Vector(const size_t& size) : Vector(size, T()) {
+}
+
+template <typename T>
+Vector<T>::Vector(const size_t& size, const T& defaultValue) {
     if (size > 0) {
-        m_array = new T[size];
+        m_array = new T*[size];
+        for (size_t i = 0; i < size; ++i) {
+            m_array[i] = new T(defaultValue);
+        }
     }
 
-    m_size = 0;
+    m_size = size;
     m_capacity = size;
 }
 
 template <typename T>
-Vector::Vector(const size_t& size, const T& defaultValue) : Vector(size) {
-    if (size > 0) {
-        std::fill_n(m_array, m_size, defaultValue);
-    }
-}
-
-template <typename T>
-Vector::~Vector() {
+Vector<T>::~Vector() {
     clear();
 }
 
 template <typename T>
-void Vector::clear() {
+void Vector<T>::clear() {
     if (m_array != nullptr) {
+        for (size_t i = 0; i < m_size; ++i) {
+            delete m_array[i];
+        }
+
         delete [] m_array;
         m_array = nullptr;
     }
@@ -87,17 +93,17 @@ void Vector::clear() {
 }
 
 template <typename T>
-size_t Vector::size() const {
+size_t Vector<T>::size() const {
     return m_size;
 }
 
 template <typename T>
-size_t Vector::capacity() const {
+size_t Vector<T>::capacity() const {
     return m_capacity;
 }
 
 template <typename T>
-void Vector::resize(const size_t& size) {
+void Vector<T>::resize(const size_t& size) {
     if (size == m_size) {
         return;
     }
@@ -124,7 +130,7 @@ void Vector::resize(const size_t& size) {
 }
 
 template <typename T>
-void Vector::recreate(const size_t& newSize, const size_t& newCapacity) {
+void Vector<T>::recreate(const size_t& newSize, const size_t& newCapacity) {
     if (newCapacity == 0) {
         clear();
         return;
@@ -149,12 +155,12 @@ void Vector::recreate(const size_t& newSize, const size_t& newCapacity) {
 }
 
 template <typename T>
-bool Vector::isEmpty() const {
+bool Vector<T>::isEmpty() const {
     return m_size == 0;
 }
 
 template <typename T>
-T& Vector::at(const size_t& index) {
+T& Vector<T>::at(const size_t& index) {
     // Effective C++ by Meyers, Item 3
     // To remove code duplication we call const version of at() from
     // non-const version of at().
@@ -181,9 +187,9 @@ T& Vector::at(const size_t& index) {
 }
 
 template <typename T>
-const T& Vector::at(const size_t& index) const {
+const T& Vector<T>::at(const size_t& index) const {
     // Check that index is valid. Throw exception on error.
-    if (index >= size) {
+    if (index >= size()) {
         throw std::out_of_range("Invalid index");
     }
 
@@ -191,29 +197,29 @@ const T& Vector::at(const size_t& index) const {
 }
 
 template <typename T>
-T& Vector::operator[](const size_t& index) {
+T& Vector<T>::operator[](const size_t& index) {
     // For explanations see non-const at() function
     return const_cast<T&>(static_cast<const Vector&>(*this)[index]);
 }
 
 template <typename T>
-const T& Vector::operator[](const size_t& index) const {
+const T& Vector<T>::operator[](const size_t& index) const {
     // Warning: No bounds checking!
     return m_array[index];
 }
 
 template <typename T>
-void Vector::push_back(const T& item) {
+void Vector<T>::push_back(const T& item) {
     insert(m_size, item);
 }
 
 template <typename T>
-void Vector::prepend(const T& item) {
+void Vector<T>::prepend(const T& item) {
     insert(0, item);
 }
 
 template <typename T>
-void Vector::insert(const size_t& index, const T& item) {
+void Vector<T>::insert(const size_t& index, const T& item) {
     // Make sure that we have enough space to insert new item
     if (m_size == m_capacity) {
         size_t newCapacity =
@@ -247,7 +253,7 @@ void Vector::insert(const size_t& index, const T& item) {
 }
 
 template <typename T>
-T& Vector::pop() {
+T& Vector<T>::pop() {
     if (isEmpty()) {
         throw std::out_of_range("Vector is empty");
     }
@@ -259,7 +265,7 @@ T& Vector::pop() {
 }
 
 template <typename T>
-void Vector::deleteItem(const size_t& index) {
+void Vector<T>::deleteItem(const size_t& index) {
     if (index >= m_size) {
         throw std::out_of_range("Invalid index");
     }
@@ -278,7 +284,7 @@ void Vector::deleteItem(const size_t& index) {
 }
 
 template <typename T>
-void Vector::remove(const T& item) {
+void Vector<T>::remove(const T& item) {
     if (isEmpty()) {
         return;
     }
@@ -295,7 +301,7 @@ void Vector::remove(const T& item) {
 }
 
 template <typename T>
-bool Vector::find(const T& item, size_t& index) {
+bool Vector<T>::find(const T& item, size_t& index) {
     for (size_t i = 0 ; i < m_size; ++i) {
         if (m_array[i] == item) {
             index = i;
