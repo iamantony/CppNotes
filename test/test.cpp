@@ -66,3 +66,4 @@
 #include "types/test_concurrent_map.hpp"
 #include "types/test_linked_list.hpp"
 #include "types/test_matrix.hpp"
+#include "types/test_vector_ds.hpp"
