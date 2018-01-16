@@ -7,13 +7,13 @@
 
 BOOST_AUTO_TEST_CASE(test_bstree2_create)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     BOOST_CHECK(true);
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree2_add_one_elem)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     BOOST_CHECK(0 == tree.size());
 
     tree.insert(1);
@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(test_bstree2_add_one_elem)
 
 BOOST_AUTO_TEST_CASE(test_bstree2_add_elements)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(test_bstree2_add_elements)
 
 BOOST_AUTO_TEST_CASE(test_bstree2_clear)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(test_bstree2_clear)
 
 BOOST_AUTO_TEST_CASE(test_bstree2_contains)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(test_bstree2_contains)
 
 BOOST_AUTO_TEST_CASE(test_bstree2_delete_empty_tree)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     tree.deleteValue(10);
 
     std::vector<int> result = tree.printTree();
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(test_bstree2_delete_empty_tree)
 
 BOOST_AUTO_TEST_CASE(test_bstree2_delete_one_elem_tree)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     tree.insert(10);
     tree.deleteValue(1);
 
@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE(test_bstree2_delete_one_elem_tree)
 
 BOOST_AUTO_TEST_CASE(test_bstree2_delete_tree)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(test_bstree2_delete_tree)
 
 BOOST_AUTO_TEST_CASE(test_bstree2_delete_tree_two_same_values)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(test_bstree2_delete_tree_two_same_values)
 
 BOOST_AUTO_TEST_CASE(test_bstree2_print_tree)
 {
-    BSTree2<int> tree;
+    DS::BSTree2<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);

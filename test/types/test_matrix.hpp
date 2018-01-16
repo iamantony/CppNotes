@@ -7,8 +7,8 @@
 
 BOOST_AUTO_TEST_CASE(test_matrix_add_wrong_dimensions)
 {
-    Matrix<int> first(2, 2, 0);
-    Matrix<int> second(2, 3, 0);
+    DS::Matrix<int> first(2, 2, 0);
+    DS::Matrix<int> second(2, 3, 0);
 
     try
     {
@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(test_matrix_add_wrong_dimensions)
 
     try
     {
-        Matrix<int> result = first + second;
+        DS::Matrix<int> result = first + second;
         BOOST_CHECK(false);
     }
     catch(const std::exception& exp) {}
@@ -29,21 +29,21 @@ BOOST_AUTO_TEST_CASE(test_matrix_add_wrong_dimensions)
 
 BOOST_AUTO_TEST_CASE(test_matrix_add)
 {
-    Matrix<int> first(2, 2, 0);
+    DS::Matrix<int> first(2, 2, 0);
     first.setRowValues(0, {1, 2});
     first.setRowValues(1, {3, 4});
 
-    Matrix<int> second(2, 2, 0);
+    DS::Matrix<int> second(2, 2, 0);
     second.setRowValues(0, {5, 6});
     second.setRowValues(1, {7, 8});
 
-    Matrix<int> expected(2, 2, 0);
+    DS::Matrix<int> expected(2, 2, 0);
     expected.setRowValues(0, {6, 8});
     expected.setRowValues(1, {10, 12});
 
     try
     {
-        Matrix<int> result = first + second;
+        DS::Matrix<int> result = first + second;
         BOOST_CHECK(expected == result);
     }
     catch(const std::exception& exp)
@@ -64,8 +64,8 @@ BOOST_AUTO_TEST_CASE(test_matrix_add)
 
 BOOST_AUTO_TEST_CASE(test_matrix_substract_wrong_dimensions)
 {
-    Matrix<int> first(2, 2, 0);
-    Matrix<int> second(2, 3, 0);
+    DS::Matrix<int> first(2, 2, 0);
+    DS::Matrix<int> second(2, 3, 0);
 
     try
     {
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(test_matrix_substract_wrong_dimensions)
 
     try
     {
-        Matrix<int> result = first - second;
+        DS::Matrix<int> result = first - second;
         BOOST_CHECK(false);
     }
     catch(const std::exception& exp) {}
@@ -86,19 +86,19 @@ BOOST_AUTO_TEST_CASE(test_matrix_substract_wrong_dimensions)
 
 BOOST_AUTO_TEST_CASE(test_matrix_substract)
 {
-    Matrix<int> first(2, 2, 0);
+    DS::Matrix<int> first(2, 2, 0);
     first.setRowValues(0, {1, 2});
     first.setRowValues(1, {3, 4});
 
-    Matrix<int> second(2, 2, 0);
+    DS::Matrix<int> second(2, 2, 0);
     second.setRowValues(0, {5, 6});
     second.setRowValues(1, {7, 8});
 
-    Matrix<int> expected(2, 2, -4);
+    DS::Matrix<int> expected(2, 2, -4);
 
     try
     {
-        Matrix<int> result = first - second;
+        DS::Matrix<int> result = first - second;
         BOOST_CHECK(expected == result);
     }
     catch(const std::exception& exp)

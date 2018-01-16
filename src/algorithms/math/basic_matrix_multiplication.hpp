@@ -9,19 +9,19 @@
 // equal to number of rows of second (right) matrix.
 // @output: result matrix
 template<typename T>
-Matrix<T> BasicMatrixMultiplication(const Matrix<T>& left,
-        const Matrix<T> right)
+DS::Matrix<T> BasicMatrixMultiplication(const DS::Matrix<T>& left,
+        const DS::Matrix<T> right)
 {
     if (left.empty() ||
             right.empty() ||
             left.getColsNum() != right.getRowsNum())
     {
-        return Matrix<T>();
+        return DS::Matrix<T>();
     }
 
     size_t rows = left.getRowsNum();
     size_t cols = right.getColsNum();
-    Matrix<T> result(rows, cols, T());
+    DS::Matrix<T> result(rows, cols, T());
 
     size_t limit = left.getColsNum();
     for (size_t r = 0; r < rows; ++r)

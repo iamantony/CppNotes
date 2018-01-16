@@ -9,39 +9,39 @@
 
 #include "types/concurrent_map.hpp"
 
-BOOST_AUTO_TEST_CASE(test_create_cm)
+BOOST_AUTO_TEST_CASE(test_cm_create)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(true);
 }
 
-BOOST_AUTO_TEST_CASE(test_insert_cm)
+BOOST_AUTO_TEST_CASE(test_cm_insert)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     BOOST_CHECK(false == map.isEmpty());
     BOOST_CHECK(1 == map.size());
     BOOST_CHECK("one" == map.at("1"));
 }
 
-BOOST_AUTO_TEST_CASE(test_double_insert_cm)
+BOOST_AUTO_TEST_CASE(test_cm_double_insert)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     BOOST_CHECK(false == map.insert("1", "one"));
 }
 
-BOOST_AUTO_TEST_CASE(test_set_cm)
+BOOST_AUTO_TEST_CASE(test_cm_set)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     map.set("1", "oneone");
     BOOST_CHECK("oneone" == map.at("1"));
 }
 
-BOOST_AUTO_TEST_CASE(test_set_new_key_cm)
+BOOST_AUTO_TEST_CASE(test_cm_set_new_key)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     map.set("2", "two");
     BOOST_CHECK(false == map.isEmpty());
@@ -50,9 +50,9 @@ BOOST_AUTO_TEST_CASE(test_set_new_key_cm)
     BOOST_CHECK("two" == map.at("2"));
 }
 
-BOOST_AUTO_TEST_CASE(test_keys_cm)
+BOOST_AUTO_TEST_CASE(test_cm_keys)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     BOOST_CHECK(map.insert("2", "two"));
     BOOST_CHECK(map.insert("3", "three"));
@@ -63,9 +63,9 @@ BOOST_AUTO_TEST_CASE(test_keys_cm)
     BOOST_CHECK(1 == std::count(keys.begin(), keys.end(), "3"));
 }
 
-BOOST_AUTO_TEST_CASE(test_contains_cm)
+BOOST_AUTO_TEST_CASE(test_cm_contains)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     BOOST_CHECK(map.insert("2", "two"));
     BOOST_CHECK(map.insert("3", "three"));
@@ -74,9 +74,9 @@ BOOST_AUTO_TEST_CASE(test_contains_cm)
     BOOST_CHECK(map.contains("2"));
 }
 
-BOOST_AUTO_TEST_CASE(test_erase_cm)
+BOOST_AUTO_TEST_CASE(test_cm_erase)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     BOOST_CHECK(map.insert("2", "two"));
     BOOST_CHECK(map.insert("3", "three"));
@@ -87,9 +87,9 @@ BOOST_AUTO_TEST_CASE(test_erase_cm)
     BOOST_CHECK(false == map.contains("2"));
 }
 
-BOOST_AUTO_TEST_CASE(test_clear_cm)
+BOOST_AUTO_TEST_CASE(test_cm_clear)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     BOOST_CHECK(map.insert("2", "two"));
     BOOST_CHECK(map.insert("3", "three"));
@@ -102,24 +102,24 @@ BOOST_AUTO_TEST_CASE(test_clear_cm)
     BOOST_CHECK(false == map.contains("2"));
 }
 
-BOOST_AUTO_TEST_CASE(test_at_invalid_key_cm)
+BOOST_AUTO_TEST_CASE(test_cm_at_invalid_key)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
     BOOST_CHECK(map.insert("1", "one"));
     BOOST_CHECK(string() == map.at("2"));
 }
 
-BOOST_AUTO_TEST_CASE(test_threads_insert_cm)
+BOOST_AUTO_TEST_CASE(test_cm_threads_insert)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
 
-    auto firstFunc = [](ConcurrentMap& t_map) {
+    auto firstFunc = [](DS::ConcurrentMap& t_map) {
         t_map.insert("1", "one");
         t_map.insert("2", "two");
         t_map.insert("3", "three");
     };
 
-    auto secondFunc = [](ConcurrentMap& t_map) {
+    auto secondFunc = [](DS::ConcurrentMap& t_map) {
         t_map.insert("4", "four");
         t_map.insert("2", "two");
         t_map.insert("1", "oneone");
@@ -138,11 +138,11 @@ BOOST_AUTO_TEST_CASE(test_threads_insert_cm)
     BOOST_CHECK("four" == map.at("4"));
 }
 
-BOOST_AUTO_TEST_CASE(test_threads_work_cm)
+BOOST_AUTO_TEST_CASE(test_cm_threads_work)
 {
-    ConcurrentMap map;
+    DS::ConcurrentMap map;
 
-    auto insertFunc = [](ConcurrentMap& t_map,
+    auto insertFunc = [](DS::ConcurrentMap& t_map,
             const int t_iterations,
             const int t_sleep)
     {
@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE(test_threads_work_cm)
         }
     };
 
-    auto readFunc = [](ConcurrentMap& t_map,
+    auto readFunc = [](DS::ConcurrentMap& t_map,
             const int t_iterations,
             const int t_sleep)
     {
@@ -166,7 +166,7 @@ BOOST_AUTO_TEST_CASE(test_threads_work_cm)
         }
     };
 
-    auto setFunc = [](ConcurrentMap& t_map,
+    auto setFunc = [](DS::ConcurrentMap& t_map,
             const int t_iterations,
             const int t_sleep)
     {
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE(test_threads_work_cm)
         }
     };
 
-    auto eraseFunc = [](ConcurrentMap& t_map,
+    auto eraseFunc = [](DS::ConcurrentMap& t_map,
             const int t_iterations,
             const int t_sleep)
     {

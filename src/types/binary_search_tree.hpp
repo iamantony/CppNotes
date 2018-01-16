@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <vector>
 
+namespace DS {
+
 template <typename T>
 class BSTree
 {
@@ -532,6 +534,8 @@ T BSTree<T>::getSuccessorOfValue(const T& value) const {
     }
 
     return (successor != nullptr) ? successor->getValue() : T();
+}
+
 }
 
 #endif /* BINARYSEARCHTREE_HPP_ */

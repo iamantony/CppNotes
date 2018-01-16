@@ -7,13 +7,13 @@
 
 BOOST_AUTO_TEST_CASE(test_bstree_create)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     BOOST_CHECK(true);
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree_add_one_elem)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     BOOST_CHECK(tree.isEmpty());
 
     tree.insert(1);
@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_add_one_elem)
 
 BOOST_AUTO_TEST_CASE(test_bstree_add_elements)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     BOOST_CHECK(tree.isEmpty());
 
     tree.insert(10);
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_add_elements)
 
 BOOST_AUTO_TEST_CASE(test_bstree_clear)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     BOOST_CHECK(tree.isEmpty());
 
     tree.insert(10);
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_clear)
 
 BOOST_AUTO_TEST_CASE(test_bstree_contains)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     BOOST_CHECK(tree.isEmpty());
 
     tree.insert(10);
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_contains)
 
 BOOST_AUTO_TEST_CASE(test_bstree_delete_empty_tree)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.deleteValue(10);
 
     std::vector<int> result = tree.printTree();
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_delete_empty_tree)
 
 BOOST_AUTO_TEST_CASE(test_bstree_delete_one_elem_tree)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.deleteValue(1);
 
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_delete_one_elem_tree)
 
 BOOST_AUTO_TEST_CASE(test_bstree_delete_tree)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_delete_tree)
 
 BOOST_AUTO_TEST_CASE(test_bstree_delete_tree_two_same_values)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_delete_tree_two_same_values)
 
 BOOST_AUTO_TEST_CASE(test_bstree_max_depth)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     BOOST_CHECK(0 == tree.maxDepth());
 
     tree.insert(10);
@@ -147,7 +147,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_max_depth)
 
 BOOST_AUTO_TEST_CASE(test_bstree_min_value)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_min_value)
 
 BOOST_AUTO_TEST_CASE(test_bstree_max_value)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_max_value)
 
 BOOST_AUTO_TEST_CASE(test_bstree_print_tree)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_print_tree)
 
 BOOST_AUTO_TEST_CASE(test_bstree_print_tree_postorder)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -199,14 +199,14 @@ BOOST_AUTO_TEST_CASE(test_bstree_print_tree_postorder)
 
 BOOST_AUTO_TEST_CASE(test_bstree_get_paths_empty)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     std::vector<std::vector<int>> paths =  tree.getPaths();
     BOOST_CHECK(0 == paths.size());
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree_get_paths_one_elem)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     std::vector<std::vector<int>> paths =  tree.getPaths();
     BOOST_CHECK(1 == paths.size());
@@ -217,7 +217,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_get_paths_one_elem)
 
 BOOST_AUTO_TEST_CASE(test_bstree_get_paths)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -239,7 +239,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_get_paths)
 
 BOOST_AUTO_TEST_CASE(test_bstree_mirror_empty)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.mirror();
 
     std::vector<int> result = tree.printTreePostorder();
@@ -249,7 +249,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_mirror_empty)
 
 BOOST_AUTO_TEST_CASE(test_bstree_mirror_one_elem)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.mirror();
 
@@ -260,7 +260,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_mirror_one_elem)
 
 BOOST_AUTO_TEST_CASE(test_bstree_mirror)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(10);
     tree.insert(5);
     tree.insert(2);
@@ -277,13 +277,13 @@ BOOST_AUTO_TEST_CASE(test_bstree_mirror)
 
 BOOST_AUTO_TEST_CASE(test_bstree_is_equal_empty)
 {
-    BSTree<int> first, second;
+    DS::BSTree<int> first, second;
     BOOST_CHECK(first == second);
 }
 
 BOOST_AUTO_TEST_CASE(test_bstree_is_equal_one_elem)
 {
-    BSTree<int> first, second;
+    DS::BSTree<int> first, second;
     first.insert(10);
     second.insert(10);
     BOOST_CHECK(first == second);
@@ -291,7 +291,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_is_equal_one_elem)
 
 BOOST_AUTO_TEST_CASE(test_bstree_is_equal)
 {
-    BSTree<int> first, second;
+    DS::BSTree<int> first, second;
     first.insert(10);
     first.insert(5);
     first.insert(2);
@@ -311,7 +311,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_is_equal)
 
 BOOST_AUTO_TEST_CASE(test_bstree_is_equal_different)
 {
-    BSTree<int> first, second;
+    DS::BSTree<int> first, second;
     first.insert(10);
     first.insert(5);
     first.insert(2);
@@ -330,7 +330,7 @@ BOOST_AUTO_TEST_CASE(test_bstree_is_equal_different)
 
 BOOST_AUTO_TEST_CASE(test_bstree_get_successor)
 {
-    BSTree<int> tree;
+    DS::BSTree<int> tree;
     tree.insert(20);
     tree.insert(8);
     tree.insert(22);

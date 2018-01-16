@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 
+namespace DS {
+
 template <typename T>
 class BSTree2
 {
@@ -200,5 +202,7 @@ private:
         return iNode->m_value;
     }
 };
+
+}
 
 #endif /* BINARYSEARCHTREE2_HPP_ */

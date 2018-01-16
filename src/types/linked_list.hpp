@@ -3,6 +3,8 @@
 
 #include <stdexcept>
 
+namespace DS {
+
 template<typename T>
 class LinkedList
 {
@@ -370,6 +372,8 @@ template<typename T>
 bool LinkedList<T>::isEmpty() const
 {
     return (0 == m_size);
+}
+
 }
 
 #endif /* LINKEDLIST_HPP_ */

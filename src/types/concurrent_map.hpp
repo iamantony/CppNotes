@@ -10,6 +10,8 @@
 
 using namespace std;
 
+namespace DS {
+
 class ConcurrentMap
 {
     // == DATA ==
@@ -26,7 +28,7 @@ private:
     map<string, Node> m_map;
     recursive_mutex m_mutex;
 
-	// == METHODS ==
+    // == METHODS ==
 public:
     explicit ConcurrentMap() {}
     ~ConcurrentMap();
@@ -192,6 +194,8 @@ void ConcurrentMap::set(const string& key, const string& value)
 size_t ConcurrentMap::size() const
 {
     return m_map.size();
+}
+
 }
 
 #endif /* CONCURRENTMAP_HPP_ */

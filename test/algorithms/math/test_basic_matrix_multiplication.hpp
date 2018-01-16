@@ -8,34 +8,34 @@
 
 BOOST_AUTO_TEST_CASE(test_bmm_empty_matrices)
 {
-    BOOST_CHECK(Matrix<int>() ==
-            BasicMatrixMultiplication(Matrix<int>(), Matrix<int>()));
+    BOOST_CHECK(DS::Matrix<int>() ==
+            BasicMatrixMultiplication(DS::Matrix<int>(), DS::Matrix<int>()));
 
-    Matrix<int> matrix(1, 1, 1);
-    BOOST_CHECK(Matrix<int>() ==
-            BasicMatrixMultiplication(matrix, Matrix<int>()));
+    DS::Matrix<int> matrix(1, 1, 1);
+    BOOST_CHECK(DS::Matrix<int>() ==
+            BasicMatrixMultiplication(matrix, DS::Matrix<int>()));
 
-    BOOST_CHECK(Matrix<int>() ==
-            BasicMatrixMultiplication(Matrix<int>(), matrix));
+    BOOST_CHECK(DS::Matrix<int>() ==
+            BasicMatrixMultiplication(DS::Matrix<int>(), matrix));
 }
 
 BOOST_AUTO_TEST_CASE(test_bmm_matrices_with_wrong_dimensions)
 {
-    BOOST_CHECK(Matrix<int>() ==
-        BasicMatrixMultiplication(Matrix<int>(1, 1, 1), Matrix<int>(2, 3, 1)));
+    BOOST_CHECK(DS::Matrix<int>() ==
+        BasicMatrixMultiplication(DS::Matrix<int>(1, 1, 1), DS::Matrix<int>(2, 3, 1)));
 }
 
 BOOST_AUTO_TEST_CASE(test_bmm_square_matrices)
 {
-    Matrix<int> left(2, 2, 0);
+    DS::Matrix<int> left(2, 2, 0);
     left.setRowValues(0, {1, 2});
     left.setRowValues(1, {3, 4});
 
-    Matrix<int> right(2, 2, 0);
+    DS::Matrix<int> right(2, 2, 0);
     right.setRowValues(0, {5, 6});
     right.setRowValues(1, {7, 8});
 
-    Matrix<int> expected(2, 2, 0);
+    DS::Matrix<int> expected(2, 2, 0);
     expected.setRowValues(0, {19, 22});
     expected.setRowValues(1, {43, 50});
 
@@ -44,16 +44,16 @@ BOOST_AUTO_TEST_CASE(test_bmm_square_matrices)
 
 BOOST_AUTO_TEST_CASE(test_bmm_matrices)
 {
-    Matrix<int> left(2, 3, 0);
+    DS::Matrix<int> left(2, 3, 0);
     left.setRowValues(0, {3, 8, 1});
     left.setRowValues(1, {-2, 5, 1});
 
-    Matrix<int> right(3, 4, 0);
+    DS::Matrix<int> right(3, 4, 0);
     right.setRowValues(0, {11, 9, 1, 0});
     right.setRowValues(1, {2, 0, 3, 15});
     right.setRowValues(2, {2, 6, 6, 7});
 
-    Matrix<int> expected(2, 4, 0);
+    DS::Matrix<int> expected(2, 4, 0);
     expected.setRowValues(0, {51, 33, 33, 127});
     expected.setRowValues(1, {-10, -12, 19, 82});
 

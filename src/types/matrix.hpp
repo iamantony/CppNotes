@@ -4,6 +4,8 @@
 #include <vector>
 #include <stdexcept>
 
+namespace DS {
+
 template <typename T>
 class Matrix
 {
@@ -194,6 +196,8 @@ void Matrix<T>::setRowValues(const size_t& row, const std::vector<T>& values)
     }
 
     m_values[row] = values;
+}
+
 }
 
 #endif /* MATRIX_HPP_ */
