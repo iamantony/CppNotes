@@ -19,7 +19,7 @@ public:
     }
 
     Item(const Item& other) : Item(other.value) {
-        std::cout << "In copy constructor" << std::endl;
+//        std::cout << "In copy constructor" << std::endl;
     }
 
     ~Item() {
@@ -79,23 +79,26 @@ BOOST_AUTO_TEST_CASE(test_vds_create_with_size_and_default_value)
     BOOST_CHECK(item == vector.at(4));
 }
 
-/*
 BOOST_AUTO_TEST_CASE(test_vds_add_elements)
 {
-    DS::Vector<int> vector;
+    DS::Vector<Item> vector(0);
     BOOST_CHECK(vector.isEmpty());
+    BOOST_CHECK(0 == vector.capacity());
 
-    list.addLast(1);
-    list.addLast(2);
-    list.addLast(3);
-    list.addLast(4);
+    vector.pushBack(1);
+    vector.pushBack(2);
+    vector.pushBack(3);
+    vector.pushBack(4);
 
     BOOST_CHECK(false == vector.isEmpty());
     BOOST_CHECK(4 == vector.size());
-    BOOST_CHECK(1 == vector.first());
-    BOOST_CHECK(4 == vector.last());
+    BOOST_CHECK(Item(1) == vector.at(0));
+    BOOST_CHECK(Item(2) == vector.at(1));
+    BOOST_CHECK(Item(3) == vector.at(2));
+    BOOST_CHECK(Item(4) == vector.at(3));
 }
 
+/*
 BOOST_AUTO_TEST_CASE(test_vds_clear)
 {
     DS::Vector<int> vector;
