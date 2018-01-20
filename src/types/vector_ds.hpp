@@ -9,8 +9,6 @@
 #include <algorithm>
 #include <stdexcept>
 
-// TODO: rewrite methods that work with m_array
-
 namespace DS {
 
 template <typename T>
@@ -29,7 +27,7 @@ public:
     bool isEmpty() const;
     T& at(const size_t& index);
     const T& at(const size_t& index) const;
-    void push_back(const T& item);
+    void pushBack(const T& item);
     void prepend(const T& item);
     void insert(const size_t& index, const T& item);
     T& pop();
@@ -42,6 +40,7 @@ public:
 
 private:
     void clear();
+    void clearArray(T** array, const size_t& capacity);
     void recreate(const size_t& newSize, const size_t& newCapacity);
 
 private:
@@ -63,14 +62,15 @@ Vector<T>::Vector(const size_t& size) : Vector(size, T()) {
 template <typename T>
 Vector<T>::Vector(const size_t& size, const T& defaultValue) {
     if (size > 0) {
+        // Create array of pointers
         m_array = new T*[size];
+        // Create elements
         for (size_t i = 0; i < size; ++i) {
             m_array[i] = new T(defaultValue);
         }
     }
 
-    m_size = size;
-    m_capacity = size;
+    m_capacity = m_size = size;
 }
 
 template <typename T>
@@ -80,16 +80,26 @@ Vector<T>::~Vector() {
 
 template <typename T>
 void Vector<T>::clear() {
-    if (m_array != nullptr) {
-        for (size_t i = 0; i < m_size; ++i) {
-            delete m_array[i];
-        }
+    clearArray(m_array, m_capacity);
+    m_array = nullptr;
+    m_capacity = m_size = 0;
+}
 
-        delete [] m_array;
-        m_array = nullptr;
+template <typename T>
+void Vector<T>::clearArray(T** array, const size_t& capacity) {
+    if (array == nullptr) {
+        return;
     }
 
-    m_size = m_capacity = 0;
+    // Delete items of array
+    for (size_t i = 0; i < capacity; ++i) {
+        if (array[i] != nullptr) {
+            delete array[i];
+        }
+    }
+
+    // Delete array of pointers
+    delete [] array;
 }
 
 template <typename T>
@@ -104,19 +114,15 @@ size_t Vector<T>::capacity() const {
 
 template <typename T>
 void Vector<T>::resize(const size_t& size) {
-    if (size == m_size) {
-        return;
-    }
-
     if (0 == size) {
         clear();
         return;
     }
 
     if (size < m_size) {
-        size_t newCapacity =
-                (size * 2 <= m_capacity / 2) ? size * 2 : m_capacity;
-
+        // Reduce capacity of the vector if new size is less than half of
+        // the current size
+        size_t newCapacity = (size * 4 <= m_capacity) ? size * 2 : m_capacity;
         recreate(size, newCapacity);
     }
     else if (size > m_size) {
@@ -131,27 +137,43 @@ void Vector<T>::resize(const size_t& size) {
 
 template <typename T>
 void Vector<T>::recreate(const size_t& newSize, const size_t& newCapacity) {
+    if (newSize > newCapacity) {
+        throw std::invalid_argument("Capacity can not be smaller than size"
+                                    " of the vector");
+    }
+
     if (newCapacity == 0) {
         clear();
         return;
     }
 
-    T* newArray = new T[newCapacity];
+    T** newArray = new T*[newCapacity];
+    std::fill_n(newArray, newCapacity, nullptr);
+
     size_t minSize = std::min(m_size, newSize);
 
-    // Copy elements from original array to new array
+    // Copy items from original array to new array
     std::copy_n(m_array, minSize, newArray);
 
-    // Replace copied elements with default-constructed elements of type T.
-    // On the next step we will call 'delete' for original array, that would
-    // call destructors for all elements. We don't want to destruct copied
-    // elements, that is why we replace them with default values.
-    std::fill_n(m_array, minSize, T());
-
-    clear();
+    // Change pointers: m_array should point to new array. So if we later get
+    // exception, m_array will point to valid memory (see Effective C++ by
+    // Meyers, Item 11)
+    T** arrayToDelete = m_array;
     m_array = newArray;
+
+    // Also update size parameters
+    size_t capacityOfArrayToDelete = m_capacity;
     m_size = minSize;
     m_capacity = newCapacity;
+
+    if (arrayToDelete != nullptr) {
+        // Replace copied items with nullptr so they will not be removed
+        // when we delete original array
+        std::fill_n(arrayToDelete, minSize, nullptr);
+
+        // Remove original array
+        clearArray(arrayToDelete, capacityOfArrayToDelete);
+    }
 }
 
 template <typename T>
@@ -193,7 +215,7 @@ const T& Vector<T>::at(const size_t& index) const {
         throw std::out_of_range("Invalid index");
     }
 
-    return m_array[index];
+    return *(m_array[index]);
 }
 
 template <typename T>
@@ -205,11 +227,11 @@ T& Vector<T>::operator[](const size_t& index) {
 template <typename T>
 const T& Vector<T>::operator[](const size_t& index) const {
     // Warning: No bounds checking!
-    return m_array[index];
+    return *(m_array[index]);
 }
 
 template <typename T>
-void Vector<T>::push_back(const T& item) {
+void Vector<T>::pushBack(const T& item) {
     insert(m_size, item);
 }
 
@@ -230,7 +252,7 @@ void Vector<T>::insert(const size_t& index, const T& item) {
     // If index is bigger than size of the array, then we will insert item
     // at the end of the array
     if (index >= m_size) {
-        m_array[m_size] = item;
+        m_array[m_size] = new T(item);
         ++m_size;
         return;
     }
@@ -248,7 +270,7 @@ void Vector<T>::insert(const size_t& index, const T& item) {
         }
     }
 
-    m_array[index] = item;
+    m_array[index] = new T(item);
     ++m_size;
 }
 
@@ -258,10 +280,14 @@ T& Vector<T>::pop() {
         throw std::out_of_range("Vector is empty");
     }
 
-    T item = m_array[m_size - 1];
-    m_array[m_size - 1] = T();
+    T* item = m_array[m_size - 1];
+    m_array[m_size - 1] = nullptr;
     --m_size;
-    return item;
+
+    T itemToReturn(item);
+    delete item;
+
+    return itemToReturn;
 }
 
 template <typename T>
@@ -278,9 +304,11 @@ void Vector<T>::deleteItem(const size_t& index) {
         m_array[toInd] = m_array[fromInd];
     }
 
-    // Set up last element as default-constructed element
-    m_array[m_size -1] = T();
+    T* itemToDelete = m_array[m_size -1];
+    m_array[m_size -1] = nullptr;
     --m_size;
+
+    delete itemToDelete;
 }
 
 template <typename T>
@@ -290,7 +318,7 @@ void Vector<T>::remove(const T& item) {
     }
 
     for (size_t i = m_size - 1; i >= 0; --i) {
-        if (m_array[i] == item) {
+        if ( *(m_array[i]) == item ) {
             deleteItem(i);
         }
 
@@ -303,7 +331,7 @@ void Vector<T>::remove(const T& item) {
 template <typename T>
 bool Vector<T>::find(const T& item, size_t& index) {
     for (size_t i = 0 ; i < m_size; ++i) {
-        if (m_array[i] == item) {
+        if ( *(m_array[i]) == item) {
             index = i;
             return true;
         }
