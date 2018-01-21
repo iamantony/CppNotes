@@ -19,27 +19,35 @@ public:
     Vector(const size_t& size, const T& defaultValue);
     ~Vector();
 
-    // TODO: copy constructor, copy operators....
+    Vector(const Vector& other);
+    Vector& operator=(const Vector& other);
+
+    template <typename U>
+    friend bool operator==(const Vector<U>& left, const Vector<U>& right);
 
     size_t size() const;
     size_t capacity() const;
-    void resize(const size_t& size);
     bool isEmpty() const;
+
+    void clear();
+    void resize(const size_t& size);
+
     T& at(const size_t& index);
     const T& at(const size_t& index) const;
-    void pushBack(const T& item);
-    void prepend(const T& item);
-    void insert(const size_t& index, const T& item);
-    T& pop();
-    void deleteItem(const size_t& index);
-    void remove(const T& item);
-    bool find(const T& item, size_t& index);
-
     T& operator[](const size_t& index);
     const T& operator[](const size_t& index) const;
 
+    void pushBack(const T& item);
+    void prepend(const T& item);
+    void insert(const size_t& index, const T& item);
+
+    T& pop();
+    void deleteItem(const size_t& index);
+    void remove(const T& item);
+
+    bool find(const T& item, size_t& index);
+
 private:
-    void clear();
     void clearArray(T** array, const size_t& capacity);
     void recreate(const size_t& newSize, const size_t& newCapacity);
 
@@ -79,6 +87,85 @@ Vector<T>::~Vector() {
 }
 
 template <typename T>
+Vector<T>::Vector(const Vector<T>& other) {
+    if (other.capacity() > 0) {
+        // Create array of the same capacity as others' capacity and
+        // fill it with nullptrs
+        m_array = new T*[other.capacity()];
+        std::fill_n(m_array, other.capacity(), nullptr);
+
+        // Create copies of the values of other vector
+        for (size_t i = 0; i < other.size(); ++i) {
+            m_array[i] = new T(other[i]);
+        }
+    }
+
+    m_capacity = other.capacity();
+    m_size = other.size();
+}
+
+template <typename T>
+Vector<T>& Vector<T>::operator=(const Vector<T>& other) {
+    if (*this == other) {
+        return;
+    }
+
+    if (other.capacity() > 0) {
+        T** newArray = new T*[other.capacity()];
+        std::fill_n(newArray, other.capacity(), nullptr);
+
+        for (size_t i = 0; i < other.size(); ++i) {
+            newArray[i] = new T(other[i]);
+        }
+
+        T** origArray = m_array;
+        size_t origCapacity = m_capacity;
+
+        m_array = newArray;
+        m_size = other.size();
+        m_capacity = other.capacity();
+
+        clearArray(origArray, origCapacity);
+    }
+    else {
+        clear();
+    }
+
+    return *this;
+}
+
+template <typename U>
+bool operator==(const Vector<U>& left, const Vector<U>& right) {
+    if (left.size() != right.size() ||
+            left.capacity() != right.capacity()) {
+        return false;
+    }
+
+    for (size_t i = 0; i < left.size(); ++i) {
+        if (left[i] != right[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+template <typename T>
+size_t Vector<T>::size() const {
+    return m_size;
+}
+
+template <typename T>
+size_t Vector<T>::capacity() const {
+    return m_capacity;
+}
+
+template <typename T>
+bool Vector<T>::isEmpty() const {
+    return m_size == 0;
+}
+
+template <typename T>
 void Vector<T>::clear() {
     clearArray(m_array, m_capacity);
     m_array = nullptr;
@@ -100,16 +187,6 @@ void Vector<T>::clearArray(T** array, const size_t& capacity) {
 
     // Delete array of pointers
     delete [] array;
-}
-
-template <typename T>
-size_t Vector<T>::size() const {
-    return m_size;
-}
-
-template <typename T>
-size_t Vector<T>::capacity() const {
-    return m_capacity;
 }
 
 template <typename T>
@@ -174,11 +251,6 @@ void Vector<T>::recreate(const size_t& newSize, const size_t& newCapacity) {
         // Remove original array
         clearArray(arrayToDelete, capacityOfArrayToDelete);
     }
-}
-
-template <typename T>
-bool Vector<T>::isEmpty() const {
-    return m_size == 0;
 }
 
 template <typename T>
