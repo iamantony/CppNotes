@@ -98,78 +98,58 @@ BOOST_AUTO_TEST_CASE(test_vds_add_elements)
     BOOST_CHECK(Item(4) == vector.at(3));
 }
 
-/*
 BOOST_AUTO_TEST_CASE(test_vds_clear)
 {
-    DS::Vector<int> vector;
-    list.clear();
+    DS::Vector<Item> vector;
+    vector.clear();
     BOOST_CHECK(true == vector.isEmpty());
     BOOST_CHECK(0 == vector.size());
+    BOOST_CHECK(0 == vector.capacity());
 
-    list.addLast(1);
-    list.addLast(2);
-    list.clear();
+    vector.pushBack(1);
+    vector.pushBack(2);
+    vector.clear();
 
     BOOST_CHECK(true == vector.isEmpty());
     BOOST_CHECK(0 == vector.size());
-}
-
-BOOST_AUTO_TEST_CASE(test_vds_first_last)
-{
-    DS::Vector<unsigned int> vector;
-
-    BOOST_CHECK_THROW(vector.first(), std::length_error);
-    BOOST_CHECK_THROW(vector.last(), std::length_error);
-
-    list.addLast(186);
-    list.addLast(187);
-    list.addLast(28786);
-
-    BOOST_CHECK(186 == vector.first());
-    BOOST_CHECK(28786 == vector.last());
+    BOOST_CHECK(0 == vector.capacity());
 }
 
 BOOST_AUTO_TEST_CASE(test_vds_at)
 {
-    DS::Vector<unsigned int> vector;
+    DS::Vector<Item> vector;
 
-    BOOST_CHECK_THROW(vector.at(0), std::length_error);
+    BOOST_CHECK_THROW(vector.at(0), std::out_of_range);
 
-    list.addLast(186);
-    list.addLast(187);
-    list.addLast(28786);
+    vector.pushBack(186);
+    vector.pushBack(187);
+    vector.pushBack(28786);
 
-    BOOST_CHECK_THROW(vector.at(-156), std::runtime_error);
-    BOOST_CHECK_THROW(vector.at(10), std::runtime_error);
+    BOOST_CHECK_THROW(vector.at(156), std::out_of_range);
+    BOOST_CHECK_THROW(vector.at(10), std::out_of_range);
 
-    BOOST_CHECK(186 == vector.at(0));
-    BOOST_CHECK(187 == vector.at(1));
-    BOOST_CHECK(28786 == vector.at(2));
+    BOOST_CHECK(Item(186) == vector.at(0));
+    BOOST_CHECK(Item(187) == vector.at(1));
+    BOOST_CHECK(Item(28786) == vector.at(2));
+
+    vector.clear();
+    BOOST_CHECK_THROW(vector.at(0), std::out_of_range);
 }
 
-BOOST_AUTO_TEST_CASE(test_vds_add_first)
+BOOST_AUTO_TEST_CASE(test_vds_prepend)
 {
     DS::Vector<unsigned int> vector;
-    list.addFirst(186);
-    list.addLast(187);
-    list.addFirst(28786);
+    vector.prepend(186);
+    vector.prepend(187);
+    vector.prepend(28786);
 
     BOOST_CHECK(3 == vector.size());
-    BOOST_CHECK(28786 == vector.first());
-    BOOST_CHECK(186 == vector.at(1));
-    BOOST_CHECK(187 == vector.last());
+    BOOST_CHECK(28786 == vector.at(0));
+    BOOST_CHECK(187 == vector.at(1));
+    BOOST_CHECK(186 == vector.at(2));
 }
 
-BOOST_AUTO_TEST_CASE(test_vds_add_last)
-{
-    DS::Vector<unsigned int> vector;
-    list.addLast(186);
-    list.addLast(187);
-
-    BOOST_CHECK(186 == vector.first());
-    BOOST_CHECK(187 == vector.last());
-}
-
+/*
 BOOST_AUTO_TEST_CASE(test_vds_insert)
 {
     DS::Vector<unsigned int> vector;
