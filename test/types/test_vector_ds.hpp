@@ -6,16 +6,16 @@
 
 #include "types/vector_ds.hpp"
 
-int ITEM_COUNTER = 0;
+int VDS_ITEM_COUNTER = 0;
 
 class Item {
 public:
     Item() : Item(-1) {}
     Item(const int& val) : value(val) {
-        id = ITEM_COUNTER;
-        ++ITEM_COUNTER;
+        id = VDS_ITEM_COUNTER;
+        ++VDS_ITEM_COUNTER;
 
-        std::cout << "Item() #" << id << ": " << value << std::endl;
+//        std::cout << "Item() #" << id << ": " << value << std::endl;
     }
 
     Item(const Item& other) : Item(other.value) {
@@ -23,13 +23,13 @@ public:
     }
 
     ~Item() {
-        std::cout << "Destruct Item #" << id << ", value = " << value <<
-                     std::endl;
+//        std::cout << "Destruct Item #" << id << ", value = " << value <<
+//                     std::endl;
     }
 
     Item& operator=(const Item& other)
     {
-        std::cout << "In copy assignment operator" << std::endl;
+//        std::cout << "In copy assignment operator" << std::endl;
         this->value = other.value;
         return (*this);
     }
@@ -64,6 +64,9 @@ BOOST_AUTO_TEST_CASE(test_vds_create_with_size)
     BOOST_CHECK(0 == vector.at(0));
     BOOST_CHECK(0 == vector.at(1));
     BOOST_CHECK(0 == vector.at(2));
+
+    DS::Vector<int> vectorEmpty(0);
+    BOOST_CHECK(true == vectorEmpty.isEmpty());
 }
 
 BOOST_AUTO_TEST_CASE(test_vds_create_with_size_and_default_value)
@@ -149,106 +152,193 @@ BOOST_AUTO_TEST_CASE(test_vds_prepend)
     BOOST_CHECK(186 == vector.at(2));
 }
 
-/*
 BOOST_AUTO_TEST_CASE(test_vds_insert)
 {
     DS::Vector<unsigned int> vector;
-    list.insert(-100, 1);
-    list.insert(1500, 2);
-    list.insert(0, 3);
-    list.insert(1, 4);
+    vector.insert(0, 0);
+    vector.insert(1, 4);
+    vector.insert(1, 3);
+    vector.insert(10, 5);
+    vector.insert(1, 2);
+    vector.insert(1, 1);
 
-    BOOST_CHECK(3 == vector.at(0));
-    BOOST_CHECK(4 == vector.at(1));
-    BOOST_CHECK(1 == vector.at(2));
-    BOOST_CHECK(2 == vector.at(3));
+    BOOST_CHECK(0 == vector[0]);
+    BOOST_CHECK(1 == vector[1]);
+    BOOST_CHECK(2 == vector[2]);
+    BOOST_CHECK(3 == vector[3]);
+    BOOST_CHECK(4 == vector[4]);
+    BOOST_CHECK(5 == vector[5]);
 }
 
 BOOST_AUTO_TEST_CASE(test_vds_remove)
 {
     DS::Vector<int> vector;
-    list.remove(0);
-    list.addLast(-100);
-    list.addLast(1500);
-    list.addLast(0);
-    list.addLast(1);
+    vector.remove(0);
 
-    list.remove(-100);
-    list.remove(1501);
+    vector.pushBack(-100);
+    vector.pushBack(0);
+    vector.pushBack(1500);
+    vector.pushBack(0);
+    vector.pushBack(0);
+    vector.pushBack(1);
 
-    list.remove(1);
+    vector.remove(123);
+
+    vector.remove(1);
+    BOOST_CHECK(5 == vector.size());
+    BOOST_CHECK(-100 == vector.at(0));
+    BOOST_CHECK(0 == vector.at(1));
+    BOOST_CHECK(1500 == vector.at(2));
+    BOOST_CHECK(0 == vector.at(3));
+    BOOST_CHECK(0 == vector.at(4));
+
+    vector.remove(0);
+    BOOST_CHECK(2 == vector.size());
+    BOOST_CHECK(-100 == vector.at(0));
+    BOOST_CHECK(1500 == vector.at(1));
+
+    vector.remove(-100);
+    BOOST_CHECK(1 == vector.size());
+    BOOST_CHECK(1500 == vector.at(0));
+
+    vector.remove(1500);
+    BOOST_CHECK(0 == vector.size());
+
+    vector.pushBack(100);
+    vector.pushBack(1010);
+    BOOST_CHECK(2 == vector.size());
+    BOOST_CHECK(100 == vector.at(0));
+    BOOST_CHECK(1010 == vector.at(1));
+}
+
+BOOST_AUTO_TEST_CASE(test_vds_pop_elements)
+{
+    DS::Vector<Item> vector;
+
+    BOOST_CHECK_THROW(vector.popBack(), std::out_of_range);
+
+    vector.pushBack(1);
+    vector.pushBack(2);
+    vector.pushBack(3);
+    vector.pushBack(4);
+
+    BOOST_CHECK(4 == vector.size());
+
+    vector.popBack();
+    vector.popBack();
+
+    BOOST_CHECK(2 == vector.size());
+    BOOST_CHECK(1 == vector[0]);
+    BOOST_CHECK(2 == vector[1]);
+
+    vector.popBack();
+    vector.popBack();
+    BOOST_CHECK(0 == vector.size());
+
+    BOOST_CHECK_THROW(vector.popBack(), std::out_of_range);
+}
+
+BOOST_AUTO_TEST_CASE(test_vds_find_element)
+{
+    DS::Vector<Item> vector(3);
+
+    size_t itemIndex = 0;
+    BOOST_CHECK(false == vector.find(Item(0), itemIndex));
+    BOOST_CHECK(0 == itemIndex);
+
+    vector.pushBack(-100);
+    vector.pushBack(0);
+    vector.pushBack(1500);
+    vector.pushBack(0);
+    vector.pushBack(0);
+    vector.pushBack(1);
+
+    BOOST_CHECK(true == vector.find(Item(-100), itemIndex));
+    BOOST_CHECK(3 == itemIndex);
+
+    BOOST_CHECK(true == vector.find(Item(0), itemIndex));
+    BOOST_CHECK(4 == itemIndex);
+
+    BOOST_CHECK(true == vector.find(Item(1), itemIndex));
+    BOOST_CHECK(8 == itemIndex);
+
+    BOOST_CHECK(false == vector.find(Item(20), itemIndex));
+}
+
+BOOST_AUTO_TEST_CASE(test_vds_equality)
+{
+    DS::Vector<int> vector;
+    vector.pushBack(-100);
+    vector.pushBack(0);
+    vector.pushBack(1500);
+
+    DS::Vector<int> vectorEqual;
+    vectorEqual.pushBack(-100);
+    vectorEqual.pushBack(0);
+    vectorEqual.pushBack(1500);
+
+    BOOST_CHECK(vector == vectorEqual);
+
+    DS::Vector<int> vectorNESameSize;
+    vectorNESameSize.pushBack(-100);
+    vectorNESameSize.pushBack(-100);
+    vectorNESameSize.pushBack(-100);
+
+    BOOST_CHECK(false == (vector == vectorNESameSize));
+
+    DS::Vector<int> vectorNEDiffSize(0);
+    BOOST_CHECK(false == (vector == vectorNEDiffSize));
+}
+
+BOOST_AUTO_TEST_CASE(test_vds_copy_constructor)
+{
+    DS::Vector<int> vector;
+    vector.pushBack(-100);
+    vector.pushBack(0);
+    vector.pushBack(1500);
+
+    {
+        DS::Vector<int> vectorCopy(vector);
+        BOOST_CHECK(vector == vectorCopy);
+    }
+
     BOOST_CHECK(3 == vector.size());
     BOOST_CHECK(-100 == vector.at(0));
     BOOST_CHECK(0 == vector.at(1));
-    BOOST_CHECK(1 == vector.at(2));
+    BOOST_CHECK(1500 == vector.at(2));
 
-    list.remove(2);
-    BOOST_CHECK(2 == vector.size());
+    DS::Vector<int> vectorEmpty(0);
+    DS::Vector<int> vectorEmptyCopy(vectorEmpty);
+    BOOST_CHECK(vectorEmpty == vectorEmptyCopy);
+}
+
+BOOST_AUTO_TEST_CASE(test_vds_copy_assign_operator)
+{
+    DS::Vector<int> vector;
+    vector.pushBack(-100);
+    vector.pushBack(0);
+    vector.pushBack(1500);
+
+    // Try to assign to itself
+    vector = vector;
+
+    {
+        DS::Vector<int> vectorCopy(5, 16);
+        BOOST_CHECK(false == (vector == vectorCopy));
+
+        vectorCopy = vector;
+        BOOST_CHECK(vector == vectorCopy);
+    }
+
+    BOOST_CHECK(3 == vector.size());
     BOOST_CHECK(-100 == vector.at(0));
     BOOST_CHECK(0 == vector.at(1));
+    BOOST_CHECK(1500 == vector.at(2));
 
-    list.remove(0);
-    BOOST_CHECK(1 == vector.size());
-    BOOST_CHECK(0 == vector.at(0));
-
-    list.remove(0);
+    DS::Vector<int> vectorEmpty(0);
+    vector = vectorEmpty;
     BOOST_CHECK(0 == vector.size());
-    BOOST_CHECK(true == vector.isEmpty());
+    BOOST_CHECK(0 == vector.capacity());
 }
-
-BOOST_AUTO_TEST_CASE(test_vds_remove_first)
-{
-    DS::Vector<unsigned int> vector;
-    list.addLast(1);
-    list.addLast(2);
-    list.addLast(3);
-    list.addLast(4);
-
-    list.removeFirst();
-    BOOST_CHECK(3 == vector.size());
-    BOOST_CHECK(2 == vector.at(0));
-    BOOST_CHECK(3 == vector.at(1));
-    BOOST_CHECK(4 == vector.at(2));
-
-    list.removeFirst();
-    BOOST_CHECK(2 == vector.size());
-    BOOST_CHECK(3 == vector.at(0));
-    BOOST_CHECK(4 == vector.at(1));
-
-    list.removeFirst();
-    BOOST_CHECK(1 == vector.size());
-    BOOST_CHECK(4 == vector.at(0));
-
-    list.removeFirst();
-    BOOST_CHECK(0 == vector.size());
-}
-
-BOOST_AUTO_TEST_CASE(test_vds_remove_last)
-{
-    DS::Vector<unsigned int> vector;
-    list.addLast(1);
-    list.addLast(2);
-    list.addLast(3);
-    list.addLast(4);
-
-    list.removeLast();
-    BOOST_CHECK(3 == vector.size());
-    BOOST_CHECK(1 == vector.at(0));
-    BOOST_CHECK(2 == vector.at(1));
-    BOOST_CHECK(3 == vector.at(2));
-
-    list.removeLast();
-    BOOST_CHECK(2 == vector.size());
-    BOOST_CHECK(1 == vector.at(0));
-    BOOST_CHECK(2 == vector.at(1));
-
-    list.removeLast();
-    BOOST_CHECK(1 == vector.size());
-    BOOST_CHECK(1 == vector.at(0));
-
-    list.removeLast();
-    BOOST_CHECK(0 == vector.size());
-}
-*/
 
 #endif // TEST_VECTOR_DS_HPP
