@@ -41,7 +41,7 @@ public:
     void prepend(const T& item);
     void insert(const size_t& index, const T& item);
 
-    T& pop();
+    void popBack();
     void deleteItem(const size_t& index);
     void remove(const T& item);
 
@@ -69,6 +69,8 @@ Vector<T>::Vector(const size_t& size) : Vector(size, T()) {
 
 template <typename T>
 Vector<T>::Vector(const size_t& size, const T& defaultValue) {
+    m_array = nullptr;
+
     if (size > 0) {
         // Create array of pointers
         m_array = new T*[size];
@@ -87,7 +89,7 @@ Vector<T>::~Vector() {
 }
 
 template <typename T>
-Vector<T>::Vector(const Vector<T>& other) {
+Vector<T>::Vector(const Vector<T>& other) : m_array(nullptr) {
     if (other.capacity() > 0) {
         // Create array of the same capacity as others' capacity and
         // fill it with nullptrs
@@ -107,7 +109,7 @@ Vector<T>::Vector(const Vector<T>& other) {
 template <typename T>
 Vector<T>& Vector<T>::operator=(const Vector<T>& other) {
     if (*this == other) {
-        return;
+        return *this;
     }
 
     if (other.capacity() > 0) {
@@ -347,19 +349,12 @@ void Vector<T>::insert(const size_t& index, const T& item) {
 }
 
 template <typename T>
-T& Vector<T>::pop() {
+void Vector<T>::popBack() {
     if (isEmpty()) {
         throw std::out_of_range("Vector is empty");
     }
 
-    T* item = m_array[m_size - 1];
-    m_array[m_size - 1] = nullptr;
-    --m_size;
-
-    T itemToReturn(item);
-    delete item;
-
-    return itemToReturn;
+    deleteItem(m_size - 1);
 }
 
 template <typename T>
@@ -367,6 +362,9 @@ void Vector<T>::deleteItem(const size_t& index) {
     if (index >= m_size) {
         throw std::out_of_range("Invalid index");
     }
+
+    T* itemToDelete = m_array[index];
+    m_array[index] = nullptr;
 
     // If we remove element somewhere in the middle of the array, then we
     // need to move all elements from the right of this element to one position
@@ -376,8 +374,7 @@ void Vector<T>::deleteItem(const size_t& index) {
         m_array[toInd] = m_array[fromInd];
     }
 
-    T* itemToDelete = m_array[m_size -1];
-    m_array[m_size -1] = nullptr;
+    m_array[m_size - 1] = nullptr;
     --m_size;
 
     delete itemToDelete;
