@@ -232,7 +232,9 @@ void Vector<T>::recreate(const size_t& newSize, const size_t& newCapacity) {
     size_t minSize = std::min(m_size, newSize);
 
     // Copy items from original array to new array
-    std::copy_n(m_array, minSize, newArray);
+    for (size_t i = 0; i < minSize; ++i) {
+        newArray[i] = new T(*(m_array[i]));
+    }
 
     // Change pointers: m_array should point to new array. So if we later get
     // exception, m_array will point to valid memory (see Effective C++ by
