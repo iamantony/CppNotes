@@ -21,35 +21,42 @@ namespace RDIA {
 class Solution {
 public:
     size_t removeDuplicates(std::vector<int>& nums) {
-        if (nums.empty()) {
-            return 0;
+        if (nums.size() < 2) {
+            return nums.size();
         }
 
-        size_t size = nums.size();
-        size_t currentPos = 0;
+        int size = static_cast<int>(nums.size());
+        // Use raw pointer to array data to avoid compiler errors
+        int* dataPtr = nums.data();
+
+        int currentPos = 0;
         while(currentPos < size) {
-            const int valueToSearch = nums[currentPos];
-
-            size_t nextElemPos = currentPos + 1;
-            while ( nextElemPos < size &&
-                    nums[nextElemPos] == valueToSearch) {
-                ++nextElemPos;
+            // Find position of next different element
+            int diffElemPos = currentPos + 1;
+            while ( diffElemPos < size &&
+                    dataPtr[diffElemPos] == dataPtr[currentPos]) {
+                ++diffElemPos;
             }
 
-            if (nextElemPos >= size) {
-                break;
+            // If next different element is on the next position, just move
+            // to it
+            if (diffElemPos - currentPos <= 1) {
+                currentPos += 1;
+                continue;
             }
 
-            for (size_t toInd = currentPos + 1, fromInd = nextElemPos;
-                 toInd < nextElemPos; ++ toInd, ++fromInd) {
-                nums[toInd] = nums[fromInd];
-                --size;
+            // Eliminate duplicate elements by moving tail elements to next
+            // position of currentPos
+            for (int toInd = currentPos + 1, fromInd = diffElemPos;
+                 fromInd < size; ++toInd, ++fromInd) {
+                dataPtr[toInd] = dataPtr[fromInd];
             }
 
+            size = size - (diffElemPos - currentPos - 1);
             ++currentPos;
         }
 
-        return size;
+        return static_cast<size_t>(size);
     }
 };
 

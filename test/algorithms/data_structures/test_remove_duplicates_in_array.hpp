@@ -54,4 +54,15 @@ BOOST_AUTO_TEST_CASE(test_rdia_many_duplicates) {
     BOOST_CHECK(expected == v);
 }
 
+BOOST_AUTO_TEST_CASE(test_rdia_same_element) {
+    std::vector<int> v = {0, 0, 0, 0, 0};
+    std::vector<int> expected = {0};
+
+    RDIA::Solution solution;
+    BOOST_CHECK(expected.size() == solution.removeDuplicates(v));
+
+    v.resize(expected.size());
+    BOOST_CHECK(expected == v);
+}
+
 #endif // TEST_REMOVE_DUPLICATES_IN_ARRAY_HPP
