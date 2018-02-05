@@ -167,6 +167,27 @@ void DivisionBy2()
     std::cout << std::endl;
 }
 
+void Negate() {
+    std::cout << "Negate integer" << std::endl;
+
+    auto negateValue = [](const int& originalValue) {
+        int result = originalValue;
+        if (originalValue > 0) {
+            result -= 1;
+            result = ~result; // flip all bits
+        }
+        else if (originalValue < 0) {
+            result = ~result; // flip all bits
+            result += 1;
+        }
+
+        return result;
+    };
+
+    std::cout << "Negate " << 45 << ": " << negateValue(45) << std::endl;
+    std::cout << "Negate " << -36 << ": " << negateValue(-36) << std::endl;
+}
+
 void StartBM()
 {
     Representation();
