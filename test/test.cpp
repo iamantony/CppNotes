@@ -32,6 +32,8 @@
 #include "algorithms/math/test_valid_perfect_square.hpp"
 #include "algorithms/math/test_num_is_sum_of_square_numbers.hpp"
 
+#include "algorithms/other/test_buy_sell_stock.hpp"
+
 #include "algorithms/search/test_binary_search.hpp"
 #include "algorithms/search/test_find_two_elements.hpp"
 #include "algorithms/search/test_jump_search.hpp"
