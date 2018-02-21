@@ -12,8 +12,6 @@
 // the same time (ie, you must sell the stock before you buy again).
 
 #include <vector>
-#include <algorithm>
-#include <iostream>
 
 namespace BuyAndSellStock {
 
@@ -21,28 +19,9 @@ class Solution {
 public:
     int maxProfit(std::vector<int>& prices) {
         int profit = 0;
-        if (prices.size() < 2) {
-            return profit;
-        }
-
-        auto dayIter = std::min_element(prices.begin(), prices.end());
-        auto maxPriceIter = std::max_element(prices.begin(), prices.end());
-        if (std::distance(dayIter, maxPriceIter) < 0) {
-            dayIter = std::min_element(prices.begin(), maxPriceIter);
-        }
-
-        while (dayIter != prices.end()) {
-            maxPriceIter = std::max_element(dayIter + 1, prices.end());
-            if (maxPriceIter == prices.end()) {
-                break;
-            }
-
-            if (*maxPriceIter > *dayIter) {
-                profit += *maxPriceIter - *dayIter;
-                dayIter = std::min_element(maxPriceIter + 1, prices.end());
-            }
-            else {
-                ++dayIter;
+        for (size_t day = 1; day < prices.size(); ++day) {
+            if (prices[day] > prices[day - 1]) {
+                profit += prices[day] - prices[day - 1];
             }
         }
 
