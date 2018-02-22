@@ -36,6 +36,7 @@
 #include "algorithms/math/test_valid_perfect_square.hpp"
 #include "algorithms/math/test_num_is_sum_of_square_numbers.hpp"
 #include "algorithms/math/test_plus_one_to_number_as_array.hpp"
+#include "algorithms/math/test_reverse_integer.hpp"
 
 #include "algorithms/other/test_buy_sell_stock.hpp"
 #include "algorithms/other/test_valid_sudoku.hpp"
