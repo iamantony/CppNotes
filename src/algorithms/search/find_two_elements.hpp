@@ -133,8 +133,8 @@ public:
                 size_t j = umap[target - nums[i]];
 
                 std::vector<int> result;
-                result.push_back(j);
-                result.push_back(i);
+                result.push_back(static_cast<int>(j));
+                result.push_back(static_cast<int>(i));
                 return result;
             }
             else
