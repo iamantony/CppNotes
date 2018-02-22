@@ -5,6 +5,7 @@
 // null-terminated string
 
 #include <cstring>
+#include <string>
 
 void ReverseString(char* str)
 {
@@ -22,6 +23,33 @@ void ReverseString(char* str)
         *i++ = *j;
         *j-- = buff;
     }
+}
+
+// https://leetcode.com/problems/reverse-string/description/
+// Write a function that takes a string as input and returns the string reversed.
+// Example:
+// Given s = "hello", return "olleh".
+
+namespace ReverseStr {
+
+class Solution {
+public:
+    std::string reverseString(std::string s) {
+        if (s.size() < 2) {
+            return s;
+        }
+
+        size_t i = 0;
+        size_t j = s.size() - 1;
+        while(i < j)
+        {
+            std::swap(s[i++], s[j--]);
+        }
+
+        return s;
+    }
+};
+
 }
 
 #endif /* STR_REVERSE_HPP_ */
