@@ -10,6 +10,7 @@
 #include "algorithms/data_structures/test_remove_duplicates_in_array.hpp"
 #include "algorithms/data_structures/test_rotate_array.hpp"
 #include "algorithms/data_structures/test_duplicates_in_array.hpp"
+#include "algorithms/data_structures/test_intersection_of_two_arrays.hpp"
 
 #include "algorithms/math/test_add_two_numbers_as_linked_list.hpp"
 #include "algorithms/math/test_basic_matrix_multiplication.hpp"
