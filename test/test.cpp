@@ -38,6 +38,7 @@
 #include "algorithms/math/test_plus_one_to_number_as_array.hpp"
 
 #include "algorithms/other/test_buy_sell_stock.hpp"
+#include "algorithms/other/test_valid_sudoku.hpp"
 
 #include "algorithms/search/test_binary_search.hpp"
 #include "algorithms/search/test_find_two_elements.hpp"
