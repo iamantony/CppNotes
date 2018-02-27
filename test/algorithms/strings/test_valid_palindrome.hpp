@@ -18,7 +18,6 @@ BOOST_AUTO_TEST_CASE(test_valpal_simple_strings)
     BOOST_CHECK(true == solution.isPalindrome("a"));
     BOOST_CHECK(true == solution.isPalindrome("aBa"));
     BOOST_CHECK(true == solution.isPalindrome("abba"));
-    BOOST_CHECK(true == solution.isPalindrome(" a1,!"));
     BOOST_CHECK(true == solution.isPalindrome("a. "));
     BOOST_CHECK(true == solution.isPalindrome(".,"));
 }
@@ -29,6 +28,7 @@ BOOST_AUTO_TEST_CASE(test_valpal_not_palindrome)
     BOOST_CHECK(false == solution.isPalindrome("race a car"));
     BOOST_CHECK(false == solution.isPalindrome("abac"));
     BOOST_CHECK(false == solution.isPalindrome("0P"));
+    BOOST_CHECK(false == solution.isPalindrome(" a1,!"));
 }
 
 BOOST_AUTO_TEST_CASE(test_valpal_complex_strings)
