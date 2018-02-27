@@ -70,6 +70,7 @@
 #include "algorithms/strings/test_sum_of_binary_strings.hpp"
 #include "algorithms/strings/test_find_unique_char_in_str.hpp"
 #include "algorithms/strings/test_valid_palindrome.hpp"
+#include "algorithms/strings/test_str_to_integer.hpp"
 
 #include "files/test_read_last_lines.hpp"
 
