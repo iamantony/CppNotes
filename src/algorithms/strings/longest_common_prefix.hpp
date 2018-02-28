@@ -18,23 +18,16 @@ public:
             return std::string();
         }
 
-        if (strs[0].empty()) {
-            return std::string();
-        }
-
-        std::string prefix;
-        std::copy_n(strs[0].begin(), 1, prefix.begin());
-        while (prefix.size() < strs[0].size()) {
-            for (size_t i = 1; i < strs.size(); ++i) {
-                if () {
-
+        for (size_t pos = 0; pos < strs[0].size() ; ++pos) {
+            char c = strs[0][pos];
+            for (size_t sNum = 1; sNum < strs.size(); ++sNum) {
+                if (pos == strs[sNum].size() || strs[sNum][pos] != c) {
+                    return strs[0].substr(0, pos);
                 }
             }
-
-            std::copy_n(strs[0].begin(), prefix.size() + 1, prefix.begin());
         }
-
-        return prefix;
+        
+        return strs[0];
     }
 };
 
