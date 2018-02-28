@@ -3,52 +3,90 @@
 
 #include <string>
 
-// Assume you have a method isSubstring which checks if one word is a
-// substring of another. Given two strings, s1 and s2, write code to check
-// if s2 is a rotation of s1 using only one call to isSubstring (e.g.,
-// "waterbottLe" is a rotation of "erbottLewat").
+namespace StrSubstring {
 
-bool isSubString(const std::string& source, const std::string& str)
-{
-    if (source.empty() || str.empty() || source.size() < str.size())
-    {
-        return false;
-    }
-    else if (source.size() == str.size())
-    {
-        return source == str;
-    }
+// https://leetcode.com/problems/implement-strstr/description/
 
-    size_t strPos = 0;
-    for(size_t i = 0; i < source.size(); ++i)
-    {
-        if (source[i] == str[strPos])
+// Implement strStr(). Return the index of the first occurrence of needle in
+// haystack, or -1 if needle is not part of haystack.
+
+// Example 1:
+// Input: haystack = "hello", needle = "ll"
+// Output: 2
+
+// Example 2:
+// Input: haystack = "aaaaa", needle = "bba"
+// Output: -1
+
+class Solution {
+public:
+    int strStr(std::string haystack, std::string needle) {
+        // needle should be less or equal in size with haystack to be
+        // a substring
+        if (haystack.size() < needle.size())
         {
-            ++strPos;
-            if (strPos == str.size())
+            return -1;
+        }
+        else if (haystack.size() == needle.size())
+        {
+            // quick check if size of strings are equal
+            return (haystack == needle) ? 0 : -1;
+        }
+        else if (needle.empty()) {
+            // empty string is substring for every string
+            return 0;
+        }
+
+        size_t needlePos = 0;
+        int ssStartPos = -1;
+        for(size_t i = 0; i < haystack.size(); ++i)
+        {
+            if (haystack[i] == needle[needlePos])
             {
-                return true;
+                // remember position where substring start
+                if (needlePos == 0) {
+                    ssStartPos = static_cast<int>(i);
+                }
+
+                ++needlePos;
+
+                // check if we compare all symbols in needle string
+                if (needlePos == needle.size())
+                {
+                    return ssStartPos;
+                }
+            }
+            else
+            {
+                // if previous susbstring match was false, return back to
+                // position where we thought it would start
+                if (needlePos > 0) {
+                    i = static_cast<size_t>(ssStartPos);
+                    needlePos = 0;
+                }
             }
         }
-        else
-        {
-            strPos = 0;
-        }
+
+        return -1;
     }
 
-    return false;
-}
-
-bool isStrRotationOfOtherStr(const std::string& original,
-        const std::string& str)
-{
-    if (original.empty() || original.size() != str.size())
+    // Assume you have a method isSubstring which checks if one word is a
+    // substring of another. Given two strings, s1 and s2, write code to check
+    // if s2 is a rotation of s1 using only one call to isSubstring (e.g.,
+    // "waterbottLe" is a rotation of "erbottLewat").
+    bool isStrRotationOfOtherStr(const std::string& original,
+            const std::string& str)
     {
-        return false;
-    }
+        if (original.empty() || original.size() != str.size())
+        {
+            return false;
+        }
 
-    std::string sourceStr = original + original;
-    return isSubString(sourceStr, str);
+        std::string sourceStr = original + original;
+        return strStr(sourceStr, str) > 0;
+    }
+};
+
 }
 
 #endif /* STR_IS_SUBSTRING_HPP_ */
