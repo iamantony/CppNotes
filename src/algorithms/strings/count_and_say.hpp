@@ -65,7 +65,6 @@ private:
                 ++quantity;
             }
 
-//            char quantitySymbol = '0' + static_cast<int>(quantity);
             result += std::to_string(quantity);
             result.push_back(number);
         }
