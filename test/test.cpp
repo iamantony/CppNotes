@@ -71,6 +71,7 @@
 #include "algorithms/strings/test_find_unique_char_in_str.hpp"
 #include "algorithms/strings/test_valid_palindrome.hpp"
 #include "algorithms/strings/test_str_to_integer.hpp"
+#include "algorithms/strings/test_count_and_say.hpp"
 
 #include "files/test_read_last_lines.hpp"
 
