@@ -13,6 +13,7 @@
 #include "algorithms/data_structures/test_intersection_of_two_arrays.hpp"
 #include "algorithms/data_structures/test_move_zeroes_to_the_end_of_array.hpp"
 #include "algorithms/data_structures/test_palindrome_sll.hpp"
+#include "algorithms/data_structures/test_cyclic_sll.hpp"
 
 #include "algorithms/math/test_add_two_numbers_as_linked_list.hpp"
 #include "algorithms/math/test_basic_matrix_multiplication.hpp"
