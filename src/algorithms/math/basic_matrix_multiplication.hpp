@@ -1,7 +1,7 @@
 #ifndef BASIC_MATRIX_MULTIPLICATION_HPP_
 #define BASIC_MATRIX_MULTIPLICATION_HPP_
 
-#include "types/matrix.hpp"
+#include "types/ds/matrix.hpp"
 
 // Basic algorithm for matrix multiplication
 // https://en.wikipedia.org/wiki/Matrix_multiplication

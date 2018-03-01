@@ -3,7 +3,6 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "types/matrix.hpp"
 #include "algorithms/math/basic_matrix_multiplication.hpp"
 
 BOOST_AUTO_TEST_CASE(test_bmm_empty_matrices)
