@@ -8,6 +8,7 @@
 #include "algorithms/data_structures/array/test_move_zeroes_to_the_end_of_array.hpp"
 
 #include "algorithms/data_structures/bt/test_max_depth_of_bt.hpp"
+#include "algorithms/data_structures/bt/test_validate_bt.hpp"
 
 #include "algorithms/data_structures/sll/test_palindrome_sll.hpp"
 #include "algorithms/data_structures/sll/test_cyclic_sll.hpp"
