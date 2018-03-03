@@ -35,8 +35,8 @@ BOOST_AUTO_TEST_CASE(test_ll_add_elements)
 
     BOOST_CHECK(false == list.isEmpty());
     BOOST_CHECK(4 == list.size());
-    BOOST_CHECK(1 == list.first());
-    BOOST_CHECK(4 == list.last());
+    BOOST_CHECK(1 == list.front());
+    BOOST_CHECK(4 == list.back());
 }
 
 BOOST_AUTO_TEST_CASE(test_ll_clear)
@@ -58,15 +58,15 @@ BOOST_AUTO_TEST_CASE(test_ll_first_last)
 {
     DS::LinkedList<unsigned int> list;
 
-    BOOST_CHECK_THROW(list.first(), std::length_error);
-    BOOST_CHECK_THROW(list.last(), std::length_error);
+    BOOST_CHECK_THROW(list.front(), std::length_error);
+    BOOST_CHECK_THROW(list.back(), std::length_error);
 
     list.addLast(186);
     list.addLast(187);
     list.addLast(28786);
 
-    BOOST_CHECK(186 == list.first());
-    BOOST_CHECK(28786 == list.last());
+    BOOST_CHECK(186 == list.front());
+    BOOST_CHECK(28786 == list.back());
 }
 
 BOOST_AUTO_TEST_CASE(test_ll_at)
@@ -95,9 +95,9 @@ BOOST_AUTO_TEST_CASE(test_ll_add_first)
     list.addFirst(28786);
 
     BOOST_CHECK(3 == list.size());
-    BOOST_CHECK(28786 == list.first());
+    BOOST_CHECK(28786 == list.front());
     BOOST_CHECK(186 == list.at(1));
-    BOOST_CHECK(187 == list.last());
+    BOOST_CHECK(187 == list.back());
 }
 
 BOOST_AUTO_TEST_CASE(test_ll_add_last)
@@ -106,8 +106,8 @@ BOOST_AUTO_TEST_CASE(test_ll_add_last)
     list.addLast(186);
     list.addLast(187);
 
-    BOOST_CHECK(186 == list.first());
-    BOOST_CHECK(187 == list.last());
+    BOOST_CHECK(186 == list.front());
+    BOOST_CHECK(187 == list.back());
 }
 
 BOOST_AUTO_TEST_CASE(test_ll_insert)
