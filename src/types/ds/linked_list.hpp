@@ -15,7 +15,7 @@ private:
     class Node {
     public:
         Node(const T& value);
-        Node(const T& value, Node* next);
+        Node(const T& value, Node* next = nullptr);
         ~Node();
 
         Node(const LinkedList<T>::Node& other) = delete;
@@ -29,7 +29,7 @@ private:
 
     private:
         T m_value;
-        Node* m_next;
+        Node* m_next = nullptr;
     };
 
     int m_size = 0;
@@ -69,7 +69,8 @@ public:
 
 private:
     void clearLast();
-    Node* searchNode(const int& index) const;
+    Node* searchNode(const size_t& index) const;
+    bool checkIndex(const size_t& index) const;
 };
 
 template<typename T>
@@ -110,51 +111,41 @@ LinkedList<T>::LinkedList(const size_t &listSize, const T& value) {
 }
 
 template<typename T>
-LinkedList(const std::vector<T>& values);
+LinkedList<T>::LinkedList(const std::vector<T>& values) {
+    for (const T& value : values) {
+        pushBack(value);
+    }
+}
 
 template<typename T>
-LinkedList<T>::~LinkedList()
-{
+LinkedList<T>::~LinkedList() {
     clear();
 }
 
 template<typename T>
-T LinkedList<T>::front() const
-{
-    if (isEmpty())
-    {
-        throw std::length_error("Linked list is empty");
-    }
-
-    return (m_root->getValue());
+size_t LinkedList<T>::size() const {
+    return (m_size);
 }
 
 template<typename T>
-T LinkedList<T>::back() const
-{
-    if (isEmpty())
-    {
-        throw std::length_error("Linked list is empty");
-    }
-
-    return (m_last->getValue());
+bool LinkedList<T>::isEmpty() const {
+    return (0 == m_size);
 }
 
 template<typename T>
-T LinkedList<T>::at(const size_t &index) const
-{
-    if (isEmpty())
-    {
-        throw std::length_error("Linked list is empty");
-    }
-    else if (index < 0 || size() <= index)
-    {
-        throw std::runtime_error("Invalid index");
-    }
+T LinkedList<T>::front() const {
+    return at(0);
+}
 
+template<typename T>
+T LinkedList<T>::back() const {
+    return at(m_size - 1);
+}
+
+template<typename T>
+T LinkedList<T>::at(const size_t &index) const {
     Node* node = searchNode(index);
-    if (nullptr == node)
-    {
+    if (nullptr == node) {
         throw std::runtime_error("Failed to find node");
     }
 
@@ -162,12 +153,15 @@ T LinkedList<T>::at(const size_t &index) const
 }
 
 template<typename T>
-typename LinkedList<T>::Node* LinkedList<T>::searchNode(const int& index) const
-{
+typename LinkedList<T>::Node* LinkedList<T>::searchNode(
+        const size_t& index) const {
+    if (!checkIndex(index)) {
+        throw std::runtime_error("Invalid index");
+    }
+
     Node* node = m_root;
-    int i = 0;
-    while(i != index)
-    {
+    size_t i = 0;
+    while(i != index) {
         node = node->getNext();
         ++i;
     }
@@ -176,66 +170,75 @@ typename LinkedList<T>::Node* LinkedList<T>::searchNode(const int& index) const
 }
 
 template<typename T>
-void LinkedList<T>::pushFront(const T& value)
-{
-    Node* newNode = new Node(value, nullptr, nullptr);
-    if (isEmpty())
-    {
-        m_root = m_last = newNode;
+bool LinkedList<T>::checkIndex(const size_t& index) const {
+    if (isEmpty()) {
+        throw std::length_error("Linked list is empty");
     }
-    else
-    {
-        m_root->setPrevious(newNode);
+    else if (size() <= index) {
+        throw std::runtime_error("Invalid index");
+    }
+
+    return true;
+}
+
+template<typename T>
+T LinkedList<T>::valueNFromEnd(const size_t& n) const {
+    if (!checkIndex(index)) {
+        throw std::runtime_error("Invalid index");
+    }
+
+    Node* forward = m_root;
+    size_t counter = 0;
+    while(counter < n) {
+        forward = forward->getNext();
+        if (forward == nullptr) {
+            throw std::runtime_error("Linked list is too small");
+        }
+
+        ++counter;
+    }
+
+    Node* secondary = m_root;
+    while(true) {
+        if (forward->getNext() == nullptr) {
+            break;
+        }
+
+        forward = forward->getNext();
+        secondary = secondary->getNext();
+    }
+
+    return secondary->getValue();
+}
+
+template<typename T>
+void LinkedList<T>::pushFront(const T& value) {
+    insert(0, value);
+}
+
+template<typename T>
+void LinkedList<T>::pushBack(const T& value) {
+    insert(m_size, value);
+}
+
+template<typename T>
+void LinkedList<T>::insert(const size_t &index, const T& value) {
+    Node* newNode = new Node(value);
+
+    if (isEmpty() || index == 0) {
         newNode->setNext(m_root);
         m_root = newNode;
     }
+    else {
+        Node* node = searchNode(index - 1);
+        if (nullptr == node) {
+            throw std::runtime_error("Failed to find node");
+        }
 
-    ++m_size;
-}
-
-template<typename T>
-void LinkedList<T>::pushBack(const T& value)
-{
-    Node* newNode = new Node(value, nullptr, nullptr);
-    if (isEmpty())
-    {
-        m_root = m_last = newNode;
-    }
-    else
-    {
-        m_last->setNext(newNode);
-        newNode->setPrevious(m_last);
-        m_last = newNode;
+        newNode->setNext(node->getNext());
+        node->setNext(newNode);
     }
 
-    ++m_size;
-}
-
-template<typename T>
-void LinkedList<T>::insert(const size_t &index, const T& value)
-{
-    if (isEmpty() || index <= 0)
-    {
-        pushFront(value);
-        return;
-    }
-
-    if (size() <= index)
-    {
-        pushBack(value);
-        return;
-    }
-
-    Node* node = searchNode(index);
-    if (nullptr == node)
-    {
-        throw std::runtime_error("Failed to find node");
-    }
-
-    Node* prevNode = node->getPrevious();
-    Node* newNode = new Node(value, prevNode, node);
-    prevNode->setNext(newNode);
-    node->setPrevious(newNode);
     ++m_size;
 }
 
@@ -350,18 +353,6 @@ void LinkedList<T>::clear()
     {
         removeLast();
     }
-}
-
-template<typename T>
-size_t LinkedList<T>::size() const
-{
-    return (m_size);
-}
-
-template<typename T>
-bool LinkedList<T>::isEmpty() const
-{
-    return (0 == m_size);
 }
 
 }
