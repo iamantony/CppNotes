@@ -14,7 +14,6 @@ private:
 
     class Node {
     public:
-        Node(const T& value);
         Node(const T& value, Node* next = nullptr);
         ~Node();
 
@@ -32,7 +31,7 @@ private:
         Node* m_next = nullptr;
     };
 
-    int m_size = 0;
+    size_t m_size = 0;
     Node* m_root = nullptr;
 
 public:
@@ -61,20 +60,14 @@ public:
     void popBack();
     void deleteItem(const size_t& index);
     void remove(const T& value);
-    void removeFirst();
-    void removeLast();
     void clear();
 
     void reverse();
 
 private:
-    void clearLast();
     Node* searchNode(const size_t& index) const;
     bool checkIndex(const size_t& index) const;
 };
-
-template<typename T>
-LinkedList<T>::Node::Node(const T& value) : Node(value, nullptr) { }
 
 template<typename T>
 LinkedList<T>::Node::Node(const T& value, Node* next) :
@@ -144,29 +137,14 @@ T LinkedList<T>::back() const {
 
 template<typename T>
 T LinkedList<T>::at(const size_t &index) const {
+    checkIndex(index);
+
     Node* node = searchNode(index);
     if (nullptr == node) {
         throw std::runtime_error("Failed to find node");
     }
 
     return (node->getValue());
-}
-
-template<typename T>
-typename LinkedList<T>::Node* LinkedList<T>::searchNode(
-        const size_t& index) const {
-    if (!checkIndex(index)) {
-        throw std::runtime_error("Invalid index");
-    }
-
-    Node* node = m_root;
-    size_t i = 0;
-    while(i != index) {
-        node = node->getNext();
-        ++i;
-    }
-
-    return (node);
 }
 
 template<typename T>
@@ -182,10 +160,32 @@ bool LinkedList<T>::checkIndex(const size_t& index) const {
 }
 
 template<typename T>
-T LinkedList<T>::valueNFromEnd(const size_t& n) const {
-    if (!checkIndex(index)) {
-        throw std::runtime_error("Invalid index");
+typename LinkedList<T>::Node* LinkedList<T>::searchNode(
+        const size_t& index) const {
+    if (isEmpty()) {
+        throw std::length_error("Linked list is empty");
     }
+
+    // If 'index' is bigger than number of elements in linked list, then
+    // return last element
+    size_t realIndex = index;
+    if (size() <= index) {
+        realIndex = size() - 1;
+    }
+
+    Node* node = m_root;
+    size_t i = 0;
+    while(i != realIndex) {
+        node = node->getNext();
+        ++i;
+    }
+
+    return (node);
+}
+
+template<typename T>
+T LinkedList<T>::valueNFromEnd(const size_t& n) const {
+    checkIndex(n);
 
     Node* forward = m_root;
     size_t counter = 0;
@@ -198,6 +198,9 @@ T LinkedList<T>::valueNFromEnd(const size_t& n) const {
         ++counter;
     }
 
+    // Move 'forward' and 'secondary' iterators till 'forward' get to the last
+    // element in the list. At this time 'secondary' will point to
+    // n-from-end node
     Node* secondary = m_root;
     while(true) {
         if (forward->getNext() == nullptr) {
@@ -243,116 +246,106 @@ void LinkedList<T>::insert(const size_t &index, const T& value) {
 }
 
 template<typename T>
-void LinkedList<T>::deleteItem(const size_t &index)
-{
-    if (isEmpty() || index < 0 || size() <= index)
-    {
-        return;
-    }
-
-    if (0 == index)
-    {
-        removeFirst();
-    }
-    else if (index == size() - 1)
-    {
-        removeLast();
-    }
-    else
-    {
-        Node* node = searchNode(index);
-        if (nullptr == node)
-        {
-            throw std::runtime_error("Failed to find node");
-        }
-
-        Node* prevNode = node->getPrevious();
-        Node* nextNode = node->getNext();
-        if (nullptr != prevNode)
-        {
-            prevNode->setNext(nextNode);
-        }
-
-        if (nullptr != nextNode)
-        {
-            nextNode->setPrevious(prevNode);
-        }
-
-        -- m_size;
-        delete node;
-    }
+void LinkedList<T>::popFront() {
+    deleteItem(0);
 }
 
 template<typename T>
-void LinkedList<T>::removeFirst()
-{
-    if (isEmpty())
-    {
+void LinkedList<T>::popBack() {
+    deleteItem(size() - 1);
+}
+
+template<typename T>
+void LinkedList<T>::deleteItem(const size_t &index) {
+    if (isEmpty() || size() <= index) {
         return;
     }
 
-    if (m_root == m_last)
-    {
-        clearLast();
-        return;
+    Node* node = m_root;
+    Node* prev = nullptr;
+    size_t i = 0;
+    while(i != index) {
+        prev = node;
+        node = node->getNext();
+        ++i;
     }
 
-    Node* firstNode = m_root;
-    Node* nextNode = m_root->getNext();
-    if (nullptr == nextNode)
-    {
-        throw std::runtime_error("Invalid next node");
+    // Check if we remove first element
+    if (prev == nullptr) {
+        m_root = node->getNext();
+    }
+    else {
+        prev->setNext(node->getNext());
     }
 
-    nextNode->setPrevious(nullptr);
-    m_root = nextNode;
+    node->setNext(nullptr);
     --m_size;
-    delete firstNode;
-}
 
-template<typename T>
-void LinkedList<T>::removeLast()
-{
-    if (isEmpty())
-    {
-        return;
-    }
-
-    if (m_root == m_last)
-    {
-        clearLast();
-        return;
-    }
-
-    Node* lastNode = m_last;
-    Node* prevNode = m_last->getPrevious();
-    if (nullptr == prevNode)
-    {
-        throw std::runtime_error("Invalid previous node");
-    }
-
-    prevNode->setNext(nullptr);
-    m_last = prevNode;
-    --m_size;
-    delete lastNode;
-}
-
-template<typename T>
-void LinkedList<T>::clearLast()
-{
-    Node* node = m_last;
-    m_root = m_last = nullptr;
-    m_size = 0;
     delete node;
 }
 
 template<typename T>
-void LinkedList<T>::clear()
-{
-    while(false == isEmpty())
-    {
-        removeLast();
+void LinkedList<T>::remove(const T& value) {
+    Node* node = m_root;
+    Node* prev = nullptr;
+
+    const size_t maxSize = size();
+    size_t i = 0;
+    while(i < maxSize) {
+        if (node->getValue() == value)
+        {
+            // Special case when we remove first element
+            if (prev == nullptr) {
+                m_root = node->getNext();
+
+                node->setNext(nullptr);
+                delete node;
+
+                node = m_root;
+            }
+            else {
+                prev->setNext(node->getNext());
+
+                node->setNext(nullptr);
+                delete node;
+
+                node = prev->getNext();
+            }
+
+            --m_size;
+        }
+        else {
+            prev = node;
+            node = node->getNext();
+        }
+
+        ++i;
     }
+}
+
+template<typename T>
+void LinkedList<T>::clear() {
+    while(!isEmpty()) {
+        deleteItem(0);
+    }
+}
+
+template<typename T>
+void LinkedList<T>::reverse() {
+    if (isEmpty()) {
+        return;
+    }
+
+    Node* current = m_root;
+    Node* prev = nullptr;
+    while(nullptr != current) {
+        Node* next = current->getNext();
+        current->setNext(prev);
+        prev = current;
+        current = next;
+    }
+
+    m_root = prev;
 }
 
 }
