@@ -86,7 +86,6 @@
 #include "files/test_read_last_lines.hpp"
 
 #include "types/ds/test_binary_search_tree.hpp"
-#include "types/ds/test_binary_search_tree2.hpp"
 #include "types/ds/test_concurrent_map.hpp"
 #include "types/ds/test_linked_list.hpp"
 #include "types/ds/test_matrix.hpp"
