@@ -47,6 +47,7 @@
 #include "algorithms/math/test_fibonacci_numbers.hpp"
 #include "algorithms/math/test_greates_common_divisor.hpp"
 #include "algorithms/math/test_knapsack_problem.hpp"
+#include "algorithms/math/test_polynomial_multiplication.hpp"
 
 #include "algorithms/other/test_buy_sell_stock.hpp"
 #include "algorithms/other/test_valid_sudoku.hpp"
