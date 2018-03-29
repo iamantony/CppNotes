@@ -4,49 +4,42 @@
 #include <boost/test/unit_test.hpp>
 //#include <boost/filesystem/operations.hpp>
 //#include <boost/filesystem/path.hpp>
-#include <vector>
-#include <limits>
 #include <iostream>
 #include <fstream>
 
 #include "algorithms/sorting/quicksort_research.hpp"
+#include "testcases_for_sorting_algorithms.hpp"
+
+using namespace TCFSortingAlgo;
 
 BOOST_AUTO_TEST_CASE(test_qsr_empty_container)
 {
-    BOOST_CHECK(std::vector<int>() == QuickSort(std::vector<int>(),
+    BOOST_CHECK(std::vector<int>() == QuickSort(EmptyContainer(),
             QuickSortResearch::PivotPosition::FIRST).first);
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_one_value)
 {
-    std::vector<int> container;
-    container.push_back(42);
+    std::vector<int> result = QuickSort(ContainerWithOneValue(),
+                                  QuickSortResearch::PivotPosition::FIRST).first;
 
-    BOOST_CHECK(container == QuickSort(container,
-            QuickSortResearch::PivotPosition::FIRST).first);
+    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_sorted_container)
 {
-    std::vector<int> container = {0, 42, 43, 100};
-    BOOST_CHECK(container == QuickSort(container,
-            QuickSortResearch::PivotPosition::FIRST).first);
+    std::vector<int> result = QuickSort(SortedContainer(),
+                                  QuickSortResearch::PivotPosition::FIRST).first;
+
+    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_min_max_int_values)
 {
-    std::vector<int> container;
-    container.push_back(42);
-    container.push_back(10);
-    container.push_back(1);
-    container.push_back(std::numeric_limits<int>::min());
-    container.push_back(std::numeric_limits<int>::max());
+    std::vector<int> result = QuickSort(ContainerWithMinAndMaxValues(),
+                                  QuickSortResearch::PivotPosition::FIRST).first;
 
-    std::vector<int> result = container;
-    std::sort(result.begin(), result.end());
-
-    BOOST_CHECK(result == QuickSort(container,
-            QuickSortResearch::PivotPosition::FIRST).first);
+    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_unsorted_example)
