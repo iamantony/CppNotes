@@ -10,45 +10,51 @@ using namespace TCFSortingAlgo;
 
 BOOST_AUTO_TEST_CASE(test_gs_empty_container)
 {
-    BOOST_CHECK(std::vector<int>() == GnomeSort(EmptyContainer()));
+    std::vector<int> container = EmptyContainer();
+    GS::GnomeSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_gs_one_value)
 {
-    std::vector<int> result = GnomeSort(ContainerWithOneValue());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithOneValue();
+    GS::GnomeSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_gs_sorted_container)
 {
-    std::vector<int> result = GnomeSort(SortedContainer());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = SortedContainer();
+    GS::GnomeSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_gs_min_max_int_values)
 {
-    std::vector<int> result = GnomeSort(ContainerWithMinAndMaxValues());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithMinAndMaxValues();
+    GS::GnomeSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_gs_positive_negative_values)
 {
-    std::vector<int> result =
-            GnomeSort(ContainerWithPositiveAndNegativeValues());
-
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithPositiveAndNegativeValues();
+    GS::GnomeSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_gs_duplicate_values)
 {
-    std::vector<int> result = GnomeSort(ContainerWithDuplicates());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithDuplicates();
+    GS::GnomeSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_gs_many_values)
 {
-    std::vector<int> result = GnomeSort(ContainerWithManyValues());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithManyValues();
+    GS::GnomeSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 #endif /* TEST_GNOMESORT_H_ */

@@ -7,37 +7,29 @@
 // Best case performance: O(n^2)
 // Worst case performance: O(n)
 // Worst Case Auxiliary Space Complexity: O(1)
-// @input:
-// - container - object of container type
-// @output:
-// - T - sorted container
+
+namespace GS {
+
 template<typename T>
-T GnomeSort(const T& container)
-{
-    if (container.size() <= 1)
-    {
-        return container;
+void GnomeSort(T& container) {
+    if (container.size() < 2) {
+        return;
     }
 
-    T array = container;
     size_t pos = 1;
-    while (pos < array.size())
-    {
-        if (array[pos - 1] <= array[pos])
-        {
+    while (pos < container.size()) {
+        if (container[pos - 1] <= container[pos]) {
             ++pos;
         }
-        else
-        {
-            std::swap(array[pos - 1], array[pos]);
-            if (pos > 1)
-            {
+        else {
+            std::swap(container[pos - 1], container[pos]);
+            if (pos > 1) {
                 --pos;
             }
         }
     }
+}
 
-    return array;
 }
 
 #endif /* GNOMESORT_HPP_ */
