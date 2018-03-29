@@ -7,30 +7,27 @@
 // Best case performance: O(n) - when array is already sorted
 // Worst case performance: O(n^2) - when array sorted in reverse order
 // Worst Case Auxiliary Space Complexity: О(n)
-// @input:
-// - container - object of container type
-// @output:
-// - T - sorted container
+
+namespace IS {
+
 template<typename T>
-T InsertionSort(const T& container)
+void InsertionSort(T& container)
 {
-    if (container.size() <= 1)
-    {
-        return container;
+    if (container.size() < 2) {
+        return;
     }
 
-    T array = container;
-    for (size_t i = 0; i < array.size(); ++i)
+    for (size_t i = 0; i < container.size(); ++i)
     {
         size_t j = i;
-        while (0 < j && array[j] < array[j - 1])
+        while (0 < j && container[j] < container[j - 1])
         {
-            std::swap(array[j], array[j - 1]);
+            std::swap(container[j], container[j - 1]);
             --j;
         }
     }
+}
 
-    return array;
 }
 
 #endif /* INSERTIONSORT_HPP_ */

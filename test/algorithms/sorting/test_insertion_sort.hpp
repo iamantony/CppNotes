@@ -10,45 +10,51 @@ using namespace TCFSortingAlgo;
 
 BOOST_AUTO_TEST_CASE(test_is_empty_container)
 {
-    BOOST_CHECK(std::vector<int>() == InsertionSort(EmptyContainer()));
+    std::vector<int> container = EmptyContainer();
+    IS::InsertionSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_is_one_value)
 {
-    std::vector<int> result = InsertionSort(ContainerWithOneValue());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithOneValue();
+    IS::InsertionSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_is_sorted_container)
 {
-    std::vector<int> result = InsertionSort(SortedContainer());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = SortedContainer();
+    IS::InsertionSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_is_min_max_int_values)
 {
-    std::vector<int> result = InsertionSort(ContainerWithMinAndMaxValues());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithMinAndMaxValues();
+    IS::InsertionSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_is_positive_negative_values)
 {
-    std::vector<int> result =
-            InsertionSort(ContainerWithPositiveAndNegativeValues());
-
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithPositiveAndNegativeValues();
+    IS::InsertionSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_is_duplicate_values)
 {
-    std::vector<int> result = InsertionSort(ContainerWithDuplicates());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithDuplicates();
+    IS::InsertionSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_is_many_values)
 {
-    std::vector<int> result = InsertionSort(ContainerWithManyValues());
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    std::vector<int> container = ContainerWithManyValues();
+    IS::InsertionSort(container);
+    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
 #endif /* TEST_INSERTIONSORT_H_ */
