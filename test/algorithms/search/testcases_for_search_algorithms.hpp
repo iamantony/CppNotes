@@ -3,7 +3,7 @@
 
 #include <vector>
 
-namespace TCFSA {
+namespace TCFSearchingAlgo {
 
 void OneElement(std::vector<int>& container, int& value,
                 bool& expectedIsFound) {

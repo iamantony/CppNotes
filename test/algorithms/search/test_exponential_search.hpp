@@ -5,14 +5,16 @@
 #include <vector>
 
 #include "algorithms/search/exponential_search.hpp"
-#include "./testcases_for_search_algorithms.hpp"
+#include "testcases_for_search_algorithms.hpp"
+
+using namespace TCFSearchingAlgo;
 
 BOOST_AUTO_TEST_CASE(test_expsearch_container_one_elem)
 {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
-    TCFSA::OneElement(container, value, expectedIsFound);
+    OneElement(container, value, expectedIsFound);
 
     size_t result = 0;
     ExponentialSearch::Solution solution;
@@ -26,7 +28,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_val_in_middle)
     int value;
     bool expectedIsFound;
     size_t expectedResultIndex;
-    TCFSA::ValueInMiddle(container, value, expectedIsFound, expectedResultIndex);
+    ValueInMiddle(container, value, expectedIsFound, expectedResultIndex);
 
     size_t result = 0;
     ExponentialSearch::Solution solution;
@@ -41,7 +43,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_val_in_start)
     int value;
     bool expectedIsFound;
     size_t expectedResultIndex;
-    TCFSA::ValueAtStart(container, value, expectedIsFound, expectedResultIndex);
+    ValueAtStart(container, value, expectedIsFound, expectedResultIndex);
 
     size_t result = 0;
     ExponentialSearch::Solution solution;
@@ -56,7 +58,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_val_in_end)
     int value;
     bool expectedIsFound;
     size_t expectedResultIndex;
-    TCFSA::ValueAtEnd(container, value, expectedIsFound, expectedResultIndex);
+    ValueAtEnd(container, value, expectedIsFound, expectedResultIndex);
 
     size_t result = 0;
     ExponentialSearch::Solution solution;
@@ -70,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_no_val)
     std::vector<int> container;
     int value;
     bool expectedIsFound;
-    TCFSA::NoValueInContainer(container, value, expectedIsFound);
+    NoValueInContainer(container, value, expectedIsFound);
 
     size_t result = 0;
     ExponentialSearch::Solution solution;
@@ -83,7 +85,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_val_is_less_than_min)
     std::vector<int> container;
     int value;
     bool expectedIsFound;
-    TCFSA::ValueIsLessThanMinValueInContainer(container, value, expectedIsFound);
+    ValueIsLessThanMinValueInContainer(container, value, expectedIsFound);
 
     size_t result = 0;
     ExponentialSearch::Solution solution;
@@ -97,7 +99,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_several_same_val)
     int value;
     bool expectedIsFound;
     std::vector<size_t> expectedResultIndexes;
-    TCFSA::SeveralSameValuesInContainer(container, value, expectedIsFound,
+    SeveralSameValuesInContainer(container, value, expectedIsFound,
                                         expectedResultIndexes);
 
     size_t result = 0;
@@ -116,7 +118,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_many_values)
     int value;
     bool expectedIsFound;
     size_t expectedResultIndex;
-    TCFSA::ContainerWithManyValues(container, value, expectedIsFound,
+    ContainerWithManyValues(container, value, expectedIsFound,
                               expectedResultIndex);
 
     size_t result = 0;
