@@ -71,11 +71,10 @@ public:
 class Base
 {
 public:
-    Base ( ) {     }
     virtual ~Base ( ) { }
 
     // Interface function
-    void draw ( int x, int y )
+    void draw(int x, int y)
     {
         cout << "Start of interface method Base::draw()" << endl;
 
@@ -86,21 +85,41 @@ public:
     }
 
 private:
-    // abstract virtual function for real functionality of method draw
-    virtual void do_draw ( int x, int y ) = 0;
-
-    Base ( const Base& );
-    Base& operator=( const Base& );
+    // virtual function for real functionality of method draw
+    virtual void do_draw (int x, int y) = 0;
 };
 
 class Derived : public Base
 {
 public:
-    virtual void do_draw (int, int)
+    virtual ~Derived() override {}
+
+private:
+    virtual void do_draw (int, int) override
     {
         cout << "In Derived::do_draw() doing real work" << endl;
     }
 };
+
+// How to make pure virtual destructor int base class
+class Object {
+public:
+    virtual ~Object() = 0;
+};
+
+// Anyway we must provide implementation for ~Object. We could make it only
+// outside of class body.
+Object::~Object() {
+    cout << "Inside pure virtual destructor of Object" << endl;
+}
+
+class RealObject : public Object {
+public:
+    virtual ~RealObject() override {
+        cout << "Inside virtual destructor of RealObject" << endl;
+    }
+};
+
 
 void StartVF()
 {
@@ -116,8 +135,10 @@ void StartVF()
     // function
     shape->draw (33, 44);
 
-    shared_ptr<Base> base = make_shared<Derived> ( );
-    base->draw ( 12, 13 );
+    Derived d;
+    d.draw(4, 3);
+
+    shared_ptr<Object> object = make_shared<RealObject> ( );
 }
 
 #endif /* VIRTUALFUNCTIONS_H_ */
