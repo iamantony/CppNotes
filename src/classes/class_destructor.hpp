@@ -53,5 +53,30 @@ void FunctionAndDestructionOfObjects() {
                  functionThatChangeGlobaVarFix() << std::endl;
 }
 
+
+// ==== 2. Class with private destructor
+
+class ClassWithPrivateDestructor {
+private:
+    ~ClassWithPrivateDestructor() {}
+
+public:
+    // Friend function is able to access private functions of class
+    friend void destructObject(ClassWithPrivateDestructor *obj);
+};
+
+// Function that could destruct objects via pointer
+void destructObject(ClassWithPrivateDestructor* obj) {
+    delete obj;
+}
+
+void HowToCallPrivateDestructor() {
+    // Error: we will not be able to destruc object
+    // ClassWithPrivateDestructor obj;
+
+    ClassWithPrivateDestructor *obj = new ClassWithPrivateDestructor;
+    destructObject(obj);
+}
+
 #endif // CLASS_DESTRUCTOR_HPP
 
