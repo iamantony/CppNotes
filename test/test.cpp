@@ -67,6 +67,7 @@
 #include "algorithms/sorting/test_merge_sort.hpp"
 #include "algorithms/sorting/test_quicksort.hpp"
 #include "algorithms/sorting/test_quicksort_research.hpp"
+#include "algorithms/sorting/test_counting_sort.hpp"
 
 #include "algorithms/strings/test_longest_palindrome.hpp"
 #include "algorithms/strings/test_longest_substring.hpp"
