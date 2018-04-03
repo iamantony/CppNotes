@@ -10,44 +10,50 @@ using namespace TCFSortingAlgo;
 
 BOOST_AUTO_TEST_CASE(test_ms_empty_container)
 {
-    BOOST_CHECK(std::vector<int>() == MergeSort(EmptyContainer()));
+    std::vector<int> container = EmptyContainer();
+    std::vector<int> result = MS::Solution<std::vector<int>>::MergeSort(container);
+    BOOST_CHECK(std::vector<int>() == result);
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_one_value)
 {
-    std::vector<int> result = MergeSort(ContainerWithOneValue());
+    std::vector<int> container = ContainerWithOneValue();
+    std::vector<int> result = MS::Solution<std::vector<int>>::MergeSort(container);
     BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_sorted_container)
 {
-    std::vector<int> result = MergeSort(SortedContainer());
+    std::vector<int> container = SortedContainer();
+    std::vector<int> result = MS::Solution<std::vector<int>>::MergeSort(container);
     BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_min_max_int_values)
 {
-    std::vector<int> result = MergeSort(ContainerWithMinAndMaxValues());
+    std::vector<int> container = ContainerWithMinAndMaxValues();
+    std::vector<int> result = MS::Solution<std::vector<int>>::MergeSort(container);
     BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_positive_negative_values)
 {
-    std::vector<int> result =
-            MergeSort(ContainerWithPositiveAndNegativeValues());
-
+    std::vector<int> container = ContainerWithPositiveAndNegativeValues();
+    std::vector<int> result = MS::Solution<std::vector<int>>::MergeSort(container);
     BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_duplicate_values)
 {
-    std::vector<int> result = MergeSort(ContainerWithDuplicates());
+    std::vector<int> container = ContainerWithDuplicates();
+    std::vector<int> result = MS::Solution<std::vector<int>>::MergeSort(container);
     BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
 BOOST_AUTO_TEST_CASE(test_ms_many_values)
 {
-    std::vector<int> result = MergeSort(ContainerWithManyValues());
+    std::vector<int> container = ContainerWithManyValues();
+    std::vector<int> result = MS::Solution<std::vector<int>>::MergeSort(container);
     BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
