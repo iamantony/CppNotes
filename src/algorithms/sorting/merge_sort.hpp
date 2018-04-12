@@ -13,19 +13,15 @@
 namespace MS {
 
 template<typename T>
-class Solution
-{
+class Solution {
 public:
-    static T MergeSort(const T& container)
-    {
+    static T MergeSort(const T& container) {
         return SortImpl(container);
     }
 
 private:
-    static T SortImpl(const T& input)
-    {
-        if(input.size() < 2)
-        {
+    static T SortImpl(const T& input) {
+        if(input.size() < 2) {
             return input;
         }
 
@@ -43,18 +39,14 @@ private:
         return Merge(first, second);
     }
 
-    static T Merge(const T& first, const T& second)
-    {
-        if (first.empty() && second.empty())
-        {
+    static T Merge(const T& first, const T& second) {
+        if (first.empty() && second.empty()) {
             return T();
         }
-        else if (first.empty() && false == second.empty())
-        {
+        else if (first.empty() && false == second.empty()) {
             return second;
         }
-        else if (false == first.empty() && second.empty())
-        {
+        else if (false == first.empty() && second.empty()) {
             return first;
         }
 
@@ -66,16 +58,13 @@ private:
         std::copy(second.begin(), second.end(), back_inserter(result));
 
         // Merge two containers
-        for (size_t k = 0, i = 0, j = 0; k < result.size(); ++k)
-        {
-            if (i < first.size() && (second.size() <= j ||
-                                     first[i] <= second[j]))
-            {
+        for (size_t k = 0, i = 0, j = 0; k < result.size(); ++k) {
+            if (i < first.size() &&
+                        (second.size() <= j || first[i] <= second[j])) {
                 result[k] = first[i];
                 ++i;
             }
-            else
-            {
+            else {
                 result[k] = second[j];
                 ++j;
             }
