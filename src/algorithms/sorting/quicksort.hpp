@@ -6,7 +6,7 @@
 // https://en.wikipedia.org/wiki/Quicksort
 // Best case performance: O(n log n) typical, O(n) natural variant
 // Worst case performance: O(n^2)
-// Space Complexity: О(1)
+// Worst Space Complexity: О(n)
 
 #include <limits>
 
