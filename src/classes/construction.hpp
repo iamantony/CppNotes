@@ -65,6 +65,7 @@ public:
     Copyable(const int& value) : m_value(value) {}
 
     // Copy constructor
+    // TODO: explain why it looks so
     Copyable(const Copyable& other)
     {
         std::cout << "In copy constructor" << std::endl;
