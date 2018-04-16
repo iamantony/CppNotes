@@ -92,3 +92,4 @@
 #include "types/ds/test_linked_list.hpp"
 #include "types/ds/test_matrix.hpp"
 #include "types/ds/test_vector_ds.hpp"
+#include "types/ds/test_heap.hpp"
