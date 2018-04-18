@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <functional>
+#include <exception>
 
 using std::placeholders::_1;
 using std::placeholders::_2;
@@ -21,23 +22,27 @@ public:
 
     bool isEmpty() const;
     size_t size() const;
+    size_t realSize() const;
     void resize(const size_t& size);
     T at(const size_t& index) const;
     T parent(const size_t& index) const;
     T left(const size_t& index) const;
     T right(const size_t& index) const;
+    void setValue(const size_t& index, const T& value);
+    void swap(const size_t& first, const size_t& second);
+    void heapify(const size_t &index);
 
     std::vector<T> exportData() const;
 
 private:
+    bool isValidIndex(const size_t& index) const;
     size_t parentIndex(const size_t& index) const;
     size_t leftIndex(const size_t& index) const;
     size_t rightIndex(const size_t& index) const;
     void makeHeap();
-    void heapify(const size_t &index);
 
+    size_t m_heapSize;
     std::vector<T> m_data;
-
     std::function<bool(const T&, const T&)> comparator;
 };
 
@@ -50,26 +55,36 @@ Heap<T>::Heap(const std::vector<T>& data, Heap<T>::Type type) : m_data(data) {
         comparator = std::bind(std::less<T>(), _1, _2);
     }
 
+    m_heapSize = m_data.size();
     makeHeap();
 }
 
 template <typename T>
 bool Heap<T>::isEmpty() const {
-    return m_data.empty();
+    return m_heapSize == 0;
 }
 
 template <typename T>
 size_t Heap<T>::size() const {
+    return m_heapSize;
+}
+
+template <typename T>
+size_t Heap<T>::realSize() const {
     return m_data.size();
 }
 
 template <typename T>
 void Heap<T>::resize(const size_t& size) {
-    m_data.resize(size);
+    m_heapSize = std::min(realSize(), size);
 }
 
 template <typename T>
 T Heap<T>::at(const size_t& index) const {
+    if (!isValidIndex(index)) {
+        throw std::out_of_range("Invalid index");
+    }
+
     return m_data.at(index);
 }
 
@@ -89,6 +104,11 @@ T Heap<T>::right(const size_t& index) const {
 }
 
 template <typename T>
+bool Heap<T>::isValidIndex(const size_t& index) const {
+    return index < m_heapSize;
+}
+
+template <typename T>
 size_t Heap<T>::parentIndex(const size_t& index) const {
     if (index == 0) {
         return 0;
@@ -105,6 +125,24 @@ size_t Heap<T>::leftIndex(const size_t& index) const {
 template <typename T>
 size_t Heap<T>::rightIndex(const size_t& index) const {
     return 2 * index + 2;
+}
+
+template <typename T>
+void Heap<T>::setValue(const size_t& index, const T& value) {
+    if (!isValidIndex(index)) {
+        throw std::out_of_range("Can not set value - invalid index");
+    }
+
+    m_data[index] = value;
+}
+
+template <typename T>
+void Heap<T>::swap(const size_t& first, const size_t& second) {
+    if (!isValidIndex(first) || !isValidIndex(second)) {
+        throw std::out_of_range("Can not swap items - invalid index");
+    }
+
+    std::swap(m_data[first], m_data[second]);
 }
 
 template <typename T>
@@ -135,7 +173,7 @@ void Heap<T>::heapify(const size_t& index) {
     }
 
     if (searchedElementIndex != index) {
-        std::swap(m_data[searchedElementIndex], m_data[index]);
+        swap(searchedElementIndex, index);
         heapify(searchedElementIndex);
     }
 }
