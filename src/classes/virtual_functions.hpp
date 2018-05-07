@@ -101,7 +101,7 @@ private:
     }
 };
 
-// How to make pure virtual destructor int base class
+// How to make pure virtual destructor in base class
 class Object {
 public:
     virtual ~Object() = 0;
@@ -119,6 +119,32 @@ public:
         cout << "Inside virtual destructor of RealObject" << endl;
     }
 };
+
+// Could we provide implementation of pure virtual function in base class?
+namespace PVFIIBC {
+
+class Base {
+public:
+    virtual ~Base() {}
+    virtual void Work() = 0;
+};
+
+void Base::Work() {
+    std::cout << "In Base::Work()" << std::endl;
+}
+
+class Derived : public Base {
+public:
+    virtual ~Derived() {}
+    virtual void Work() override;
+};
+
+void Derived::Work() {
+    std::cout << "In Derived::Work()" << std::endl;
+    Base::Work();
+}
+
+}
 
 
 void StartVF()
@@ -139,6 +165,11 @@ void StartVF()
     d.draw(4, 3);
 
     shared_ptr<Object> object = make_shared<RealObject> ( );
+
+    {
+        PVFIIBC::Derived derivedObject;
+        derivedObject.Work();
+    }
 }
 
 #endif /* VIRTUALFUNCTIONS_H_ */
