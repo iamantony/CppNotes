@@ -25,38 +25,36 @@ public:
             return nums.size();
         }
 
-        int size = static_cast<int>(nums.size());
-        // Use raw pointer to array data to avoid compiler errors
-        int* dataPtr = nums.data();
-
-        int currentPos = 0;
+        size_t size = nums.size();
+        size_t currentPos = 0;
         while(currentPos < size) {
             // Find position of next different element
-            int diffElemPos = currentPos + 1;
-            while ( diffElemPos < size &&
-                    dataPtr[diffElemPos] == dataPtr[currentPos]) {
+            size_t diffElemPos = currentPos + 1;
+            while(diffElemPos < size &&
+                    nums[diffElemPos] == nums[currentPos]) {
                 ++diffElemPos;
             }
 
-            // If next different element is on the next position, just move
-            // to it
+            // If next different element is on the next position, we will
+            // not need any copy operations, we can just move next position
             if (diffElemPos - currentPos <= 1) {
-                currentPos += 1;
+                ++currentPos;
                 continue;
             }
 
             // Eliminate duplicate elements by moving tail elements to next
             // position of currentPos
-            for (int toInd = currentPos + 1, fromInd = diffElemPos;
-                 fromInd < size; ++toInd, ++fromInd) {
-                dataPtr[toInd] = dataPtr[fromInd];
+            for (size_t toInd = currentPos + 1, fromInd = diffElemPos;
+                    fromInd < size;
+                    ++toInd, ++fromInd) {
+                nums[toInd] = nums[fromInd];
             }
 
             size = size - (diffElemPos - currentPos - 1);
             ++currentPos;
         }
 
-        return static_cast<size_t>(size);
+        return size;
     }
 };
 
