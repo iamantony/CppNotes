@@ -58,4 +58,13 @@ BOOST_AUTO_TEST_CASE(test_qs_many_values)
     BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
+BOOST_AUTO_TEST_CASE(test_qs_random_values)
+{
+    for (int i = 0; i < 10; ++i) {
+        std::vector<int> container = RandomContainer();
+        QS::Solution<std::vector<int>>::QuickSort(container);
+        BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
+    }
+}
+
 #endif /* TEST_QUICKSORT_H_ */

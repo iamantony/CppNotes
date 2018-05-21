@@ -57,4 +57,13 @@ BOOST_AUTO_TEST_CASE(test_is_many_values)
     BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
+BOOST_AUTO_TEST_CASE(test_is_random_values)
+{
+    for (int i = 0; i < 10; ++i) {
+        std::vector<int> container = RandomContainer(10000);
+        IS::InsertionSort(container);
+        BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
+    }
+}
+
 #endif /* TEST_INSERTIONSORT_H_ */

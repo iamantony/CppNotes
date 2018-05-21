@@ -57,4 +57,13 @@ BOOST_AUTO_TEST_CASE(test_ms_many_values)
     BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
+BOOST_AUTO_TEST_CASE(test_ms_random_values)
+{
+    for (int i = 0; i < 10; ++i) {
+        std::vector<int> container = RandomContainer();
+        std::vector<int> result = MS::Solution<std::vector<int>>::MergeSort(container);
+        BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
+    }
+}
+
 #endif /* TEST_MERGESORT_H_ */

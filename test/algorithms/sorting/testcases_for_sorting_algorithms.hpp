@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <limits>
+#include <random>
 
 namespace TCFSortingAlgo {
 
@@ -253,8 +254,23 @@ std::vector<int> ContainerWithManyValues() {
          -3308, -3141, 1740, 1273, 2646, 3213, -4398, 3062, -2312, -4049, 3538});
 }
 
+std::vector<int> RandomContainer(const size_t& maxSize = 1000000) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_int_distribution<size_t> sizeDist(0, maxSize);
+    std::uniform_int_distribution<int> dist(std::numeric_limits<int>::min(),
+                                         std::numeric_limits<int>::max());
+
+    std::vector<int> container(sizeDist(gen));
+    for (size_t i = 0; i < container.size(); ++i) {
+        container[i] = dist(gen);
+    }
+
+    return container;
 }
 
+}
 
 #endif // TESTCASES_FOR_SORTING_ALGORITHMS_HPP
 
