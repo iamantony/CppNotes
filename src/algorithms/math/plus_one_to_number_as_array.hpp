@@ -21,15 +21,13 @@ public:
             return std::vector<int>();
         }
 
-        bool carry = false;
+        int carry = 1;
         for (size_t i = digits.size() - 1; ; --i) {
             if (digits[i] == 9) {
                 digits[i] = 0;
-                carry = true;
             }
             else {
-                digits[i] += 1;
-                carry = false;
+                digits[i] += carry--;
                 break;
             }
 
@@ -38,16 +36,11 @@ public:
             }
         }
 
-        std::vector<int> result;
-        if (carry) {
-            result.push_back(1);
-            result.insert(result.end(), digits.begin(), digits.end());
-        }
-        else {
-            result = digits;
+        if (carry > 0) {
+            digits.insert(digits.begin(), carry);
         }
 
-        return result;
+        return digits;
     }
 };
 
