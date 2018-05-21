@@ -7,11 +7,9 @@
 // Simple and slow algorithm
 // http://en.wikipedia.org/wiki/Bubble_sort
 
-namespace BS
-{
+namespace BS {
 
-class Solution
-{
+class Solution {
 public:
 
     // Basic algorithm
@@ -21,23 +19,18 @@ public:
     // @input:
     // - container - object of container type with sortable items
     template<typename T>
-    static void BubbleSort(T& container)
-    {
+    static void BubbleSort(T& container) {
         // Why we need to check container emptyness:
         // container.size() = size_t
         // size_t - long unsigned int
         // if size == 0 -> 0 - 1 = max(long unsigned int)
-        if (container.empty())
-        {
+        if (container.empty()) {
             return;
         }
 
-        for (size_t i = 0; i < container.size() - 1; ++i)
-        {
-            for(size_t j = 0; j < container.size() - i - 1; ++j)
-            {
-                if (container[j + 1] < container[j])
-                {
+        for (size_t i = 0; i < container.size() - 1; ++i) {
+            for(size_t j = 0; j < container.size() - i - 1; ++j) {
+                if (container[j + 1] < container[j]) {
                     std::swap(container[j + 1], container[j]);
 
                     // swap:
@@ -56,20 +49,15 @@ public:
     // @input:
     // - container - object of container type with sortable items
     template<typename T>
-    static void BubbleSortOptimised(T& container)
-    {
-        if (container.empty())
-        {
+    static void BubbleSortOptimised(T& container) {
+        if (container.empty()) {
             return;
         }
 
-        for (size_t i = 0; i < container.size() - 1; ++i)
-        {
+        for (size_t i = 0; i < container.size() - 1; ++i) {
             bool swapUsed = false;
-            for(size_t j = 0; j < container.size() - i - 1; ++j)
-            {
-                if (container[j + 1] < container[j])
-                {
+            for(size_t j = 0; j < container.size() - i - 1; ++j) {
+                if (container[j + 1] < container[j]) {
                     std::swap(container[j + 1], container[j]);
                     swapUsed = true;
                 }
@@ -77,8 +65,7 @@ public:
 
             // If we did not swap elements in container, it means that
             // all elements are sorted and we can exit
-            if (!swapUsed)
-            {
+            if (!swapUsed) {
                 return;
             }
         }
@@ -91,32 +78,26 @@ public:
     // @input:
     // - container - object of container type with sortable items
     template<typename T>
-    static void BubbleSortRecursive(T& container)
-    {
+    static void BubbleSortRecursive(T& container) {
         BSRImpl(container, container.size());
     }
 
 private:
     template<typename T>
-    static void BSRImpl(T& container, const size_t size)
-    {
-        if (size <= 0)
-        {
+    static void BSRImpl(T& container, const size_t size) {
+        if (size <= 0) {
             return;
         }
 
         bool swapUsed = false;
-        for(size_t j = 0; j < size - 1; ++j)
-        {
-            if (container[j + 1] < container[j])
-            {
+        for(size_t j = 0; j < size - 1; ++j) {
+            if (container[j + 1] < container[j]) {
                 std::swap(container[j + 1], container[j]);
                 swapUsed = true;
             }
         }
 
-        if (!swapUsed)
-        {
+        if (!swapUsed) {
             return;
         }
 
