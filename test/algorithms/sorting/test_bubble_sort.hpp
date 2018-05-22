@@ -11,108 +11,115 @@ using namespace TCFSortingAlgo;
 
 BOOST_AUTO_TEST_CASE(test_bs_empty_container)
 {
-    std::vector<int> containerToSort = EmptyContainer();
-    BS::Solution::BubbleSort(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    std::vector<int> container, expected;
+    EmptyContainer(container, expected);
+    BS::Solution::BubbleSort(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = EmptyContainer();;
-    BS::Solution::BubbleSortOptimised(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    EmptyContainer(container, expected);
+    BS::Solution::BubbleSortOptimised(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = EmptyContainer();;
-    BS::Solution::BubbleSortRecursive(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    EmptyContainer(container, expected);
+    BS::Solution::BubbleSortRecursive(container);
+    BOOST_CHECK(container == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_one_value)
 {
-    std::vector<int> containerToSort = ContainerWithOneValue();
-    BS::Solution::BubbleSort(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    std::vector<int> container, expected;
+    ContainerWithOneValue(container, expected);
+    BS::Solution::BubbleSort(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = ContainerWithOneValue();
-    BS::Solution::BubbleSortOptimised(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    ContainerWithOneValue(container, expected);
+    BS::Solution::BubbleSortOptimised(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = ContainerWithOneValue();
-    BS::Solution::BubbleSortRecursive(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    ContainerWithOneValue(container, expected);
+    BS::Solution::BubbleSortRecursive(container);
+    BOOST_CHECK(container == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_sorted_container)
 {
-    std::vector<int> containerToSort = SortedContainer();
-    BS::Solution::BubbleSort(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    std::vector<int> container, expected;
+    SortedContainer(container, expected);
+    BS::Solution::BubbleSort(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = SortedContainer();
-    BS::Solution::BubbleSortOptimised(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    SortedContainer(container, expected);
+    BS::Solution::BubbleSortOptimised(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = SortedContainer();
-    BS::Solution::BubbleSortRecursive(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    SortedContainer(container, expected);
+    BS::Solution::BubbleSortRecursive(container);
+    BOOST_CHECK(container == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_min_max_int_values)
 {
-    std::vector<int> containerToSort = ContainerWithMinAndMaxValues();
-    BS::Solution::BubbleSort(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    std::vector<int> container, expected;
+    ContainerWithMinAndMaxValues(container, expected);
+    BS::Solution::BubbleSort(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = ContainerWithMinAndMaxValues();
-    BS::Solution::BubbleSortOptimised(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    ContainerWithMinAndMaxValues(container, expected);
+    BS::Solution::BubbleSortOptimised(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = ContainerWithMinAndMaxValues();
-    BS::Solution::BubbleSortRecursive(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    ContainerWithMinAndMaxValues(container, expected);
+    BS::Solution::BubbleSortRecursive(container);
+    BOOST_CHECK(container == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_positive_negative_values)
 {
-    std::vector<int> containerToSort = ContainerWithPositiveAndNegativeValues();
-    BS::Solution::BubbleSort(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    std::vector<int> container, expected;
+    ContainerWithPositiveAndNegativeValues(container, expected);
+    BS::Solution::BubbleSort(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = ContainerWithPositiveAndNegativeValues();
-    BS::Solution::BubbleSortOptimised(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    ContainerWithPositiveAndNegativeValues(container, expected);
+    BS::Solution::BubbleSortOptimised(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = ContainerWithPositiveAndNegativeValues();
-    BS::Solution::BubbleSortRecursive(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    ContainerWithPositiveAndNegativeValues(container, expected);
+    BS::Solution::BubbleSortRecursive(container);
+    BOOST_CHECK(container == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_duplicate_values)
 {
-    std::vector<int> containerToSort = ContainerWithDuplicates();
-    BS::Solution::BubbleSort(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    std::vector<int> container, expected;
+    ContainerWithDuplicates(container, expected);
+    BS::Solution::BubbleSort(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = ContainerWithDuplicates();
-    BS::Solution::BubbleSortOptimised(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    ContainerWithDuplicates(container, expected);
+    BS::Solution::BubbleSortOptimised(container);
+    BOOST_CHECK(container == expected);
 
-    containerToSort = ContainerWithDuplicates();
-    BS::Solution::BubbleSortRecursive(containerToSort);
-    BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+    ContainerWithDuplicates(container, expected);
+    BS::Solution::BubbleSortRecursive(container);
+    BOOST_CHECK(container == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_bs_random_values)
 {
     for (int i = 0; i < 10; ++i) {
-        std::vector<int> containerToSort = RandomContainer(1000);
-        BS::Solution::BubbleSort(containerToSort);
-        BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+        std::vector<int> container, expected;
+        RandomContainer(container, expected, 1000);
+        BS::Solution::BubbleSort(container);
+        BOOST_CHECK(container == expected);
 
-        containerToSort = RandomContainer(1000);
-        BS::Solution::BubbleSortOptimised(containerToSort);
-        BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+        RandomContainer(container, expected, 1000);
+        BS::Solution::BubbleSortOptimised(container);
+        BOOST_CHECK(container == expected);
 
-        containerToSort = RandomContainer(1000);
-        BS::Solution::BubbleSortRecursive(containerToSort);
-        BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
+        RandomContainer(container, expected, 1000);
+        BS::Solution::BubbleSortRecursive(container);
+        BOOST_CHECK(container == expected);
     }
 }
 

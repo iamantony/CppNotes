@@ -14,32 +14,40 @@ using namespace TCFSortingAlgo;
 
 BOOST_AUTO_TEST_CASE(test_qsr_empty_container)
 {
-    BOOST_CHECK(std::vector<int>() == QuickSort(EmptyContainer(),
-            QuickSortResearch::PivotPosition::FIRST).first);
+    std::vector<int> container, expected;
+    EmptyContainer(container, expected);
+    BOOST_CHECK(expected == QuickSort(container,
+                                QuickSortResearch::PivotPosition::FIRST).first);
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_one_value)
 {
-    std::vector<int> result = QuickSort(ContainerWithOneValue(),
-                                  QuickSortResearch::PivotPosition::FIRST).first;
+    std::vector<int> container, expected;
+    ContainerWithOneValue(container, expected);
+    std::vector<int> result = QuickSort(container,
+                                QuickSortResearch::PivotPosition::FIRST).first;
 
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_sorted_container)
 {
-    std::vector<int> result = QuickSort(SortedContainer(),
-                                  QuickSortResearch::PivotPosition::FIRST).first;
+    std::vector<int> container, expected;
+    SortedContainer(container, expected);
+    std::vector<int> result = QuickSort(container,
+                                QuickSortResearch::PivotPosition::FIRST).first;
 
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_min_max_int_values)
 {
-    std::vector<int> result = QuickSort(ContainerWithMinAndMaxValues(),
-                                  QuickSortResearch::PivotPosition::FIRST).first;
+    std::vector<int> container, expected;
+    ContainerWithMinAndMaxValues(container, expected);
+    std::vector<int> result = QuickSort(container,
+                                QuickSortResearch::PivotPosition::FIRST).first;
 
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(test_qsr_unsorted_example)
