@@ -117,15 +117,15 @@ BOOST_AUTO_TEST_CASE(test_bs_many_values)
 BOOST_AUTO_TEST_CASE(test_bs_random_values)
 {
     for (int i = 0; i < 10; ++i) {
-        std::vector<int> containerToSort = RandomContainer(10000);
+        std::vector<int> containerToSort = RandomContainer(1000);
         BS::Solution::BubbleSort(containerToSort);
         BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
 
-        containerToSort = RandomContainer(10000);
+        containerToSort = RandomContainer(1000);
         BS::Solution::BubbleSortOptimised(containerToSort);
         BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
 
-        containerToSort = RandomContainer(10000);
+        containerToSort = RandomContainer(1000);
         BS::Solution::BubbleSortRecursive(containerToSort);
         BOOST_CHECK(std::is_sorted(containerToSort.begin(), containerToSort.end()));
     }

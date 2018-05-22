@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(test_gs_many_values)
 BOOST_AUTO_TEST_CASE(test_gs_random_values)
 {
     for (int i = 0; i < 10; ++i) {
-        std::vector<int> container = RandomContainer(10000);
+        std::vector<int> container = RandomContainer(1000);
         GS::GnomeSort(container);
         BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
     }
