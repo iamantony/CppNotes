@@ -30,7 +30,9 @@ private:
     // Example: 3 and 1000 (non-inclusive)
     // (1000 - 1) / 3 = 333 - number of multiples
     // 3 + 6 + 9 + ... + 999 - 333 numbers
-    // 3 + 6 + 9 + ... + 999 == 3 * 333 * (333 + 1) / 2
+    // 3 + 6 + 9 + ... + 999 ==
+    // 3 * (1 + 2 + 3 + ... + 333) ==
+    // 3 * 333 * (333 + 1) / 2
     unsigned int SumOfNumbersDivisebleByN(const unsigned int& n,
                                           const unsigned int& limit) {
         unsigned int p = (limit -1) / n;
