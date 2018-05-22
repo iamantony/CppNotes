@@ -60,13 +60,6 @@ BOOST_AUTO_TEST_CASE(test_countsort_duplicate_values)
     BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
 }
 
-BOOST_AUTO_TEST_CASE(test_countsort_many_values)
-{
-    std::vector<unsigned char> container = ConvertVectors(ContainerWithManyValues());
-    std::vector<unsigned char> result = CS::Solution::CountingSort(container);
-    BOOST_CHECK(std::is_sorted(result.begin(), result.end()));
-}
-
 BOOST_AUTO_TEST_CASE(test_countsort_random_values)
 {
     for (int i = 0; i < 10; ++i) {

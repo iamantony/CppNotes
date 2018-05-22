@@ -50,13 +50,6 @@ BOOST_AUTO_TEST_CASE(test_is_duplicate_values)
     BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
 }
 
-BOOST_AUTO_TEST_CASE(test_is_many_values)
-{
-    std::vector<int> container = ContainerWithManyValues();
-    IS::InsertionSort(container);
-    BOOST_CHECK(std::is_sorted(container.begin(), container.end()));
-}
-
 BOOST_AUTO_TEST_CASE(test_is_random_values)
 {
     for (int i = 0; i < 10; ++i) {
