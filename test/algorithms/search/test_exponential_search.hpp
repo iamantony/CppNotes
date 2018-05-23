@@ -9,8 +9,7 @@
 
 using namespace TCFSearchingAlgo;
 
-BOOST_AUTO_TEST_CASE(test_expsearch_container_one_elem)
-{
+BOOST_AUTO_TEST_CASE(test_expsearch_container_one_elem) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
@@ -22,8 +21,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_container_one_elem)
     BOOST_CHECK(expectedIsFound == isFound);
 }
 
-BOOST_AUTO_TEST_CASE(test_expsearch_val_in_middle)
-{
+BOOST_AUTO_TEST_CASE(test_expsearch_val_in_middle) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
@@ -37,8 +35,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_val_in_middle)
     BOOST_CHECK(expectedResultIndex == result);
 }
 
-BOOST_AUTO_TEST_CASE(test_expsearch_val_in_start)
-{
+BOOST_AUTO_TEST_CASE(test_expsearch_val_in_start) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
@@ -52,8 +49,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_val_in_start)
     BOOST_CHECK(expectedResultIndex == result);
 }
 
-BOOST_AUTO_TEST_CASE(test_expsearch_val_in_end)
-{
+BOOST_AUTO_TEST_CASE(test_expsearch_val_in_end) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
@@ -67,8 +63,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_val_in_end)
     BOOST_CHECK(expectedResultIndex == result);
 }
 
-BOOST_AUTO_TEST_CASE(test_expsearch_no_val)
-{
+BOOST_AUTO_TEST_CASE(test_expsearch_no_val) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
@@ -80,8 +75,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_no_val)
     BOOST_CHECK(expectedIsFound == isFound);
 }
 
-BOOST_AUTO_TEST_CASE(test_expsearch_val_is_less_than_min)
-{
+BOOST_AUTO_TEST_CASE(test_expsearch_val_is_less_than_min) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
@@ -93,8 +87,7 @@ BOOST_AUTO_TEST_CASE(test_expsearch_val_is_less_than_min)
     BOOST_CHECK(expectedIsFound == isFound);
 }
 
-BOOST_AUTO_TEST_CASE(test_expsearch_several_same_val)
-{
+BOOST_AUTO_TEST_CASE(test_expsearch_several_same_val) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
@@ -112,20 +105,29 @@ BOOST_AUTO_TEST_CASE(test_expsearch_several_same_val)
     BOOST_CHECK(iter != expectedResultIndexes.end());
 }
 
-BOOST_AUTO_TEST_CASE(test_expsearch_many_values)
-{
+BOOST_AUTO_TEST_CASE(test_expsearch_random_values) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
-    size_t expectedResultIndex;
-    ContainerWithManyValues(container, value, expectedIsFound,
-                              expectedResultIndex);
+    std::vector<size_t> expectedResultIndexes;
 
-    size_t result = 0;
-    ExponentialSearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
-    BOOST_CHECK(expectedIsFound == isFound);
-    BOOST_CHECK(expectedResultIndex == result);
+    for (size_t i = 0; i < 10; ++i) {
+        RandomContainer(container, value, expectedIsFound,
+                        expectedResultIndexes);
+
+        size_t result = 0;
+        ExponentialSearch::Solution solution;
+        bool isFound = solution.Search(container, container.size(),
+                                       value, result);
+
+        BOOST_CHECK(expectedIsFound == isFound);
+
+        if (isFound) {
+            auto iter = std::find(expectedResultIndexes.begin(),
+                                  expectedResultIndexes.end(), result);
+            BOOST_CHECK(iter != expectedResultIndexes.end());
+        }
+    }
 }
 
 #endif // TEST_EXPONENTIAL_SEARCH_HPP

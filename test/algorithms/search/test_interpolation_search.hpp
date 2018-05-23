@@ -112,20 +112,29 @@ BOOST_AUTO_TEST_CASE(test_intpolsearch_several_same_val)
     BOOST_CHECK(iter != expectedResultIndexes.end());
 }
 
-BOOST_AUTO_TEST_CASE(test_intpolsearch_many_values)
-{
+BOOST_AUTO_TEST_CASE(test_intpolsearch_random_values) {
     std::vector<int> container;
     int value;
     bool expectedIsFound;
-    size_t expectedResultIndex;
-    ContainerWithManyValues(container, value, expectedIsFound,
-                              expectedResultIndex);
+    std::vector<size_t> expectedResultIndexes;
 
-    size_t result = 0;
-    InterpolationSearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
-    BOOST_CHECK(expectedIsFound == isFound);
-    BOOST_CHECK(expectedResultIndex == result);
+    for (size_t i = 0; i < 10; ++i) {
+        RandomContainer(container, value, expectedIsFound,
+                        expectedResultIndexes);
+
+        size_t result = 0;
+        InterpolationSearch::Solution solution;
+        bool isFound = solution.Search(container, container.size(),
+                                       value, result);
+
+        BOOST_CHECK(expectedIsFound == isFound);
+
+        if (isFound) {
+            auto iter = std::find(expectedResultIndexes.begin(),
+                                  expectedResultIndexes.end(), result);
+            BOOST_CHECK(iter != expectedResultIndexes.end());
+        }
+    }
 }
 
 #endif // TEST_INTERPOLATION_SEARCH_HPP
