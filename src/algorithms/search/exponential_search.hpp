@@ -29,7 +29,8 @@ public:
     bool Search(const C& container,
                 const size_t& size,
                 const V& value,
-                size_t& resultIndex) {
+                size_t& resultIndex)
+    {
         if (size <= 0) {
             return false;
         }
@@ -44,15 +45,18 @@ public:
                 break;
             }
 
-            rangeStart = rangeEnd;
+            rangeStart = rangeEnd + 1;
 
             // rangeEnd = 2 ^ power - 1
-            rangeEnd = std::min( ((rangeEnd + 1) << 1) - 1, size - 1);
+            rangeEnd = ((rangeEnd + 1) << 1) - 1;
         }
 
         BinarySearch::Solution solution;
-        return solution.BinarySearchImpl(container, rangeStart, rangeEnd,
-                                         value, resultIndex);
+        return solution.BinarySearchImpl(container,
+                                         std::min(rangeStart, size - 1),
+                                         std::min(rangeEnd, size - 1),
+                                         value,
+                                         resultIndex);
     }
 };
 
