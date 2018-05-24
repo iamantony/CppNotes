@@ -19,6 +19,8 @@
 
 #include <algorithm>
 
+#include "algorithms/search/binary_search.hpp"
+
 namespace JumpSearch {
 
 class Solution {
@@ -39,15 +41,19 @@ public:
                 return true;
             }
             else if (value < container[i]) {
-                size_t j = (i < interval) ? 0 : i - interval + 1;
-                for (; j < i; ++j) {
-                    if (container[j] == value) {
-                        resultIndex = j;
-                        return true;
-                    }
-                }
+                size_t start = i <= interval ? 0 : i - interval + 1;
+                size_t end = i <= interval ? 0 : i - 1;
 
-                return false;
+                BinarySearch::Solution solution;
+                return solution.BinarySearchImpl(
+                            container, start, end, value, resultIndex);
+            }
+            else if (i + interval >= size) {
+                size_t start = std::min(i + 1, size - 1);
+
+                BinarySearch::Solution solution;
+                return solution.BinarySearchImpl(
+                            container, start, size - 1, value, resultIndex);
             }
         }
 
