@@ -21,7 +21,7 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC -DBOOST_TEST_DYN_LINK)
 if (CMAKE_COMPILER_IS_GNUCXX)
     target_compile_options(${PROJECT_NAME}
         PUBLIC
-            -Wall -Wextra -Werror -Wpedantic
+            -O0 -Wall -Wextra -Werror -Wpedantic
             -pedantic-errors -Wold-style-cast -Woverloaded-virtual -Wsign-promo
             -Wdouble-promotion -Wformat=2 -Wmissing-include-dirs -Wswitch-default
             -Wswitch-enum -Wunknown-pragmas -Wswitch-enum -Wunknown-pragmas
