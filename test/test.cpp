@@ -1,6 +1,5 @@
 #define BOOST_TEST_MODULE CppNotes cppnotestest
 
-
 #include "algorithms/data_structures/array/test_remove_duplicates_in_array.hpp"
 #include "algorithms/data_structures/array/test_rotate_array.hpp"
 #include "algorithms/data_structures/array/test_duplicates_in_array.hpp"
@@ -94,3 +93,4 @@
 #include "types/ds/test_matrix.hpp"
 #include "types/ds/test_vector_ds.hpp"
 #include "types/ds/test_heap.hpp"
+#include "types/ds/test_interval_map.hpp"
