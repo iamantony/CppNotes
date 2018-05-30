@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(test_binsearch_random_values) {
 
     for (size_t i = 0; i < 10; ++i) {
         RandomContainer(container, value, expectedIsFound,
-                        expectedResultIndexes);
+                        expectedResultIndexes, 1000);
 
         size_t result = 0;
         BinarySearch::Solution solution;

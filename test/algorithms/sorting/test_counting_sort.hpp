@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(test_countsort_random_values)
 {
     for (int i = 0; i < 10; ++i) {
         std::vector<unsigned char> container, expected;
-        RandomContainer(container, expected);
+        RandomContainer(container, expected, 1000);
         std::vector<unsigned char> result =
                 CS::Solution::CountingSort(container);
         BOOST_CHECK(expected == result);

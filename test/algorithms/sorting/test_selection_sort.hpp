@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(test_ss_random_values)
 {
     for (int i = 0; i < 10; ++i) {
         std::vector<int> container, expected;
-        RandomContainer(container, expected, 1000);
+        RandomContainer(container, expected, 100);
         SSort::Solution solution;
         solution.SelectionSort(container);
         BOOST_CHECK(container == expected);

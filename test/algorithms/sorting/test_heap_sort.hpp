@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(test_hs_random_values)
 {
     for (int i = 0; i < 10; ++i) {
         std::vector<int> container, expected;
-        RandomContainer(container, expected);
+        RandomContainer(container, expected, 1000);
         Solution<int>::HeapSort(container);
         BOOST_CHECK(container == expected);
     }
