@@ -19,15 +19,26 @@
 
 #include <string>
 #include <algorithm>
+#include <locale>
 
 namespace ValidAnagram {
 
 class Solution {
 public:
-    bool isAnagram(string s, string t) {
-        std::sort(s.begin(), s.end());
-        std::sort(t.begin(), t.end());
-        return s == t;
+    static bool isAnagram(const std::string& s, const std::string& t) {
+        std::locale locale("C");
+
+        auto predicate = [&locale](const char& ch) ->bool {
+            return std::isalnum(ch, locale);
+        };
+
+        std::string sCleaned, tCleaned;
+        std::copy_if(s.begin(), s.end(), std::back_inserter(sCleaned), predicate);
+        std::copy_if(t.begin(), t.end(), std::back_inserter(tCleaned), predicate);
+
+        std::sort(sCleaned.begin(), sCleaned.end());
+        std::sort(tCleaned.begin(), tCleaned.end());
+        return sCleaned == tCleaned;
     }
 };
 

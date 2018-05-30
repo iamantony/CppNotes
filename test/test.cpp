@@ -84,6 +84,7 @@
 #include "algorithms/strings/test_valid_palindrome.hpp"
 #include "algorithms/strings/test_str_to_integer.hpp"
 #include "algorithms/strings/test_count_and_say.hpp"
+#include "algorithms/strings/test_two_str_are_valid_anagram.hpp"
 
 #include "files/test_read_last_lines.hpp"
 
