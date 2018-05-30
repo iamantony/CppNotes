@@ -6,7 +6,7 @@
 #include <limits>
 #include <iostream>
 
-#include "algorithms/data_structures/interval_map.hpp"
+#include "types/ds/interval_map.hpp"
 
 class Key {
 public:
