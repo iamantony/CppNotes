@@ -24,9 +24,14 @@ public:
 
         NodeSLL<T>* current = &dummy;
         NodeSLL<T>* match = &dummy;
+
         // Advances 'current' pointer so that the gap between 'current' and
         // 'match' is n nodes apart
-        for (int i = 1; i <= k + 1; ++i) {
+        for (int i = 0; i <= k; ++i) {
+            if (nullptr == current) {
+                return head;
+            }
+
             current = current->next;
         }
 

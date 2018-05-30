@@ -14,6 +14,18 @@ BOOST_AUTO_TEST_CASE(test_dktlesll_one_elem) {
     BOOST_CHECK(nullptr == result);
 }
 
+BOOST_AUTO_TEST_CASE(test_dktlesll_delete_first)
+{
+    NodeSLL<int>* sll = CreateSLL<int>({1, 2, 3, 4});
+
+    DeleteKToLastElem::Solution solution;
+    NodeSLL<int>* result = solution.deleteKthFromEnd(sll, 4);
+
+    std::vector<int> expectedValues = {2, 3, 4};
+    BOOST_CHECK(expectedValues == ValuesInSLL(&result));
+    DeleteSLL(&result);
+}
+
 BOOST_AUTO_TEST_CASE(test_dktlesll_delete_last)
 {
     NodeSLL<int>* sll = CreateSLL<int>({1, 2, 3, 4});
@@ -46,6 +58,18 @@ BOOST_AUTO_TEST_CASE(test_dktlesll_delete_three_before_last)
     NodeSLL<int>* result = solution.deleteKthFromEnd(sll, 3);
 
     std::vector<int> expectedValues = {1, 3, 4};
+    BOOST_CHECK(expectedValues == ValuesInSLL(&result));
+    DeleteSLL(&result);
+}
+
+BOOST_AUTO_TEST_CASE(test_dktlesll_delete_invalid_element)
+{
+    NodeSLL<int>* sll = CreateSLL<int>({1, 2, 3, 4});
+
+    DeleteKToLastElem::Solution solution;
+    NodeSLL<int>* result = solution.deleteKthFromEnd(sll, 10);
+
+    std::vector<int> expectedValues = {1, 2, 3, 4};
     BOOST_CHECK(expectedValues == ValuesInSLL(&result));
     DeleteSLL(&result);
 }
