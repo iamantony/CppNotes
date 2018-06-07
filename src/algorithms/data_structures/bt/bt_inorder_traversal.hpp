@@ -32,15 +32,85 @@ public:
     template <typename T>
     std::vector<T> InorderTraversalRecursive(NodeBT<T>* root) {
         std::vector<T> result;
-
+        InorderTraversalRecursiveImpl(root, result);
         return result;
     }
 
     template <typename T>
     std::vector<T> InorderTraversalIterative(NodeBT<T>* root) {
         std::vector<T> result;
+        if (root == nullptr) {
+            return result;
+        }
+
+        std::stack<NodeBT<T>*> nodesStack;
+        NodeBT<T>* current = root;
+        while (current != nullptr || !nodesStack.empty()) {
+            if (current != nullptr) {
+                nodesStack.push(current);
+                current = current->left;
+            }
+            else {
+                NodeBT<T>* node = nodesStack.top();
+                nodesStack.pop();
+                result.push_back(node->value);
+                current = node->right;
+            }
+        }
 
         return result;
+    }
+
+    template <typename T>
+    std::vector<T> InorderTraversalIterativeMorris(NodeBT<T>* root) {
+        std::vector<T> result;
+        if (root == nullptr) {
+            return result;
+        }
+
+        NodeBT<T>* current = root;
+        NodeBT<T>* pre = nullptr;
+        while(current != nullptr) {
+            if(current->left == nullptr) {
+                result.push_back(current->value);
+                current = current->right;
+            }
+            else {
+                // Find the inorder predecessor of current
+                pre = current->left;
+                while(pre->right != nullptr && pre->right != current) {
+                    pre = pre->right;
+                }
+
+                // Make current as right child of its inorder predecessor
+                if(pre->right == nullptr) {
+                    pre->right = current;
+                    current = current->left;
+                }
+                else {
+                    // Revert the changes made in if part to restore the original
+                    // tree i.e., fix the right child of predecssor
+                    pre->right = nullptr;
+
+                    result.push_back(current->value);
+                    current = current->right;
+                }
+            }
+        }
+
+        return result;
+    }
+
+private:
+    template <typename T>
+    void InorderTraversalRecursiveImpl(NodeBT<T>* root, std::vector<T>& v) {
+        if (root == nullptr) {
+            return;
+        }
+
+        InorderTraversalRecursiveImpl(root->left, v);
+        v.push_back(root->value);
+        InorderTraversalRecursiveImpl(root->right, v);
     }
 };
 
