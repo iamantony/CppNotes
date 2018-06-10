@@ -5,8 +5,6 @@
 
 #include "algorithms/data_structures/bt/bt_preorder_traversal.hpp"
 
-using namespace DataStructures::BT;
-
 BOOST_AUTO_TEST_CASE(test_btpreotr_empty_bt)
 {
     NodeBT<int>* bt = nullptr;
