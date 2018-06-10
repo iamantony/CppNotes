@@ -73,7 +73,6 @@ public:
             }
         }
 
-        // Print all elements of second stack
         while (!s2.empty()) {
             result.push_back(s2.top()->value);
             s2.pop();
