@@ -8,7 +8,7 @@
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head_one_elem)
 {
     NodeSLL<int>* sll = new NodeSLL<int>(10);
-    Algo::DS::SLL::Solution::DeleteNodeFromSLL(sll);
+    Algo::DS::SLL::DeleteNode::DeleteNodeFromSLL(sll);
 
     std::vector<int> expectedValues = {0};
     BOOST_CHECK(expectedValues == ValuesInSLL(&sll));
@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head_one_elem)
 BOOST_AUTO_TEST_CASE(test_dnfsll_delete_head)
 {
     NodeSLL<int>* sll = CreateSLL<int>({10, 9, 8, 7});
-    Algo::DS::SLL::Solution::DeleteNodeFromSLL(sll);
+    Algo::DS::SLL::DeleteNode::DeleteNodeFromSLL(sll);
 
     std::vector<int> expectedValues = {9, 8, 7};
     BOOST_CHECK(expectedValues == ValuesInSLL(&sll));
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_middle)
         toDelete = toDelete->next;
     }
 
-    Algo::DS::SLL::Solution::DeleteNodeFromSLL(toDelete);
+    Algo::DS::SLL::DeleteNode::DeleteNodeFromSLL(toDelete);
 
     std::vector<int> expectedValues = {10, 8, 7};
     BOOST_CHECK(expectedValues == ValuesInSLL(&sll));
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(test_dnfsll_delete_last)
         toDelete = toDelete->next;
     }
 
-    Algo::DS::SLL::Solution::DeleteNodeFromSLL(toDelete);
+    Algo::DS::SLL::DeleteNode::DeleteNodeFromSLL(toDelete);
 
     std::vector<int> expectedValues = {10, 9, 8, 0};
     BOOST_CHECK(expectedValues == ValuesInSLL(&sll));

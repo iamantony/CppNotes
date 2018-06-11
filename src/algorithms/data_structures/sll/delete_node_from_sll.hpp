@@ -6,9 +6,15 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
+// TODO:
+// - use nested namespaces to show topic of the algorithm
+// - class name should explain what algortihm is doing
+// - function name should be short and optionally say wich approac (iterative
+// or recursive) it uses
+
 namespace Algo { namespace DS { namespace SLL {
 
-class Solution {
+class DeleteNode {
 public:
     template<typename T>
     static void DeleteNodeFromSLL(NodeSLL<T>* node)
