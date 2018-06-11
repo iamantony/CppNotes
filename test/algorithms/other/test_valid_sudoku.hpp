@@ -7,15 +7,13 @@
 
 BOOST_AUTO_TEST_CASE(test_vsud_empty_arr)
 {
-    ValidSudoku::Solution solution;
-    std::vector<std::vector<char>> board = {};
-    BOOST_CHECK(false == solution.isValidSudoku(board));
+    std::vector<std::vector<char>> sudoku = {};
+    BOOST_CHECK(false == Algo::Other::ValidSudoku::isValid(sudoku));
 }
 
 BOOST_AUTO_TEST_CASE(test_vsud_valid_board)
 {
-    ValidSudoku::Solution solution;
-    std::vector<std::vector<char>> board =
+    std::vector<std::vector<char>> sudoku =
         { {'.', '8', '7', '6', '5', '4', '3', '2', '1'},
           {'2', '.', '.', '.', '.', '.', '.', '.', '.'},
           {'3', '.', '.', '.', '.', '.', '.', '.', '.'},
@@ -25,7 +23,7 @@ BOOST_AUTO_TEST_CASE(test_vsud_valid_board)
           {'7', '.', '.', '.', '.', '.', '.', '.', '.'},
           {'8', '.', '.', '.', '.', '.', '.', '.', '.'},
           {'9', '.', '.', '.', '.', '.', '.', '.', '7'} };
-    BOOST_CHECK(true == solution.isValidSudoku(board));
+    BOOST_CHECK(true == Algo::Other::ValidSudoku::isValid(sudoku));
 }
 
 #endif // TEST_VALID_SUDOKU_HPP

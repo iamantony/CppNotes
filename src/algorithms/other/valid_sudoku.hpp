@@ -14,95 +14,65 @@
 #include <vector>
 #include <set>
 
-namespace ValidSudoku {
+namespace Algo { namespace Other {
 
-class Solution {
+class ValidSudoku {
 public:
-    bool isValidSudoku(std::vector<std::vector<char>>& board) {
-        const size_t BOARD_DIMENSION = 9;
-        if (board.size() != BOARD_DIMENSION) {
+    static bool isValid(std::vector<std::vector<char>>& sudoku) {
+        const size_t SIZE = 9;
+        if (sudoku.size() != SIZE) {
             return false;
         }
 
-        for (auto line : board) {
-            if (line.size() != BOARD_DIMENSION) {
+        for (size_t row = 0; row < sudoku.size(); ++row) {
+            if (sudoku[row].size() != SIZE) {
                 return false;
             }
         }
 
-        // Check rows
-        {
-            for (auto line : board) {
-                std::set<char> numbers;
-                for (char element : line) {
-                    if (element == '.') {
+        auto check = [&](const size_t& rStart, const size_t& rEnd,
+                         const size_t& cStart, const size_t& cEnd) -> bool {
+            std::set<int> numbers;
+            for(size_t row = rStart; row <= rEnd; ++row) {
+                for(size_t col = cStart; col <= cEnd; ++col) {
+                    if (sudoku[row][col] == '.') {
                         continue;
                     }
 
-                    if (numbers.count(element) > 0) {
+                    int num = sudoku[row][col] - '0';
+                    if (num < 0 || num > 9) {
                         return false;
                     }
 
-                    numbers.insert(element);
+                    if (numbers.count(num) > 0) {
+                        return false;
+                    }
+
+                    numbers.insert(num);
                 }
+            }
+
+            return true;
+        };
+
+        for (size_t row = 0; row < SIZE; ++row) {
+            if (!check(row, row, 0, SIZE - 1)) {
+                return false;
             }
         }
 
-        // Check columns
-        {
-            for (size_t col = 0; col < BOARD_DIMENSION; ++col) {
-                std::set<char> numbers;
-                for (size_t row = 0; row < BOARD_DIMENSION; ++row) {
-                    char& element = board[row][col];
-                    if (element == '.') {
-                        continue;
-                    }
-
-                    if (numbers.count(element) > 0) {
-                        return false;
-                    }
-
-                    numbers.insert(element);
-                }
+        for (size_t col = 0; col < SIZE; ++col) {
+            if (!check(0, SIZE - 1, col, col)) {
+                return false;
             }
         }
 
-        // Check 3x3 boxes
-        {
-            const size_t BOX_DIMENSION = BOARD_DIMENSION / 3;
-
-            auto checkBox = [&board, &BOX_DIMENSION](const size_t& rowStart,
-                    const size_t& colStart) -> bool {
-
-                std::set<char> numbers;
-                for (size_t row = rowStart; row < rowStart + BOX_DIMENSION;
-                     ++row)
-                {
-                    for (size_t col = colStart; col < colStart + BOX_DIMENSION;
-                         ++col)
-                    {
-                        char& element = board[row][col];
-                        if (element == '.') {
-                            continue;
-                        }
-
-                        if (numbers.count(element) > 0) {
-                            return false;
-                        }
-
-                        numbers.insert(element);
-                    }
-                }
-
-                return true;
-            };
-
-            for (size_t row = 0; row < BOARD_DIMENSION; row += BOX_DIMENSION) {
-                for (size_t col = 0; col < BOARD_DIMENSION;
-                     col += BOX_DIMENSION) {
-                    if (!checkBox(row, col)) {
-                        return false;
-                    }
+        const size_t BOX_SIZE = SIZE / 3;
+        for (size_t row = 0; row < SIZE; row += BOX_SIZE) {
+            for (size_t col = 0; col < SIZE; col += BOX_SIZE) {
+                if (!check(row, row + BOX_SIZE - 1,
+                           col, col + BOX_SIZE - 1)) {
+                    return false;
                 }
             }
         }
@@ -111,6 +81,6 @@ public:
     }
 };
 
-}
+} }
 
 #endif // VALID_SUDOKU_HPP
