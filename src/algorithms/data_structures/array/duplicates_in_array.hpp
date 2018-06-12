@@ -10,11 +10,11 @@
 #include <vector>
 #include <algorithm>
 
-namespace DuplicatesInArray {
+namespace Algo { namespace DS { namespace Array {
 
-class Solution {
+class DuplicatesInArray {
 public:
-    bool containsDuplicate(std::vector<int>& nums) {
+    static bool containsDuplicates(std::vector<int>& nums) {
         std::sort(nums.begin(), nums.end());
         for (size_t i = 1; i < nums.size(); ++i) {
             if (nums[i] == nums[i - 1]) {
@@ -26,6 +26,6 @@ public:
     }
 };
 
-}
+} } }
 
 #endif // DUPLICATES_IN_ARRAY_HPP

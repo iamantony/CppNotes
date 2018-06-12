@@ -16,11 +16,11 @@
 
 #include <vector>
 
-namespace RDIA {
+namespace Algo { namespace DS { namespace Array {
 
-class Solution {
+class RemoveDuplicates {
 public:
-    size_t removeDuplicates(std::vector<int>& nums) {
+    static size_t removeDuplicates(std::vector<int>& nums) {
         if (nums.size() < 2) {
             return nums.size();
         }
@@ -58,6 +58,6 @@ public:
     }
 };
 
-}
+} } }
 
 #endif // REMOVE_DUPLICATES_IN_ARRAY_HPP

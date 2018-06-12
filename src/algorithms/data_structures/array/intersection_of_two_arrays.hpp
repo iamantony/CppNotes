@@ -24,12 +24,12 @@
 #include <map>
 #include <algorithm>
 
-namespace ArraysIntersection {
+namespace Algo { namespace DS { namespace Array {
 
-class Solution {
+class Intersection {
 public:
-    std::vector<int> intersect(std::vector<int>& nums1,
-                               std::vector<int>& nums2) {
+    static std::vector<int> GetIntersection(std::vector<int>& nums1,
+                                            std::vector<int>& nums2) {
         if (nums1.empty() || nums2.empty()) {
             return std::vector<int>();
         }
@@ -60,6 +60,6 @@ public:
     }
 };
 
-}
+} } }
 
 #endif // INTERSECTION_OF_TWO_ARRAYS_HPP

@@ -7,27 +7,24 @@
 
 BOOST_AUTO_TEST_CASE(test_mztea_empty_arr)
 {
-    MoveZerosToEnd::Solution solution;
     std::vector<int> digits = {};
-    solution.moveZeroes(digits);
+    Algo::DS::Array::MoveZerosToEnd::move(digits);
     BOOST_CHECK(digits.empty());
 }
 
 BOOST_AUTO_TEST_CASE(test_mztea_no_zeroes)
 {
-    MoveZerosToEnd::Solution solution;
     std::vector<int> digits = {1, 2};
     std::vector<int> expected = {1, 2};
-    solution.moveZeroes(digits);
+    Algo::DS::Array::MoveZerosToEnd::move(digits);
     BOOST_CHECK(expected == digits);
 }
 
 BOOST_AUTO_TEST_CASE(test_mztea_have_zeroes)
 {
-    MoveZerosToEnd::Solution solution;
     std::vector<int> digits = {0, 1, 0, 0, 2, 0};
     std::vector<int> expected = {1, 2, 0, 0, 0, 0};
-    solution.moveZeroes(digits);
+    Algo::DS::Array::MoveZerosToEnd::move(digits);
     BOOST_CHECK(expected == digits);
 }
 

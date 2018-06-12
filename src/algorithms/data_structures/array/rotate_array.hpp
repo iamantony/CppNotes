@@ -9,14 +9,14 @@
 
 #include <vector>
 
-namespace RotateArray {
+namespace Algo { namespace DS { namespace Array {
 
-class Solution {
+class RotateArray {
 public:
     // Rotate using vector properties and functions
     // TC: O(n)
     // SC: O(k)
-    void rotate(std::vector<int>& nums, int k) {
+    static void rotate(std::vector<int>& nums, int k) {
         if (nums.size() < 2 || k <= 0) {
             return;
         }
@@ -31,7 +31,7 @@ public:
     // rotate vector as if it was just an array. Use additional memory
     // TC: O(n)
     // SC: O(n)
-    void rotatePlainArray(std::vector<int>& nums, int k) {
+    static void rotatePlainArray(std::vector<int>& nums, int k) {
         if (nums.size() < 2 || k <= 0) {
             return;
         }
@@ -54,7 +54,7 @@ public:
     // rotate via jumps
     // TC: O(n)
     // SC: O(1)
-    void rotateViaJumps(std::vector<int>& nums, int k) {
+    static void rotateViaJumps(std::vector<int>& nums, int k) {
         if (nums.size() < 2 || k <= 0) {
             return;
         }
@@ -81,7 +81,7 @@ public:
     // rotate via reverse
     // TC: O(3n)
     // SC: O(1)
-    void rotateViaReverse(std::vector<int>& nums, int k) {
+    static void rotateViaReverse(std::vector<int>& nums, int k) {
         if (nums.size() < 2 || k <= 0) {
             return;
         }
@@ -95,7 +95,7 @@ public:
     }
 
 private:
-    void reverse(std::vector<int>& nums, size_t start, size_t end) {
+    static void reverse(std::vector<int>& nums, size_t start, size_t end) {
         while (start < end) {
             int temp = nums[end];
             nums[end] = nums[start];
@@ -106,7 +106,7 @@ private:
     }
 };
 
-}
+} } }
 
 #endif // ROTATE_ARRAY_HPP
 

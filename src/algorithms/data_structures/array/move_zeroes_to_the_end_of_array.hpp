@@ -16,12 +16,12 @@
 #include <vector>
 #include <algorithm>
 
-namespace MoveZerosToEnd {
+namespace Algo { namespace DS { namespace Array {
 
-class Solution {
+class MoveZerosToEnd {
 public:
     // Most effective algorithm with minimum copy operations
-    void moveZeroes(std::vector<int>& nums) {
+    static void move(std::vector<int>& nums) {
         for (size_t moveNumHere = 0, current = 0; current < nums.size();
              ++current) {
             if (nums[current] != 0) {
@@ -31,6 +31,6 @@ public:
     }
 };
 
-}
+} } }
 
 #endif // MOVE_ZEROS_TO_THE_END_OF_ARRAY_HPP
