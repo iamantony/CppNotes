@@ -25,18 +25,18 @@ Output: [3,2,1]
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace DataStructures { namespace BT { namespace Postorder {
+namespace Algo { namespace DS { namespace BT {
 
-class Solution {
+class PostorderTraversal {
 public:
     template<typename T>
-    std::vector<T> PostorderTraversalRecursive(NodeBT<T>* root) {
+    static std::vector<T> PostorderRecursive(NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
         }
 
-        PostorderTraversalImpl(root, result);
+        PostorderImpl(root, result);
         return result;
     }
 
@@ -51,7 +51,7 @@ public:
     // a) Instead of printing an item, we push it to a stack.
     // b) We push left subtree before right subtree.
     template<typename T>
-    std::vector<T> PostorderTraversalIterStack(NodeBT<T>* root) {
+    static std::vector<T> PostorderIterStack(NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
@@ -83,13 +83,13 @@ public:
 
 private:
     template<typename T>
-    void PostorderTraversalImpl(NodeBT<T>* root, std::vector<T>& v) {
+    static void PostorderImpl(NodeBT<T>* root, std::vector<T>& v) {
         if (root == nullptr) {
             return;
         }
 
-        PostorderTraversalImpl(root->left, v);
-        PostorderTraversalImpl(root->right, v);
+        PostorderImpl(root->left, v);
+        PostorderImpl(root->right, v);
         v.push_back(root->value);
     }
 };

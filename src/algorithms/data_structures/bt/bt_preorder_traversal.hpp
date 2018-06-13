@@ -24,23 +24,23 @@
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace DataStructures { namespace BT { namespace Preorder {
+namespace Algo { namespace DS { namespace BT {
 
-class Solution {
+class PreorderTraversal {
 public:
     template<typename T>
-    std::vector<T> PreorderTraversalRecursive(NodeBT<T>* root) {
+    static std::vector<T> PreorderRecursive(NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
         }
 
-        PreorderTraversalImpl(root, result);
+        PreorderImpl(root, result);
         return result;
     }
 
     template<typename T>
-    std::vector<T> PreorderTraversalIterative(NodeBT<T>* root) {
+    static std::vector<T> PreorderIterative(NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
@@ -67,14 +67,14 @@ public:
 
 private:
     template<typename T>
-    void PreorderTraversalImpl(NodeBT<T>* root, std::vector<T>& v) {
+    static void PreorderImpl(NodeBT<T>* root, std::vector<T>& v) {
         if (root == nullptr) {
             return;
         }
 
         v.push_back(root->value);
-        PreorderTraversalImpl(root->left, v);
-        PreorderTraversalImpl(root->right, v);
+        PreorderImpl(root->left, v);
+        PreorderImpl(root->right, v);
     }
 };
 

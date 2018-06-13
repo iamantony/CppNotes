@@ -8,8 +8,7 @@
 BOOST_AUTO_TEST_CASE(test_mdobt_empty_bt)
 {
     NodeBT<int>* bt = nullptr;
-    MaxDepthBT::Solution solution;
-    BOOST_CHECK(0 == solution.maxDepth(bt));
+    BOOST_CHECK(0 == Algo::DS::BT::MaxDepth::Depth(bt));
     DeleteBT(&bt);
 }
 
@@ -17,8 +16,7 @@ BOOST_AUTO_TEST_CASE(test_mdobt_valid_bt)
 {
     {
         NodeBT<int>* bt = CreateBT<int>({2, 1, 2, 3});
-        MaxDepthBT::Solution solution;
-        BOOST_CHECK(3 == solution.maxDepth(bt));
+        BOOST_CHECK(3 == Algo::DS::BT::MaxDepth::Depth(bt));
         DeleteBT(&bt);
     }
 }

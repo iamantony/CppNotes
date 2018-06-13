@@ -25,19 +25,19 @@ Output: [1,3,2]
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace DataStructures { namespace BT { namespace Inorder {
+namespace Algo { namespace DS { namespace BT {
 
-class Solution {
+class InorderTraversal {
 public:
     template <typename T>
-    std::vector<T> InorderTraversalRecursive(NodeBT<T>* root) {
+    static std::vector<T> InorderRecursive(NodeBT<T>* root) {
         std::vector<T> result;
-        InorderTraversalRecursiveImpl(root, result);
+        InorderRecursiveImpl(root, result);
         return result;
     }
 
     template <typename T>
-    std::vector<T> InorderTraversalIterative(NodeBT<T>* root) {
+    static std::vector<T> InorderIterative(NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
@@ -62,7 +62,7 @@ public:
     }
 
     template <typename T>
-    std::vector<T> InorderTraversalIterativeMorris(NodeBT<T>* root) {
+    static std::vector<T> InorderIterativeMorris(NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
@@ -103,14 +103,14 @@ public:
 
 private:
     template <typename T>
-    void InorderTraversalRecursiveImpl(NodeBT<T>* root, std::vector<T>& v) {
+    static void InorderRecursiveImpl(NodeBT<T>* root, std::vector<T>& v) {
         if (root == nullptr) {
             return;
         }
 
-        InorderTraversalRecursiveImpl(root->left, v);
+        InorderRecursiveImpl(root->left, v);
         v.push_back(root->value);
-        InorderTraversalRecursiveImpl(root->right, v);
+        InorderRecursiveImpl(root->right, v);
     }
 };
 

@@ -23,27 +23,27 @@
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace MaxDepthBT {
+namespace Algo { namespace DS { namespace BT {
 
-class Solution {
+class MaxDepth {
 public:
     template<typename T>
-    int maxDepth(NodeBT<T>* root) {
-        return maxDepthHelper(root);
+    static int Depth(NodeBT<T>* root) {
+        return DepthHelper(root);
     }
 
 private:
     template<typename T>
-    int maxDepthHelper(NodeBT<T>* root) {
+    static int DepthHelper(NodeBT<T>* root) {
         if (root == nullptr) {
             return 0;
         }
 
-        return 1 + std::max(maxDepthHelper(root->left),
-                            maxDepthHelper(root->right));
+        return 1 + std::max(DepthHelper(root->left),
+                            DepthHelper(root->right));
     }
 };
 
-}
+} } }
 
 #endif // MAX_DEPTH_OF_BT_HPP

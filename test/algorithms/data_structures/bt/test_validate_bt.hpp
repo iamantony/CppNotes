@@ -8,8 +8,7 @@
 BOOST_AUTO_TEST_CASE(test_valbt_empty_bt)
 {
     NodeBT<int>* bt = nullptr;
-    ValidateBT::Solution solution;
-    BOOST_CHECK(solution.isValidBST(bt));
+    BOOST_CHECK(Algo::DS::BT::Validate::isValid(bt));
     DeleteBT(&bt);
 }
 
@@ -17,22 +16,19 @@ BOOST_AUTO_TEST_CASE(test_valbt_valid_bt)
 {
     {
         NodeBT<int>* bt = CreateBT<int>({2, 1, 2, 3});
-        ValidateBT::Solution solution;
-        BOOST_CHECK(solution.isValidBST(bt));
+        BOOST_CHECK(Algo::DS::BT::Validate::isValid(bt));
         DeleteBT(&bt);
     }
 
     {
         NodeBT<int>* bt = CreateBT<int>({1, 1});
-        ValidateBT::Solution solution;
-        BOOST_CHECK(solution.isValidBST(bt));
+        BOOST_CHECK(Algo::DS::BT::Validate::isValid(bt));
         DeleteBT(&bt);
     }
 
     {
         NodeBT<int>* bt = CreateBT<int>({1, 0, 1});
-        ValidateBT::Solution solution;
-        BOOST_CHECK(solution.isValidBST(bt));
+        BOOST_CHECK(Algo::DS::BT::Validate::isValid(bt));
         DeleteBT(&bt);
     }
 }
@@ -43,8 +39,7 @@ BOOST_AUTO_TEST_CASE(test_valbt_invalid_bt)
         NodeBT<int>* bt = CreateBT<int>({2, 1, 2, 3});
         bt->left->value = 100;
 
-        ValidateBT::Solution solution;
-        BOOST_CHECK(false == solution.isValidBST(bt));
+        BOOST_CHECK(!Algo::DS::BT::Validate::isValid(bt));
         DeleteBT(&bt);
     }
 
@@ -52,8 +47,7 @@ BOOST_AUTO_TEST_CASE(test_valbt_invalid_bt)
         NodeBT<int>* bt = CreateBT<int>({std::numeric_limits<int>::max(),
                                          std::numeric_limits<int>::max()});
 
-        ValidateBT::Solution solution;
-        BOOST_CHECK(false == solution.isValidBST(bt));
+        BOOST_CHECK(!Algo::DS::BT::Validate::isValid(bt));
         DeleteBT(&bt);
     }
 }

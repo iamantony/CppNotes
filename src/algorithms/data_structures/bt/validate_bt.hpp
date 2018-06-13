@@ -29,20 +29,18 @@ Binary tree [1,2,3], return false.
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace ValidateBT {
+namespace Algo { namespace DS { namespace BT {
 
-class Solution {
+class Validate {
 public:
-
     template<typename T>
-    bool isValidBST(NodeBT<T>* root) {
+    static bool isValid(NodeBT<T>* root) {
         return false;
     }
 
 private:
-
     template<typename T>
-    bool validateNodeValue(NodeBT<T>* node, const T& min, const T& max) {
+    static bool validateNodeValue(NodeBT<T>* node, const T& min, const T& max) {
         if (nullptr == node) {
             return true;
         }
@@ -57,12 +55,12 @@ private:
 };
 
 template<>
-bool Solution::isValidBST<int>(NodeBT<int>* root) {
+bool Validate::isValid<int>(NodeBT<int>* root) {
     return validateNodeValue(root,
                              std::numeric_limits<int>::min(),
                              std::numeric_limits<int>::max());
 }
 
-}
+} } }
 
 #endif // VALIDATE_BT_HPP
