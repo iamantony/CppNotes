@@ -2,6 +2,7 @@
 #define UTILS_HPP
 
 #include <limits>
+#include <cstdlib>
 
 template<typename T>
 bool equal(const T& left, const T& right) {

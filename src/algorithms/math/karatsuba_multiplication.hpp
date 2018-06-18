@@ -2,6 +2,7 @@
 #define KARATSUBA_MULTIPLICATION_HPP_
 
 #include <utility>
+#include <cmath>
 
 namespace Karatsuba
 {
