@@ -23,36 +23,25 @@
 // assume that your function returns 0 when the reversed integer overflows.
 
 #include <vector>
+#include <limits>
 
 namespace Algo::Math {
 
 class ReverseInteger {
 public:
     static int Reverse(int x) {
-        if ( x < 10 && x > -10 ) {
-            return x;
-        }
-
-        int sign = (x > 0) ? 1 : -1;
-        x = std::abs(x);
-
-        std::vector<int> nums;
+        long result = 0;
         while(x != 0) {
-            nums.push_back(x % 10);
+            result = result * 10 + x % 10;
+            if (result > std::numeric_limits<int>::max() ||
+                result < std::numeric_limits<int>::min()) {
+                return 0;
+            }
+
             x /= 10;
         }
 
-        int result = 0;
-        for (const int& num : nums) {
-            result = result * 10 + num;
-
-            // Check if we have integer overflow
-            if (result < 0) {
-                return 0;
-            }
-        }
-
-        return result * sign;
+        return static_cast<int>(result);
     }
 };
 

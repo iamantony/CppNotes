@@ -72,6 +72,12 @@ BOOST_AUTO_TEST_CASE(test_revint_huge_value)
         int expected = 0;
         BOOST_CHECK(expected == Algo::Math::ReverseInteger::Reverse(value));
     }
+
+    {
+        int value = 1534236469;
+        int expected = 0;
+        BOOST_CHECK(expected == Algo::Math::ReverseInteger::Reverse(value));
+    }
 }
 
 #endif // TEST_REVERSE_INTEGER_HPP
