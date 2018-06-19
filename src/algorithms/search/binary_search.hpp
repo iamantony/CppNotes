@@ -23,6 +23,10 @@ public:
                 const size_t& size,
                 const V& value,
                 size_t& resultIndex) {
+        if (size == 0) {
+            return false;
+        }
+
         return BinarySearchImpl(container, 0, size - 1, value, resultIndex);
     }
 
