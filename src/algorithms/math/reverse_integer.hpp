@@ -22,34 +22,37 @@
 // within the 32-bit signed integer range. For the purpose of this problem,
 // assume that your function returns 0 when the reversed integer overflows.
 
-#include <string>
+#include <vector>
 
-#include "../strings/str_reverse.hpp"
+namespace Algo::Math {
 
-namespace ReverseInteger {
-
-class Solution {
+class ReverseInteger {
 public:
-    int reverse(int x) {
+    static int Reverse(int x) {
         if ( x < 10 && x > -10 ) {
             return x;
         }
 
         int sign = (x > 0) ? 1 : -1;
-        std::string number = std::to_string(std::abs(x));
+        x = std::abs(x);
 
-        ReverseStr::Solution revSolution;
-        std::string reversedNumber = revSolution.reverseString(number);
-
-        try {
-            int result = sign * std::stoi(reversedNumber);
-            return result;
-        }
-        catch(...) {
-            return 0;
+        std::vector<int> nums;
+        while(x != 0) {
+            nums.push_back(x % 10);
+            x /= 10;
         }
 
-        return 0;
+        int result = 0;
+        for (const int& num : nums) {
+            result = result * 10 + num;
+
+            // Check if we have integer overflow
+            if (result < 0) {
+                return 0;
+            }
+        }
+
+        return result * sign;
     }
 };
 
