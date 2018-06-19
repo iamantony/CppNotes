@@ -22,6 +22,7 @@
 #include "algorithms/data_structures/sll/test_delete_k_to_last_elem_in_sll.hpp"
 #include "algorithms/data_structures/sll/test_find_middle_of_sll.hpp"
 #include "algorithms/data_structures/sll/test_remove_value_from_sll.hpp"
+#include "algorithms/data_structures/sll/test_merge_sorted_sll.hpp"
 
 #include "algorithms/math/test_add_two_numbers_as_linked_list.hpp"
 #include "algorithms/math/test_basic_matrix_multiplication.hpp"

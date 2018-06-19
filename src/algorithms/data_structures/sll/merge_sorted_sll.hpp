@@ -13,55 +13,47 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-namespace MergeSLL {
+namespace Algo::DS::SLL {
 
-class Solution {
+class MergeSortedLists {
 public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        if (l1 == nullptr && l2 == nullptr) {
+    template <typename T>
+    static NodeSLL<T>* Merge(NodeSLL<T>* left, NodeSLL<T>* right) {
+        if (left == nullptr && right == nullptr) {
             return nullptr;
         }
-        else if (l1 == nullptr) {
-            return l2;
+        else if (left == nullptr) {
+            return right;
         }
-        else if (l2 == nullptr) {
-            return l1;
+        else if (right == nullptr) {
+            return left;
         }
 
-        ListNode* start = nullptr;
-        if (l1->value > l2->value) {
-            start = l2;
-            l2 = l2->next;
+        NodeSLL<T>* start = nullptr;
+        if (left->value < right->value) {
+            start = left;
+            left = left->next;
         }
         else {
-            start = l1;
-            l1 = l1->next;
+            start = right;
+            right = right->next;
         }
 
-        ListNode* tail = start;
-        while(l1 != nullptr || l2 != nullptr) {
-            if (l1 == nullptr) {
-                tail->next = l2;
-                l2 = l2->next;
-            }
-            else if (l2 == nullptr) {
-                tail->next = l1;
-                l1 = l1->next;
+        NodeSLL<T>* tail = start;
+        while(left != nullptr || right != nullptr) {
+            if (left != nullptr &&
+                    (right == nullptr || left->value < right->value))
+            {
+                tail->next = left;
+                left = left->next;
             }
             else {
-                if (l1->value > l2->value) {
-                    tail->next = l2;
-                    l2 = l2->next;
-                }
-                else {
-                    tail->next = l1;
-                    l1 = l1->next;
-                }
+                tail->next = right;
+                right = right->next;
             }
 
             tail = tail->next;
         }
-
 
         return start;
     }
