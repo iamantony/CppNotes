@@ -37,10 +37,6 @@ public:
                 left++;
             }
             else if (!std::isalnum(s[right])) {
-                if (right == 0) {
-                    return false;
-                }
-
                 right--;
             }
             else {
@@ -49,10 +45,6 @@ public:
                 }
                 else {
                     ++left;
-                    if (right == 0) {
-                        return false;
-                    }
-
                     --right;
                 }
             }
