@@ -44,6 +44,14 @@ BOOST_AUTO_TEST_CASE(test_potnaa_nines_to_the_middle)
     BOOST_CHECK(expected == solution.plusOne(digits));
 }
 
+BOOST_AUTO_TEST_CASE(test_potnaa_nines_on_edges)
+{
+    PlusOne::Solution solution;
+    std::vector<int> digits = {9, 0, 9};
+    std::vector<int> expected = {9, 1, 0};
+    BOOST_CHECK(expected == solution.plusOne(digits));
+}
+
 BOOST_AUTO_TEST_CASE(test_potnaa_all_nines)
 {
     PlusOne::Solution solution;
