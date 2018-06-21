@@ -23,7 +23,7 @@
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace Algo { namespace DS { namespace BT {
+namespace Algo::DS::BT {
 
 class MaxDepth {
 public:
@@ -44,6 +44,6 @@ private:
     }
 };
 
-} } }
+}
 
 #endif // MAX_DEPTH_OF_BT_HPP

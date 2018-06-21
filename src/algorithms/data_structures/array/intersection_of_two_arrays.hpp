@@ -24,7 +24,7 @@
 #include <map>
 #include <algorithm>
 
-namespace Algo { namespace DS { namespace Array {
+namespace Algo::DS::Array {
 
 class Intersection {
 public:
@@ -60,6 +60,6 @@ public:
     }
 };
 
-} } }
+}
 
 #endif // INTERSECTION_OF_TWO_ARRAYS_HPP

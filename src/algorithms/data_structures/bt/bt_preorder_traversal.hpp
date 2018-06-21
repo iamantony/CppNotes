@@ -24,7 +24,7 @@
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace Algo { namespace DS { namespace BT {
+namespace Algo::DS::BT {
 
 class PreorderTraversal {
 public:
@@ -78,6 +78,6 @@ private:
     }
 };
 
-} } }
+}
 
 #endif // BT_PREORDER_TRAVERSAL_HPP

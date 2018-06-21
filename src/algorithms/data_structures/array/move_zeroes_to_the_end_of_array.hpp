@@ -16,7 +16,7 @@
 #include <vector>
 #include <algorithm>
 
-namespace Algo { namespace DS { namespace Array {
+namespace Algo::DS::Array {
 
 class MoveZerosToEnd {
 public:
@@ -31,6 +31,6 @@ public:
     }
 };
 
-} } }
+}
 
 #endif // MOVE_ZEROS_TO_THE_END_OF_ARRAY_HPP

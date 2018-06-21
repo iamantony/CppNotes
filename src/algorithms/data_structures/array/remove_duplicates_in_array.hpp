@@ -16,7 +16,7 @@
 
 #include <vector>
 
-namespace Algo { namespace DS { namespace Array {
+namespace Algo::DS::Array {
 
 class RemoveDuplicates {
 public:
@@ -58,6 +58,6 @@ public:
     }
 };
 
-} } }
+}
 
 #endif // REMOVE_DUPLICATES_IN_ARRAY_HPP

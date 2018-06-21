@@ -29,7 +29,7 @@ Binary tree [1,2,3], return false.
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace Algo { namespace DS { namespace BT {
+namespace Algo::DS::BT {
 
 class Validate {
 public:
@@ -61,6 +61,6 @@ bool Validate::isValid<int>(NodeBT<int>* root) {
                              std::numeric_limits<int>::max());
 }
 
-} } }
+}
 
 #endif // VALIDATE_BT_HPP

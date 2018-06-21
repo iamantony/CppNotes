@@ -25,7 +25,7 @@ Output: [1,3,2]
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace Algo { namespace DS { namespace BT {
+namespace Algo::DS::BT {
 
 class InorderTraversal {
 public:
@@ -114,6 +114,6 @@ private:
     }
 };
 
-} } }
+}
 
 #endif // BT_INORDER_TRAVERSAL_HPP

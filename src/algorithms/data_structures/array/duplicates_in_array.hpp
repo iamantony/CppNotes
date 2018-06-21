@@ -10,7 +10,7 @@
 #include <vector>
 #include <algorithm>
 
-namespace Algo { namespace DS { namespace Array {
+namespace Algo::DS::Array {
 
 class DuplicatesInArray {
 public:
@@ -26,6 +26,6 @@ public:
     }
 };
 
-} } }
+}
 
 #endif // DUPLICATES_IN_ARRAY_HPP

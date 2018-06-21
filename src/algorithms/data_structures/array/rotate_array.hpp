@@ -9,7 +9,7 @@
 
 #include <vector>
 
-namespace Algo { namespace DS { namespace Array {
+namespace Algo::DS::Array {
 
 class RotateArray {
 public:
@@ -106,7 +106,7 @@ private:
     }
 };
 
-} } }
+}
 
 #endif // ROTATE_ARRAY_HPP
 

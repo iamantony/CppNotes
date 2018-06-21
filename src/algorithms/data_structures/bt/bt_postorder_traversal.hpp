@@ -25,7 +25,7 @@ Output: [3,2,1]
 
 #include "types/ds/binary_tree_nodes.hpp"
 
-namespace Algo { namespace DS { namespace BT {
+namespace Algo::DS::BT {
 
 class PostorderTraversal {
 public:
@@ -94,6 +94,6 @@ private:
     }
 };
 
-} } }
+}
 
 #endif // BT_POSTORDER_TRAVERSAL_HPP
