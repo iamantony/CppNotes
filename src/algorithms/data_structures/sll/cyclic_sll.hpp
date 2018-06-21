@@ -19,13 +19,12 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-namespace CyclicSLL {
+namespace Algo::DS::SLL {
 
-class Solution {
+class DetectCycle {
 public:
-
     template<typename T>
-    bool hasCycle(NodeSLL<T>* head) {
+    static bool HasCycle(NodeSLL<T>* head) {
         if (head == nullptr) {
             return false;
         }

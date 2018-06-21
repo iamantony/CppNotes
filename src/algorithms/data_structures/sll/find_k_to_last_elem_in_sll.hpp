@@ -10,7 +10,7 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-namespace Algo { namespace DS { namespace SLL {
+namespace Algo::DS::SLL {
 
 class FindKthToLast {
 public:
@@ -18,7 +18,8 @@ public:
     static NodeSLL<T>* FindRecursive(NodeSLL<T>* head, const int& k)
     {
         std::function<NodeSLL<T>*(NodeSLL<T>*, const int&, int&)> findElem;
-        findElem = [&findElem](NodeSLL<T>* node, const int& kth, int& i) -> NodeSLL<T>*
+        findElem =
+            [&findElem](NodeSLL<T>* node, const int& kth, int& i) -> NodeSLL<T>*
         {
             if (nullptr == node) {
                 return nullptr;
@@ -68,6 +69,6 @@ public:
     }
 };
 
-} } }
+}
 
 #endif /* FIND_K_TO_LAST_ELEM_IN_SLL_HPP_ */

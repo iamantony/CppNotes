@@ -5,20 +5,27 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-template<typename T>
-NodeSLL<T>* FindMiddleElem(NodeSLL<T>* head) {
-    if (nullptr == head) {
-        return nullptr;
-    }
+namespace Algo::DS::SLL {
 
-    NodeSLL<T>* slowPtr = head;
-    NodeSLL<T>* fastPtr = head;
-    while(fastPtr != nullptr && fastPtr->next != nullptr) {
-        fastPtr = fastPtr->next->next; // move by two elements
-        slowPtr = slowPtr->next; // move by one element
-    }
+class FindMiddleElement {
+public:
+    template<typename T>
+    static NodeSLL<T>* Find(NodeSLL<T>* head) {
+        if (nullptr == head) {
+            return nullptr;
+        }
 
-    return slowPtr;
+        NodeSLL<T>* slowPtr = head;
+        NodeSLL<T>* fastPtr = head;
+        while(fastPtr != nullptr && fastPtr->next != nullptr) {
+            fastPtr = fastPtr->next->next; // move by two elements
+            slowPtr = slowPtr->next; // move by one element
+        }
+
+        return slowPtr;
+    }
+};
+
 }
 
 #endif // FIND_MIDDLE_OF_SLL_HPP

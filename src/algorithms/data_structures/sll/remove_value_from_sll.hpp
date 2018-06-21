@@ -11,12 +11,12 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-namespace Algo { namespace DS { namespace SLL {
+namespace Algo::DS::SLL {
 
 class RemoveValue {
 public:
     template<typename T>
-    static NodeSLL<T>* remove(NodeSLL<T>* node, const T& value) {
+    static NodeSLL<T>* Remove(NodeSLL<T>* node, const T& value) {
         NodeSLL<T> dummy = NodeSLL<T>(0);
         dummy.next = node;
 
@@ -38,6 +38,6 @@ public:
     }
 };
 
-} } }
+}
 
 #endif // REMOVE_VALUE_FROM_SLL_HPP

@@ -6,15 +6,15 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-namespace ReverseSLL {
+namespace Algo::DS::SLL {
 
-class Solution {
+class Reverse {
 public:
 
     // Time complexity: O(n)
     // Space complexity: O(1)
     template<typename T>
-    NodeSLL<T>* ReverseSLL(NodeSLL<T>* head) {
+    static NodeSLL<T>* ReverseIterative(NodeSLL<T>* head) {
         NodeSLL<T>* current = head;
         NodeSLL<T>* prev = nullptr;
         while(nullptr != current) {
@@ -31,12 +31,12 @@ public:
     // Space complexity: O(n). The extra space comes from implicit stack space
     // due to recursion. The recursion could go up to n levels deep.
     template<typename T>
-    NodeSLL<T>* ReverseSLLRecursive(NodeSLL<T>* head) {
+    static NodeSLL<T>* ReverseRecursive(NodeSLL<T>* head) {
         if (nullptr == head || nullptr == head->next) {
             return head;
         }
 
-        NodeSLL<T>* node = ReverseSLLRecursive(head->next);
+        NodeSLL<T>* node = ReverseRecursive(head->next);
         head->next->next = head;
         head->next = nullptr;
         return node;

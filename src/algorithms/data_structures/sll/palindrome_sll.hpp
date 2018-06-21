@@ -10,13 +10,12 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-namespace PalindromeSLL {
+namespace Algo::DS::SLL {
 
-class Solution {
+class PalindromeDetection {
 public:
-
     template<typename T>
-    bool isPalindrome(NodeSLL<T>* head) {
+    static bool IsPalindrome(NodeSLL<T>* head) {
         NodeSLL<T>* pre = nullptr;
         NodeSLL<T>* fast = head;
         NodeSLL<T>* slow = head;
@@ -34,13 +33,12 @@ public:
             slow = slow->next;
         }
 
-        return isSameList(pre, slow);
+        return IsSameList(pre, slow);
     }
 
 private:
-
     template<typename T>
-    bool isSameList(NodeSLL<T>* firstSLL, NodeSLL<T>* secondSLL) {
+    static bool IsSameList(NodeSLL<T>* firstSLL, NodeSLL<T>* secondSLL) {
         while(firstSLL != nullptr && secondSLL != nullptr) {
             if (firstSLL->value != secondSLL->value) {
                 return false;

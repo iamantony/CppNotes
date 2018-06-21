@@ -12,11 +12,12 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-namespace DeleteKToLastElem {
-class Solution {
+namespace Algo::DS::SLL {
+
+class DeleteKthFromEndElement {
 public:
     template<typename T>
-    NodeSLL<T>* deleteKthFromEnd(NodeSLL<T>* head, int k) {
+    static NodeSLL<T>* Delete(NodeSLL<T>* head, int k) {
         // Create dummy node and put it ahead of the start of the list.
         // It will be start point in our node couting process
         NodeSLL<T> dummy = NodeSLL<T>(0);
@@ -48,6 +49,7 @@ public:
         return dummy.next;
     }
 };
+
 }
 
 #endif // DELETE_K_TO_LAST_ELEM_IN_SLL_HPP
