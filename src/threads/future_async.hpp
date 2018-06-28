@@ -54,6 +54,27 @@ void Start() {
     std::this_thread::sleep_for(0.5s);
     std::cout << std::endl << "Going to get value of f3: " << std::endl;
     std::cout << f3.get() << std::endl;
+
+    // duration-based wait
+    std::cout << "Going to wait SimpleFunction() for 1ns" << std::endl;
+    std::future<int> f4 = std::async(SimpleFunction);
+    auto waitResult = f4.wait_for(std::chrono::nanoseconds(1));
+    switch(waitResult) {
+    case std::future_status::ready:
+        std::cout << "Ready. Wow, too fast" << std::endl;
+        break;
+
+    case std::future_status::deferred:
+        std::cout << "Deferred. Hah, you even did not start yet" << std::endl;
+        break;
+
+    case std::future_status::timeout:
+        std::cout << "Timeout. Sorry, toooo long!" << std::endl;
+        break;
+
+    default:
+        std::cout << "Unexpected default case" << std::endl;
+    }
 }
 
 }
