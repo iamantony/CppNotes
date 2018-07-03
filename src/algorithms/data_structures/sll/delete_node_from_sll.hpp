@@ -11,38 +11,19 @@ namespace Algo::DS::SLL {
 class DeleteNode {
 public:
     template<typename T>
-    static void Delete(NodeSLL<T>* node)
-    {
+    static void Delete(NodeSLL<T>* node) {
         if (nullptr == node) {
             return;
         }
 
-        NodeSLL<T>* current = node;
-        NodeSLL<T>* previous = node;
-        while(current != nullptr) {
-            // Is current node last node?
-            if (nullptr == current->next) {
-                // If we don't know who is previous node, then we can not delete
-                // this node. All we can is to reset data in it.
-                if (current == previous) {
-                    current->value = T();
-                    break;
-                }
-                else {
-                    // Else we just delete current node
-                    delete current;
-                    current = nullptr;
-                    previous->next = nullptr;
-                }
-            }
-            else {
-                current->value = current->next->value;
-                if (current != previous) {
-                    previous = current;
-                }
-
-                current = current->next;
-            }
+        if (node->next == nullptr) {
+            node->value = T();
+        }
+        else {
+            NodeSLL<T>* nodeToDelete = node->next;
+            node->value = nodeToDelete->value;
+            node->next = nodeToDelete->next;
+            delete nodeToDelete;
         }
     }
 };
