@@ -9,75 +9,66 @@
 
 BOOST_AUTO_TEST_CASE(test_atn_empty_lists)
 {
-    AddTwoNumbers::Solution solution;
-    BOOST_CHECK(solution.addTwoNumbers(nullptr, nullptr) == nullptr);
+    NodeSLL<int> *left = nullptr, *right = nullptr;
+    BOOST_CHECK(Algo::Math::AddNumbersSLL<int>::Add(left, right) == nullptr);
 
-    AddTwoNumbers::ListNode shortList(0);
-    std::shared_ptr<AddTwoNumbers::ListNode> result(solution.addTwoNumbers(nullptr, &shortList));
-    BOOST_CHECK(result->val == 0);
+    NodeSLL<int> shortList(0);
+    {
+        NodeSLL<int>* result =
+                Algo::Math::AddNumbersSLL<int>::Add(left, &shortList);
+        BOOST_CHECK(result->value == 0);
+        DeleteSLL(&result);
+    }
 
-    shortList.val = 5;
-    result.reset(solution.addTwoNumbers(&shortList, nullptr));
-    BOOST_CHECK(result->val == 5);
+    {
+        shortList.value = 5;
+        NodeSLL<int>* result =
+                Algo::Math::AddNumbersSLL<int>::Add(&shortList, right);
+        BOOST_CHECK(result->value == 5);
+        DeleteSLL(&result);
+    }
 }
 
 BOOST_AUTO_TEST_CASE(test_atn_equal_size_lists)
 {
-    std::vector<int> valuesForFirstList = {0, 1, 2, 3, 4};
-    std::vector<int> valuesForSecondList = {8, 7, 9, 9, 4};
-    std::vector<int> valuesForExpectedList = {8, 8, 1, 3, 9};
+    NodeSLL<int>* first = CreateSLL<int>({0, 1, 2, 3, 4});
+    NodeSLL<int>* second = CreateSLL<int>({8, 7, 9, 9, 4});
+    std::vector<int> expected({8, 8, 1, 3, 9});
 
-    std::shared_ptr<AddTwoNumbers::ListNode> firstList(
-                AddTwoNumbers::CreateLinkedList(valuesForFirstList));
+    NodeSLL<int>* result = Algo::Math::AddNumbersSLL<int>::Add(first, second);
+    BOOST_CHECK(expected == ValuesInSLL(&result));
 
-    std::shared_ptr<AddTwoNumbers::ListNode> secondList(
-                AddTwoNumbers::CreateLinkedList(valuesForSecondList));
-
-    AddTwoNumbers::Solution solution;
-    std::shared_ptr<AddTwoNumbers::ListNode> result(
-                solution.addTwoNumbers(firstList.get(), secondList.get()));
-
-    BOOST_CHECK(valuesForExpectedList ==
-                AddTwoNumbers::LinkedListToVector(result.get()));
+    DeleteSLL(&first);
+    DeleteSLL(&second);
+    DeleteSLL(&result);
 }
 
 BOOST_AUTO_TEST_CASE(test_atn_equal_size_lists_with_carry)
 {
-    std::vector<int> valuesForFirstList = {0, 1, 2, 3, 4};
-    std::vector<int> valuesForSecondList = {8, 7, 9, 9, 9};
-    std::vector<int> valuesForExpectedList = {8, 8, 1, 3, 4, 1};
+    NodeSLL<int>* first = CreateSLL<int>({0, 1, 2, 3, 4});
+    NodeSLL<int>* second = CreateSLL<int>({8, 7, 9, 9, 9});
+    std::vector<int> expected({8, 8, 1, 3, 4, 1});
 
-    std::shared_ptr<AddTwoNumbers::ListNode> firstList(
-                AddTwoNumbers::CreateLinkedList(valuesForFirstList));
+    NodeSLL<int>* result = Algo::Math::AddNumbersSLL<int>::Add(first, second);
+    BOOST_CHECK(expected == ValuesInSLL(&result));
 
-    std::shared_ptr<AddTwoNumbers::ListNode> secondList(
-                AddTwoNumbers::CreateLinkedList(valuesForSecondList));
-
-    AddTwoNumbers::Solution solution;
-    std::shared_ptr<AddTwoNumbers::ListNode> result(
-                solution.addTwoNumbers(firstList.get(), secondList.get()));
-
-    BOOST_CHECK(valuesForExpectedList ==
-                AddTwoNumbers::LinkedListToVector(result.get()));
+    DeleteSLL(&first);
+    DeleteSLL(&second);
+    DeleteSLL(&result);
 }
 
 BOOST_AUTO_TEST_CASE(test_atn_diff_size_lists)
 {
-    std::vector<int> valuesForFirstList = {0, 1, 2};
-    std::vector<int> valuesForSecondList = {8, 7, 9, 9, 4};
-    std::vector<int> valuesForExpectedList = {8, 8, 1, 0, 5};
+    NodeSLL<int>* first = CreateSLL<int>({0, 1, 2});
+    NodeSLL<int>* second = CreateSLL<int>({8, 7, 9, 9, 4});
+    std::vector<int> expected({8, 8, 1, 0, 5});
 
-    std::shared_ptr<AddTwoNumbers::ListNode> firstList(
-                AddTwoNumbers::CreateLinkedList(valuesForFirstList));
+    NodeSLL<int>* result = Algo::Math::AddNumbersSLL<int>::Add(first, second);
+    BOOST_CHECK(expected == ValuesInSLL(&result));
 
-    std::shared_ptr<AddTwoNumbers::ListNode> secondList(
-                AddTwoNumbers::CreateLinkedList(valuesForSecondList));
-
-    AddTwoNumbers::Solution solution;
-    std::shared_ptr<AddTwoNumbers::ListNode> result(
-                solution.addTwoNumbers(firstList.get(), secondList.get()));
-
-    BOOST_CHECK(valuesForExpectedList == AddTwoNumbers::LinkedListToVector(result.get()));
+    DeleteSLL(&first);
+    DeleteSLL(&second);
+    DeleteSLL(&result);
 }
 
 #endif // TEST_ADD_TWO_NUMBERS_AS_LINKED_LIST_HPP
