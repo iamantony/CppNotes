@@ -45,7 +45,6 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
 #include <list>
 #include <string>
-#include <iostream>
 
 namespace Algo::Math {
 
