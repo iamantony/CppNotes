@@ -53,6 +53,7 @@
 #include "algorithms/math/test_knapsack_problem.hpp"
 #include "algorithms/math/test_polynomial_multiplication.hpp"
 #include "algorithms/math/test_int_to_roman.hpp"
+#include "algorithms/math/test_roman_to_int.hpp"
 
 #include "algorithms/other/test_buy_sell_stock.hpp"
 #include "algorithms/other/test_valid_sudoku.hpp"
