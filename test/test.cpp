@@ -96,6 +96,8 @@
 
 #include "files/test_read_last_lines.hpp"
 
+#include "pointers/test_shared_pointer.hpp"
+
 #include "types/ds/test_binary_search_tree.hpp"
 #include "types/ds/test_concurrent_map.hpp"
 #include "types/ds/test_linked_list.hpp"
