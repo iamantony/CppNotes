@@ -12,11 +12,11 @@ public:
     int value;
 
     MyInt() : value(0) {
-        std::cout << "In MyInt(): " << value << std::endl;
+//        std::cout << "In MyInt(): " << value << std::endl;
     }
 
     explicit MyInt(const int& other) : value(other) {
-        std::cout << "In MyInt(const int&): " << value << std::endl;
+//        std::cout << "In MyInt(const int&): " << value << std::endl;
     }
 
     MyInt(const MyInt&) = delete;
@@ -25,7 +25,7 @@ public:
     MyInt& operator=(const MyInt&&) = delete;
 
     ~MyInt() {
-        std::cout << "In ~MyInt(): " << value << std::endl;
+//        std::cout << "In ~MyInt(): " << value << std::endl;
     }
 };
 
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(test_shrdptr_sp_move_constr)
     Pointers::SharedPointer2<MyInt> ptr1(
                 Pointers::SharedPointer2<MyInt>(new MyInt(45)));
     ptr1.Get()->value = 46;
-    std::cout << "Updated value: " << (*ptr1).value << std::endl;
+//    std::cout << "Updated value: " << (*ptr1).value << std::endl;
 }
 
 #endif // TEST_SHARED_POINTER_HPP
