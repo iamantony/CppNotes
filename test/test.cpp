@@ -57,6 +57,7 @@
 #include "algorithms/math/test_max_subarray_sum.hpp"
 
 #include "algorithms/other/test_buy_sell_stock.hpp"
+#include "algorithms/other/test_buy_sell_stock_one_transaction.hpp"
 #include "algorithms/other/test_valid_sudoku.hpp"
 
 #include "algorithms/search/test_binary_search.hpp"
