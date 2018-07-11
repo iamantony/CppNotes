@@ -108,3 +108,4 @@
 #include "types/ds/test_vector_ds.hpp"
 #include "types/ds/test_heap.hpp"
 #include "types/ds/test_interval_map.hpp"
+#include "types/test_vector_iterator.hpp"
