@@ -29,8 +29,7 @@ BOOST_AUTO_TEST_CASE(test_fsor_rand_tests) {
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    std::uniform_int_distribution<size_t> sizeDist(
-                1, 1000000);
+    std::uniform_int_distribution<size_t> sizeDist(1, 1000000);
 
     std::uniform_int_distribution<int> valuesDist(
                 std::numeric_limits<int>::min(),
