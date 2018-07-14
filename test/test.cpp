@@ -13,6 +13,7 @@
 #include "algorithms/data_structures/bt/test_bt_preorder_traversal.hpp"
 #include "algorithms/data_structures/bt/test_bt_inorder_traversal.hpp"
 #include "algorithms/data_structures/bt/test_bt_postorder_traversal.hpp"
+#include "algorithms/data_structures/bt/test_bt_level_order_traversal.hpp"
 
 #include "algorithms/data_structures/sll/test_palindrome_sll.hpp"
 #include "algorithms/data_structures/sll/test_cyclic_sll.hpp"
