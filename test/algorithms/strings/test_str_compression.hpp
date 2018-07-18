@@ -7,19 +7,63 @@
 
 BOOST_AUTO_TEST_CASE(test_strcomp_empty_str)
 {
-    BOOST_CHECK(std::string() == CompressString(std::string()));
+    std::vector<char> chars = { }, expected = { };
+    BOOST_CHECK(expected.size() ==
+                Algo::Strings::StringCompression::Compress(chars));
+    BOOST_CHECK(expected == chars);
 }
 
 BOOST_AUTO_TEST_CASE(test_strcomp_no_compression)
 {
-    std::string str = "aa";
-    BOOST_CHECK(str == CompressString(str));
+    {
+        std::vector<char> chars = {'a'}, expected = {'a'};
+        BOOST_CHECK(expected.size() ==
+                    Algo::Strings::StringCompression::Compress(chars));
+        BOOST_CHECK(expected == chars);
+    }
+
+    {
+        std::vector<char> chars = {'a', 'b'}, expected = {'a', 'b'};
+        BOOST_CHECK(expected.size() ==
+                    Algo::Strings::StringCompression::Compress(chars));
+        BOOST_CHECK(expected == chars);
+    }
+
+    {
+        std::vector<char> chars = {'a', 'b', 'a', 'b'},
+                expected = {'a', 'b', 'a', 'b'};
+
+        BOOST_CHECK(expected.size() ==
+                    Algo::Strings::StringCompression::Compress(chars));
+        BOOST_CHECK(expected == chars);
+    }
 }
 
 BOOST_AUTO_TEST_CASE(test_strcomp_compression)
 {
-    std::string str = "aaabbyr55iiiiio";
-    std::string expected = "a3b2y1r152i5o1";
-    BOOST_CHECK(expected == CompressString(str));
+    {
+        std::vector<char> chars = {'a', 'a'}, expected = {'a', '2'};
+        BOOST_CHECK(expected.size() ==
+                    Algo::Strings::StringCompression::Compress(chars));
+        BOOST_CHECK(expected == chars);
+    }
+
+    {
+        std::vector<char> chars = {'a', 'a', 'b', 'b', 'c', 'c', 'c'},
+                expected = {'a', '2', 'b', '2', 'c', '3'};
+
+        BOOST_CHECK(expected.size() ==
+                    Algo::Strings::StringCompression::Compress(chars));
+        BOOST_CHECK(expected == chars);
+    }
+
+    {
+        std::vector<char> chars = {'a', 'a', 'b', 'b', 'b', 'b', 'b'},
+                expected = {'a', '2', 'b', '5'};
+
+        BOOST_CHECK(expected.size() ==
+                    Algo::Strings::StringCompression::Compress(chars));
+        BOOST_CHECK(expected == chars);
+    }
 }
 #endif /* TEST_STR_COMPRESSION_HPP_ */
