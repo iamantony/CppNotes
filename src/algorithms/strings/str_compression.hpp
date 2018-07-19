@@ -12,10 +12,8 @@ Every element of the array should be a character (not int) of length 1.
 After you are done modifying the input array in-place, return the new length
 of the array.
 
-
 Follow up:
 Could you solve it using only O(1) extra space?
-
 
 Example 1:
 Input: ["a","a","b","b","c","c","c"]
@@ -54,33 +52,29 @@ public:
             return chars.size();
         }
 
-        size_t charPos = 0, counter = 0, writePos = 0;
+        size_t writePos = 0;
         for (size_t i = 0; i < chars.size(); ++i) {
             // Count same characters
-            while(i < chars.size() && chars[charPos] == chars[i]) {
-                ++i;
-                ++counter;
+            size_t charPos = i, j = i;
+            while(j < chars.size() && chars[charPos] == chars[j]) {
+                ++j;
             }
 
-            if (counter == 1) {
-                writePos += charPos <= writePos ? 1 : 0;
-                ++charPos;
-            }
-            else {
-                chars[writePos] = chars[charPos];
-                ++writePos;
+            chars[writePos] = chars[charPos];
+            ++writePos;
 
-                std::string counterStr = std::to_string(counter);
-                for (size_t ci = 0; ci < counterStr.size(); ++ci, ++writePos) {
-                    chars[writePos] = counterStr[ci];
+            size_t elementsNum = j - i;
+            if (elementsNum > 1) {
+                std::string numStr = std::to_string(elementsNum);
+                for (size_t nPos = 0; nPos < numStr.size(); ++nPos, ++writePos) {
+                    chars[writePos] = numStr[nPos];
                 }
 
-                charPos = i;
-                counter = 1;
+                i += elementsNum - 1;
             }
         }
 
-        chars.resize(writePos + 1);
+        chars.resize(writePos);
         return chars.size();
     }
 };
