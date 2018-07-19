@@ -7,6 +7,7 @@
 #include "algorithms/data_structures/array/test_move_zeroes_to_the_end_of_array.hpp"
 #include "algorithms/data_structures/array/test_fast_sum_of_range.hpp"
 #include "algorithms/data_structures/array/test_fast_sum_of_matrix.hpp"
+#include "algorithms/data_structures/array/test_find_pivot_index.hpp"
 
 #include "algorithms/data_structures/bt/test_max_depth_of_bt.hpp"
 #include "algorithms/data_structures/bt/test_validate_bt.hpp"
