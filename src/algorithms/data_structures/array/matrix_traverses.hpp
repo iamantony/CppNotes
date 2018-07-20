@@ -20,6 +20,31 @@ Note:
 The total number of elements of the given matrix will not exceed 10,000.
 */
 
+// https://leetcode.com/problems/spiral-matrix/description/
+
+/*
+Given a matrix of m x n elements (m rows, n columns), return all elements of
+the matrix in spiral order.
+
+Example 1:
+Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+Output: [1,2,3,6,9,8,7,4,5]
+
+Example 2:
+Input:
+[
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9,10,11,12]
+]
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+*/
+
 #include <vector>
 #include <algorithm>
 
@@ -70,6 +95,53 @@ public:
             int row = maxRows - 1, col = c;
             InsertTillValid(elements, row, col);
             AddToResult(elements);
+        }
+
+        return result;
+    }
+
+    static std::vector<int> SpiralTraverse(
+            std::vector< std::vector<int> >& matrix) {
+        std::vector<int> result;
+        if (matrix.empty()) {
+            return result;
+        }
+
+        const size_t maxElements = matrix.size() * matrix[0].size();
+        int row = 0, minRow = 0, maxRow = static_cast<int>(matrix.size()) - 1;
+        int col = 0, minCol = 0, maxCol = static_cast<int>(matrix[0].size()) - 1;
+
+        auto PushToResult = [&result, &matrix](const int& r, const int& c) {
+            result.push_back(
+                        matrix[static_cast<size_t>(r)][static_cast<size_t>(c)]);
+        };
+
+        while (result.size() < maxElements) {
+            for (; result.size() < maxElements && col <= maxCol; ++col) {
+                PushToResult(row, col);
+            }
+
+            --col, ++row;
+
+            for (; result.size() < maxElements && row <= maxRow; ++row) {
+                PushToResult(row, col);
+            }
+
+            --row, --col;
+            --maxRow, --maxCol;
+
+            for (; result.size() < maxElements && col >= minCol; --col) {
+                PushToResult(row, col);
+            }
+
+            ++col, --row;
+
+            for (; result.size() < maxElements && row > minRow; --row) {
+                PushToResult(row, col);
+            }
+
+            ++minRow, ++minCol;
+            row = minRow, col = minCol;
         }
 
         return result;
