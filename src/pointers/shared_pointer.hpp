@@ -237,10 +237,13 @@ public:
         }
 
         --(*counter);
-        if (*counter <= 0 && object != nullptr) {
-            delete object;
+        if (*counter <= 0) {
+            if (object != nullptr) {
+                delete object;
+                object = nullptr;
+            }
+
             delete counter;
-            object = nullptr;
             counter = nullptr;
         }
     }
