@@ -9,6 +9,7 @@
 #include "algorithms/data_structures/array/test_fast_sum_of_matrix.hpp"
 #include "algorithms/data_structures/array/test_find_pivot_index.hpp"
 #include "algorithms/data_structures/array/test_find_largest_num_twice_of_others.hpp"
+#include "algorithms/data_structures/array/test_matrix_diagonal_traverse.hpp"
 
 #include "algorithms/data_structures/bt/test_max_depth_of_bt.hpp"
 #include "algorithms/data_structures/bt/test_validate_bt.hpp"
