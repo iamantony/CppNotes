@@ -9,92 +9,45 @@
 // Return "100".
 
 #include <string>
-#include <list>
+#include <stack>
 
-namespace SumOfBinaryStrings {
+namespace Algo::Strings {
 
-class Solution {
+class AddBinaryStrings {
 public:
-    std::string addBinary(std::string a, std::string b) {
+    static std::string Add(const std::string& a, const std::string& b) {
         if (a.empty() && b.empty()) {
             return std::string("0");
         }
 
-        char ZERO = '0';
-        char ONE = '1';
-
-        std::list<char> sum;
-        char carry = ZERO;
-        while(!a.empty() || !b.empty()) {
-            if (a.empty()) {
-                if (carry == ONE) {
-                    if (b.back() == ONE) {
-                        sum.push_front(ZERO);
-                    }
-                    else {
-                        sum.push_front(carry);
-                        carry = ZERO;
-                    }
-                }
-                else {
-                    sum.push_front(b.back());
-                }
-
-                b.pop_back();
+        std::stack<char> sum;
+        int carry = 0;
+        int aIter = static_cast<int>(a.size()) - 1;
+        int bIter = static_cast<int>(b.size()) - 1;
+        const char ZERO = '0', ONE = '1';
+        for (; aIter >= 0 || bIter >= 0 || carry > 0; --aIter, --bIter) {
+            int bitSum = carry;
+            if (aIter >= 0) {
+                bitSum += a[static_cast<size_t>(aIter)] - ZERO;
             }
-            else if (b.empty()) {
-                if (carry == ONE) {
-                    if (a.back() == ONE) {
-                        sum.push_front(ZERO);
-                    }
-                    else {
-                        sum.push_front(carry);
-                        carry = ZERO;
-                    }
-                }
-                else {
-                    sum.push_front(a.back());
-                }
 
-                a.pop_back();
+            if (bIter >= 0) {
+                bitSum += b[static_cast<size_t>(bIter)] - ZERO;
             }
-            else {
-                if (a.back() == ZERO && b.back() == ZERO) {
-                    sum.push_front(carry);
-                    carry = ZERO;
-                }
-                else if ((a.back() == ONE && b.back() == ZERO) ||
-                         (a.back() == ZERO && b.back() == ONE)) {
-                    if (carry == ONE) {
-                        sum.push_front(ZERO);
-                    }
-                    else {
-                        sum.push_front(ONE);
-                    }
-                }
-                else {
-                    if (carry == ONE) {
-                        sum.push_front(ONE);
-                    }
-                    else {
-                        sum.push_front(ZERO);
-                    }
 
-                    carry = ONE;
-                }
-
-                a.pop_back();
-                b.pop_back();
+            carry = bitSum > 1 ? 1 : 0;
+            char bit = ZERO;
+            if (bitSum == 1 || bitSum == 3) {
+                bit = ONE;
             }
-        }
 
-        if (carry == ONE) {
-            sum.push_front(ONE);
+            sum.push(bit);
         }
 
         std::string result;
-        for (const char& bit : sum) {
-            result.push_back(bit);
+        while(!sum.empty()) {
+            result.push_back(sum.top());
+            sum.pop();
         }
 
         return result;
