@@ -4,7 +4,7 @@
 #include "algorithms/data_structures/array/test_rotate_array.hpp"
 #include "algorithms/data_structures/array/test_duplicates_in_array.hpp"
 #include "algorithms/data_structures/array/test_intersection_of_two_arrays.hpp"
-#include "algorithms/data_structures/array/test_move_zeroes_to_the_end_of_array.hpp"
+#include "algorithms/data_structures/array/test_remove_elements_equal_to_value.hpp"
 #include "algorithms/data_structures/array/test_fast_sum_of_range.hpp"
 #include "algorithms/data_structures/array/test_fast_sum_of_matrix.hpp"
 #include "algorithms/data_structures/array/test_find_pivot_index.hpp"
