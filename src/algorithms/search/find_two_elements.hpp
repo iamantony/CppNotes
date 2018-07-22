@@ -12,6 +12,8 @@
 
 #include "algorithms/search/binary_search.hpp"
 
+namespace Algo::Search {
+
 std::vector<std::pair<int, int>> RemoveDuplicates(
         const std::vector<std::pair<int, int>>& data);
 
@@ -109,27 +111,43 @@ std::vector<std::pair<int, int>> RemoveDuplicates(
     return result;
 }
 
-// https://leetcode.com/problems/two-sum/description/
+/*
+ https://leetcode.com/problems/two-sum/description/
+ Given an array of integers, return indices of the two numbers such that
+ they add up to a specific target.
+ You may assume that each input would have exactly one solution, and you
+ may not use the same element twice.
 
-// Given an array of integers, return indices of the two numbers such that
-// they add up to a specific target.
-// You may assume that each input would have exactly one solution, and you
-// may not use the same element twice.
+ Example:
+ Given nums = [2, 7, 11, 15], target = 9,
+ Because nums[0] + nums[1] = 2 + 7 = 9,
+ return [0, 1].
 
-// Example:
-// Given nums = [2, 7, 11, 15], target = 9,
-// Because nums[0] + nums[1] = 2 + 7 = 9,
-// return [0, 1].
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+Given an array of integers that is already sorted in ascending order, find two
+numbers such that they add up to a specific target number.
 
-namespace TwoSum {
-class Solution {
+The function twoSum should return indices of the two numbers such that they
+add up to the target, where index1 must be less than index2.
+
+Note:
+Your returned answers (both index1 and index2) are not zero-based.
+You may assume that each input would have exactly one solution and you may not
+use the same element twice.
+
+Example:
+Input: numbers = [2,7,11,15], target = 9
+Output: [1,2]
+Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
+*/
+
+class TwoSum {
 public:
-    std::vector<int> twoSum(std::vector<int>& nums, int target) {
+    static std::vector<int> SearchUnordered(const std::vector<int>& nums,
+                                            const int& target) {
         std::unordered_map<int, size_t> umap;
-        for (size_t i = 0; i < nums.size(); ++i)
-        {
-            if (0 < umap.count(target - nums[i]))
-            {
+        for (size_t i = 0; i < nums.size(); ++i) {
+            if (0 < umap.count(target - nums[i])) {
                 size_t j = umap[target - nums[i]];
 
                 std::vector<int> result;
@@ -137,9 +155,34 @@ public:
                 result.push_back(static_cast<int>(i));
                 return result;
             }
-            else
-            {
+            else {
                 umap[nums[i]] = i;
+            }
+        }
+
+        return std::vector<int>();
+    }
+
+    static std::vector<int> SearchOrdered(const std::vector<int>& nums,
+                                          const int& target) {
+        if (nums.size() < 2) {
+            return std::vector<int>();
+        }
+
+        for (size_t left = 0, right = nums.size() - 1; left < right; ) {
+            while (left < right && nums[left] + nums[right] > target) {
+                --right;
+            }
+
+            if (left < right && nums[left] + nums[right] == target) {
+                return std::vector<int>({ static_cast<int>(left),
+                                        static_cast<int>(right)});
+            }
+
+            ++left;
+            right = std::max(right, std::min(left + 1, nums.size() - 1));
+            while (right < nums.size() && nums[left] + nums[right] < target) {
+                ++right;
             }
         }
 

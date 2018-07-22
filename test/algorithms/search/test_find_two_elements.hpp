@@ -40,36 +40,66 @@ BOOST_AUTO_TEST_CASE(test_fte_empty_data)
     int value = 10;
     std::vector<std::pair<int, int>> expected;
 
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsNaive(data, value)));
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsBS(data, value)));
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsHash(data, value)));
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsNaive(data, value)));
+
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsBS(data, value)));
+
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsHash(data, value)));
+    {
+        std::vector<int> expectedIndexes;
+        BOOST_CHECK(expectedIndexes ==
+                    Algo::Search::TwoSum::SearchOrdered(data, value));
+    }
 }
 
 BOOST_AUTO_TEST_CASE(test_fte_one_pair)
 {
     std::vector<int> data = {99, -1, 0, 8, 3, 4, 15, 100};
-    int value = 11;
-    std::vector<std::pair<int, int>> expected;
-    expected.push_back({8, 3});
+    const int value = 11;
+    const std::vector<std::pair<int, int>> expected({ {8, 3} });
 
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsNaive(data, value)));
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsBS(data, value)));
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsHash(data, value)));
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsNaive(data, value)));
+
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsBS(data, value)));
+
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsHash(data, value)));
+
+    {
+        std::sort(data.begin(), data.end());
+        std::vector<int> expectedIndexes({2, 4});
+        BOOST_CHECK(expectedIndexes ==
+                    Algo::Search::TwoSum::SearchOrdered(data, value));
+    }
 }
 
 BOOST_AUTO_TEST_CASE(test_fte_several_pairs)
 {
     std::vector<int> data = {99, -1, 7, 0, 8, 3, 4, 15, 6, 17, 100, 1, 9, 16};
     int value = 16;
-    std::vector<std::pair<int, int>> expected;
-    expected.push_back({1, 15});
-    expected.push_back({-1, 17});
-    expected.push_back({7, 9});
-    expected.push_back({0, 16});
+    std::vector<std::pair<int, int>> expected(
+        { {1, 15}, {-1, 17}, {7, 9}, {0, 16} });
 
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsNaive(data, value)));
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsBS(data, value)));
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsHash(data, value)));
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsNaive(data, value)));
+
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsBS(data, value)));
+
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsHash(data, value)));
+
+    {
+        std::sort(data.begin(), data.end());
+        std::vector<int> expectedIndexes({0, 11});
+        BOOST_CHECK(expectedIndexes ==
+                    Algo::Search::TwoSum::SearchOrdered(data, value));
+    }
 }
 
 BOOST_AUTO_TEST_CASE(test_fte_no_pairs)
@@ -78,9 +108,21 @@ BOOST_AUTO_TEST_CASE(test_fte_no_pairs)
     int value = 1123;
     std::vector<std::pair<int, int>> expected;
 
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsNaive(data, value)));
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsBS(data, value)));
-    BOOST_CHECK(areAllPairsEqual(expected, FindTwoElementsHash(data, value)));
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsNaive(data, value)));
+
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsBS(data, value)));
+
+    BOOST_CHECK(areAllPairsEqual(
+                    expected, Algo::Search::FindTwoElementsHash(data, value)));
+
+    {
+        std::sort(data.begin(), data.end());
+        std::vector<int> expectedIndexes;
+        BOOST_CHECK(expectedIndexes ==
+                    Algo::Search::TwoSum::SearchOrdered(data, value));
+    }
 }
 
 #endif /* TEST_FIND_TWO_ELEMENTS_HPP_ */
