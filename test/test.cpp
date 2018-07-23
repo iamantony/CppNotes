@@ -106,6 +106,7 @@
 #include "algorithms/strings/test_count_and_say.hpp"
 #include "algorithms/strings/test_two_str_are_valid_anagram.hpp"
 #include "algorithms/strings/test_valid_parentheses.hpp"
+#include "algorithms/strings/test_reverse_words_in_string.hpp"
 
 #include "files/test_read_last_lines.hpp"
 

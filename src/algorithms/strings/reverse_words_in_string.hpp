@@ -20,20 +20,6 @@ reversed string.
 Follow up: For C programmers, try to solve it in-place in O(1) space.
 */
 
-/*
-TODO: test cases
-""
-"  "
-"     "
-"a"
-"a "
-" a "
-"ab"
-" ab "
-"ab cd"
-"  the  sky is   blue   "
-*/
-
 #include <string>
 
 namespace Algo::Strigns {
@@ -41,7 +27,7 @@ namespace Algo::Strigns {
 class ReverseWords {
 public:
     static void Reverse(std::string& s) {
-        if (s.size() < 2) {
+        if (s.empty()) {
             return;
         }
 
@@ -69,7 +55,7 @@ public:
             }
 
             for (size_t wLeft = wordStart, wRight = wordEnd - 1;
-                 wLeft < wRight; ++wLeft, -wRight)
+                 wLeft < wRight; ++wLeft, --wRight)
             {
                 std::swap(s[wLeft], s[wRight]);
             }
@@ -84,26 +70,44 @@ public:
                 ++i;
             }
 
-            while(i < s.size() && s[i] != ' ') {
-                s[writePos++] = s[i++];
-            }
-
             if (i >= s.size()) {
                 break;
             }
-            else {
-                --i;
+
+            while(i < s.size() && s[i] != ' ') {
+                if (writePos == i) {
+                    ++writePos;
+                    ++i;
+                }
+                else {
+                    s[writePos++] = s[i];
+                    s[i++] = ' ';
+                }
             }
 
+            --i;
+
             if (writePos < s.size()) {
-                s[writePos] = ' ';
-                ++writePos;
+                s[writePos++] = ' ';
             }
         }
 
-        s.resize(writePos);
+        // Check that on the end of the string there is no white space
+        size_t endPos = std::min(writePos, s.size() - 1);
+        while (s[endPos] == ' ') {
+            if (endPos == 0) {
+                break;
+            }
 
-        // TODO: check that on the end of the string there is no white space
+            --endPos;
+        }
+
+        if (endPos == 0) {
+            s[endPos] != ' ' ? s.resize(1) : s.resize(0);
+        }
+        else {
+            s.resize(endPos + 1);
+        }
     }
 };
 
