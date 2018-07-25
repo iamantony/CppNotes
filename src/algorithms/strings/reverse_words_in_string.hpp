@@ -3,21 +3,31 @@
 
 /*
 https://leetcode.com/problems/reverse-words-in-a-string/description/
-
 Given an input string, reverse the string word by word.
 
 Example:
-
 Input: "the sky is blue",
 Output: "blue is sky the".
-Note:
 
-A word is defined as a sequence of non-space characters.
-Input string may contain leading or trailing spaces. However, your reversed
+Note:
+- A word is defined as a sequence of non-space characters.
+- Input string may contain leading or trailing spaces. However, your reversed
 string should not contain leading or trailing spaces.
-You need to reduce multiple spaces between two words to a single space in the
+- You need to reduce multiple spaces between two words to a single space in the
 reversed string.
+
 Follow up: For C programmers, try to solve it in-place in O(1) space.
+
+https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
+Given a string, you need to reverse the order of characters in each word within
+a sentence while still preserving whitespace and initial word order.
+
+Example 1:
+Input: "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+
+Note: In the string, each word is separated by single space and there will 
+not be any extra space in the string.
 */
 
 #include <string>
@@ -26,7 +36,8 @@ namespace Algo::Strigns {
 
 class ReverseWords {
 public:
-    static void Reverse(std::string& s) {
+    // TODO: update tests
+    static void ReverseWordsOrder(std::string& s) {
         if (s.empty()) {
             return;
         }
@@ -107,6 +118,28 @@ public:
         }
         else {
             s.resize(endPos + 1);
+        }
+    }
+    
+    // TODO: add tests
+    static void ReverseLettersInWords(std::string& s) {
+        if (s.size() < 2) {
+            return;
+        }
+        
+        for (size_t start = 0, end = 1; end < s.size(); ) {
+            while(end < s.size() && s[end] != ' ') {
+                ++end;
+            }
+            
+            if (end - start > 1) {
+                for (size_t i = start, j = end - 1; i < j; ++i, --j) {
+                    std::swap(s[i], s[j]);
+                }
+            }
+            
+            start = end + 1;
+            end = end + 2;
         }
     }
 };
