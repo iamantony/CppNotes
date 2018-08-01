@@ -18,6 +18,7 @@ reversed string.
 
 Follow up: For C programmers, try to solve it in-place in O(1) space.
 
+
 https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
 Given a string, you need to reverse the order of characters in each word within
 a sentence while still preserving whitespace and initial word order.
@@ -26,7 +27,7 @@ Example 1:
 Input: "Let's take LeetCode contest"
 Output: "s'teL ekat edoCteeL tsetnoc"
 
-Note: In the string, each word is separated by single space and there will 
+Note: In the string, each word is separated by single space and there will
 not be any extra space in the string.
 */
 
@@ -36,7 +37,6 @@ namespace Algo::Strigns {
 
 class ReverseWords {
 public:
-    // TODO: update tests
     static void ReverseWordsOrder(std::string& s) {
         if (s.empty()) {
             return;
@@ -120,24 +120,23 @@ public:
             s.resize(endPos + 1);
         }
     }
-    
-    // TODO: add tests
+
     static void ReverseLettersInWords(std::string& s) {
         if (s.size() < 2) {
             return;
         }
-        
+
         for (size_t start = 0, end = 1; end < s.size(); ) {
             while(end < s.size() && s[end] != ' ') {
                 ++end;
             }
-            
+
             if (end - start > 1) {
                 for (size_t i = start, j = end - 1; i < j; ++i, --j) {
                     std::swap(s[i], s[j]);
                 }
             }
-            
+
             start = end + 1;
             end = end + 2;
         }
