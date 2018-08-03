@@ -115,11 +115,6 @@ BOOST_AUTO_TEST_CASE(test_sirsa_sorted_container_with_many_elems)
     }
 }
 
-/*
-rotated container of size 5 with pivot on left with value
-rotated container of size 5 with pivot on right without value
-*/
-
 BOOST_AUTO_TEST_CASE(test_sirsa_rotated_container_with_4_elems)
 {
     {
