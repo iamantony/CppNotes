@@ -79,6 +79,7 @@
 #include "algorithms/search/test_find_single_item.hpp"
 #include "algorithms/search/test_find_single_item_in_sorted_array.hpp"
 #include "algorithms/search/test_search_in_rotated_sorted_array.hpp"
+#include "algorithms/search/test_find_three_sum.hpp"
 
 #include "algorithms/sorting/test_bubble_sort.hpp"
 #include "algorithms/sorting/test_gnome_sort.hpp"
