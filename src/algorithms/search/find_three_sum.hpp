@@ -108,15 +108,30 @@ public:
 
         std::set<std::vector<int>> validTriplets;
         for (size_t i = 0; i < nums.size(); ++i) {
+            // Skip duplicates after first run
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+
             size_t mid = i + 1, right = nums.size() - 1;
             while (mid < right) {
                 int sum = nums[i] + nums[mid] + nums[right];
-                if (sum == 0) {
+                if (sum == 0)
+                {
                     std::vector<int> triplet = {
                         nums[i], nums[mid], nums[right]};
 
                     std::sort(triplet.begin(), triplet.end());
                     validTriplets.insert(triplet);
+
+                    // Skip same elements
+                    while (mid < right && nums[mid] == nums[mid + 1]) {
+                        ++mid;
+                    }
+
+                    while (mid < right - 1 && nums[right] == nums[right - 1]) {
+                        --right;
+                    }
 
                     ++mid, --right;
                 }
