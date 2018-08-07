@@ -66,6 +66,7 @@
 #include "algorithms/math/test_max_subarray_sum.hpp"
 #include "algorithms/math/test_max_subarray_product.hpp"
 #include "algorithms/math/test_min_subarray_equal_to_value.hpp"
+#include "algorithms/math/test_container_with_most_water.hpp"
 
 #include "algorithms/other/test_buy_sell_stock.hpp"
 #include "algorithms/other/test_buy_sell_stock_one_transaction.hpp"

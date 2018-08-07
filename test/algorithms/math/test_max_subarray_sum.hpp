@@ -21,6 +21,7 @@ BOOST_AUTO_TEST_CASE(test_mss_array_with_several_elements)
 {
     BOOST_CHECK(1 == Algo::Math::MaxSubarraySum::Calc({-2, 1}));
     BOOST_CHECK(-1 == Algo::Math::MaxSubarraySum::Calc({-2, -1}));
+    BOOST_CHECK(2 == Algo::Math::MaxSubarraySum::Calc({-1, 2}));
     BOOST_CHECK(6 == Algo::Math::MaxSubarraySum::Calc({0, 2, 4, -1, -1}));
     BOOST_CHECK(7 == Algo::Math::MaxSubarraySum::Calc(
             {-2, -3, 4, -1, -2, 1, 5, -3}));
