@@ -34,4 +34,11 @@ BOOST_AUTO_TEST_CASE(test_arperm_array_with_three_elems)
     BOOST_CHECK(expected == Algo::DS::Array::ArrayPermutations::GetAll(array));
 }
 
+BOOST_AUTO_TEST_CASE(test_arperm_array_with_three_non_unique_elems)
+{
+    std::vector<int> array = {1, 1, 2};
+    std::vector<std::vector<int>> expected = { {1, 1, 2}, {1, 2, 1}, {2, 1, 1}};
+    BOOST_CHECK(expected == Algo::DS::Array::ArrayPermutations::GetUnique(array));
+}
+
 #endif // TEST_ARRAY_PERMUTATIONS_HPP
