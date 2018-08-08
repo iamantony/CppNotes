@@ -42,19 +42,18 @@ public:
             return 0;
         }
 
-        size_t largestIndex = 0, prevLargestIndex = 0;
-        for (size_t i = 1; i < nums.size(); ++i) {
+        size_t prevLargestIndex = 0, largestIndex = 1;
+        if (nums[prevLargestIndex] > nums[largestIndex]) {
+            std::swap(prevLargestIndex, largestIndex);
+        }
+
+        for (size_t i = 2; i < nums.size(); ++i) {
             if (nums[i] > nums[largestIndex]) {
                 prevLargestIndex = largestIndex;
                 largestIndex = i;
             }
-            else {
-                if (prevLargestIndex == largestIndex) {
-                    prevLargestIndex = i;
-                }
-                else if (nums[i] > nums[prevLargestIndex]) {
-                    prevLargestIndex = i;
-                }
+            else if (nums[i] > nums[prevLargestIndex]) {
+                prevLargestIndex = i;
             }
         }
 
