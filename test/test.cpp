@@ -15,6 +15,7 @@
 #include "algorithms/data_structures/array/test_search_insert_position.hpp"
 #include "algorithms/data_structures/array/test_array_permutations.hpp"
 #include "algorithms/data_structures/array/test_swap_min_and_max.hpp"
+#include "algorithms/data_structures/array/test_find_first_and_last_pos.hpp"
 
 #include "algorithms/data_structures/bt/test_max_depth_of_bt.hpp"
 #include "algorithms/data_structures/bt/test_validate_bt.hpp"
