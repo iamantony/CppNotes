@@ -25,36 +25,19 @@ public:
             return nums.size();
         }
 
-        size_t size = nums.size();
-        size_t currentPos = 0;
-        while(currentPos < size) {
-            // Find position of next different element
-            size_t diffElemPos = currentPos + 1;
-            while(diffElemPos < size &&
-                    nums[diffElemPos] == nums[currentPos]) {
-                ++diffElemPos;
+        size_t writeTo = 0;
+        for (size_t i = 0; i < nums.size(); ) {
+            size_t j = i + 1;
+            while (j < nums.size() && nums[i] == nums[j]) {
+                ++j;
             }
 
-            // If next different element is on the next position, we will
-            // not need any copy operations, we can just move next position
-            if (diffElemPos - currentPos <= 1) {
-                ++currentPos;
-                continue;
-            }
-
-            // Eliminate duplicate elements by moving tail elements to next
-            // position of currentPos
-            for (size_t toInd = currentPos + 1, fromInd = diffElemPos;
-                    fromInd < size;
-                    ++toInd, ++fromInd) {
-                nums[toInd] = nums[fromInd];
-            }
-
-            size = size - (diffElemPos - currentPos - 1);
-            ++currentPos;
+            nums[writeTo] = nums[i];
+            ++writeTo;
+            i = j;
         }
 
-        return size;
+        return writeTo;
     }
 };
 
