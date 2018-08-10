@@ -147,12 +147,10 @@ public:
                                             const int& target) {
         std::unordered_map<int, size_t> umap;
         for (size_t i = 0; i < nums.size(); ++i) {
-            if (0 < umap.count(target - nums[i])) {
-                size_t j = umap[target - nums[i]];
-
-                std::vector<int> result;
-                result.push_back(static_cast<int>(j));
-                result.push_back(static_cast<int>(i));
+            auto iter = umap.find(target - nums[i]);
+            if (iter != umap.end()) {
+                std::vector<int> result = {static_cast<int>(iter->second),
+                                          static_cast<int>(i)};
                 return result;
             }
             else {
