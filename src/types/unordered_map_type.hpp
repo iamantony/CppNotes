@@ -32,7 +32,7 @@
 //
 //Iterators in the container are at least forward iterators.
 //
-// Container properties^
+// Container properties:
 // - Associative
 //   Elements in associative containers are referenced by their key and not by
 //   their absolute position in the container.
@@ -173,11 +173,32 @@ void OrderOfElements()
     }
 }
 
+void InsertSameKeys() {
+    std::cout << std::endl << "InsertSameKeys in std::unordered_map" <<
+            std::endl;
+
+    std::unordered_map<int, int> myMap;
+    myMap.insert({2, 20});
+    myMap.insert(std::pair<int, int>(1, 10));
+    std::pair<std::unordered_map<int, int>::iterator, bool> res =
+            myMap.insert(std::pair<int, int>(2, 10));
+    if (res.second) {
+        std::cout << "Will not be printed" << std::endl;
+    }
+    else {
+        std::cout << "Failed to insert pair { " << 2 << ", " << 10 <<
+                     " } because unordered_map already has pair: { " <<
+                     res.first->first << ", " << res.first->second <<
+                     " }" << std::endl;
+    }
+}
+
 void StartUnorderedMap()
 {
     Creation();
     WorkWithContainer();
     OrderOfElements();
+    InsertSameKeys();
 }
 
 #endif /* UNORDERED_MAP_TYPE_HPP_ */
