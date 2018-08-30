@@ -18,6 +18,14 @@ BOOST_AUTO_TEST_CASE(test_dia_empty_arr)
         BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsWithinDistance(
                         numbers, distance));
     }
+
+    {
+        std::vector<int> numbers = {};
+        int difference = 0;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
+    }
 }
 
 BOOST_AUTO_TEST_CASE(test_dia_no_duplicates)
@@ -40,6 +48,38 @@ BOOST_AUTO_TEST_CASE(test_dia_no_duplicates)
         BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsWithinDistance(
                         numbers, distance));
     }
+
+    {
+        std::vector<int> numbers = {0};
+        int difference = 0;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, 1, 0};
+        int difference = 0;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, 3, 6, 9, 12};
+        int difference = 1;
+        size_t distance = 3;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {-1, -1};
+        int difference = -1;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
+    }
 }
 
 BOOST_AUTO_TEST_CASE(test_dia_have_duplicates)
@@ -54,6 +94,30 @@ BOOST_AUTO_TEST_CASE(test_dia_have_duplicates)
         size_t distance = 3;
         BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsWithinDistance(
                         numbers, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, 1, 0};
+        int difference = 1;
+        size_t distance = 1;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, 3, 6, 9, 12};
+        int difference = 3;
+        size_t distance = 3;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, std::numeric_limits<int>::max()};
+        int difference = std::numeric_limits<int>::max();
+        size_t distance = 1;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
     }
 }
 
