@@ -96,6 +96,54 @@ BOOST_AUTO_TEST_CASE(test_dia_no_duplicates)
         BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
                         numbers, difference, distance));
     }
+
+    {
+        std::vector<int> numbers = {0};
+        int difference = 0;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, 1, 0};
+        int difference = 0;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {10, 14};
+        int difference = 3;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {10, 6};
+        int difference = 3;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {10, 6, 11};
+        int difference = 3;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {-1, -1};
+        int difference = -1;
+        size_t distance = 1;
+        BOOST_CHECK(!Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
 }
 
 BOOST_AUTO_TEST_CASE(test_dia_have_duplicates)
@@ -173,6 +221,70 @@ BOOST_AUTO_TEST_CASE(test_dia_have_duplicates)
         int difference = 3;
         size_t distance = 3;
         BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicates(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {10, 7};
+        int difference = 3;
+        size_t distance = 1;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {10, 10};
+        int difference = 3;
+        size_t distance = 1;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {10, 13};
+        int difference = 3;
+        size_t distance = 1;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, 1, 0};
+        int difference = 1;
+        size_t distance = 1;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, 3, 6, 9, 12};
+        int difference = 3;
+        size_t distance = 3;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {0, std::numeric_limits<int>::max()};
+        int difference = std::numeric_limits<int>::max();
+        size_t distance = 1;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {1, 3, 1};
+        int difference = 1;
+        size_t distance = 2;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
+                        numbers, difference, distance));
+    }
+
+    {
+        std::vector<int> numbers = {-2147483648, -2147483647};
+        int difference = 3;
+        size_t distance = 3;
+        BOOST_CHECK(Algo::DS::Array::DuplicatesInArray::ContainsNearbyAlmostDuplicatesSimple(
                         numbers, difference, distance));
     }
 }

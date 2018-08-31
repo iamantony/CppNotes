@@ -200,6 +200,37 @@ public:
 
         return false;
     }
+
+    static bool ContainsNearbyAlmostDuplicatesSimple(
+            const std::vector<int>& nums,
+            const int& maxDifference,
+            const size_t& maxDistance)
+    {
+        if (nums.size() < 2 || maxDifference < 0 || maxDistance <= 0) {
+            return false;
+        }
+
+        const long long maxDiff = static_cast<long long>(maxDifference);
+        std::map<long long, size_t> elements;
+        for (size_t i = 0, j = 0; i < nums.size(); ++i) {
+            const long long elem = static_cast<long long>(nums[i]);
+            if (i - j > maxDistance) {
+                const long long oldElem = static_cast<long long>(nums[j]);
+                elements.erase(oldElem);
+                ++j;
+            }
+
+            auto iter = elements.lower_bound(elem - maxDiff);
+            if (iter != elements.end() &&
+                    std::abs(iter->first - elem) <= maxDiff) {
+                return true;
+            }
+
+            elements[elem] = i;
+        }
+
+        return false;
+    }
 };
 
 }
