@@ -47,6 +47,7 @@ Output: false
 #include <vector>
 #include <unordered_map>
 #include <map>
+#include <unordered_set>
 #include <algorithm>
 
 namespace Algo::DS::Array {
@@ -83,61 +84,117 @@ public:
 
     static bool ContainsNearbyAlmostDuplicates(
             const std::vector<int>& nums,
-            const int& difference,
+            const int& maxDifference,
             const size_t& maxDistance)
     {
-        if (nums.size() < 2 || difference < 0 || maxDistance == 0) {
+        if (nums.size() < 2 || maxDifference < 0 || maxDistance <= 0) {
             return false;
         }
 
-        std::map<int, size_t> elements;
+        std::multimap<int, size_t> elements;
 
-        auto CalcDiffValue = [](const int& value, const int& diff) {
-            static long long intMin = std::numeric_limits<int>::min();
-            static long long intMax = std::numeric_limits<int>::max();
+        // Carefully calculate summation of 'value' and 'diff' without overflow
+        auto CalcDiffValue = [](const int& value, const int& diff) -> int {
+            long long intMin = std::numeric_limits<int>::min();
+            long long intMax = std::numeric_limits<int>::max();
 
-            long long result = value + diff;
-            result = std::max(intMin, result);
-            result = std::min(intMax, result);
-            return static_cast<int>(result);
-        };
+            long long sum = static_cast<long long>(value) +
+                    static_cast<long long>(diff);
 
-        auto InsertOrUpdate = [&elements](const int& value, const size_t& pos) {
-            auto insertResult = elements.insert( {value, pos} );
-            if (!insertResult.second) {
-                insertResult.first->second = pos;
-            }
-
-            return insertResult.first;
+            sum = std::max(intMin, std::min(intMax, sum));
+            return static_cast<int>(sum);
         };
 
         for (size_t i = 0; i < nums.size(); ++i) {
+            // Get iterator to the map key that is >= than nums[i]
             auto iter = elements.lower_bound(nums[i]);
             if (iter != elements.end()) {
-                if (iter == elements.begin()) {
-                    if (nums[i] == iter->first && i - iter->second <= maxDistance) {
-                        return true;
-                    }
-                }
-                else {
-                    auto prev = iter;
-                    --prev;
-                    if (prev->second == iter->second) {
+                if (nums[i] == iter->first) {
+                    // Here we got iter that points to the first element
+                    // with key == nums[i]. We should iterate over all
+                    // elements with the same key and check their value
+                    while (iter != elements.end() && iter->first == nums[i]) {
                         if (i - iter->second <= maxDistance) {
                             return true;
                         }
+
+                        ++iter;
+                    }
+                }
+                else if (iter != elements.begin()) {
+                    // Here iter is the middle element with first key > nums[i].
+                    // We could be in two positions:
+                    // 1. Between several ranges
+                    // 2. Inside several ranges
+
+                    // Our aim is to be in case 2. We would return true only if
+                    // this range have value within maxDistance.
+                    // Let's first of all get all valid values for
+                    // keys > nums[i].
+
+                    std::unordered_set<size_t> validDistances;
+
+                    {
+                        auto iterWithSameKey = iter;
+                        const int key = iterWithSameKey->first;
+                        while (iterWithSameKey != elements.end() &&
+                               iterWithSameKey->first == key)
+                        {
+                            if (i - iterWithSameKey->second <= maxDistance) {
+                                validDistances.insert(iterWithSameKey->second);
+                            }
+
+                            ++iterWithSameKey;
+                        }
+                    }
+
+                    // Next step - get previous iterator with key < nums[i].
+                    // Find out if there are elements with prevKey and valid
+                    // value. If yes, then we are in valid range -> return true.
+                    auto prevIter = iter;
+                    --prevIter;
+                    const int prevKey = prevIter->first;
+                    while (prevIter->first == prevKey) {
+                        if (validDistances.count(prevIter->second) > 0) {
+                            return true;
+                        }
+
+                        if (prevIter == elements.begin()) {
+                            break;
+                        }
+
+                        --prevIter;
                     }
                 }
             }
 
-            const int minValidValue = CalcDiffValue(nums[i], -1 * std::abs(difference));
-            const int maxValidValue = CalcDiffValue(nums[i], std::abs(difference));
+            /*
+            We could insert into the map values { nums[i] - maxDifference,
+            nums[i] - maxDifference + 1, ... , nums[i] + maxDifference }, but
+            there could be millions of values depending on 'maxDifference'.
+            To save memory, it is more efficient to insert ranges -
+            { nums[i] - maxDifference, nums[i] + maxDifference }.
+            */
+            const int minRangeValue =
+                    CalcDiffValue(nums[i], -1 * std::abs(maxDifference));
 
-            auto startIter = InsertOrUpdate(minValidValue, i);
-            auto endIter = InsertOrUpdate(maxValidValue, i);
-            while (startIter != endIter) {
-                startIter->second = i;
+            const int maxRangeValue =
+                    CalcDiffValue(nums[i], std::abs(maxDifference));
+
+            auto startIter = elements.insert( { minRangeValue, i } );
+            if (maxRangeValue > minRangeValue) {
+                elements.insert( { maxRangeValue, i } );
+
+                // Between startIter and maxRangeIter there could be other
+                // elements that has relation to other ranges.
                 ++startIter;
+                while (startIter->first != maxRangeValue) {
+                    const int key = startIter->first;
+                    elements.insert(startIter, {key, i});
+                    while (key == startIter->first) {
+                        ++startIter;
+                    }
+                }
             }
         }
 
