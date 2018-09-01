@@ -19,6 +19,7 @@
 #include "algorithms/data_structures/array/test_summary_ranges.hpp"
 #include "algorithms/data_structures/array/test_merge_sorted_arrays.hpp"
 #include "algorithms/data_structures/array/test_majority_element.hpp"
+#include "algorithms/data_structures/array/test_find_kth_largest_element.hpp"
 
 #include "algorithms/data_structures/bt/test_max_depth_of_bt.hpp"
 #include "algorithms/data_structures/bt/test_validate_bt.hpp"
