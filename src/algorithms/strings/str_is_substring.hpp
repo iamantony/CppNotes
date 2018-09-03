@@ -23,12 +23,10 @@ public:
     int strStr(std::string haystack, std::string needle) {
         // needle should be less or equal in size with haystack to be
         // a substring
-        if (haystack.size() < needle.size())
-        {
+        if (haystack.size() < needle.size()) {
             return -1;
         }
-        else if (haystack.size() == needle.size())
-        {
+        else if (haystack.size() == needle.size()) {
             // quick check if size of strings are equal
             return (haystack == needle) ? 0 : -1;
         }
