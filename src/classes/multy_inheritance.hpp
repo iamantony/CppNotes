@@ -3,48 +3,51 @@
 
 #include <iostream>
 
-class First
-{
+namespace Classes::MutliInheritance {
+
+class First {
 public:
-    First()
-    {
+    First() {
         std::cout << "In First constructor" <<  std::endl;
     };
 
-    ~First()
-    {
+    virtual ~First() {
         std::cout << "In First destructor" << std::endl;
     };
 };
 
-class Second
-{
+class Second {
 public:
-    Second()
-    {
+    Second() {
         std::cout << "In Second constructor" <<  std::endl;
     };
 
-    ~Second()
-    {
+    virtual ~Second() {
         std::cout << "In Second destructor" << std::endl;
     };
 };
 
-class Derived : public First, public Second
-{
+class Derived : public First, public Second {
 public:
-    Derived()
-    {
+    Derived() {
         std::cout << "In Derived constructor" <<  std::endl;
     };
 
-    ~Derived()
-    {
+    virtual ~Derived() override {
         std::cout << "In Derived destructor" << std::endl;
     };
 };
 
-void StartMI();
+void StartMI() {
+    std::cout << "multi_inheritance" << std::endl << std::endl;
+
+    std::cout << "Create Derived class object:" << std::endl;
+    Derived *derivedObject = new Derived();
+
+    std::cout << "Delete Derived class object:" << std::endl;
+    delete derivedObject;
+}
+
+}
 
 #endif /* MULTY_INHERITANCE_H_ */
