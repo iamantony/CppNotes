@@ -37,32 +37,19 @@ public:
             return 0;
         }
 
-        size_t needlePos = 0;
-        int ssStartPos = -1;
-        for(size_t i = 0; i < haystack.size(); ++i)
-        {
-            if (haystack[i] == needle[needlePos])
-            {
-                // remember position where substring start
-                if (needlePos == 0) {
-                    ssStartPos = static_cast<int>(i);
+        for(size_t i = 0; i < haystack.size(); ++i) {
+            if (haystack[i] == needle[0]) {
+                size_t startPos = i;
+                size_t hi = i + 1, ni = 1;
+                while ( hi < haystack.size() &&
+                        ni < needle.size() &&
+                        haystack[hi] == needle[ni]) {
+                    ++hi;
+                    ++ni;
                 }
 
-                ++needlePos;
-
-                // check if we compare all symbols in needle string
-                if (needlePos == needle.size())
-                {
-                    return ssStartPos;
-                }
-            }
-            else
-            {
-                // if previous susbstring match was false, return back to
-                // position where we thought it would start
-                if (needlePos > 0) {
-                    i = static_cast<size_t>(ssStartPos);
-                    needlePos = 0;
+                if (ni == needle.size()) {
+                    return static_cast<int>(startPos);
                 }
             }
         }
