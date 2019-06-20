@@ -1,9 +1,8 @@
 #ifndef MATRIX_DIAGONAL_TRAVERSE_HPP
 #define MATRIX_DIAGONAL_TRAVERSE_HPP
 
-// https://leetcode.com/problems/diagonal-traverse/description/
-
 /*
+// https://leetcode.com/problems/diagonal-traverse/description/
 Given a matrix of M x N elements (M rows, N columns), return all elements
 of the matrix in diagonal order as shown in the below image.
 
@@ -18,11 +17,8 @@ Output:  [1,2,4,7,5,3,6,8,9]
 
 Note:
 The total number of elements of the given matrix will not exceed 10,000.
-*/
 
 // https://leetcode.com/problems/spiral-matrix/description/
-
-/*
 Given a matrix of m x n elements (m rows, n columns), return all elements of
 the matrix in spiral order.
 
@@ -47,6 +43,7 @@ Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 namespace Algo::DS::Array {
 
@@ -100,48 +97,82 @@ public:
         return result;
     }
 
+    enum class Direction
+    {
+        Left = 0,
+        Down = 1,
+        Right = 2,
+        Up = 3
+    };
+
     static std::vector<int> SpiralTraverse(
             std::vector< std::vector<int> >& matrix) {
-        std::vector<int> result;
-        if (matrix.empty()) {
-            return result;
+        if (matrix.empty())
+        {
+            return {};
         }
 
-        const size_t maxElements = matrix.size() * matrix[0].size();
-        int row = 0, minRow = 0, maxRow = static_cast<int>(matrix.size()) - 1;
-        int col = 0, minCol = 0, maxCol = static_cast<int>(matrix[0].size()) - 1;
+        size_t top = 0;
+        size_t bottom = matrix.size();
+        size_t left = 0;
+        size_t right = matrix[0].size();
+        Direction direction = Direction::Left;
 
-        auto PushToResult = [&result, &matrix](const int& r, const int& c) {
-            result.push_back(
-                        matrix[static_cast<size_t>(r)][static_cast<size_t>(c)]);
-        };
+        std::vector<int> result;
+        result.reserve(matrix.size() * matrix[0].size());
+        while (top < bottom && left < right)
+        {
+            switch(direction)
+            {
+                case Direction::Left:
+                {
+                    for (size_t i = left; i < right; ++i) {
+                        result.push_back(matrix[top][i]);
+                    }
 
-        while (result.size() < maxElements) {
-            for (; result.size() < maxElements && col <= maxCol; ++col) {
-                PushToResult(row, col);
+                    ++top;
+                    direction = Direction::Down;
+                    break;
+                }
+                case Direction::Down:
+                {
+                    for (size_t i = top; i < bottom; ++i) {
+                        result.push_back(matrix[i][right - 1]);
+                    }
+
+                    --right;
+                    direction = Direction::Right;
+                    break;
+                }
+                case Direction::Right:
+                {
+                    for (size_t i = right - 1; i >= left; --i) {
+                        result.push_back(matrix[bottom - 1][i]);
+                        if (i == 0) {
+                            break;
+                        }
+                    }
+
+                    --bottom;
+                    direction = Direction::Up;
+                    break;
+                }
+                case Direction::Up:
+                {
+                    for (size_t i = bottom - 1; i >= top; --i) {
+                        result.push_back(matrix[i][left]);
+                        if (i == 0) {
+                            break;
+                        }
+                    }
+
+                    ++left;
+                    direction = Direction::Left;
+                    break;
+                }
+                default:
+                    break;
             }
-
-            --col, ++row;
-
-            for (; result.size() < maxElements && row <= maxRow; ++row) {
-                PushToResult(row, col);
-            }
-
-            --row, --col;
-            --maxRow, --maxCol;
-
-            for (; result.size() < maxElements && col >= minCol; --col) {
-                PushToResult(row, col);
-            }
-
-            ++col, --row;
-
-            for (; result.size() < maxElements && row > minRow; --row) {
-                PushToResult(row, col);
-            }
-
-            ++minRow, ++minCol;
-            row = minRow, col = minCol;
         }
 
         return result;
