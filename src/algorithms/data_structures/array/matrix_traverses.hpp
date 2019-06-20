@@ -107,8 +107,7 @@ public:
 
     static std::vector<int> SpiralTraverse(
             std::vector< std::vector<int> >& matrix) {
-        if (matrix.empty())
-        {
+        if (matrix.empty()) {
             return {};
         }
 
@@ -120,12 +119,9 @@ public:
 
         std::vector<int> result;
         result.reserve(matrix.size() * matrix[0].size());
-        while (top < bottom && left < right)
-        {
-            switch(direction)
-            {
-                case Direction::Left:
-                {
+        while (top < bottom && left < right) {
+            switch(direction) {
+                case Direction::Left: {
                     for (size_t i = left; i < right; ++i) {
                         result.push_back(matrix[top][i]);
                     }
@@ -134,8 +130,7 @@ public:
                     direction = Direction::Down;
                     break;
                 }
-                case Direction::Down:
-                {
+                case Direction::Down: {
                     for (size_t i = top; i < bottom; ++i) {
                         result.push_back(matrix[i][right - 1]);
                     }
@@ -144,8 +139,7 @@ public:
                     direction = Direction::Right;
                     break;
                 }
-                case Direction::Right:
-                {
+                case Direction::Right: {
                     for (size_t i = right - 1; i >= left; --i) {
                         result.push_back(matrix[bottom - 1][i]);
                         if (i == 0) {
@@ -157,8 +151,7 @@ public:
                     direction = Direction::Up;
                     break;
                 }
-                case Direction::Up:
-                {
+                case Direction::Up: {
                     for (size_t i = bottom - 1; i >= top; --i) {
                         result.push_back(matrix[i][left]);
                         if (i == 0) {
