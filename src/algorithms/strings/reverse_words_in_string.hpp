@@ -31,118 +31,66 @@ Note: In the string, each word is separated by single space and there will
 not be any extra space in the string.
 */
 
+#include <algorithm>
+#include <iterator>
 #include <string>
 
 namespace Algo::Strigns {
 
 class ReverseWords {
+    static void EliminateExtraSpace(std::string& s) {
+        auto iter = s.begin(), write_iter = s.begin();
+        while (iter != s.end()) {
+            auto word_start = std::find_if(
+                iter, s.end(), [](const auto& ch){ return ch != ' '; });
+
+            if (word_start == s.end()) {
+                break;
+            }
+
+            auto word_end = std::find(word_start, s.end(), ' ');
+            if (write_iter != s.begin()) {
+                *write_iter = ' ';
+                ++write_iter;
+            }
+
+            for (; word_start < word_end; ++word_start, ++write_iter) {
+                *write_iter = *word_start;
+            }
+
+            iter = word_end;
+        }
+
+        auto new_size = std::distance(s.begin(), write_iter);
+        s.resize(static_cast<size_t>(new_size));
+    }
+
 public:
     static void ReverseWordsOrder(std::string& s) {
-        if (s.empty()) {
-            return;
-        }
+        EliminateExtraSpace(s);
 
-        // Reverse string
-        for (size_t left = 0, right = s.size() - 1; left < right;
-             ++left, --right)
-        {
-            std::swap(s[left], s[right]);
-        }
+        std::reverse(s.begin(), s.end());
 
-        // Reverse words in reversed string
-        for (size_t i = 0; i < s.size(); ++i) {
-            size_t wordStart = i;
-            while(wordStart < s.size() && s[wordStart] == ' ') {
-                ++wordStart;
-            }
-
-            if (wordStart >= s.size()) {
-                break;
-            }
-
-            size_t wordEnd = wordStart;
-            while(wordEnd < s.size() && s[wordEnd] != ' ') {
-                ++wordEnd;
-            }
-
-            for (size_t wLeft = wordStart, wRight = wordEnd - 1;
-                 wLeft < wRight; ++wLeft, --wRight)
-            {
-                std::swap(s[wLeft], s[wRight]);
-            }
-
-            i = wordEnd - 1;
-        }
-
-        // Eliminate extra space
-        size_t writePos = 0;
-        for (size_t i = 0; i < s.size(); ++i) {
-            while(i < s.size() && s[i] == ' ') {
-                ++i;
-            }
-
-            if (i >= s.size()) {
-                break;
-            }
-
-            while(i < s.size() && s[i] != ' ') {
-                if (writePos == i) {
-                    ++writePos;
-                    ++i;
-                }
-                else {
-                    s[writePos++] = s[i];
-                    s[i++] = ' ';
-                }
-            }
-
-            --i;
-
-            if (writePos < s.size()) {
-                s[writePos++] = ' ';
-            }
-        }
-
-        // Check that on the end of the string there is no white space
-        size_t endPos = std::min(writePos, s.size() - 1);
-        while (s[endPos] == ' ') {
-            if (endPos == 0) {
-                break;
-            }
-
-            --endPos;
-        }
-
-        if (endPos == 0) {
-            s[endPos] != ' ' ? s.resize(1) : s.resize(0);
-        }
-        else {
-            s.resize(endPos + 1);
-        }
+        ReverseLettersInWords(s);
     }
 
     static void ReverseLettersInWords(std::string& s) {
-        if (s.size() < 2) {
-            return;
-        }
+        auto iter = s.begin();
+        while (iter != s.end()) {
+            auto word_start = std::find_if(
+                iter, s.end(), [](const auto& ch){ return ch != ' '; });
 
-        for (size_t start = 0, end = 1; end < s.size(); ) {
-            while(end < s.size() && s[end] != ' ') {
-                ++end;
+            if (word_start == s.end()) {
+                break;
             }
 
-            if (end - start > 1) {
-                for (size_t i = start, j = end - 1; i < j; ++i, --j) {
-                    std::swap(s[i], s[j]);
-                }
-            }
+            auto word_end = std::find(word_start, s.end(), ' ');
+            std::reverse(word_start, word_end);
 
-            start = end + 1;
-            end = end + 2;
+            iter = word_end;
         }
     }
 };
-
 }
 
 #endif // REVERSE_WORDS_IN_STRING_HPP
