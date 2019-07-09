@@ -72,8 +72,6 @@ public:
         return result;
     }
 };
-
 }
 
 #endif // COUNTING_SORT_HPP
-

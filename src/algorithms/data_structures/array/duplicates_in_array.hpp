@@ -95,8 +95,8 @@ public:
 
         // Carefully calculate summation of 'value' and 'diff' without overflow
         auto CalcDiffValue = [](const int& value, const int& diff) -> int {
-            long long intMin = std::numeric_limits<int>::min();
-            long long intMax = std::numeric_limits<int>::max();
+            static const long long intMin = std::numeric_limits<int>::min();
+            static const long long intMax = std::numeric_limits<int>::max();
 
             long long sum = static_cast<long long>(value) +
                     static_cast<long long>(diff);
@@ -110,7 +110,7 @@ public:
             auto iter = elements.lower_bound(nums[i]);
             if (iter != elements.end()) {
                 if (nums[i] == iter->first) {
-                    // Here we got iter that points to the first element
+                    // Here we have iter that points to the first element
                     // with key == nums[i]. We should iterate over all
                     // elements with the same key and check their value
                     while (iter != elements.end() && iter->first == nums[i]) {
@@ -129,7 +129,7 @@ public:
 
                     // Our aim is to be in case 2. We would return true only if
                     // this range have value within maxDistance.
-                    // Let's first of all get all valid values for
+                    // First of all, let's get all valid values for
                     // keys > nums[i].
 
                     std::unordered_set<size_t> validDistances;
@@ -213,20 +213,20 @@ public:
         const long long maxDiff = static_cast<long long>(maxDifference);
         std::map<long long, size_t> elements;
         for (size_t i = 0, j = 0; i < nums.size(); ++i) {
-            const long long elem = static_cast<long long>(nums[i]);
+            const long long iNum = static_cast<long long>(nums[i]);
             if (i - j > maxDistance) {
-                const long long oldElem = static_cast<long long>(nums[j]);
-                elements.erase(oldElem);
+                const long long jNum = static_cast<long long>(nums[j]);
+                elements.erase(jNum);
                 ++j;
             }
 
-            auto iter = elements.lower_bound(elem - maxDiff);
+            auto iter = elements.lower_bound(iNum - maxDiff);
             if (iter != elements.end() &&
-                    std::abs(iter->first - elem) <= maxDiff) {
+                    std::abs(iter->first - iNum) <= maxDiff) {
                 return true;
             }
 
-            elements[elem] = i;
+            elements[iNum] = i;
         }
 
         return false;

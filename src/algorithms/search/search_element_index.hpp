@@ -9,17 +9,17 @@ using namespace std;
 
 void SearchElementIndex()
 {
-	vector<signed char> vect;
-	vect.push_back(11);
-	vect.push_back(22);
-	vect.push_back(33);
-	vect.push_back(-1);
-	vect.push_back(55);
+    vector<signed char> vect;
+    vect.push_back(11);
+    vect.push_back(22);
+    vect.push_back(33);
+    vect.push_back(-1);
+    vect.push_back(55);
 
-	const signed char* const first = vect.data();
-	const signed char* const last = vect.data() + vect.size();
+    const signed char* const first = vect.data();
+    const signed char* const last = vect.data() + vect.size();
 
-	cout << find(first, last, 33) - first << endl;
+    cout << find(first, last, 33) - first << endl;
 }
 
 #endif /* SEARCHELEMENTINEDEX_H_ */
