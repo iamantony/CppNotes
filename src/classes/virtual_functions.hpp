@@ -147,6 +147,34 @@ public:
 
 }
 
+namespace ArgDefValue {
+/*
+Virtuals may have defaults. The defaults in the base class are not inherited
+by derived classes.
+
+Which default is used -- ie, the base class' or a derived class' --
+is determined by the static type used to make the call to the function.
+If you call through a base class object, pointer or reference, the default
+denoted in the base class is used. Conversely, if you call through a derived
+class object, pointer or reference the defaults denoted in the derived
+class are used.
+*/
+
+class Base {
+public:
+    virtual void Print(int value = 10) {
+        std::cout << "Base: " << value << std::endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void Print(int value = 25) override {
+        std::cout << "Derived: " << value << std::endl;
+    }
+};
+}
+
 
 void Start()
 {
@@ -186,6 +214,16 @@ void Start()
         std::cout << "sizeof int: " << sizeof(number) << std::endl;
         std::cout << "sizeof First: " << sizeof(first) << std::endl;
         std::cout << "sizeof Second: " << sizeof(second) << std::endl;
+    }
+
+    {
+        ArgDefValue::Base b;
+        ArgDefValue::Derived d;
+        ArgDefValue::Base* pbb = &b, *pbd = &d;
+        b.Print();
+        d.Print();
+        pbb->Print();
+        pbd->Print();
     }
 }
 
