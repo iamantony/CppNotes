@@ -31,6 +31,34 @@ void RecursiveLambda()
 
     std::cout << "Calc 5! using recursive lambda: " << factorial(5) <<
                  std::endl;
+
+    constexpr auto fib = [](auto fib_func, int value) {
+        if (value < 2) {
+            return 1;
+        }
+
+        return fib_func(fib_func, value - 1) +
+                fib_func(fib_func, value - 2);
+    };
+
+    std::cout << "Calc Fibonacci number of 5 using 2nd version "
+                 "of recursive lambda: " << fib(fib, 5) << std::endl;
+
+    auto fib2 = [](int value) {
+        auto fib_impl = [](auto fib_func, int val) {
+            if (val < 2) {
+                return 1;
+            }
+
+            return fib_func(fib_func, val - 1) +
+                    fib_func(fib_func, val - 2);
+        };
+
+        return fib_impl(fib_impl, value);
+    };
+
+    std::cout << "Calc Fibonacci number of 6 using 3rd version "
+                 "of recursive lambda: " << fib2(6) << std::endl;
 }
 
 #endif // FUNCTIONS_LAMBDA_H_
