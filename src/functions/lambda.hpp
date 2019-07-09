@@ -6,7 +6,11 @@
 
 void BasicLambda()
 {
-    // TODO
+    auto add5 = [](int value) {
+        return value + 5;
+    };
+
+    std::cout << "add5(10): " << add5(10) << std::endl;
 }
 
 void RecursiveLambda()
