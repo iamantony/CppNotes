@@ -75,18 +75,15 @@ public:
     // TC: O(n)
     // SC: O(m)
     static std::vector<int> FindUsingStack(const std::vector<int>& nums1,
-                                    const std::vector<int>& nums2) {
-        if (nums1.size() > nums2.size())
-        {
+                                           const std::vector<int>& nums2) {
+        if (nums1.size() > nums2.size()) {
             return {};
         }
 
         std::unordered_map<int, int> search_map;
         std::stack<int> st;
-        for (size_t i = 0; i < nums2.size(); ++i)
-        {
-            while(!st.empty() && st.top() < nums2[i])
-            {
+        for (size_t i = 0; i < nums2.size(); ++i) {
+            while(!st.empty() && st.top() < nums2[i]) {
                 search_map[st.top()] = nums2[i];
                 st.pop();
             }
@@ -95,11 +92,9 @@ public:
         }
 
         std::vector<int> result(nums1.size(), -1);
-        for (size_t i = 0; i < nums1.size(); ++i)
-        {
+        for (size_t i = 0; i < nums1.size(); ++i) {
             auto iter = search_map.find(nums1[i]);
-            if (iter != std::end(search_map))
-            {
+            if (iter != std::end(search_map)) {
                 result[i] = iter->second;
             }
         }
