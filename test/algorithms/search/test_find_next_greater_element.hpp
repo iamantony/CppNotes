@@ -94,4 +94,28 @@ BOOST_AUTO_TEST_CASE(test_fnge_in_circular_arr)
     }
 }
 
+BOOST_AUTO_TEST_CASE(test_fnge_smallest_greater_num)
+{
+    BOOST_CHECK(-1 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(0));
+
+    BOOST_CHECK(-1 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(1));
+
+    BOOST_CHECK(-1 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(10));
+
+    BOOST_CHECK(21 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(12));
+
+    BOOST_CHECK(132 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(123));
+
+    BOOST_CHECK(-1 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(1999999999));
+
+    BOOST_CHECK(1243 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(1234));
+}
+
 #endif // TEST_FIND_NEXT_GREATER_ELEMENT_HPP

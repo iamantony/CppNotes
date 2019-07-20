@@ -4,6 +4,8 @@
 #include <vector>
 #include <unordered_map>
 #include <stack>
+#include <set>
+#include <limits>
 
 namespace Algo::Search {
 
@@ -143,6 +145,45 @@ public:
         }
 
         return result;
+    }
+
+    static int FindSmallestGreaterNum(int n) {
+        n = std::abs(n);
+        const auto input = n;
+
+        std::vector<int> nums;
+        std::multiset<int> ms;
+        while(n > 0) {
+            int number = n % 10;
+            n /= 10;
+
+            nums.push_back(number);
+            ms.insert(number);
+        }
+
+        unsigned long long result = 0;
+        unsigned long long multiplier = 1;
+        for (size_t i = 0; i < nums.size(); ++i, multiplier *= 10) {
+            auto iter = ms.upper_bound(nums[i]);
+            if (iter == ms.end()) {
+                iter = ms.lower_bound(nums[i]);
+                if (iter != ms.begin()) {
+                    --iter;
+                }
+            }
+
+            auto next_num = static_cast<unsigned long long>(*iter);
+            ms.erase(iter);
+
+            result += next_num * multiplier;
+        }
+
+        if (result > std::numeric_limits<int>::max()) {
+            return -1;
+        }
+
+        auto result_int = static_cast<int>(result);
+        return result_int > input ? result_int : -1;
     }
 };
 
