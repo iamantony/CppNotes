@@ -15,6 +15,9 @@ BOOST_AUTO_TEST_CASE(test_fnge_empty_data)
 
     BOOST_CHECK(expected ==
                 Algo::Search::FindNextGreaterElem::FindUsingStack(nums1, nums2));
+
+    BOOST_CHECK(expected ==
+                Algo::Search::FindNextGreaterElem::FindInCircularArray(nums1));
 }
 
 BOOST_AUTO_TEST_CASE(test_fnge_invalid_data)
@@ -53,6 +56,41 @@ BOOST_AUTO_TEST_CASE(test_fnge_two_arrays)
 
         BOOST_CHECK(expected ==
             Algo::Search::FindNextGreaterElem::FindUsingStack(nums1, nums2));
+    }
+}
+
+BOOST_AUTO_TEST_CASE(test_fnge_in_circular_arr)
+{
+    {
+        std::vector<int> nums = {4};
+        std::vector<int> expected = {-1};
+
+        BOOST_CHECK(expected ==
+            Algo::Search::FindNextGreaterElem::FindInCircularArray(nums));
+    }
+
+    {
+        std::vector<int> nums = {1, 2, 3};
+        std::vector<int> expected = {2, 3, -1};
+
+        BOOST_CHECK(expected ==
+            Algo::Search::FindNextGreaterElem::FindInCircularArray(nums));
+    }
+
+    {
+        std::vector<int> nums = {3, 2, 1};
+        std::vector<int> expected = {-1, 3, 3};
+
+        BOOST_CHECK(expected ==
+            Algo::Search::FindNextGreaterElem::FindInCircularArray(nums));
+    }
+
+    {
+        std::vector<int> nums = {1, 2, 1};
+        std::vector<int> expected = {2, -1, 2};
+
+        BOOST_CHECK(expected ==
+            Algo::Search::FindNextGreaterElem::FindInCircularArray(nums));
     }
 }
 
