@@ -116,6 +116,12 @@ BOOST_AUTO_TEST_CASE(test_fnge_smallest_greater_num)
 
     BOOST_CHECK(1243 ==
         Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(1234));
+
+    BOOST_CHECK(230412 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(230241));
+
+    BOOST_CHECK(13222344 ==
+        Algo::Search::FindNextGreaterElem::FindSmallestGreaterNum(12443322));
 }
 
 #endif // TEST_FIND_NEXT_GREATER_ELEMENT_HPP

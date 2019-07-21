@@ -5,6 +5,8 @@
 #include <unordered_map>
 #include <stack>
 #include <set>
+#include <map>
+#include <algorithm>
 #include <limits>
 
 namespace Algo::Search {
@@ -147,46 +149,97 @@ public:
         return result;
     }
 
+    /*
+    https://leetcode.com/problems/next-greater-element-iii/
+    Given a positive 32-bit integer n, you need to find the smallest
+    32-bit integer which has exactly the same digits existing in the
+    integer n and is greater in value than n. If no such positive 32-bit
+    integer exists, you need to return -1.
+
+    Example 1:
+    Input: 12
+    Output: 21
+
+
+    Example 2:
+    Input: 21
+    Output: -1
+    */
     static int FindSmallestGreaterNum(int n) {
         n = std::abs(n);
         const auto input = n;
 
+        std::vector<int> nums = NumToVector(n);
+
+        size_t permutation_pos = 0;
+        if (!FindFirstGreaterPermutation(nums, permutation_pos)) {
+            return -1;
+        }
+
+        std::sort(nums.begin() + static_cast<int>(permutation_pos) + 1,
+                  nums.end());
+
+        auto result = VectorToNum(nums);
+        return result > input ? result : -1;
+    }
+
+    static std::vector<int> NumToVector(int n) {
         std::vector<int> nums;
-        std::multiset<int> ms;
         while(n > 0) {
             int number = n % 10;
             n /= 10;
 
             nums.push_back(number);
-            ms.insert(number);
         }
 
-        unsigned long long result = 0;
+        std::reverse(nums.begin(), nums.end());
+        return nums;
+    }
+
+    static int VectorToNum(const std::vector<int>& v) {
+        unsigned long long n = 0;
         unsigned long long multiplier = 1;
-        for (size_t i = 0; i < nums.size(); ++i, multiplier *= 10) {
-            auto iter = ms.upper_bound(nums[i]);
-            if (iter == ms.end()) {
-                iter = ms.lower_bound(nums[i]);
-                if (iter != ms.begin()) {
-                    --iter;
-                }
+        for (size_t i = v.size() - 1; ; --i, multiplier *= 10) {
+            n += static_cast<unsigned long long>(v[i]) * multiplier;
+            if (i == 0) {
+                break;
             }
-
-            auto next_num = static_cast<unsigned long long>(*iter);
-            ms.erase(iter);
-
-            result += next_num * multiplier;
         }
 
-        if (result > std::numeric_limits<int>::max()) {
+        if (n > std::numeric_limits<int>::max()) {
             return -1;
         }
 
-        auto result_int = static_cast<int>(result);
-        return result_int > input ? result_int : -1;
+        return static_cast<int>(n);
+    }
+
+    static bool FindFirstGreaterPermutation(
+            std::vector<int>& v, size_t& permutation_pos) {
+        if (v.empty()) {
+            return false;
+        }
+
+        std::map<int, size_t> nums_map = { {*(v.rbegin()), v.size() - 1} };
+        for (size_t i = v.size() - 1; ; --i)
+        {
+            auto iter = nums_map.upper_bound(v[i]);
+            if (iter != nums_map.end()) {
+                std::swap(v[i], v[iter->second]);
+                permutation_pos = i;
+                return true;
+            }
+            else {
+                nums_map[v[i]] =  i;
+            }
+
+            if (i == 0) {
+                break;
+            }
+        }
+
+        return false;
     }
 };
-
 }
 
 #endif // FIND_NEXT_GREATER_ELEMENT_HPP
