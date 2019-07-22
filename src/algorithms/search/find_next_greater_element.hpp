@@ -165,6 +165,8 @@ public:
     Input: 21
     Output: -1
     */
+    // TC: O(n log n)
+    // SC: O(n)
     static int FindSmallestGreaterNum(int n) {
         n = std::abs(n);
         const auto input = n;

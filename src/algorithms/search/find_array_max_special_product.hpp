@@ -73,6 +73,8 @@ class FindArrayMaxSpecialProduct {
     }
 
 public:
+    // TC: O(n log n)
+    // SC: O(n)
     static int Find(std::vector<int> &A) {
         auto leftSpecials = LeftSpecialValues(A);
         auto rightSpecials = RightSpecialValues(A);
