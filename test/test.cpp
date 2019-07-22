@@ -90,6 +90,7 @@
 #include "algorithms/search/test_find_three_sum.hpp"
 #include "algorithms/search/test_find_three_sum_closest.hpp"
 #include "algorithms/search/test_find_next_greater_element.hpp"
+#include "algorithms/search/test_find_array_max_special_product.hpp"
 
 #include "algorithms/sorting/test_bubble_sort.hpp"
 #include "algorithms/sorting/test_gnome_sort.hpp"
