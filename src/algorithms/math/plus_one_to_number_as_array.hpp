@@ -11,25 +11,32 @@
 // of the list.
 
 #include <vector>
+#include <algorithm>
 
-namespace PlusOne {
+namespace Algo::Math {
 
-class Solution {
+class PlusOneToVector {
 public:
-    std::vector<int> plusOne(std::vector<int>& digits) {
+    static std::vector<int> Add(const std::vector<int>& digits) {
         if (digits.empty()) {
             return std::vector<int>();
         }
 
+        std::vector<int> result;
         int carry = 1;
         for (size_t i = digits.size() - 1; ; --i) {
-            if (digits[i] == 9) {
-                digits[i] = 0;
+            int valueToAdd = digits[i];
+            if (carry > 0) {
+                if (digits[i] == 9) {
+                    valueToAdd = 0;
+                }
+                else {
+                    valueToAdd += carry;
+                    carry = 0;
+                }
             }
-            else {
-                digits[i] += carry--;
-                break;
-            }
+
+            result.push_back(valueToAdd);
 
             if (i == 0) {
                 break;
@@ -37,13 +44,20 @@ public:
         }
 
         if (carry > 0) {
-            digits.insert(digits.begin(), carry);
+            result.push_back(carry);
+            carry = 0;
         }
 
-        return digits;
+        // Remove unnecessary zeros
+        size_t pos = result.size() - 1;
+        for (; result[pos] == 0; --pos);
+        result.resize(pos + 1);
+
+        std::reverse(result.begin(), result.end());
+
+        return result;
     }
 };
-
 }
 
 #endif // PLUS_ONE_TO_NUMBER_AS_ARRAY_HPP
