@@ -19,7 +19,7 @@ Output: 49
 #include <vector>
 #include <algorithm>
 
-namespace Algo::Math {
+namespace Algo::DS::Array {
 
 class ContainerWithMostWater {
 public:

@@ -16,11 +16,10 @@
 
 #include "algorithms/math/valid_perfect_square.hpp"
 
-namespace SumOfSquares {
-
-class Solution {
+namespace Algo::DS::Array {
+class SumOfSquares {
 public:
-    bool judgeSquareSum(int c) {
+    static bool check(int c) {
         if (c < 0) {
             return false;
         }
@@ -50,7 +49,6 @@ public:
         return false;
     }
 };
-
 }
 
 #endif // NUM_IS_SUM_OF_SQUARE_NUMBERS_HPP

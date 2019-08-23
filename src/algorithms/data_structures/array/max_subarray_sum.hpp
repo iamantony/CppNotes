@@ -13,8 +13,7 @@
 #include <vector>
 #include <limits>
 
-namespace Algo::Math {
-
+namespace Algo::DS::Array {
 class MaxSubarraySum {
 public:
     static int Calc(const std::vector<int>& nums) {

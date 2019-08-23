@@ -22,8 +22,7 @@ which the time complexity is O(n log n).
 #include <vector>
 #include <limits>
 
-namespace Algo::Math {
-
+namespace Algo::DS::Array {
 class SubarrayEqualToValue {
 public:
     static int FindMinLengthSubarray(const int& s,

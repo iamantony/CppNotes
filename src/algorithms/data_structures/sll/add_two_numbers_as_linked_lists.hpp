@@ -16,7 +16,7 @@
 
 #include "types/ds/singly_linked_list_nodes.hpp"
 
-namespace Algo::Math {
+namespace Algo::DS::SLL {
 
 template <typename T>
 class AddNumbersSLL {

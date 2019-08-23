@@ -11,27 +11,20 @@
 #include <limits>
 #include <iostream>
 
-namespace MedianOfTwoSortedArrays
-{
-
+namespace MedianOfTwoSortedArrays {
 class Solution {
 public:
     double findMedianSortedArrays(const std::vector<int>& nums1,
-                                  const std::vector<int>& nums2)
-    {
-        if (nums1.empty())
-        {
-            if (nums2.empty())
-            {
+                                  const std::vector<int>& nums2) {
+        if (nums1.empty()) {
+            if (nums2.empty()) {
                 return 0.0;
             }
-            else
-            {
+            else {
                 return GetMedianOfVector(nums2);
             }
         }
-        else if (nums2.empty())
-        {
+        else if (nums2.empty()) {
             return GetMedianOfVector(nums1);
         }
 
@@ -41,37 +34,31 @@ public:
         itN1 = nums1.size() / 2;
 
         // Special function to recalc itN2
-        auto UpdateIterN2 = [&itN1, &itN2, &nums1, &nums2]()
-        {
+        auto UpdateIterN2 = [&itN1, &itN2, &nums1, &nums2]() {
             itN2 = (nums1.size() + nums2.size() + 1) / 2 - itN1;
         };
 
         UpdateIterN2();
 
-        while(true)
-        {
+        while(true) {
             if ((itN2 == 0 || itN1 == nums1.size() ||
                         nums2.at(itN2 - 1) <= nums1.at(itN1)) &&
                 (itN1 == 0 || itN2 == nums2.size() ||
-                        nums1.at(itN1 - 1) <= nums2.at(itN2)))
-            {
+                        nums1.at(itN1 - 1) <= nums2.at(itN2))) {
                 // Perfect!
                 break;
             }
             else if (itN2 > 0 && itN1 < nums1.size() &&
-                     nums2.at(itN2 - 1) > nums1.at(itN1))
-            {
+                     nums2.at(itN2 - 1) > nums1.at(itN1)) {
                 // itN1 is too small, we need to increase it
                 ++itN1;
             }
             else if (itN1 > 0 && itN2 < nums2.size() &&
-                     nums1.at(itN1 - 1) > nums2.at(itN2))
-            {
+                     nums1.at(itN1 - 1) > nums2.at(itN2)) {
                 // itN1 is too big, let's decrease it
                 --itN1;
             }
-            else
-            {
+            else {
                 std::cout << "Error: we entered invalid case" << std::endl;
                 return -1.0;
             }
@@ -84,8 +71,7 @@ public:
 
         double median = 0.0;
         size_t numOfAllElements = nums1.size() + nums2.size();
-        if (numOfAllElements % 2 == 0)
-        {
+        if (numOfAllElements % 2 == 0) {
             int firstElem = std::max(GetElem(nums1, itN1 -1, defaultMin),
                                      GetElem(nums2, itN2 - 1, defaultMin));
 
@@ -94,8 +80,7 @@ public:
 
             median = static_cast<double>(firstElem + secondElem) / 2;
         }
-        else
-        {
+        else {
             median = std::max(GetElem(nums1, itN1 -1, defaultMin),
                               GetElem(nums2, itN2 - 1, defaultMin));
         }
@@ -104,15 +89,12 @@ public:
     }
 
 private:
-    double GetMedianOfVector(const std::vector<int>& vec)
-    {
-        if (vec.empty())
-        {
+    double GetMedianOfVector(const std::vector<int>& vec) {
+        if (vec.empty()) {
             return 0.0;
         }
 
-        if (vec.size() % 2 == 0)
-        {
+        if (vec.size() % 2 == 0) {
             size_t middleIndex = vec.size() / 2;
             double sumOfMiddleElements = vec.at(middleIndex - 1) +
                     vec.at(middleIndex);
@@ -124,10 +106,8 @@ private:
     }
 
     int GetElem(const std::vector<int>& vec, const size_t& iter,
-                const int& defaultValue)
-    {
-        if (iter < vec.size())
-        {
+                const int& defaultValue) {
+        if (iter < vec.size()) {
             return vec.at(iter);
         }
 
@@ -138,4 +118,3 @@ private:
 }
 
 #endif // MEDIAN_OF_TWO_SORTED_ARRAYS_HPP
-

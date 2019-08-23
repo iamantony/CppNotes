@@ -13,8 +13,7 @@
 #include <vector>
 #include <algorithm>
 
-namespace Algo::Math {
-
+namespace Algo::DS::Array {
 class PlusOneToVector {
 public:
     static std::vector<int> Add(const std::vector<int>& digits) {

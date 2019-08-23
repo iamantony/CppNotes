@@ -21,7 +21,7 @@ Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 
 #include <vector>
 
-namespace Algo::Math {
+namespace Algo::DS::Array {
 class InsertInverval {
     static int& Start(std::vector<int>& interval) {
         return interval[0];
