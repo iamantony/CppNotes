@@ -39,10 +39,28 @@ public:
         return result;
     }
 
-    static long long Num(const size_t& num)
+    /*
+    https://leetcode.com/problems/fibonacci-number/
+    The Fibonacci numbers, commonly denoted F(n) form a sequence, called the
+    Fibonacci sequence, such that each number is the sum of the two preceding
+    ones, starting from 0 and 1. That is,
+
+    F(0) = 0,   F(1) = 1
+    F(N) = F(N - 1) + F(N - 2), for N > 1.
+    Given N, calculate F(N).
+    */
+    static uint64_t Num(const size_t& num)
     {
-        const auto nums = ListOfNums(num);
-        return nums[num];
+        std::vector<uint64_t> buffer = {0, 1};
+        if (num == 0) { return buffer[num]; }
+
+        for (size_t i = 2; i <= num; ++i) {
+            const auto nextFibNum = buffer[0] + buffer[1];
+            buffer[0] = buffer[1];
+            buffer[1] = nextFibNum;
+        }
+
+        return buffer[1];
     }
 
     static unsigned char LastDigitOfNum(const size_t& num)
