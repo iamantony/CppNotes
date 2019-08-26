@@ -13,17 +13,18 @@
 // a = a' + b*q, where q is some number
 // d is a GCD if and only if it divides a' and b
 
-namespace GCD {
-
-class Solution {
+namespace Algo::Math {
+class GreatestCommonDivisor {
 public:
-    int calcGCD(const int& a, const int& b) {
-        if (b == 0) {
-            return a;
+    static uint64_t Calc(uint64_t a, uint64_t b) {
+        while (b != 0)
+        {
+            auto reminder = a % b;
+            a = b;
+            b = reminder;
         }
 
-        int reminder = a % b;
-        return calcGCD(b, reminder);
+        return a;
     }
 };
 
