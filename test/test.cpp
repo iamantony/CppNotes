@@ -28,6 +28,7 @@
 #include "algorithms/data_structures/array/test_max_subarray_product.hpp"
 #include "algorithms/data_structures/array/test_max_subarray_sum.hpp"
 #include "algorithms/data_structures/array/test_min_subarray_equal_to_value.hpp"
+#include "algorithms/data_structures/array/test_find_max_product_of_two_elements.hpp"
 
 #include "algorithms/data_structures/bt/test_max_depth_of_bt.hpp"
 #include "algorithms/data_structures/bt/test_validate_bt.hpp"
