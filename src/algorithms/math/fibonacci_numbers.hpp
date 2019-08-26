@@ -16,11 +16,10 @@
 
 #include <vector>
 
-namespace FibonacciNumbers {
-
-class Solution {
+namespace Algo::Math {
+class FibonacciNumbers {
 public:
-    std::vector<long long> ListOfFibonacciNumbers(const size_t& num) {
+    static std::vector<long long> ListOfNums(const size_t& num) {
         std::vector<long long> result;
         result.push_back(0);
 
@@ -38,6 +37,27 @@ public:
         }
 
         return result;
+    }
+
+    static long long Num(const size_t& num)
+    {
+        const auto nums = ListOfNums(num);
+        return nums[num];
+    }
+
+    static unsigned char LastDigitOfNum(const size_t& num)
+    {
+        std::vector<unsigned char> buffer = {0, 1};
+        if (num == 0) { return buffer[num]; }
+
+        for (size_t i = 2; i <= num; ++i) {
+            const auto sum = buffer[0] + buffer[1];
+            auto lastDigit = static_cast<unsigned char>(sum % 10);
+            buffer[0] = buffer[1];
+            buffer[1] = lastDigit;
+        }
+
+        return buffer[1];
     }
 };
 
