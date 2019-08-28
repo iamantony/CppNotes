@@ -10,15 +10,14 @@
 #include <unordered_map>
 #include <algorithm>
 
-namespace Knapsack {
-
-class Solution {
+namespace Algo::Math {
+class Knapsack {
 public:
     // Items in map: value, weight
-    double knapsakProblem(const int& maxWeight,
-                          const std::unordered_map<int, int>& items) {
+    static double Fill(const uint32_t& maxWeight,
+                       const std::unordered_map<uint32_t, uint32_t>& items) {
         // Calc for each item its' value per weight param
-        std::map<double, std::pair<int, int>> vpwItems;
+        std::map<double, std::pair<uint32_t, uint32_t>> vpwItems;
         for (auto item : items) {
             double valuePerWeight = static_cast<double>(item.first) /
                     static_cast<double>(item.second);
@@ -26,7 +25,7 @@ public:
         }
 
         double resultValue = 0;
-        int currentWeight = 0;
+        uint32_t currentWeight = 0;
 
         // Start iteration from item with highest value per weight param (
         // in sorted map it is last element)
@@ -36,10 +35,10 @@ public:
             }
 
             double vpwOfItem = item->first;
-            int itemWeight = item->second.second;
+            uint32_t itemWeight = item->second.second;
 
-            int availableWeight = std::min(itemWeight,
-                                           maxWeight - currentWeight);
+            uint32_t availableWeight =
+                std::min(itemWeight, maxWeight - currentWeight);
 
             resultValue += vpwOfItem * availableWeight;
             currentWeight += availableWeight;
@@ -48,8 +47,6 @@ public:
         return resultValue;
     }
 };
-
 }
 
 #endif // KNAPSACK_PROBLEM_HPP
-

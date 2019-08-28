@@ -6,20 +6,37 @@
 #include "algorithms/math/knapsack_problem.hpp"
 #include "common/equality.hpp"
 
-BOOST_AUTO_TEST_CASE(test_knapsackp_example)
+BOOST_AUTO_TEST_CASE(test_knapsackp_test)
 {
-    Knapsack::Solution solution;
-
     {
-        std::unordered_map<int, int> items = {
-            {10, 10},
-            {5, 100},
-            {15, 3}
+        std::unordered_map<uint32_t, uint32_t> items = {
+            {10, 10}, {5, 100}, {15, 3}
         };
 
-        int maxWeight = 20;
+        uint32_t maxWeight = 20;
         double expectedResult = 25.35;
-        BOOST_CHECK(equal(solution.knapsakProblem(maxWeight, items), expectedResult));
+        BOOST_CHECK(
+            equal(Algo::Math::Knapsack::Fill(maxWeight, items), expectedResult));
+    }
+
+    {
+        std::unordered_map<uint32_t, uint32_t> items = {
+            {60, 20}, {100, 50}, {120, 30}
+        };
+
+        uint32_t maxWeight = 50;
+        double expectedResult = 180.0;
+        BOOST_CHECK(
+            equal(Algo::Math::Knapsack::Fill(maxWeight, items), expectedResult));
+    }
+
+    {
+        std::unordered_map<uint32_t, uint32_t> items = { {500, 30} };
+
+        uint32_t maxWeight = 10;
+        const double expectedResult = 166.6667;
+        const double result = Algo::Math::Knapsack::Fill(maxWeight, items);
+        BOOST_CHECK(equalDoubles(result, expectedResult, 0.0001));
     }
 }
 
