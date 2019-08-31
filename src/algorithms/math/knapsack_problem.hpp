@@ -7,7 +7,7 @@
 // than or equal to a given limit and the total value is as large as possible.
 
 #include <map>
-#include <unordered_map>
+#include <vector>
 #include <algorithm>
 
 namespace Algo::Math {
@@ -15,13 +15,14 @@ class Knapsack {
 public:
     // Items in map: value, weight
     static double Fill(const uint32_t& maxWeight,
-                       const std::unordered_map<uint32_t, uint32_t>& items) {
+                       const std::vector<std::pair<uint32_t, uint32_t>>& items) {
         // Calc for each item its' value per weight param
-        std::map<double, std::pair<uint32_t, uint32_t>> vpwItems;
+        std::multimap<double, std::pair<uint32_t, uint32_t>> vpwItems;
         for (auto item : items) {
-            double valuePerWeight = static_cast<double>(item.first) /
-                    static_cast<double>(item.second);
-            vpwItems.insert( {valuePerWeight, {item.first, item.second}} );
+            const auto value = static_cast<double>(item.first);
+            const auto weight = static_cast<double>(item.second);
+            const auto valuePerWeight = value / weight;
+            vpwItems.insert( {valuePerWeight, item} );
         }
 
         double resultValue = 0;
