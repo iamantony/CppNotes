@@ -15,7 +15,6 @@
 #include <limits>
 
 namespace Algo::Search {
-
 class BinarySearch {
 public:
     template<typename C, typename V>

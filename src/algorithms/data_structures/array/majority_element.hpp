@@ -24,7 +24,6 @@ Output: 2
 #include <vector>
 
 namespace Algo::DS::Array {
-
 class MajorityElement {
 public:
     static int Find(const std::vector<int>& v) {
@@ -44,10 +43,14 @@ public:
             }
         }
 
-        return majorityElement;
+        size_t count = 0;
+        for (const auto& num : v) {
+            if (num == majorityElement) { ++count; }
+        }
+
+        return (count > v.size() / 2) ? majorityElement : -1;
     }
 };
-
 }
 
 #endif // MAJORITY_ELEMENT_HPP
