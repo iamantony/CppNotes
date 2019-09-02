@@ -51,12 +51,12 @@ public:
             rangeEnd = ((rangeEnd + 1) << 1) - 1;
         }
 
-        BinarySearch::Solution solution;
-        return solution.BinarySearchImpl(container,
-                                         std::min(rangeStart, size - 1),
-                                         std::min(rangeEnd, size - 1),
-                                         value,
-                                         resultIndex);
+        return Algo::Search::BinarySearch::SearchImpl(
+                    container,
+                    std::min(rangeStart, size - 1),
+                    std::min(rangeEnd, size - 1),
+                    value,
+                    resultIndex);
     }
 };
 

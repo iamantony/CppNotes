@@ -16,8 +16,8 @@ BOOST_AUTO_TEST_CASE(test_binsearch_container_one_elem) {
     OneElement(container, value, expectedIsFound);
 
     size_t result = 0;
-    BinarySearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
+    bool isFound = Algo::Search::BinarySearch::Search(
+                container, container.size(), value, result);
     BOOST_CHECK(expectedIsFound == isFound);
 }
 
@@ -29,8 +29,8 @@ BOOST_AUTO_TEST_CASE(test_binsearch_val_in_middle) {
     ValueInMiddle(container, value, expectedIsFound, expectedResultIndex);
 
     size_t result = 0;
-    BinarySearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
+    bool isFound = Algo::Search::BinarySearch::Search(
+                container, container.size(), value, result);
     BOOST_CHECK(expectedIsFound == isFound);
     BOOST_CHECK(expectedResultIndex == result);
 }
@@ -43,8 +43,8 @@ BOOST_AUTO_TEST_CASE(test_binsearch_val_in_start) {
     ValueAtStart(container, value, expectedIsFound, expectedResultIndex);
 
     size_t result = 0;
-    BinarySearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
+    bool isFound = Algo::Search::BinarySearch::Search(
+                container, container.size(), value, result);
     BOOST_CHECK(expectedIsFound == isFound);
     BOOST_CHECK(expectedResultIndex == result);
 }
@@ -57,8 +57,8 @@ BOOST_AUTO_TEST_CASE(test_binsearch_val_in_end) {
     ValueAtEnd(container, value, expectedIsFound, expectedResultIndex);
 
     size_t result = 0;
-    BinarySearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
+    bool isFound = Algo::Search::BinarySearch::Search(
+                container, container.size(), value, result);
     BOOST_CHECK(expectedIsFound == isFound);
     BOOST_CHECK(expectedResultIndex == result);
 }
@@ -70,8 +70,8 @@ BOOST_AUTO_TEST_CASE(test_binsearch_no_val) {
     NoValueInContainer(container, value, expectedIsFound);
 
     size_t result = 0;
-    BinarySearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
+    bool isFound = Algo::Search::BinarySearch::Search(
+                container, container.size(), value, result);
     BOOST_CHECK(expectedIsFound == isFound);
 }
 
@@ -82,8 +82,8 @@ BOOST_AUTO_TEST_CASE(test_binsearch_val_is_less_than_min) {
     ValueIsLessThanMinValueInContainer(container, value, expectedIsFound);
 
     size_t result = 0;
-    BinarySearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
+    bool isFound = Algo::Search::BinarySearch::Search(
+                container, container.size(), value, result);
     BOOST_CHECK(expectedIsFound == isFound);
 }
 
@@ -96,8 +96,8 @@ BOOST_AUTO_TEST_CASE(test_binsearch_several_same_val) {
                                         expectedResultIndexes);
 
     size_t result = 0;
-    BinarySearch::Solution solution;
-    bool isFound = solution.Search(container, container.size(), value, result);
+    bool isFound = Algo::Search::BinarySearch::Search(
+                container, container.size(), value, result);
     BOOST_CHECK(expectedIsFound == isFound);
 
     auto iter = std::find(expectedResultIndexes.begin(),
@@ -116,9 +116,8 @@ BOOST_AUTO_TEST_CASE(test_binsearch_random_values) {
                         expectedResultIndexes, 1000);
 
         size_t result = 0;
-        BinarySearch::Solution solution;
-        bool isFound = solution.Search(container, container.size(),
-                                       value, result);
+        bool isFound = Algo::Search::BinarySearch::Search(
+                    container, container.size(), value, result);
 
         BOOST_CHECK(expectedIsFound == isFound);
 

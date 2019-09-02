@@ -44,15 +44,13 @@ public:
                 size_t start = i <= interval ? 0 : i - interval + 1;
                 size_t end = i <= interval ? 0 : i - 1;
 
-                BinarySearch::Solution solution;
-                return solution.BinarySearchImpl(
+                return Algo::Search::BinarySearch::SearchImpl(
                             container, start, end, value, resultIndex);
             }
             else if (i + interval >= size) {
                 size_t start = std::min(i + 1, size - 1);
 
-                BinarySearch::Solution solution;
-                return solution.BinarySearchImpl(
+                return Algo::Search::BinarySearch::SearchImpl(
                             container, start, size - 1, value, resultIndex);
             }
         }
