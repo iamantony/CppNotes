@@ -10,30 +10,45 @@
 
 #include <limits>
 
-namespace QS {
-
+namespace Algo::Sorting {
 template<typename T>
-class Solution {
+class QuickSort {
 public:
-    static void QuickSort(T& container) {
+    enum class Type {
+        BASIC,
+        THREE_WAY
+    };
+
+    static void Sort(T& container, const Type type) {
         if (container.size() < 2) {
             return;
         }
 
-        Sort(container, 0, container.size() - 1);
+        switch(type)
+        {
+            case Type::THREE_WAY:
+                Sort3Way(container, 0, container.size() - 1);
+                break;
+
+            case Type::BASIC:
+            default:
+                SortBasic(container, 0, container.size() - 1);
+                break;
+        }
     }
+
 private:
-    static void Sort(T& container, const size_t& start, const size_t& end) {
+    static void SortBasic(T& container, const size_t& start, const size_t& end) {
         if(start >= end) {
             return;
         }
 
         size_t pivotFinalIndex = Partition(container, start, end);
         if (pivotFinalIndex > 0) {
-            Sort(container, start, pivotFinalIndex - 1);
+            SortBasic(container, start, pivotFinalIndex - 1);
         }
 
-        Sort(container, pivotFinalIndex + 1, end);
+        SortBasic(container, pivotFinalIndex + 1, end);
     }
 
     static size_t Partition(T& container,
@@ -71,8 +86,36 @@ private:
         // Return final position of pivot element
         return left - 1;
     }
-};
 
+    static void Sort3Way(T& container, const size_t& start, const size_t& end) {
+        if(start >= end) {
+            return;
+        }
+
+        auto pivotStartEnd = Partition3Way(container, start, end);
+        if (pivotStartEnd.first > 0) {
+            Sort3Way(container, start, pivotStartEnd.first - 1);
+        }
+
+        Sort3Way(container, pivotStartEnd.second + 1, end);
+    }
+
+    static std::pair<size_t, size_t> Partition3Way(
+            T& container, const size_t& start, const size_t& end) {
+        const auto pivotIndex = Partition(container, start, end);
+        const auto pivotValue = container[pivotIndex];
+        size_t eq = pivotIndex + 1;
+        for(size_t i = pivotIndex + 1; i <= end; ++i)
+        {
+            if (container[i] == pivotValue) {
+                std::swap(container[i], container[eq]);
+                ++eq;
+            }
+        }
+
+        return {pivotIndex, eq - 1};
+    }
+};
 }
 
 #endif /* QUICKSORT_HPP_ */
