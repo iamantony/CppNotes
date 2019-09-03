@@ -20,23 +20,24 @@
  * procedure had finished. So that is why we use only one iterator.
  */
 
-namespace IS {
-
+namespace Algo::Sorting {
 template<typename T>
-void InsertionSort(T& container) {
-    if (container.size() < 2) {
-        return;
-    }
+class InsertionSort {
+public:
+    static void Sort(T& container) {
+        if (container.size() < 2) {
+            return;
+        }
 
-    for (size_t i = 0; i < container.size(); ++i) {
-        size_t j = i;
-        while (j > 0 && container[j] < container[j - 1]) {
-            std::swap(container[j], container[j - 1]);
-            --j;
+        for (size_t i = 0; i < container.size(); ++i) {
+            size_t j = i;
+            while (j > 0 && container[j] < container[j - 1]) {
+                std::swap(container[j], container[j - 1]);
+                --j;
+            }
         }
     }
-}
-
+};
 }
 
 #endif /* INSERTIONSORT_HPP_ */

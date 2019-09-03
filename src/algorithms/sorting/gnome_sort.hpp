@@ -8,28 +8,29 @@
 // Worst case performance: O(n)
 // Worst Case Auxiliary Space Complexity: O(1)
 
-namespace GS {
-
+namespace Algo::Sorting {
 template<typename T>
-void GnomeSort(T& container) {
-    if (container.size() < 2) {
-        return;
-    }
-
-    size_t pos = 1;
-    while (pos < container.size()) {
-        if (container[pos - 1] <= container[pos]) {
-            ++pos;
+class GnomeSort {
+public:
+    static void Sort(T& container) {
+        if (container.size() < 2) {
+            return;
         }
-        else {
-            std::swap(container[pos - 1], container[pos]);
-            if (pos > 1) {
-                --pos;
+
+        size_t pos = 1;
+        while (pos < container.size()) {
+            if (container[pos - 1] <= container[pos]) {
+                ++pos;
+            }
+            else {
+                std::swap(container[pos - 1], container[pos]);
+                if (pos > 1) {
+                    --pos;
+                }
             }
         }
     }
-}
-
+};
 }
 
 #endif /* GNOMESORT_HPP_ */

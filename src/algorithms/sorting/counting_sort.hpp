@@ -21,11 +21,10 @@
 #include <algorithm>
 #include <limits>
 
-namespace CS {
-
-class Solution {
+namespace Algo::Sorting {
+class CountingSort {
 public:
-    static std::vector<unsigned char> CountingSort(
+    static std::vector<unsigned char> Sort(
                             const std::vector<unsigned char>& v) {
         if (v.size() < 2) {
             return v;

@@ -5,12 +5,11 @@
 
 #include "types/ds/heap.hpp"
 
-namespace Algorithms { namespace Sorting { namespace HS {
-
+namespace Algo::Sorting {
 template <typename T>
-class Solution {
+class HeapSort {
 public:
-    static void HeapSort(std::vector<T>& data) {
+    static void Sort(std::vector<T>& data) {
         if (data.size() < 2) {
             return;
         }
@@ -31,8 +30,7 @@ public:
         data = heap.exportData();
     }
 };
-
-} } }
+}
 
 #endif // HEAP_SORT_HPP
 

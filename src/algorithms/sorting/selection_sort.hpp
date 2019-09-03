@@ -8,14 +8,12 @@
 // Worst case performance: O(n^2)
 // Worst Case Auxiliary Space Complexity: О(n) total, O(1) auxiliary
 
-namespace SSort {
-
-class Solution {
+namespace Algo::Sorting {
+template<typename T>
+class SelectionSort {
 public:
-    template<typename T>
-    void SelectionSort(T& container) {
-        for (size_t i = 0; i < container.size(); ++i)
-        {
+    static void Sort(T& container) {
+        for (size_t i = 0; i < container.size(); ++i) {
             size_t minElemPos = i;
             for (size_t j = i + 1; j < container.size(); ++j) {
                 if (container[j] < container[minElemPos]) {
@@ -29,7 +27,6 @@ public:
         }
     }
 };
-
 }
 
 #endif /* SELECTIONSORT_HPP_ */

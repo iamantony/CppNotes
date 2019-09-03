@@ -7,9 +7,9 @@
 // Simple and slow algorithm
 // http://en.wikipedia.org/wiki/Bubble_sort
 
-namespace BS {
-
-class Solution {
+namespace Algo::Sorting {
+template<typename T>
+class BubbleSort {
 public:
 
     // Basic algorithm
@@ -18,8 +18,7 @@ public:
     // Worst Case Auxiliary Space Complexity: O(1)
     // @input:
     // - container - object of container type with sortable items
-    template<typename T>
-    static void BubbleSort(T& container) {
+    static void Sort(T& container) {
         // Why we need to check container emptyness:
         // container.size() = size_t
         // size_t - long unsigned int
@@ -48,8 +47,7 @@ public:
     // Worst Case Auxiliary Space Complexity: O(1)
     // @input:
     // - container - object of container type with sortable items
-    template<typename T>
-    static void BubbleSortOptimised(T& container) {
+    static void SortOptimised(T& container) {
         if (container.empty()) {
             return;
         }
@@ -77,13 +75,11 @@ public:
     // Worst Case Auxiliary Space Complexity: O(1)
     // @input:
     // - container - object of container type with sortable items
-    template<typename T>
-    static void BubbleSortRecursive(T& container) {
+    static void SortRecursive(T& container) {
         BSRImpl(container, container.size());
     }
 
 private:
-    template<typename T>
     static void BSRImpl(T& container, const size_t size) {
         if (size <= 0) {
             return;
@@ -104,7 +100,6 @@ private:
         BSRImpl(container, size - 1);
     }
 };
-
 }
 
 #endif /* BUBBLESORT_HPP_ */

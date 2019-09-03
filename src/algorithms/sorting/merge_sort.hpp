@@ -11,12 +11,11 @@
 
 #include <iterator>
 
-namespace MS {
-
+namespace Algo::Sorting {
 template<typename T>
-class Solution {
+class MergeSort {
 public:
-    static void MergeSort(T& container) {
+    static void Sort(T& container) {
         if (container.size() < 2) {
             return;
         }
@@ -80,7 +79,6 @@ private:
         }
     }
 };
-
 }
 
 #endif /* MERGESORT_HPP_ */

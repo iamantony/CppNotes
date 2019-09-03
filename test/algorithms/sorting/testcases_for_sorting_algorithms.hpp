@@ -74,8 +74,6 @@ void RandomContainer(std::vector<T>& container, std::vector<T>& expected,
     expected = container;
     std::sort(expected.begin(), expected.end());
 }
-
 }
 
 #endif // TESTCASES_FOR_SORTING_ALGORITHMS_HPP
-
