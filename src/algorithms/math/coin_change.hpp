@@ -23,6 +23,7 @@ You may assume that you have an infinite number of each kind of coin.
 
 #include <algorithm>
 #include <vector>
+#include <limits>
 
 namespace Algo::Math {
 class CoinChange {
@@ -50,8 +51,7 @@ class CoinChange {
     }
 
 public:
-    static int ChangeGreedy(std::vector<int> coins, int amount)
-    {
+    static int ChangeGreedy(std::vector<int> coins, int amount) {
         if (coins.empty() || amount < 0) {
             return -1;
         }
@@ -60,11 +60,31 @@ public:
         return MakeChange(coins, amount);
     }
 
-    // TODO: Dynamic Programming solution:
-    // https://www.algorithmist.com/index.php/Min-Coin_Change
-    // https://www.algorithmist.com/index.php/Coin_Change
-    // https://www.geeksforgeeks.org/coin-change-dp-7/
-    // https://leetcode.com/problems/coin-change-2/
+    static int ChangeDP(const std::vector<int> coins, int amount) {
+        if (coins.empty() || amount < 0) {
+            return -1;
+        }
+
+        const auto UIntMax = std::numeric_limits<uint32_t>::max();
+        std::vector<uint32_t> table(static_cast<size_t>(amount + 1), UIntMax);
+        table[0] = 0;
+
+        for (int val = 1; val <= amount; ++val) {
+            for (size_t c = 0; c < coins.size(); ++c) {
+                if (coins[c] > val) { continue; }
+
+                auto index = static_cast<size_t>(val - coins[c]);
+                auto sub_res = table[index];
+                if (sub_res < UIntMax &&
+                        sub_res + 1 < table[static_cast<size_t>(val)]) {
+                    table[static_cast<size_t>(val)] = sub_res + 1;
+                }
+            }
+        }
+
+        const auto result = table[static_cast<size_t>(amount)];
+        return result == UIntMax ? -1 : static_cast<int>(result);
+    }
 };
 }
 
