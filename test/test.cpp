@@ -79,6 +79,7 @@
 #include "algorithms/math/test_least_common_multiple.hpp"
 #include "algorithms/math/test_coin_change.hpp"
 #include "algorithms/math/test_car_fueling.hpp"
+#include "algorithms/math/test_primitive_calculator.hpp"
 
 #include "algorithms/other/test_buy_sell_stock.hpp"
 #include "algorithms/other/test_buy_sell_stock_one_transaction.hpp"
