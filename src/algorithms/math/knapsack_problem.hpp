@@ -13,9 +13,12 @@
 namespace Algo::Math {
 class Knapsack {
 public:
-    // Items in map: value, weight
-    static double Fill(const uint32_t& maxWeight,
-                       const std::vector<std::pair<uint32_t, uint32_t>>& items) {
+    // Greedy algorithm for fractional Knapsack problem, that returns result
+    // value of items in knapsack
+    // items: vector of pairs of { value, weight }
+    static double FillGreedy(
+            const uint32_t& maxWeight,
+            const std::vector<std::pair<uint32_t, uint32_t>>& items) {
         // Calc for each item its' value per weight param
         std::multimap<double, std::pair<uint32_t, uint32_t>> vpwItems;
         for (auto item : items) {
@@ -46,6 +49,34 @@ public:
         }
 
         return resultValue;
+    }
+
+    // Dynamic Programming algorithm for a Knapsack problem without repetiions
+    // Function return result weight of the items in the knapsack
+    // items: vector of pairs of { value, weight }
+    static uint32_t FillDP(const uint32_t& maxWeight,
+                const std::vector<std::pair<uint32_t, uint32_t>>& items) {
+        if (maxWeight == 0 || items.empty()) { return 0; }
+
+        const auto rowsNum = items.size() + 1;
+        const auto colsNum = maxWeight + 1;
+        std::vector<uint32_t> rowsVec(colsNum, 0);
+        std::vector<std::vector<uint32_t>> valueTable(rowsNum, rowsVec);
+        for (size_t i = 1; i < rowsNum; ++i) {
+            for (uint32_t w = 1; w < colsNum; ++w) {
+                valueTable[i][w] = valueTable[i - 1][w];
+
+                const auto curItemIndex = i - 1;
+                const auto& itemValue = items[curItemIndex].first;
+                const auto& itemWeight = items[curItemIndex].second;
+                if (itemWeight > w) { continue; }
+
+                const auto value = valueTable[i - 1][w - itemWeight] + itemValue;
+                if (value > valueTable[i][w]) { valueTable[i][w] = value; }
+            }
+        }
+
+        return valueTable[rowsNum - 1][colsNum - 1];
     }
 };
 }
