@@ -50,6 +50,8 @@
 #include "algorithms/data_structures/sll/test_merge_sorted_sll.hpp"
 #include "algorithms/data_structures/sll/test_add_two_numbers_as_linked_list.hpp"
 
+#include "algorithms/data_structures/stack/test_min_stack.hpp"
+
 #include "algorithms/math/test_basic_matrix_multiplication.hpp"
 #include "algorithms/math/test_basic_numbers_multiplication.hpp"
 #include "algorithms/math/test_is_number_power_of_two.hpp"
