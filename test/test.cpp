@@ -52,6 +52,8 @@
 
 #include "algorithms/data_structures/stack/test_min_stack.hpp"
 
+#include "algorithms/data_structures/queue/test_sliding_window_max.hpp"
+
 #include "algorithms/math/test_basic_matrix_multiplication.hpp"
 #include "algorithms/math/test_basic_numbers_multiplication.hpp"
 #include "algorithms/math/test_is_number_power_of_two.hpp"
