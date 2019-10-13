@@ -3,11 +3,11 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "algorithms/data_structures/stack/min_stack.hpp"
+#include "types/ds/min_stack.hpp"
 
 BOOST_AUTO_TEST_CASE(test_minstack_simple)
 {
-    Algo::DS::Stack::MinStack<int> stack;
+    Types::DS::Stack::MinStack<int> stack;
     stack.push(-2);
     stack.push(0);
     stack.push(-3);

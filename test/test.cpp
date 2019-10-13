@@ -50,8 +50,6 @@
 #include "algorithms/data_structures/sll/test_merge_sorted_sll.hpp"
 #include "algorithms/data_structures/sll/test_add_two_numbers_as_linked_list.hpp"
 
-#include "algorithms/data_structures/stack/test_min_stack.hpp"
-
 #include "algorithms/data_structures/queue/test_sliding_window_max.hpp"
 
 #include "algorithms/math/test_basic_matrix_multiplication.hpp"
@@ -145,4 +143,5 @@
 #include "types/ds/test_vector_ds.hpp"
 #include "types/ds/test_heap.hpp"
 #include "types/ds/test_interval_map.hpp"
+#include "types/ds/test_min_stack.hpp"
 #include "types/test_vector_iterator.hpp"

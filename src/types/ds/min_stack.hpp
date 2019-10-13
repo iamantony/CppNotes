@@ -25,7 +25,7 @@ minStack.getMin();   --> Returns -2.
 #include <stack>
 #include <limits>
 
-namespace Algo::DS::Stack {
+namespace Types::DS::Stack {
 
 template <typename T>
 class MinStack {
