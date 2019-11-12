@@ -208,7 +208,9 @@ public:
             }
         }
 
-        if (n > std::numeric_limits<int>::max()) {
+        static const auto max_int = static_cast<unsigned long long>(
+            std::numeric_limits<int>::max());
+        if (n > max_int) {
             return -1;
         }
 
