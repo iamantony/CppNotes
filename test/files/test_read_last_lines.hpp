@@ -2,8 +2,7 @@
 #define TEST_READ_LAST_LINES_HPP_
 
 #include <boost/test/unit_test.hpp>
-#include <boost/filesystem.hpp>
-
+#include <filesystem>
 #include <iostream>
 #include <queue>
 
@@ -22,17 +21,13 @@ BOOST_AUTO_TEST_CASE(test_rll_invalid_file)
 
 BOOST_AUTO_TEST_CASE(test_rll)
 {
-    // Show current working dir of executable
-    // std::cout << boost::filesystem::initial_path() << std::endl;
-
     std::queue<std::string> expected;
     expected.push("third line");
     expected.push("fourth line");
     expected.push("last line");
 
-    // WARNING: check that path to txt-file is valid!
-    BOOST_CHECK(expected ==
-            ReadLastLines("./test/data/text_file.txt", 3));
+    const auto test_file = std::filesystem::current_path() / "data" / "text_file.txt";
+    BOOST_CHECK(expected == ReadLastLines(test_file.string(), 3));
 }
 
 #endif /* TEST_READ_LAST_LINES_HPP_ */

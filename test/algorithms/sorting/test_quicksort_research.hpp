@@ -2,8 +2,7 @@
 #define TEST_QUICKSORT_RESEARCH_HPP_
 
 #include <boost/test/unit_test.hpp>
-//#include <boost/filesystem/operations.hpp>
-//#include <boost/filesystem/path.hpp>
+#include <filesystem>
 #include <iostream>
 #include <fstream>
 
@@ -62,11 +61,9 @@ BOOST_AUTO_TEST_CASE(test_qsr_unsorted_example)
 
 BOOST_AUTO_TEST_CASE(test_qsr_example_10)
 {
-//    How to find out what is current path of the executable:
-//    boost::filesystem::path full_path( boost::filesystem::current_path() );
-//    std::cout << full_path << std::endl;
-
-    std::ifstream file("./test/data/10.txt");
+    // Make sure that working dir is /path/to/build/test
+    const auto test_file = std::filesystem::current_path() / "data" / "10.txt";
+    std::ifstream file(test_file);
     if (false == file.is_open())
     {
         std::cout << "Failed to open file that contains input data. "
@@ -105,7 +102,8 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_10)
 
 BOOST_AUTO_TEST_CASE(test_qsr_example_100)
 {
-    std::ifstream file("./test/data/100.txt");
+    const auto test_file = std::filesystem::current_path() / "data" / "100.txt";
+    std::ifstream file(test_file);
     if (false == file.is_open())
     {
         std::cout << "Failed to open file that contains input data. "
@@ -144,7 +142,8 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_100)
 
 BOOST_AUTO_TEST_CASE(test_qsr_example_1000)
 {
-    std::ifstream file("./test/data/1000.txt");
+    const auto test_file = std::filesystem::current_path() / "data" / "1000.txt";
+    std::ifstream file(test_file);
     if (false == file.is_open())
     {
         std::cout << "Failed to open file that contains input data. "
@@ -183,7 +182,8 @@ BOOST_AUTO_TEST_CASE(test_qsr_example_1000)
 
 BOOST_AUTO_TEST_CASE(test_qsr_example_10000)
 {
-    std::ifstream file("./test/data/10000.txt");
+    const auto test_file = std::filesystem::current_path() / "data" / "10000.txt";
+    std::ifstream file(test_file);
     if (false == file.is_open())
     {
         std::cout << "Failed to open file that contains input data. "
