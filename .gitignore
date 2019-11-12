@@ -38,6 +38,8 @@ CppNotes
 *.creator
 *.files
 *.includes
+*.cflags
+*.cxxflags
 
 # Project
 bin/
