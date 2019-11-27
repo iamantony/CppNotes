@@ -1,5 +1,5 @@
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef EQUALITY_HPP
+#define EQUALITY_HPP
 
 #include <limits>
 #include <cstdlib>
@@ -10,14 +10,13 @@ bool equal(const T& left, const T& right) {
 }
 
 template<>
-bool equal<double>(const double& left, const double& right) {
+inline bool equal<double>(const double& left, const double& right) {
     return std::fabs(left - right) <= std::numeric_limits<double>::epsilon();
 }
 
-bool equalDoubles(const double& left, const double& right,
-                  const double& epsilon) {
+inline bool equalDoubles(const double& left, const double& right, const double& epsilon) {
     return std::fabs(left - right) <= epsilon;
 }
 
-#endif // UTILS_HPP
+#endif // EQUALITY_HPP
 

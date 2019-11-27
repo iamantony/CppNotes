@@ -11,7 +11,7 @@ namespace SquareRoot {
 // where S is a value for which square root we want to find
 
 // So: sqrt(S) = sqrt(a) * (2^n) = 2^n
-int RoughSR(int value) {
+inline int RoughSR(int value) {
     if (value <= 0) {
         return -1;
     }
@@ -31,7 +31,7 @@ int RoughSR(int value) {
 }
 
 // https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Babylonian_method
-double BabylonialSR(int value, const double& error = 0.0001) {
+inline double BabylonialSR(int value, const double& error = 0.0001) {
     if (value <= 0 || error <= 0.0) {
         return 0.0;
     }

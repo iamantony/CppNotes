@@ -32,7 +32,7 @@ Each element nums[i] will be an integer in the range [-1000, 1000].
 */
 
 #include <vector>
-#include <algorithm>
+#include <numeric>
 
 namespace Algo::DS::Array {
 

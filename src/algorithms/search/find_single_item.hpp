@@ -10,7 +10,7 @@
 #include <vector>
 #include <unordered_map>
 #include <set>
-#include <algorithm>
+#include <numeric>
 
 namespace FindSingleItem {
 
