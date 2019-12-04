@@ -44,5 +44,6 @@ CppNotes
 # Project
 bin/
 build/
+cmake-build-debug/
 *.user
 .idea/
