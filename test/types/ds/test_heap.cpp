@@ -1,5 +1,4 @@
 #include <boost/test/unit_test.hpp>
-
 #include "types/ds/heap.hpp"
 
 BOOST_AUTO_TEST_SUITE(DSHeap)
@@ -52,6 +51,38 @@ BOOST_AUTO_TEST_CASE(create_with_several_elem)
         Types::DS::Heap<int> heap(data, Types::DS::Heap<int>::Type::MIN);
         BOOST_CHECK(expected == heap.exportData());
     }
+}
+
+BOOST_AUTO_TEST_CASE(add_new_values)
+{
+    std::vector<int> data = {3, 2, 10, 15, 1};
+    Types::DS::Heap<int> heap(data, Types::DS::Heap<int>::Type::MAX);
+    heap.add(30);
+    heap.add(-6);
+    heap.add(9);
+
+    std::vector<int> expected = {30, 9, 15, 3, 1, 10, -6, 2};
+    BOOST_CHECK(expected == heap.exportData());
+}
+
+BOOST_AUTO_TEST_CASE(add_set_value)
+{
+    std::vector<int> data = {3, 2, 10, 15, 1};
+    Types::DS::Heap<int> heap(data, Types::DS::Heap<int>::Type::MAX);
+    heap.setValue(1, 30);
+
+    std::vector<int> expected = {30, 15, 10, 2, 1};
+    BOOST_CHECK(expected == heap.exportData());
+}
+
+BOOST_AUTO_TEST_CASE(pop)
+{
+    std::vector<int> data = {3, 2, 10, 15, 1};
+    Types::DS::Heap<int> heap(data, Types::DS::Heap<int>::Type::MAX);
+    heap.pop();
+
+    std::vector<int> expected = {10, 3, 1, 2, 15};
+    BOOST_CHECK(expected == heap.exportData());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
