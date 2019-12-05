@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(create_with_one_elem)
     {
         Types::DS::Heap<int> heap(data, Types::DS::Heap<int>::Type::MAX);
         BOOST_CHECK(1 == heap.size());
-        BOOST_CHECK(false == heap.isEmpty());
+        BOOST_CHECK(!heap.isEmpty());
         BOOST_CHECK(1 == heap.at(0));
     }
 
@@ -70,8 +70,11 @@ BOOST_AUTO_TEST_CASE(add_set_value)
     std::vector<int> data = {3, 2, 10, 15, 1};
     Types::DS::Heap<int> heap(data, Types::DS::Heap<int>::Type::MAX);
     heap.setValue(1, 30);
-
     std::vector<int> expected = {30, 15, 10, 2, 1};
+    BOOST_CHECK(expected == heap.exportData());
+
+    heap.setValue(1, -1);
+    expected = {30, 2, 10, -1, 1};
     BOOST_CHECK(expected == heap.exportData());
 }
 

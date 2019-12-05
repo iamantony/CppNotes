@@ -18,46 +18,72 @@ namespace Types::DS {
             MAX
         };
 
-        explicit Heap(const std::vector<T>& data, Type type = Type::MAX);
+        Heap();
+        explicit Heap(std::vector<T> data, Type type = Type::MAX);
 
+        void setType(Type type);
+        void setData(std::vector<T> data);
         bool isEmpty() const;
         size_t size() const;
         size_t realSize() const;
-        void resize(const size_t& size);
-        T at(const size_t& index) const;
-        T parent(const size_t& index) const;
-        T left(const size_t& index) const;
-        T right(const size_t& index) const;
+        void resize(size_t size);
+        T at(size_t index) const;
+        T parent(size_t index) const;
+        T left(size_t index) const;
+        T right(size_t index) const;
         void add(T value);
-        void setValue(const size_t& index, T value);
-        void swap(const size_t& first, const size_t& second);
+        void setValue(size_t index, T value);
+        void swap(size_t first, size_t second);
         size_t find(const T& value);
         void pop();
-        void heapify(const size_t &index);
+        void heapify(size_t index);
 
-        std::vector<T> exportData() const;
+        const std::vector<T>& exportData() const;
 
     private:
-        bool isValidIndex(const size_t& index) const;
-        size_t parentIndex(const size_t& index) const;
-        size_t leftIndex(const size_t& index) const;
-        size_t rightIndex(const size_t& index) const;
+        bool isValidIndex(size_t index) const;
+        size_t parentIndex(size_t index) const;
+        size_t leftIndex(size_t index) const;
+        size_t rightIndex(size_t index) const;
         void makeHeap();
 
-        size_t m_heapSize;
+        size_t m_heapSize = 0;
         std::vector<T> m_data;
+        Type m_type = Type::MAX;
         std::function<bool(const T&, const T&)> comparator;
     };
 
     template <typename T>
-    Heap<T>::Heap(const std::vector<T>& data, Heap<T>::Type type) : m_data(data) {
-        if (type == Type::MAX) {
+    Heap<T>::Heap() {
+        setType(Type::MAX);
+    }
+
+    template <typename T>
+    Heap<T>::Heap(std::vector<T> data, const Type type) {
+        setType(type);
+        setData(std::move(data));
+    }
+
+    template <typename T>
+    void Heap<T>::setType(const Type type)
+    {
+        if (m_type == type && comparator) { return; }
+
+        m_type = type;
+        if (m_type == Type::MAX) {
             comparator = std::bind(std::greater<T>(), _1, _2);
         }
         else {
             comparator = std::bind(std::less<T>(), _1, _2);
         }
 
+        makeHeap();
+    }
+
+    template <typename T>
+    void Heap<T>::setData(std::vector<T> data)
+    {
+        m_data = std::move(data);
         m_heapSize = m_data.size();
         makeHeap();
     }
@@ -78,12 +104,12 @@ namespace Types::DS {
     }
 
     template <typename T>
-    void Heap<T>::resize(const size_t& size) {
+    void Heap<T>::resize(const size_t size) {
         m_heapSize = std::min(realSize(), size);
     }
 
     template <typename T>
-    T Heap<T>::at(const size_t& index) const {
+    T Heap<T>::at(const size_t index) const {
         if (!isValidIndex(index)) {
             throw std::out_of_range("Invalid index");
         }
@@ -92,44 +118,43 @@ namespace Types::DS {
     }
 
     template <typename T>
-    T Heap<T>::parent(const size_t& index) const {
+    T Heap<T>::parent(const size_t index) const {
         return at(parentIndex(index));
     }
 
     template <typename T>
-    T Heap<T>::left(const size_t& index) const {
+    T Heap<T>::left(const size_t index) const {
         return at(leftIndex(index));
     }
 
     template <typename T>
-    T Heap<T>::right(const size_t& index) const {
+    T Heap<T>::right(const size_t index) const {
         return at(rightIndex(index));
     }
 
     template <typename T>
-    bool Heap<T>::isValidIndex(const size_t& index) const {
+    bool Heap<T>::isValidIndex(const size_t index) const {
         return index < m_heapSize;
     }
 
     template <typename T>
-    size_t Heap<T>::parentIndex(const size_t& index) const {
-        if (index == 0) {
-            return 0;
-        }
+    size_t Heap<T>::parentIndex(const size_t index) const {
+        if (index == 0) { return 0; }
 
         return (index - 1) / 2;
     }
 
     template <typename T>
-    size_t Heap<T>::leftIndex(const size_t& index) const {
+    size_t Heap<T>::leftIndex(const size_t index) const {
         return 2 * index + 1;
     }
 
     template <typename T>
-    size_t Heap<T>::rightIndex(const size_t& index) const {
+    size_t Heap<T>::rightIndex(const size_t index) const {
         return 2 * index + 2;
     }
 
+    // TC: O(n lg n)
     template <typename T>
     void Heap<T>::add(T value) {
         if (size() < realSize()) {
@@ -143,18 +168,31 @@ namespace Types::DS {
         makeHeap();
     }
 
+    // TC: O(lg n)
     template <typename T>
-    void Heap<T>::setValue(const size_t& index, T value) {
+    void Heap<T>::setValue(const size_t index, T value) {
         if (!isValidIndex(index)) {
             throw std::out_of_range("Can not set value - invalid index");
         }
 
         m_data[index] = std::move(value);
-        makeHeap();
+        heapify(index);
+
+        auto i = index;
+        while(i > 0) {
+            const auto parentInd = parentIndex(i);
+            if (comparator(at(i), at(parentInd))) {
+                swap(parentInd, i);
+                i = parentInd;
+            }
+            else {
+                break;
+            }
+        }
     }
 
     template <typename T>
-    void Heap<T>::swap(const size_t& first, const size_t& second) {
+    void Heap<T>::swap(const size_t first, const size_t second) {
         if (!isValidIndex(first) || !isValidIndex(second)) {
             throw std::out_of_range("Can not swap items - invalid index");
         }
@@ -171,6 +209,7 @@ namespace Types::DS {
         return size();
     }
 
+    // TC: O(lg n)
     template <typename T>
     void Heap<T>::pop() {
         if (size() == 0) { return; }
@@ -180,6 +219,7 @@ namespace Types::DS {
         heapify(0);
     }
 
+    // TC: O(n lg n)
     template <typename T>
     void Heap<T>::makeHeap() {
         size_t i = size() / 2;
@@ -193,8 +233,9 @@ namespace Types::DS {
         }
     }
 
+    // TC: O(lg n)
     template <typename T>
-    void Heap<T>::heapify(const size_t& index) {
+    void Heap<T>::heapify(const size_t index) {
         size_t searchedElementIndex = index;
 
         size_t left = leftIndex(index);
@@ -214,7 +255,7 @@ namespace Types::DS {
     }
 
     template <typename T>
-    std::vector<T> Heap<T>::exportData() const {
+    const std::vector<T>& Heap<T>::exportData() const {
         return m_data;
     }
 }
