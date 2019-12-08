@@ -45,6 +45,7 @@ namespace Types::DS {
         size_t parentIndex(size_t index) const;
         size_t leftIndex(size_t index) const;
         size_t rightIndex(size_t index) const;
+        void verifyHeapProperty(size_t index);
         void makeHeap();
 
         size_t m_heapSize = 0;
@@ -154,7 +155,7 @@ namespace Types::DS {
         return 2 * index + 2;
     }
 
-    // TC: O(n lg n)
+    // TC: O(lg n)
     template <typename T>
     void Heap<T>::add(T value) {
         if (size() < realSize()) {
@@ -165,17 +166,16 @@ namespace Types::DS {
         }
 
         ++m_heapSize;
-        makeHeap();
+        verifyHeapProperty(size() - 1);
     }
 
     // TC: O(lg n)
     template <typename T>
-    void Heap<T>::setValue(const size_t index, T value) {
+    void Heap<T>::verifyHeapProperty(size_t index) {
         if (!isValidIndex(index)) {
-            throw std::out_of_range("Can not set value - invalid index");
+            throw std::out_of_range("Can't do verification - invalid index");
         }
 
-        m_data[index] = std::move(value);
         heapify(index);
 
         auto i = index;
@@ -189,6 +189,17 @@ namespace Types::DS {
                 break;
             }
         }
+    }
+
+    // TC: O(lg n)
+    template <typename T>
+    void Heap<T>::setValue(const size_t index, T value) {
+        if (!isValidIndex(index)) {
+            throw std::out_of_range("Can not set value - invalid index");
+        }
+
+        m_data[index] = std::move(value);
+        verifyHeapProperty(index);
     }
 
     template <typename T>
