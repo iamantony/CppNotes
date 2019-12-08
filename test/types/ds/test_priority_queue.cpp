@@ -102,5 +102,3 @@ BOOST_AUTO_TEST_CASE(change_priority_in_pq) {
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-
-
