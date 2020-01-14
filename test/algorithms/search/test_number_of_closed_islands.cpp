@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include "algorithms/other/number_of_closed_islands.hpp"
+#include "algorithms/search/number_of_closed_islands.hpp"
 
 BOOST_AUTO_TEST_SUITE(TestNumberOfClosedIslands)
 

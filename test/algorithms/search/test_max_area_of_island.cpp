@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include "algorithms/other/max_area_of_island.hpp"
+#include "algorithms/search/max_area_of_island.hpp"
 
 BOOST_AUTO_TEST_SUITE(TestMaxAreaOfIsland)
 

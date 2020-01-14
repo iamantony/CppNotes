@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include "algorithms/other/capture_surrounded_regions.hpp"
+#include "algorithms/search/capture_surrounded_regions.hpp"
 
 BOOST_AUTO_TEST_SUITE(TestCaptureSurroundedRegions)
 
