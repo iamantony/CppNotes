@@ -29,7 +29,7 @@ horizontally or vertically.
 #include <algorithm>
 #include <stack>
 
-namespace Algo::Other {
+namespace Algo::Search {
     class CaptureSurroundedRegions {
         static const char O = 'O';
         static const char X = 'X';

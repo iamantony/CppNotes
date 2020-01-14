@@ -45,7 +45,7 @@ Constraints:
 
 #include <vector>
 
-namespace Algo::Other {
+namespace Algo::Search {
     class NumberOfClosedIslands {
         static const int WATER = 1;
         static const int LAND = 0;

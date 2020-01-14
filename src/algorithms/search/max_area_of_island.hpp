@@ -33,7 +33,7 @@ Note: The length of each dimension in the given grid does not exceed 50.
 #include <vector>
 #include <stack>
 
-namespace Algo::Other {
+namespace Algo::Search {
     class MaxAreaOfIsland {
         static const int WATER = 0;
         static const int LAND = 1;

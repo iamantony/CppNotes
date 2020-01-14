@@ -28,7 +28,7 @@ Example 2:
 Output: 3
 */
 
-namespace Algo::Other {
+namespace Algo::Search {
     class NumberOfIslands {
     public:
         // TC: O(n) where n is number of elements in input matrix
