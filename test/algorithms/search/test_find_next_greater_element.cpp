@@ -57,6 +57,13 @@ BOOST_AUTO_TEST_CASE(two_arrays)
     }
 }
 
+BOOST_AUTO_TEST_CASE(next_greater_temperature)
+{
+    const std::vector<int> temp = {73, 74, 75, 71, 69, 72, 76, 73};
+    const std::vector<int> expected = {1, 1, 4, 2, 1, 1, 0, 0};
+    BOOST_CHECK(expected == Algo::Search::FindNextGreaterElem::FindNextGreaterTemperature(temp));
+}
+
 BOOST_AUTO_TEST_CASE(in_circular_arr)
 {
     {
