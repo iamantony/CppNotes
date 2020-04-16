@@ -27,7 +27,7 @@ Note:
 #include <vector>
 #include <unordered_set>
 
-namespace Algo::Search {
+namespace Algo::HashMap {
     class FindRepeatedElement {
     public:
         static int find(const std::vector<int>& v) {

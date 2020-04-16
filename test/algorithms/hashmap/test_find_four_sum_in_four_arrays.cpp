@@ -5,7 +5,7 @@ BOOST_AUTO_TEST_SUITE(TestFindFourSumInFourArrays)
 
     BOOST_AUTO_TEST_CASE(empty_input_arrays)
     {
-        Algo::Search::FindFourSumInArrays f4s;
+        Algo::HashMap::FindFourSumInArrays f4s;
         BOOST_CHECK(0 == f4s.find({}, {}, {}, {}));
         BOOST_CHECK(0 == f4s.find({1}, {}, {}, {}));
         BOOST_CHECK(0 == f4s.find({}, {2}, {}, {}));
@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_SUITE(TestFindFourSumInFourArrays)
 
     BOOST_AUTO_TEST_CASE(valid_input_one_result)
     {
-        Algo::Search::FindFourSumInArrays f4s;
+        Algo::HashMap::FindFourSumInArrays f4s;
         const std::vector<int> v1 = {1, 2};
         const std::vector<int> v2 = {0, 0};
         const std::vector<int> v3 = {-2, 0};
@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_SUITE(TestFindFourSumInFourArrays)
 
     BOOST_AUTO_TEST_CASE(valid_input_six_results)
     {
-        Algo::Search::FindFourSumInArrays f4s;
+        Algo::HashMap::FindFourSumInArrays f4s;
         const std::vector<int> v1 = {-1,- 1};
         const std::vector<int> v2 = {-1, 1};
         const std::vector<int> v3 = {-1, 1};
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_SUITE(TestFindFourSumInFourArrays)
 
     BOOST_AUTO_TEST_CASE(valid_input_17_results)
     {
-        Algo::Search::FindFourSumInArrays f4s;
+        Algo::HashMap::FindFourSumInArrays f4s;
         const std::vector<int> v1 = {0, 1, -1};
         const std::vector<int> v2 = {-1, 1, 0};
         const std::vector<int> v3 = {0, 0, 1};
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_SUITE(TestFindFourSumInFourArrays)
 
     BOOST_AUTO_TEST_CASE(valid_huge_input_1)
     {
-        Algo::Search::FindFourSumInArrays f4s;
+        Algo::HashMap::FindFourSumInArrays f4s;
         const std::vector<int> v1 = {
             0,-19,-7,-3,-18,-29,-29,-23,4,-31,-3,-25,-10,-15,8,-8,-32,6,10,-14,4,-29,-15,-20,-29,
             -26,-11,-20,-25,-30,3,-6,-12,9,-10,9,10,4,-28,-18,-4,-16,0,-15,-31,9,-28,2,3,-14,-11,
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_SUITE(TestFindFourSumInFourArrays)
 
     BOOST_AUTO_TEST_CASE(valid_huge_input_2)
     {
-        Algo::Search::FindFourSumInArrays f4s;
+        Algo::HashMap::FindFourSumInArrays f4s;
         const std::vector<int> v1 = {
             -71978474,-28407390,6487156,-5835667,-11819338,10343068,10768673,-245171709,19738959,
             -46339242,181229419,-176760610,-10337980,-207358751,-185412148,102500358,107833574,
