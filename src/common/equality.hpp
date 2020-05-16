@@ -2,7 +2,7 @@
 #define EQUALITY_HPP
 
 #include <limits>
-#include <cstdlib>
+#include <cmath>
 
 template<typename T>
 bool equal(const T& left, const T& right) {

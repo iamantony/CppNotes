@@ -18,6 +18,7 @@
 // Auxiliary Space : O(1)
 
 #include <algorithm>
+#include <cmath>
 
 #include "algorithms/search/binary_search.hpp"
 

@@ -20,7 +20,7 @@ A solution set is:
 ]
 */
 
-#include <map>
+#include <set>
 #include <vector>
 #include <algorithm>
 
