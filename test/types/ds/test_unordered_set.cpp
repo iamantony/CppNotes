@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_SUITE(TestUnorderedSetDS)
 
         std::unordered_set<int> std_set;
         Types::DS::UnorderedSet my_set;
-        for (size_t i = 0; i < 100000; ++i) {
+        for (size_t i = 0; i < 100; ++i) {
             const auto num = static_cast<int32_t>(std::round(dist(mt)));
             const auto insert_operation = (num % 7 == 0);
             if (insert_operation) {

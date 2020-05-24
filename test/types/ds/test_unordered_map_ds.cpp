@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_SUITE(TestUnorderedMapDS)
 
         std::unordered_map<int32_t, int32_t> std_map;
         Types::DS::UnorderedMap<int32_t> my_map;
-        for (size_t i = 0; i < 100000; ++i) {
+        for (size_t i = 0; i < 100; ++i) {
             const auto num = static_cast<int32_t>(std::round(dist(mt)));
             const auto insert_operation = (num % 7 == 0);
             if (insert_operation) {
