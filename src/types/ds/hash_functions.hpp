@@ -25,6 +25,7 @@ namespace Types::DS {
     public:
         explicit HashModulo(const size_t num_of_buckets) : m(num_of_buckets) {}
         size_t operator()(size_t key) { return key % m; }
+        size_t operator()(int32_t key) { return static_cast<size_t>(std::abs(key)) % m; }
     };
 
     /* 1. Multiply the key k by some number 0 < A < 1.
