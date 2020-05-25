@@ -5,17 +5,17 @@ BOOST_AUTO_TEST_SUITE(MaxDepthOfBT)
 
 BOOST_AUTO_TEST_CASE(empty_bt)
 {
-    NodeBT<int>* bt = nullptr;
+    Types::DS::NodeBT<int>* bt = nullptr;
     BOOST_CHECK(0 == Algo::DS::BT::MaxDepth::Depth(bt));
-    DeleteBT(&bt);
+    Types::DS::DeleteBT(&bt);
 }
 
 BOOST_AUTO_TEST_CASE(valid_bt)
 {
     {
-        NodeBT<int>* bt = CreateBT<int>({2, 1, 2, 3});
+        Types::DS::NodeBT<int>* bt = Types::DS::CreateBST<int>({2, 1, 2, 3});
         BOOST_CHECK(3 == Algo::DS::BT::MaxDepth::Depth(bt));
-        DeleteBT(&bt);
+        Types::DS::DeleteBT(&bt);
     }
 }
 

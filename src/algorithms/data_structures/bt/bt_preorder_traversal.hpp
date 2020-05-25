@@ -29,7 +29,7 @@ namespace Algo::DS::BT {
 class PreorderTraversal {
 public:
     template<typename T>
-    static std::vector<T> PreorderRecursive(NodeBT<T>* root) {
+    static std::vector<T> PreorderRecursive(Types::DS::NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
@@ -40,16 +40,16 @@ public:
     }
 
     template<typename T>
-    static std::vector<T> PreorderIterative(NodeBT<T>* root) {
+    static std::vector<T> PreorderIterative(Types::DS::NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
         }
 
-        std::stack<NodeBT<T>*> nodesStack;
+        std::stack<Types::DS::NodeBT<T>*> nodesStack;
         nodesStack.push(root);
         while (!nodesStack.empty()) {
-            NodeBT<T>* node = nodesStack.top();
+            Types::DS::NodeBT<T>* node = nodesStack.top();
             result.push_back(node->value);
             nodesStack.pop();
 
@@ -67,7 +67,7 @@ public:
 
 private:
     template<typename T>
-    static void PreorderImpl(NodeBT<T>* root, std::vector<T>& v) {
+    static void PreorderImpl(Types::DS::NodeBT<T>* root, std::vector<T>& v) {
         if (root == nullptr) {
             return;
         }

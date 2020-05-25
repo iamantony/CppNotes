@@ -34,13 +34,13 @@ namespace Algo::DS::BT {
 class Validate {
 public:
     template<typename T>
-    static bool isValid(NodeBT<T>* root) {
+    static bool isValid(Types::DS::NodeBT<T>* root) {
         return false;
     }
 
 private:
     template<typename T>
-    static bool validateNodeValue(NodeBT<T>* node, const T& min, const T& max) {
+    static bool validateNodeValue(Types::DS::NodeBT<T>* node, const T& min, const T& max) {
         if (nullptr == node) {
             return true;
         }
@@ -55,7 +55,7 @@ private:
 };
 
 template<>
-bool Validate::isValid<int>(NodeBT<int>* root) {
+bool Validate::isValid<int>(Types::DS::NodeBT<int>* root) {
     return validateNodeValue(root,
                              std::numeric_limits<int>::min(),
                              std::numeric_limits<int>::max());

@@ -28,13 +28,13 @@ namespace Algo::DS::BT {
 class MaxDepth {
 public:
     template<typename T>
-    static int Depth(NodeBT<T>* root) {
+    static int Depth(Types::DS::NodeBT<T>* root) {
         return DepthHelper(root);
     }
 
 private:
     template<typename T>
-    static int DepthHelper(NodeBT<T>* root) {
+    static int DepthHelper(Types::DS::NodeBT<T>* root) {
         if (root == nullptr) {
             return 0;
         }

@@ -30,7 +30,7 @@ namespace Algo::DS::BT {
 class PostorderTraversal {
 public:
     template<typename T>
-    static std::vector<T> PostorderRecursive(NodeBT<T>* root) {
+    static std::vector<T> PostorderRecursive(Types::DS::NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
@@ -51,16 +51,16 @@ public:
     // a) Instead of printing an item, we push it to a stack.
     // b) We push left subtree before right subtree.
     template<typename T>
-    static std::vector<T> PostorderIterStack(NodeBT<T>* root) {
+    static std::vector<T> PostorderIterStack(Types::DS::NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
         }
 
-        std::stack<NodeBT<T>*> s1, s2;
+        std::stack<Types::DS::NodeBT<T>*> s1, s2;
         s1.push(root);
         while (!s1.empty()) {
-            NodeBT<T>* node = s1.top();
+            Types::DS::NodeBT<T>* node = s1.top();
             s1.pop();
             s2.push(node);
 
@@ -83,7 +83,7 @@ public:
 
 private:
     template<typename T>
-    static void PostorderImpl(NodeBT<T>* root, std::vector<T>& v) {
+    static void PostorderImpl(Types::DS::NodeBT<T>* root, std::vector<T>& v) {
         if (root == nullptr) {
             return;
         }

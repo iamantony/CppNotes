@@ -32,19 +32,19 @@ namespace Algo::DS::BT {
 class LevelOrderTraversal {
 public:
     template<typename T>
-    static std::vector<std::vector<T>> Traverse(NodeBT<T>* root) {
+    static std::vector<std::vector<T>> Traverse(Types::DS::NodeBT<T>* root) {
         std::vector<std::vector<T>> result;
         if (root == nullptr) {
             return result;
         }
 
-        std::queue< NodeBT<T>* > nodesQueue;
+        std::queue< Types::DS::NodeBT<T>* > nodesQueue;
         nodesQueue.push(root);
         while (!nodesQueue.empty()) {
-            std::queue< NodeBT<T>* > nextLevelNodes;
+            std::queue< Types::DS::NodeBT<T>* > nextLevelNodes;
             std::vector<T> levelElements;
             while (!nodesQueue.empty()) {
-                NodeBT<T>* node = nodesQueue.front();
+                Types::DS::NodeBT<T>* node = nodesQueue.front();
                 nodesQueue.pop();
 
                 levelElements.push_back(node->value);

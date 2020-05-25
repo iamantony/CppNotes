@@ -30,28 +30,28 @@ namespace Algo::DS::BT {
 class InorderTraversal {
 public:
     template <typename T>
-    static std::vector<T> InorderRecursive(NodeBT<T>* root) {
+    static std::vector<T> InorderRecursive(Types::DS::NodeBT<T>* root) {
         std::vector<T> result;
         InorderRecursiveImpl(root, result);
         return result;
     }
 
     template <typename T>
-    static std::vector<T> InorderIterative(NodeBT<T>* root) {
+    static std::vector<T> InorderIterative(Types::DS::NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
         }
 
-        std::stack<NodeBT<T>*> nodesStack;
-        NodeBT<T>* current = root;
+        std::stack<Types::DS::NodeBT<T>*> nodesStack;
+        Types::DS::NodeBT<T>* current = root;
         while (current != nullptr || !nodesStack.empty()) {
             if (current != nullptr) {
                 nodesStack.push(current);
                 current = current->left;
             }
             else {
-                NodeBT<T>* node = nodesStack.top();
+                Types::DS::NodeBT<T>* node = nodesStack.top();
                 nodesStack.pop();
                 result.push_back(node->value);
                 current = node->right;
@@ -62,14 +62,14 @@ public:
     }
 
     template <typename T>
-    static std::vector<T> InorderIterativeMorris(NodeBT<T>* root) {
+    static std::vector<T> InorderIterativeMorris(Types::DS::NodeBT<T>* root) {
         std::vector<T> result;
         if (root == nullptr) {
             return result;
         }
 
-        NodeBT<T>* current = root;
-        NodeBT<T>* pre = nullptr;
+        Types::DS::NodeBT<T>* current = root;
+        Types::DS::NodeBT<T>* pre = nullptr;
         while(current != nullptr) {
             if(current->left == nullptr) {
                 result.push_back(current->value);
@@ -103,7 +103,7 @@ public:
 
 private:
     template <typename T>
-    static void InorderRecursiveImpl(NodeBT<T>* root, std::vector<T>& v) {
+    static void InorderRecursiveImpl(Types::DS::NodeBT<T>* root, std::vector<T>& v) {
         if (root == nullptr) {
             return;
         }
