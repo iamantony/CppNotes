@@ -55,6 +55,36 @@ namespace Types::DS {
         return head;
     }
 
+    template <typename T>
+    NodeBT<T>* CreateBT(const std::vector<std::vector<T>>& values_per_level, const T& null_value) {
+        std::vector< NodeBT<T>* > prev_level_nodes;
+        for (auto iter = values_per_level.rbegin(); iter != values_per_level.rend(); ++iter) {
+            auto& values_vec = *iter;
+            std::vector< NodeBT<T>* > level_nodes;
+            for (size_t i = 0; i < values_vec.size(); ++i) {
+                if (values_vec[i] == null_value) {
+                    level_nodes.push_back(nullptr);
+                }
+                else {
+                    auto* new_node = new NodeBT<T>(values_vec[i]);
+                    if (auto left_node_pos = i * 2; left_node_pos < prev_level_nodes.size()) {
+                        new_node->left = prev_level_nodes[left_node_pos];
+                    }
+
+                    if (auto right_node_pos = 1 + i * 2; right_node_pos < prev_level_nodes.size()) {
+                        new_node->right = prev_level_nodes[right_node_pos];
+                    }
+
+                    level_nodes.push_back(new_node);
+                }
+            }
+
+            prev_level_nodes = level_nodes;
+        }
+
+        return prev_level_nodes.empty() ? nullptr : prev_level_nodes.front();
+    }
+
     template<typename T>
     std::vector<T> ValuesInBT(NodeBT<T>* head)
     {
