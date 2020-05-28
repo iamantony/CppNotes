@@ -35,7 +35,7 @@ No duplicates in both lists.
 #include <vector>
 #include <unordered_map>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class MinIndexSum {
     public:
         static std::vector<std::string> find(

@@ -34,7 +34,7 @@ may be separated by a single space.
 #include <unordered_map>
 #include <unordered_set>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class WordPattern {
     public:
         static bool check(const std::string& pattern, const std::string& str) {

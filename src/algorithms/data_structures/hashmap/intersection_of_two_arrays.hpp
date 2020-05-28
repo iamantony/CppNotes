@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <algorithm>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class IntersectionOfTwoArray {
     public:
         /* https://leetcode.com/problems/intersection-of-two-arrays/

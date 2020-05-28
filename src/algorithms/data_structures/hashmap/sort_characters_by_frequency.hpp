@@ -35,9 +35,10 @@ Note that 'A' and 'a' are treated as two different characters.
 
 #include <string>
 #include <unordered_map>
-#include <multimap>
+#include <map>
+#include <algorithm>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class SortByFrequency {
     public:
         static std::string sort(const std::string& s) {

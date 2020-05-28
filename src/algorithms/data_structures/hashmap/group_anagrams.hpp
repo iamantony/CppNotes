@@ -24,7 +24,7 @@ The order of your output does not matter.
 #include <vector>
 #include <unordered_map>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class GroupAnagrams {
     public:
         static std::vector<std::vector<std::string>> group(const std::vector<std::string>& input) {

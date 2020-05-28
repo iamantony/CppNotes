@@ -33,7 +33,7 @@ lengths are always equal.
 #include <unordered_map>
 #include <algorithm>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class BullsAndCows {
     public:
         static std::string play(const std::string& secret, const std::string& guess) {

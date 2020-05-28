@@ -38,7 +38,7 @@ isUnique("make") -> true
 #include <vector>
 #include <unordered_map>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class ValidWordAbbr {
         std::unordered_map<std::string, std::string> m_abbreviations;
 

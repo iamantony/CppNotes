@@ -32,10 +32,10 @@ You may assume both s and t have the same length.
 #include <unordered_set>
 #include <limits>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class IsomorphicStrings {
     public:
-        static bool check_with_maps(const std::string& s1, const std::sttring& s2) {
+        static bool check_with_maps(const std::string& s1, const std::string& s2) {
             if (s1.size() != s2.size()) { return false; }
 
             std::unordered_map<char, char> change_map;
@@ -56,7 +56,7 @@ namespace Algo::HashMap {
             return true;
         }
 
-        static bool check_with_vectors(const std::string& s1, const std::sttring& s2) {
+        static bool check_with_vectors(const std::string& s1, const std::string& s2) {
             if (s1.size() != s2.size()) { return false; }
 
             const auto max_value = std::numeric_limits<char>::max();

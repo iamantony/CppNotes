@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include "algorithms/hashmap/num_of_smaller_elements_after_self.hpp"
+#include "algorithms/data_structures/hashmap/num_of_smaller_elements_after_self.hpp"
 #include <random>
 #include <chrono>
 #include <iostream>
@@ -8,7 +8,7 @@ BOOST_AUTO_TEST_SUITE(TestNumOfSmallerElementsAfterSelf)
 
     BOOST_AUTO_TEST_CASE(empty_input_array)
     {
-        Algo::HashMap::NumOfSmallerElementsAfterSelf obj;
+        Algo::DS::HashMap::NumOfSmallerElementsAfterSelf obj;
         const std::vector<int> input = {};
         const std::vector<int> expected = {};
         BOOST_CHECK(expected == obj.count_with_map(input));
@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_SUITE(TestNumOfSmallerElementsAfterSelf)
 
     BOOST_AUTO_TEST_CASE(array_with_one_elem)
     {
-        Algo::HashMap::NumOfSmallerElementsAfterSelf obj;
+        Algo::DS::HashMap::NumOfSmallerElementsAfterSelf obj;
         const std::vector<int> input = {1};
         const std::vector<int> expected = {0};
         BOOST_CHECK(expected == obj.count_with_map(input));
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_SUITE(TestNumOfSmallerElementsAfterSelf)
 
     BOOST_AUTO_TEST_CASE(array_with_all_equal_elements)
     {
-        Algo::HashMap::NumOfSmallerElementsAfterSelf obj;
+        Algo::DS::HashMap::NumOfSmallerElementsAfterSelf obj;
         const std::vector<int> input = {3, 3, 3, 3};
         const std::vector<int> expected = {0, 0, 0, 0};
         BOOST_CHECK(expected == obj.count_with_map(input));
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_SUITE(TestNumOfSmallerElementsAfterSelf)
 
     BOOST_AUTO_TEST_CASE(array_with_two_diff_elements)
     {
-        Algo::HashMap::NumOfSmallerElementsAfterSelf obj;
+        Algo::DS::HashMap::NumOfSmallerElementsAfterSelf obj;
         const std::vector<int> input = {4, 3};
         const std::vector<int> expected = {1, 0};
         BOOST_CHECK(expected == obj.count_with_map(input));
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_SUITE(TestNumOfSmallerElementsAfterSelf)
 
     BOOST_AUTO_TEST_CASE(array_with_several_diff_elements)
     {
-        Algo::HashMap::NumOfSmallerElementsAfterSelf obj;
+        Algo::DS::HashMap::NumOfSmallerElementsAfterSelf obj;
         const std::vector<int> input = {8, 1, 2, 2, 3};
         const std::vector<int> expected = {4, 0, 0, 0, 0};
         BOOST_CHECK(expected == obj.count_with_map(input));
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_SUITE(TestNumOfSmallerElementsAfterSelf)
 
     BOOST_AUTO_TEST_CASE(array_with_several_diff_elements2)
     {
-        Algo::HashMap::NumOfSmallerElementsAfterSelf obj;
+        Algo::DS::HashMap::NumOfSmallerElementsAfterSelf obj;
         const std::vector<int> input = {8, 1, 4, 10, 11, 3, 4, 0};
         const std::vector<int> expected = {5, 1, 2, 3, 3, 1, 1, 0};
         BOOST_CHECK(expected == obj.count_with_map(input));

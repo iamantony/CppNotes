@@ -23,7 +23,7 @@ To the right of 1 there is 0 smaller element.
 #include <algorithm>
 #include <iterator>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class FenWickTree{
     public:
         std::vector<int> cnt;

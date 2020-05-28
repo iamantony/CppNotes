@@ -1,11 +1,11 @@
 #include <boost/test/unit_test.hpp>
-#include "algorithms/hashmap/count_visits_to_subdomains.hpp"
+#include "algorithms/data_structures/hashmap/count_visits_to_subdomains.hpp"
 
 BOOST_AUTO_TEST_SUITE(TestCountVisitsToSubdomains)
 
     BOOST_AUTO_TEST_CASE(empty_input)
     {
-        BOOST_CHECK(Algo::HashMap::CountVisitsToSubdomains::count({}).empty());
+        BOOST_CHECK(Algo::DS::HashMap::CountVisitsToSubdomains::count({}).empty());
     }
 
     BOOST_AUTO_TEST_CASE(invalid_entries_in_input)
@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_SUITE(TestCountVisitsToSubdomains)
             ".a.b.c",
         };
 
-        BOOST_CHECK(Algo::HashMap::CountVisitsToSubdomains::count(input).empty());
+        BOOST_CHECK(Algo::DS::HashMap::CountVisitsToSubdomains::count(input).empty());
     }
 
     BOOST_AUTO_TEST_CASE(valid_input)
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_SUITE(TestCountVisitsToSubdomains)
             "4 test.google.ru"
         };
 
-        auto result = Algo::HashMap::CountVisitsToSubdomains::count(input);
+        auto result = Algo::DS::HashMap::CountVisitsToSubdomains::count(input);
 
         std::sort(expected.begin(), expected.end());
         std::sort(result.begin(), result.end());

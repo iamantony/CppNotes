@@ -28,7 +28,7 @@ The two tuples are:
 #include <vector>
 #include <unordered_map>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class FindFourSumInArrays {
     public:
         static int find(

@@ -28,7 +28,7 @@ Note:
 - The characters in J are distinct.
 */
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class JewelsAndStones {
     public:
         static size_t CountJewels(const std::string& jewels, const std::string& stones) {

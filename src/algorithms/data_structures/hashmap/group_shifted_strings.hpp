@@ -25,7 +25,7 @@ Output:
 #include <unordered_map>
 #include <vector>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class ShiftedStrings {
         std::unordered_map<std::string, std::vector<std::string>> m_groups;
 

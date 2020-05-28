@@ -28,7 +28,7 @@ Constraints:
 #include <unordered_map>
 #include <unordered_set>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class UniqueNumberOfOccurrence {
     public:
         static bool check(const std::vector<int>& v) {

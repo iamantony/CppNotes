@@ -49,7 +49,7 @@ The answer output can be returned in any order.
 #include <unordered_map>
 #include <limits>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class CountVisitsToSubdomains {
         static bool convert_to_num(const std::string_view& str, size_t& num) {
             char** end = nullptr;

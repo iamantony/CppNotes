@@ -36,7 +36,7 @@ Constraints:
 #include <unordered_map>
 #include <algorithm>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class NumOfSmallerElements {
     public:
         static std::vector<int> count(const std::vector<int>& nums) {

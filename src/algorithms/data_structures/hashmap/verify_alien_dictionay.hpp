@@ -38,7 +38,7 @@ Constraints:
 #include <vector>
 #include <unordered_map>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class AlienDictionary {
     public:
         bool isAlienSorted(std::vector<std::string>& words, std::string order) {

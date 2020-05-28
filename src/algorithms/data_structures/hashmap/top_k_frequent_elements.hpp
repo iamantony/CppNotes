@@ -25,7 +25,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 #include <unordered_set>
 #include <algorithm>
 
-namespace Algo::HashMap {
+namespace Algo::DS::HashMap {
     class TopFrequentElements {
     public:
         static std::vector<int> find_with_sorting(std::vector<int> nums, const int k) {
