@@ -41,7 +41,7 @@ Constraints:
 namespace Algo::DS::String {
     class SplitBalancedString {
     public:
-        int num_of_balanced_substrings(const std::string& s) {
+        static int num_of_balanced_substrings(const std::string& s) {
             int result = 0;
             size_t num_of_r = 0;
             size_t num_of_l = 0;
