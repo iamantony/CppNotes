@@ -17,6 +17,7 @@ To the right of 6 there is 1 smaller element (1).
 To the right of 1 there is 0 smaller element.
 */
 
+#include "types/ds/fenwick_tree.hpp"
 #include <vector>
 #include <map>
 #include <set>
@@ -24,33 +25,6 @@ To the right of 1 there is 0 smaller element.
 #include <iterator>
 
 namespace Algo::DS::HashMap {
-    class FenWickTree{
-    public:
-        std::vector<int> cnt;
-        FenWickTree(size_t n) : cnt(n + 1,0) { }
-
-        void update(int i, int delta) {
-            while(static_cast<size_t>(i) < cnt.size()) {
-                cnt[static_cast<size_t>(i)] += delta;
-                i += low_bit(i);
-            }
-        }
-
-        int query(int a) {
-            int sum=0;
-            while(a > 0) {
-                sum += cnt[static_cast<size_t>(a)];
-                a -= low_bit(a);
-            }
-
-            return sum;
-        }
-
-        int low_bit(int x) {
-            return x & (-x);
-        }
-    };
-
     class NumOfSmallerElementsAfterSelf {
     public:
         static std::vector<int> count_with_map(const std::vector<int>& nums) {
@@ -104,16 +78,23 @@ namespace Algo::DS::HashMap {
             {
                 std::set<int> unique_nums(nums.begin(), nums.end());
                 for(auto& x : unique_nums) {
-                    ++rank;
                     m[x] = static_cast<int>(rank);
+                    ++rank;
                 }
             }
 
-            FenWickTree FW(rank);
+            Types::DS::FenwickTree<int> ft(rank);
             std::vector<int> ans;
             for(size_t i = nums.size() - 1; ; --i) {
-                ans.push_back(FW.query(m[nums[i]] - 1));
-                FW.update(m[nums[i]],1);
+                const auto num_rank = m[nums[i]] - 1;
+                if (num_rank < 0) {
+                    ans.push_back(0);
+                }
+                else {
+                    ans.push_back(ft.prefix_sum(static_cast<size_t>(num_rank)));
+                }
+
+                ft.add(static_cast<size_t>(m[nums[i]]), 1);
 
                 if (i == 0) { break; }
             }
