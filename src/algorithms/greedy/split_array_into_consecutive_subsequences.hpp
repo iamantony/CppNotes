@@ -128,10 +128,11 @@ namespace Algo::Greedy {
                     sequences.clear();
                 }
 
-                auto remove_from_iter = std::remove(
+                auto remove_from_iter = std::remove_if(
                     sequences.begin(),
                     sequences.end(),
                     [&k](const auto& seq){ return seq.size() == k; });
+
                 sequences.erase(remove_from_iter, sequences.end());
 
                 while (count < sequences.size()) {
