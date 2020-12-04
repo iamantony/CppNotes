@@ -344,7 +344,7 @@ namespace v2 {
                           keyBegin : low->first;
 
             // Step 2: find first iterator with key >= keyEnd and value > val
-            auto high = m_map.lower_bound(keyEnd); // logarithmic
+            //auto high = m_map.lower_bound(keyEnd); // logarithmic
 //        if (high != m_map.end()) {
 //            std::cout << "-- internal: high key after lower_bound: " <<
 //                         high->first << ", " << high->second << std::endl;

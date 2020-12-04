@@ -61,7 +61,7 @@ private:
 BOOST_AUTO_TEST_SUITE(IntervalMap)
 
 BOOST_AUTO_TEST_CASE(special) {
-    interval_map<size_t, int> im(std::numeric_limits<int>::lowest());
+    v1::interval_map<size_t, int> im(std::numeric_limits<int>::lowest());
     im.assign(0, 6, 9);
     im.assign(6, 9, 1);
     im.assign(9, 10, 8);
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(random_with_check_vector)
 
     const Value defaultValue(distV(gen));
     std::vector<Value> v(10, defaultValue);
-    interval_map<Key, Value> im(defaultValue);
+    v1::interval_map<Key, Value> im(defaultValue);
 
     for (size_t cycle = 0; cycle < 100000; ++cycle) {
         const size_t kBegin = distK(gen);
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE(random_values)
             std::numeric_limits<char>::min(), std::numeric_limits<char>::max());
 
     const Value defaultValue(distV(gen));
-    interval_map<Key, Value> im(defaultValue);
+    v1::interval_map<Key, Value> im(defaultValue);
 
     for (size_t cycle = 0; cycle < 100000; ++cycle) {
         const size_t kBegin = distK(gen);
