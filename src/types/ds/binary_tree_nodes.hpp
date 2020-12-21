@@ -1,22 +1,18 @@
 #ifndef BINARY_TREE_NODES_HPP
 #define BINARY_TREE_NODES_HPP
 
-#include <iostream>
 #include <vector>
 
 namespace Types::DS {
     template<typename T>
     class NodeBT {
     public:
-        NodeBT(T x) : value(x), left(nullptr), right(nullptr) {}
-        ~NodeBT()
-        {
-//        std::cout << "Delete BT node with value " << value << std::endl;
-        }
+        NodeBT(T x) : value(std::move(x)) {}
+        ~NodeBT() {}
 
         T value;
-        NodeBT* left;
-        NodeBT* right;
+        NodeBT* left = nullptr;
+        NodeBT* right = nullptr;
     };
 
     template<typename T>
@@ -89,7 +85,7 @@ namespace Types::DS {
     std::vector<T> ValuesInBT(NodeBT<T>* head)
     {
         std::vector<T> values;
-        printNode(head, values);
+        valuesInBTHelper(head, values);
         return values;
     }
 
