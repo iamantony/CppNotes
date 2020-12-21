@@ -30,11 +30,10 @@ Constraints:
 
 #include <vector>
 #include <stack>
-
 #include "types/ds/binary_tree_nodes.hpp"
 
 namespace Algo::DS::BT {
-    class ConstructBTFromPreorderTraversal {
+    class ConstructBSTFromPreorderTraversal {
         Types::DS::NodeBT<int>* insert_recursively(Types::DS::NodeBT<int>* root, int x)
         {
             if (!root) { return new Types::DS::NodeBT<int>(x); }
