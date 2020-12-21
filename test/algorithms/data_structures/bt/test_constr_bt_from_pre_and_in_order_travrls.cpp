@@ -1,6 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include "algorithms/data_structures/bt/constr_bt_from_pre_and_inorder_travrls.hpp"
-#include <limits>
+#include "algorithms/data_structures/bt/constr_bt_from_pre_and_in_order_travrls.hpp"
 
 using Types::DS::NodeBT;
 using Algo::DS::BT::ConstructBTFromInAndPreOrderTraversals;
@@ -206,4 +205,3 @@ BOOST_AUTO_TEST_SUITE(TestConstrBTFromInAndPreOrderTraversals)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
-
