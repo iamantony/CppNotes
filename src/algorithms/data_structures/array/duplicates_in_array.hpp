@@ -47,6 +47,7 @@ Output: false
 #include <vector>
 #include <unordered_map>
 #include <map>
+#include <set>
 #include <unordered_set>
 #include <algorithm>
 
@@ -206,27 +207,23 @@ public:
             const int& maxDifference,
             const size_t& maxDistance)
     {
-        if (nums.size() < 2 || maxDifference < 0 || maxDistance <= 0) {
-            return false;
-        }
-
-        const long long maxDiff = static_cast<long long>(maxDifference);
-        std::map<long long, size_t> elements;
-        for (size_t i = 0, j = 0; i < nums.size(); ++i) {
-            const long long iNum = static_cast<long long>(nums[i]);
-            if (i - j > maxDistance) {
-                const long long jNum = static_cast<long long>(nums[j]);
-                elements.erase(jNum);
-                ++j;
+        const auto maxDiff = static_cast<long long>(maxDifference);
+        std::multiset<long long> data;
+        for (size_t i = 0; i < nums.size(); ++i) {
+            if (data.size() > maxDistance) {
+                data.erase(data.find(static_cast<long long>(nums[i - maxDistance - 1])));
             }
 
-            auto iter = elements.lower_bound(iNum - maxDiff);
-            if (iter != elements.end() &&
-                    std::abs(iter->first - iNum) <= maxDiff) {
-                return true;
+            auto iter = data.insert(static_cast<long long>(nums[i]));
+            if (iter != data.begin()) {
+                --iter;
+                if (nums[i] - *iter <= maxDiff) { return true; }
+
+                ++iter;
             }
 
-            elements[iNum] = i;
+            ++iter;
+            if (iter != data.end() && *iter - nums[i] <= maxDiff) { return true; }
         }
 
         return false;
