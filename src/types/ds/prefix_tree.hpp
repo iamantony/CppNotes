@@ -40,7 +40,7 @@ namespace Types::DS {
         Node root;
 
     public:
-        Trie() = default;
+        PrefixTree() = default;
 
         void insert(const std::string& word) {
             Node* n = &root;
